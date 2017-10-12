@@ -7,7 +7,9 @@
 varnames(old_names = NULL, dat)
 }
 \arguments{
-\item{old_names}{A vector of strings indicating the old (or expected) variable names in the data set.}
+\item{old_names}{A vector of strings indicating the old (or expected) variable names in the data set.
+The default is a vector of variable names coming from the 2016-2017 combined data, stored as an
+Rdata file in the package, called \code{CCMHvars}.}
 
 \item{dat}{The data frame containing the new year of (combined) data, with the variable names stored in \code{colnames(dat)}.}
 }

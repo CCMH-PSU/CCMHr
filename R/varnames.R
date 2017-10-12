@@ -6,6 +6,8 @@
 #' will be returned.
 #'
 #' @param old_names A vector of strings indicating the old (or expected) variable names in the data set.
+#' The default is a vector of variable names coming from the 2016-2017 combined data, stored as an
+#' Rdata file in the package, called \code{CCMHvars}.
 #' @param dat The data frame containing the new year of (combined) data, with the variable names stored in \code{colnames(dat)}.
 #' @return A list containing \code{Is_same}, \code{Omitted}, and \code{Extra}. \code{Is_same} is boolean-valued,
 #' indicating whether or not the new variable names were consistent with the expected variable names. \code{Omitted}
