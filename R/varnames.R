@@ -22,8 +22,8 @@
 
 varnames <- function(old_names=NULL,dat){
   if(is.null(old_names)){
-    data("old_names")
-    old_names <- (old_names)
+    data("CCMHvars")
+    old_names <- CCMHvars
   }
   new_names <- colnames(dat)
   if(all(old_names %in% new_names) & all(new_names %in% old_names)){
