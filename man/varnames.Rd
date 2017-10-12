@@ -4,7 +4,7 @@
 \alias{varnames}
 \title{A Check for Variable Names}
 \usage{
-varnames(old_names, dat)
+varnames(old_names = NULL, dat)
 }
 \arguments{
 \item{old_names}{A vector of strings indicating the old (or expected) variable names in the data set.}
