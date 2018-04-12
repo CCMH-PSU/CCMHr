@@ -1,5 +1,4 @@
 require(tidyverse)
-require(tidy)
 require(rlang)
 
 #' Check for Column Class Equality Across Two Data Frames
@@ -9,7 +8,7 @@ require(rlang)
 #'
 #' @param dataframe1 A data frame.
 #' @param dataframe2 Another data frame.
-#' @note \code{SDSvalue_check} ...
+#' @note
 #' @return A data frame with columns for each data frame and rows for each column in the data frames that has unequal column classes.
 #' The observations indicate the column classes in each data frame.
 #' @example
