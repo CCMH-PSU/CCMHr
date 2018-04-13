@@ -8,4 +8,4 @@
 #' (or the naming convention was changed in the new year's data), the
 #' function will return an error.
 #' @return A data frame with all the original data in \code{dat}, and several additional columns: ...
-#'
+
