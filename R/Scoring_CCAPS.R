@@ -121,5 +121,3 @@ score_CCAPS <- function(dat) {
   return(dat)
 }
 
-test <- data.frame(x = c(1,2,3))
-score_CCAPS(test)
