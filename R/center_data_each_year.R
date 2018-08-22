@@ -15,13 +15,10 @@ center_data_each_year <- function(data) {
     if(sum(is.na(data$Data_year)) >0) {
       print("Data_year variable contains missing data.")
     } else{
-      years <- length(unique(data$Data_year))
-      group_by(data, Data_year, CenterID) %>%
-        summarize(n()) %>%
-        group_by(CenterID) %>%
-        summarize(N = n()) %>%
-        filter(N == years) %>%
-        semi_join(data, ., by = "CenterID")
+      group_by(data, CenterID) %>%
+        mutate(N = n_distinct(Data_year)) %>%
+        filter(N == length(unique(data$Data_year))) %>%
+        select(-N)
     }
   }
 }
