@@ -3,7 +3,7 @@ Type: Package
 Title: CCMH Data Cleaning
 Version: 0.1.0
 Author: Justin Petrovich and Rebecca Janis
-Maintainer: Rebecca Janis
+Maintainer: The package maintainer <yourself@somewhere.net>
 Description: Assorted functions used when performing regular data cleaning
     tasks for CCMH data.
 License: What license is it under?
