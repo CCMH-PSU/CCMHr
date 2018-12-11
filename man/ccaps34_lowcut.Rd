@@ -7,16 +7,16 @@
 ccaps34_lowcut(data)
 }
 \arguments{
-\item{\code{dat}}{A data file containing CCAPS-34 subscales}
+\item{\code{data}}{A data file containing CCAPS-34 subscales}
 }
 \value{
-A data frame with all the original data in \code{dat}, and several additional columns of cut scores coded 1 for above cut score and 0 for below cut score.
+A data frame with all the original data in \code{data}, and several additional columns of cut scores coded 1 for above cut score and 0 for below cut score.
 }
 \description{
 Creates binary variables for CCAPS-34 subscales indicating whether the score is above or below the low and high cut respectively, using the 2018 cut points.
 }
 \note{
-If \code{dat} does not contain the proper CCAPS subscale names, it will return an error.
+If \code{data} does not contain the proper CCAPS subscale names, it will return an error.
 }
 \examples{
 TI1718 <- ccaps34_lowcut(TI1718)
