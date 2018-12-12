@@ -16,6 +16,7 @@
 #' at least one value out of bounds. If no variables have values out of bounds, the
 #' returned value will be \code{NULL}.
 #' @example
+#' @export
 
 
 CCAPSvalue_check <- function(dat){

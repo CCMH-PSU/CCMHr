@@ -17,6 +17,7 @@
 #' exist between \code{CLICC_01_01} and \code{CLICC_01_44}, with the exception of
 #' \code{CLICC_03}.
 #' @examples
+#' @export
 
 
 CLICCvalue_check <- function(dat){

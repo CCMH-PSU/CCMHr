@@ -12,6 +12,7 @@ require(rlang)
 #' @return A data frame with columns for each data frame and rows for each column in the data frames that has unequal column classes.
 #' The observations indicate the column classes in each data frame.
 #' @example
+#' @export
 
 class_check <- function(dataframe1 = survey, dataframe2 = appts){
   common_vars <- intersect(names(dataframe1), names(dataframe2))

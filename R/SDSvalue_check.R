@@ -12,6 +12,7 @@
 #' strings containing the names of the SDS variables that have at least one value out of
 #' bounds.
 #' @example
+#' @export
 
 SDSvalue_check <- function(dat){
 

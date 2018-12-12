@@ -5,6 +5,7 @@
 #' @note If \code{data} does not contain the proper CCAPS subscale names, it will return an error.
 #' @return A data frame with all the original data in \code{data}, and several additional columns of cut scores coded 1 for above cut score and 0 for below cut score.
 #' @examples TI1718 <- ccaps34_lowcut(TI1718)
+#' @export
 
 ccaps34_lowcut <- function(data){
   if(all(c("Depression34", "Anxiety34", "Social_Anxiety34", "Academics34", "Eating34", "Hostility34", "Alcohol34", "DI") %in% colnames(data))) {

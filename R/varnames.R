@@ -18,6 +18,7 @@
 #' dat <- as.data.frame(matrix(rnorm(12),3,4))
 #' colnames(dat) <- c("a","B","c","x")
 #' varnames(old_names,dat)
+#' @export
 
 
 
