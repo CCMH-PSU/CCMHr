@@ -10,7 +10,7 @@
 ccaps34_lowcut <- function(data){
   if(all(c("Depression34", "Anxiety34", "Social_Anxiety34", "Academics34", "Eating34", "Hostility34", "Alcohol34", "DI") %in% colnames(data))) {
     data %>%
-      mutate(depression_low_cut34 = ifelse(round(Depression34, 2) >= 1, 1, 0),
+      dplyr::mutate(depression_low_cut34 = ifelse(round(Depression34, 2) >= 1, 1, 0),
              depression_hi_cut34 = ifelse(round(Depression34, 2) >= 1.83, 1, 0),
              anxiety_low_cut34 = ifelse(round(Anxiety34, 2) >= 1.3, 1, 0),
              anxiety_hi_cut34 = ifelse(round(Anxiety34,2) >= 2.1, 1, 0),

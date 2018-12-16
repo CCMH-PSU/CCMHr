@@ -21,18 +21,18 @@
 
 CCAPSvalue_check <- function(dat){
   library(dplyr)
-  violate <- dat %>% select(CCAPS_01:CCAPS_70) %>%
-    mutate_all(funs(viol = !between(.,left = 0,right = 4)))
+  violate <- dat %>% dplyr::select(CCAPS_01:CCAPS_70) %>%
+    dplyr::mutate_all(funs(viol = !between(.,left = 0,right = 4)))
 
-  sum_violate <- violate %>% select(CCAPS_01_viol:CCAPS_70_viol) %>%
-    summarise_all(funs(sum = sum(.,na.rm = T)))
+  sum_violate <- violate %>% dplyr::select(CCAPS_01_viol:CCAPS_70_viol) %>%
+    dplyr::summarise_all(funs(sum = sum(.,na.rm = T)))
 
   total <- sum(sum_violate)
 
   if(total==0){
     violations <- NULL
   } else{
-    violations <- colnames(select(dat,CCAPS_01:CCAPS_70))[which(sum_violate>0)]
+    violations <- colnames(dplyr::select(dat,CCAPS_01:CCAPS_70))[which(sum_violate>0)]
   }
   return(violations)
 }

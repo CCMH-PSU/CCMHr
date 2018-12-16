@@ -13,6 +13,7 @@
 #' Note that this takes several minutes to run.
 #' @return A data frame with all the original data in \code{dat}, and several additional columns: \code{Has_CCAPS}, \code{Is_CCAPS62}, \code{Is_ValidCCAPS}, \code{Is_ValidCCAPS62}, \code{Is_CCAPS34}, \code{Is_ValidCCAPS34}, \code{Depression34}, \code{Anxiety34}, \code{Social_Anxiety34}, \code{Academics34}, \code{Eating34}, \code{Hostility34}, \code{Alcohol34}, \code{DI}, \code{Depression62}, \code{Eating62}, \code{Substance62}, \code{Anxiety62}, \code{Hostility62}, \code{Social_Anxiety62}, \code{Family62}, \code{Academics62}
 #' @export
+#' @import
 
 score_CCAPS <- function(dat) {
   if(!all(c("CCAPS_01", "CCAPS_03", "CCAPS_04", "CCAPS_05", "CCAPS_06", "CCAPS_08", "CCAPS_09", "CCAPS_10", "CCAPS_11", "CCAPS_13", "CCAPS_14", "CCAPS_15", "CCAPS_16", "CCAPS_17", "CCAPS_18", "CCAPS_19", "CCAPS_21", "CCAPS_22", "CCAPS_23", "CCAPS_24", "CCAPS_25", "CCAPS_26", "CCAPS_27", "CCAPS_28", "CCAPS_29", "CCAPS_30", "CCAPS_31", "CCAPS_32", "CCAPS_33", "CCAPS_34", "CCAPS_35", "CCAPS_36", "CCAPS_37", "CCAPS_38", "CCAPS_39", "CCAPS_40", "CCAPS_41", "CCAPS_43", "CCAPS_44", "CCAPS_45", "CCAPS_46", "CCAPS_47", "CCAPS_48", "CCAPS_49", "CCAPS_50", "CCAPS_51", "CCAPS_52", "CCAPS_53", "CCAPS_54", "CCAPS_56", "CCAPS_57", "CCAPS_58", "CCAPS_59", "CCAPS_60", "CCAPS_61", "CCAPS_63", "CCAPS_64", "CCAPS_65", "CCAPS_66", "CCAPS_68", "CCAPS_69", "CCAPS_70") %in% colnames(dat))) stop('CCAPS items not present in data or not properly named. CCAPS items should be named CCAPS_01 through CCAPS_70.')
@@ -120,7 +121,7 @@ score_CCAPS <- function(dat) {
   dat$Academics62[which(dat$Is_ValidCCAPS62==0)]=NA
 
   # Delete created vars after creating subscales
-  dat <- select(dat, -c(Depression62_MISS:variance, CCAPS_18r:CCAPS_60r))
+  dat <- dplyr::select(dat, -c(Depression62_MISS:variance, CCAPS_18r:CCAPS_60r))
   return(dat)
 }
 

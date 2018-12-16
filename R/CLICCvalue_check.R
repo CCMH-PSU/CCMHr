@@ -28,16 +28,16 @@ CLICCvalue_check <- function(dat){
   }
 
   sum_violate_01 <- dat %>%
-    select(CLICC_01_01:CLICC_01_44) %>%
-    mutate_all(funs(viol = !one_or_na(.))) %>%
-    select(CLICC_01_01_viol:CLICC_01_44_viol) %>%
-    summarise_all(funs(sum = sum(.,na.rm = T)))
+    rlang::select(CLICC_01_01:CLICC_01_44) %>%
+    rlang::mutate_all(funs(viol = !one_or_na(.))) %>%
+    rlang::select(CLICC_01_01_viol:CLICC_01_44_viol) %>%
+    rlang::summarise_all(funs(sum = sum(.,na.rm = T)))
 
   sum_violate_03 <- dat %>%
-    select(CLICC_03) %>%
-    mutate_all(funs(CLICC_03_viol = !between(.,left = 0,right = 44))) %>%
-    select(CLICC_03_viol) %>%
-    summarise_all(funs(sum = sum(.,na.rm = T)))
+    rlang::select(CLICC_03) %>%
+    rlang::mutate_all(funs(CLICC_03_viol = !between(.,left = 0,right = 44))) %>%
+    rlang::select(CLICC_03_viol) %>%
+    rlang::summarise_all(funs(sum = sum(.,na.rm = T)))
 
   total <- sum(sum_violate_01) + sum(sum_violate_03)
 
