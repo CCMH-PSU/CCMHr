@@ -27,5 +27,5 @@ ccaps34_cuts <- function(data){
              DI_low_cut = ifelse(round(DI,2) >= 1.21, 1, 0),
              DI_hi_cut = ifelse(round(DI,2) >= 2.25, 1, 0)
       )
-  } else ("CCAPS variables not correctly named")
+  } else (print("CCAPS variables not correctly named"))
 }
