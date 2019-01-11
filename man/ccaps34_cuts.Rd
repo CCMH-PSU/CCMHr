@@ -19,5 +19,7 @@ Creates binary variables for CCAPS-34 subscales indicating whether the score is 
 If \code{data} does not contain the proper CCAPS subscale names, it will return an error.
 }
 \examples{
+\dontrun{
 TI1718 <- ccaps34_cuts(TI1718)
+}
 }

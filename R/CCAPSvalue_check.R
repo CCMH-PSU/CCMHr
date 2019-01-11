@@ -15,7 +15,6 @@
 #' @return A vector of strings containing the names of the CCAPS variables that have
 #' at least one value out of bounds. If no variables have values out of bounds, the
 #' returned value will be \code{NULL}.
-#' @example
 #' @export
 
 

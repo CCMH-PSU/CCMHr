@@ -2,7 +2,7 @@
 % Please edit documentation in R/loadRDa.R
 \name{loadRDa}
 \alias{loadRDa}
-\title{Title loadRDa}
+\title{loadRDa}
 \usage{
 loadRDa(fileName)
 }
@@ -13,6 +13,8 @@ loadRDa(fileName)
 Loads .rda and .rdata files with the ability to assign them to a new object name instead of the one they were originally saved with.
 }
 \examples{
+\dontrun{
 new_name <- loadRDa("filepath/file.rda")
+}
 
 }

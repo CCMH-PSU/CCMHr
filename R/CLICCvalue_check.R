@@ -7,7 +7,6 @@
 #' containing the names of the CLICC item(s) which violated these rules.
 #'
 #' @param dat The data frame containing the new year of (combined) data.
-#' @return
 #' @note \code{CLICCvalue_check} calls on CLICC_01_01, CLICC_01_44, and CLICC_03
 #' by name, so they must be named properly in \code{dat}. All other CLICC items
 #' follow the same naming convention as \code{CLICC_01_01}
@@ -16,7 +15,6 @@
 #' function will return an error. In addition, it is assumed that all CLICC variables
 #' exist between \code{CLICC_01_01} and \code{CLICC_01_44}, with the exception of
 #' \code{CLICC_03}.
-#' @examples
 #' @export
 
 

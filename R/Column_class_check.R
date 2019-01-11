@@ -8,10 +8,8 @@ require(rlang)
 #'
 #' @param dataframe1 A data frame.
 #' @param dataframe2 Another data frame.
-#' @note
 #' @return A data frame with columns for each data frame and rows for each column in the data frames that has unequal column classes.
 #' The observations indicate the column classes in each data frame.
-#' @example
 #' @export
 
 class_check <- function(dataframe1 = survey, dataframe2 = appts){
