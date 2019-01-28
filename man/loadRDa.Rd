@@ -2,7 +2,7 @@
 % Please edit documentation in R/loadRDa.R
 \name{loadRDa}
 \alias{loadRDa}
-\title{loadRDa}
+\title{load .RDa file into new object name}
 \usage{
 loadRDa(fileName)
 }

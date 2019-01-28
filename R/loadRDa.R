@@ -1,4 +1,4 @@
-#' loadRDa
+#' load .RDa file into new object name
 #'
 #' @description Loads .rda and .rdata files with the ability to assign them to a new object name instead of the one they were originally saved with.
 #'
