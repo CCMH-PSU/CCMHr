@@ -1,4 +1,4 @@
-#' A Check for the Values of SDS Items
+#' Check SDS item values
 #'
 #' @description A function used to check the validity of the SDS items. Each SDS item has
 #' a specific range of accepted values, and takes NA for missing values. This
@@ -13,6 +13,6 @@
 #' bounds.
 #' @export
 
-SDSvalue_check <- function(dat){
+check_SDS <- function(dat){
 
 }

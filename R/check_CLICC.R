@@ -18,24 +18,23 @@
 #' @export
 
 
-CLICCvalue_check <- function(dat){
-  library(dplyr)
+check_CLICC <- function(dat){
 
   one_or_na <- function(x){
     ifelse(is.na(x),T,ifelse(x==1,T,F))
   }
 
   sum_violate_01 <- dat %>%
-    rlang::select(CLICC_01_01:CLICC_01_44) %>%
-    rlang::mutate_all(funs(viol = !one_or_na(.))) %>%
-    rlang::select(CLICC_01_01_viol:CLICC_01_44_viol) %>%
-    rlang::summarise_all(funs(sum = sum(.,na.rm = T)))
+    dplyr::select(CLICC_01_01:CLICC_01_44) %>%
+    dplyr::mutate_all(funs(viol = !one_or_na(.))) %>%
+    dplyr::select(CLICC_01_01_viol:CLICC_01_44_viol) %>%
+    dplyr::summarise_all(funs(sum = sum(.,na.rm = T)))
 
   sum_violate_03 <- dat %>%
-    rlang::select(CLICC_03) %>%
-    rlang::mutate_all(funs(CLICC_03_viol = !between(.,left = 0,right = 44))) %>%
-    rlang::select(CLICC_03_viol) %>%
-    rlang::summarise_all(funs(sum = sum(.,na.rm = T)))
+    dplyr::select(CLICC_03) %>%
+    dplyr::mutate_all(funs(CLICC_03_viol = !between(.,left = 0,right = 44))) %>%
+    dplyr::select(CLICC_03_viol) %>%
+    dplyr::summarise_all(funs(sum = sum(.,na.rm = T)))
 
   total <- sum(sum_violate_01) + sum(sum_violate_03)
 

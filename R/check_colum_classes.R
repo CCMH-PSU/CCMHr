@@ -1,7 +1,4 @@
-require(tidyverse)
-require(rlang)
-
-#' Check for Column Class Equality Across Two Data Frames
+#' Check column class equality across two data frames
 #'
 #' @description A function to check that columns named the same across two data frames have the same classes.
 #' To be used before merging two data frames to ensure that the columns with the same names will merge cleanly.
@@ -12,7 +9,7 @@ require(rlang)
 #' The observations indicate the column classes in each data frame.
 #' @export
 
-class_check <- function(dataframe1 = survey, dataframe2 = appts){
+check_column_classes <- function(dataframe1 = survey, dataframe2 = appts){
   common_vars <- intersect(names(dataframe1), names(dataframe2))
   dataframe2_classes <- data.frame(class_dataframe2 = sapply(dataframe2[,colnames(dataframe2) %in% common_vars], class), Column = common_vars)
   dataframe1_classes <- data.frame(class_dataframe1 = sapply(dataframe1[,colnames(dataframe1) %in% common_vars], class), Column = common_vars)

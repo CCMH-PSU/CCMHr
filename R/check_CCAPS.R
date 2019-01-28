@@ -1,4 +1,4 @@
-#' A Check for the Values of CCAPS Items
+#' Check CCAPS item values
 #'
 #' @description A function used to check the validity of the CCAPS items. All CCAPS
 #' items should have values between 0 and 4, and possibly NA for missing values. This
@@ -18,8 +18,7 @@
 #' @export
 
 
-CCAPSvalue_check <- function(dat){
-  library(dplyr)
+check_CCAPS <- function(dat){
   violate <- dat %>% dplyr::select(CCAPS_01:CCAPS_70) %>%
     dplyr::mutate_all(funs(viol = !between(.,left = 0,right = 4)))
 
