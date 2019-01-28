@@ -5,9 +5,7 @@
 #' @return A data frame with only centers contributing data for all data years included in the original data set.
 #' @export
 #'
-#' @examples
 #'
-
 center_data_each_year <- function(data) {
   if(!"Data_year" %in% names(data) | !"CenterID" %in% names(data)) {
     print("Data_year or CenterID columns missing.")

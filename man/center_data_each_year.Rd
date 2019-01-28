@@ -15,6 +15,3 @@ A data frame with only centers contributing data for all data years included in 
 \description{
 Selecting only centers who contributed data for all years.
 }
-\examples{
-
-}
