@@ -1,16 +1,16 @@
-#' A function to create CCAPS-34 cut points
+#' Create CCAPS-34 cut points
 #'
 #' @description Creates binary variables for CCAPS-34 subscales indicating whether the score is above or below the low and high cut respectively, using the 2018 cut points.
-#' @param \code{data} A data file containing CCAPS-34 subscales
-#' @note If \code{data} does not contain the proper CCAPS subscale names, it will return an error.
-#' @return A data frame with all the original data in \code{data}, and several additional columns of cut scores coded 1 for above cut score and 0 for below cut score.
+#' @param data A data file containing CCAPS-34 subscales
+#' @note If `data` does not contain the proper CCAPS subscale names, it will return an error.
+#' @return A data frame with all the original data in `data`, and several additional columns of cut scores coded 1 for above cut score and 0 for below cut score.
 #' @examples \dontrun{
 #' TI1718 <- ccaps34_cuts(TI1718)
 #' }
 #' @export
 
 ccaps34_cuts <- function(data){
-  if(all(c("Depression34", "Anxiety34", "Social_Anxiety34", "Academics34", "Eating34", "Hostility34", "Alcohol34", "DI") %in% colnames(data))) {
+  if(!all(c("Depression34", "Anxiety34", "Social_Anxiety34", "Academics34", "Eating34", "Hostility34", "Alcohol34", "DI") %in% colnames(data))) stop('CCAPS columns not named correctly.')
     data %>%
       dplyr::mutate(depression_low_cut34 = ifelse(round(Depression34, 2) >= 1, 1, 0),
              depression_hi_cut34 = ifelse(round(Depression34, 2) >= 1.83, 1, 0),
@@ -29,5 +29,4 @@ ccaps34_cuts <- function(data){
              DI_low_cut = ifelse(round(DI,2) >= 1.21, 1, 0),
              DI_hi_cut = ifelse(round(DI,2) >= 2.25, 1, 0)
       )
-  } else (print("CCAPS variables not correctly named"))
 }
