@@ -4,10 +4,10 @@
 \alias{varnames}
 \title{Check variable Names}
 \usage{
-varnames(dat, old_names = NULL)
+varnames(data, old_names = NULL)
 }
 \arguments{
-\item{dat}{The data frame containing the new year of (combined) data, with the variable names stored in \code{colnames(dat)}.}
+\item{data}{The data frame containing the new year of (combined) data, with the variable names stored in \code{colnames(data)}.}
 
 \item{old_names}{A vector of strings indicating the old (or expected) variable names in the data set.
 The default is a vector of variable names coming from the 2016-2017 combined data, stored as an
@@ -16,8 +16,8 @@ Rdata file in the package, called \code{CCMHvars}.}
 \value{
 A list containing \code{Is_same}, \code{Omitted}, and \code{Extra}. \code{Is_same} is boolean-valued,
 indicating whether or not the new variable names were consistent with the expected variable names. \code{Omitted}
-is a vector of strings corresponding to the variables from \code{old_names} not appearing in \code{dat}.
-\code{Extra} is a vector of strings corresponding to the variables in \code{dat} not appearing in \code{old_names}.
+is a vector of strings corresponding to the variables from \code{old_names} not appearing in \code{data}.
+\code{Extra} is a vector of strings corresponding to the variables in \code{data} not appearing in \code{old_names}.
 }
 \description{
 This function is used to check the consistency of variable names for the new yearly data. Checks will be run against
@@ -26,7 +26,7 @@ will be returned.
 }
 \examples{
 old_names <- letters[1:3]
-dat <- as.data.frame(matrix(rnorm(12),3,4))
-colnames(dat) <- c("a","B","c","x")
-varnames(old_names,dat)
+data <- as.data.frame(matrix(rnorm(12),3,4))
+colnames(data) <- c("a","B","c","x")
+varnames(old_names, data)
 }
