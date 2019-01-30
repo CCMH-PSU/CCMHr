@@ -5,16 +5,24 @@
 #' @param data CCMH data files with UniqueClientID and Date variables
 #' @param firstOnly If FALSE, will return the whole data set. If TRUE, will return only each client's first course.
 #'
-#' @return A data frame with added variables:
-#' `UniqueClientID_byCourse`: an ID unique to each course of therapy. This is created by adding .1 to UniqueClientID for their first course (e.g. 100.1), .2 for their second course (100.2), etc.
-#' `RankCourse`: The course number that the line of data belongs to, numbered 1 through N of courses.
-#' `FirstCourse`: A dichotomous variable indicating whether the lines of data belong to a client's first course or not.
+#' @return A data frame with added variables indicating courses.
+#'
+#' If `firstOnly` = `FALSE`, all courses are retained, with the following variables added:
+#'
+#' * `UniqueClientID_byCourse`: an ID unique to each course of therapy. This is created by adding .1 to UniqueClientID for their first course (e.g. 100.1), .2 for their second course (100.2), etc.
+#'
+#' * `RankCourse`: The course number that the line of data belongs to, numbered 1 through N of courses.
+#'
+#' * `FirstCourse`: A dichotomous variable indicating whether the lines of data belong to a client's first course or not.
+#'
+#' If `firstOnly` = `TRUE`, only the first course is selected, and no variables are added:
+#'
 #'
 #' @export
 #'
-create_course <- function(data, firstOnly = FALSE){
-  if(!"UniqueClientID" %in% names(data)) stop('Data does not contain column named "UniqueClientID"')
-  if(!"Date" %in% names(data)) stop('Data does not contain column named "Date"')
+create_courses <- function(data, firstOnly = FALSE){
+  if(!"UniqueClientID" %in% names(data)) stop('Data does not contain column: UniqueClientID')
+  if(!"Date" %in% names(data)) stop('Data does not contain column: Date')
   ccmh_bycourse <- dplyr::arrange(data, UniqueClientID, Date) %>%
     dplyr::group_by(UniqueClientID) %>%
     dplyr::mutate(Date_1 = dplyr::lag(Date))
@@ -48,10 +56,18 @@ create_course <- function(data, firstOnly = FALSE){
   ccmh_bycourse$FirstCourse[which(ccmh_bycourse$RankCourse == 1)] <- 1
 
   if (firstOnly == FALSE) {
+    ccmh_bycourse$UniqueClientID_byCourse = ccmh_bycourse$RankCourse/10
+    ccmh_bycourse$UniqueClientID_byCourse = ccmh_bycourse$UniqueClientID_byCourse + ccmh_bycourse$UniqueClientID
+    ccmh_bycourse <- dplyr::select(ccmh_bycourse, -Date_1, -Daysbetween, -NewCourse) %>%
+    dplyr::select(UniqueClientID, UniqueClientID_byCourse, tidyselect::everything()) %>%
+      as.data.frame()
     return(ccmh_bycourse)
+
   } else if (firstOnly == TRUE) {
     # First course only
-    ccmh_firstcourse <- dplyr::filter(ccmh_bycourse, FirstCourse == 1)
+    ccmh_firstcourse <- dplyr::filter(ccmh_bycourse, FirstCourse == 1) %>%
+    dplyr::select(-Date_1, -Daysbetween, -NewCourse, -RankCourse, -FirstCourse) %>%
+    as.data.frame()
     return(ccmh_firstcourse)
   }
 
