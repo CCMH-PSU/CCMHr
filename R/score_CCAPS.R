@@ -47,7 +47,7 @@ score_CCAPS <- function(data) {
   data$CCAPS34_Tmiss <- rowSums(select(data, Depression34_MISS, Anxiety34_MISS, Social_Anxiety34_MISS, Academics34_MISS, Eating34_MISS, Hostility34_MISS, Alcohol34_MISS), na.rm = T)
 
   # Variance
-  data$variance <- apply(select(data,CCAPS_01:CCAPS_70), 1, var, na.rm=T)
+  data$variance <- apply(select(data,CCAPS_01:CCAPS_70), 1, stats::var, na.rm=T)
 
   # Indicators of valid/invalid administrations to score
   data$Is_ValidCCAPS <- 0
