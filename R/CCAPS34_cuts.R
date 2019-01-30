@@ -12,21 +12,22 @@
 ccaps34_cuts <- function(data){
   if(!all(c("Depression34", "Anxiety34", "Social_Anxiety34", "Academics34", "Eating34", "Hostility34", "Alcohol34", "DI") %in% colnames(data))) stop('CCAPS columns not named correctly.')
     data %>%
-      dplyr::mutate(depression_low_cut34 = ifelse(round(Depression34, 2) >= 1, 1, 0),
-             depression_hi_cut34 = ifelse(round(Depression34, 2) >= 1.83, 1, 0),
-             anxiety_low_cut34 = ifelse(round(Anxiety34, 2) >= 1.3, 1, 0),
-             anxiety_hi_cut34 = ifelse(round(Anxiety34,2) >= 2.1, 1, 0),
-             social_anxiety_low_cut34 = ifelse(round(Social_Anxiety34, 2) >= 1.65, 1, 0),
-             social_anxiety_hi_cut34 = ifelse(round(Social_Anxiety34,2) >= 2.5, 1, 0),
-             academics_low_cut34 = ifelse(round(Academics34,2) >= 1.45, 1, 0),
-             academics_hi_cut34 = ifelse(round(Academics34,2) >= 2.50, 1, 0),
-             eating_low_cut34 = ifelse(round(Eating34,2) >= 1.07, 1, 0),
-             eating_hi_cut34 = ifelse(round(Eating34,2) >= 1.50, 1, 0),
-             hostility_low_cut34 = ifelse(round(Hostility34,2) >= .74, 1, 0),
-             hostility_hi_cut34 = ifelse(round(Hostility34,2) >= 1.17, 1, 0),
-             alcohol_low_cut34 = ifelse(round(Alcohol34,2) >= .64, 1, 0),
-             alcohol_hi_cut34 = ifelse(round(Alcohol34,2) >= 1.10, 1, 0),
-             DI_low_cut = ifelse(round(DI,2) >= 1.21, 1, 0),
-             DI_hi_cut = ifelse(round(DI,2) >= 2.25, 1, 0)
+      dplyr::mutate(depression_low_cut34 = ifelse(round(.data$Depression34, 2) >= 1, 1, 0),
+             depression_hi_cut34 = ifelse(round(.data$Depression34, 2) >= 1.83, 1, 0),
+             anxiety_low_cut34 = ifelse(round(.data$Anxiety34, 2) >= 1.3, 1, 0),
+             anxiety_hi_cut34 = ifelse(round(.data$Anxiety34,2) >= 2.1, 1, 0),
+             social_anxiety_low_cut34 = ifelse(round(.data$Social_Anxiety34, 2) >= 1.65, 1, 0),
+             social_anxiety_hi_cut34 = ifelse(round(.data$Social_Anxiety34,2) >= 2.5, 1, 0),
+             academics_low_cut34 = ifelse(round(.data$Academics34,2) >= 1.45, 1, 0),
+             academics_hi_cut34 = ifelse(round(.data$Academics34,2) >= 2.50, 1, 0),
+             eating_low_cut34 = ifelse(round(.data$Eating34,2) >= 1.07, 1, 0),
+             eating_hi_cut34 = ifelse(round(.data$Eating34,2) >= 1.50, 1, 0),
+             hostility_low_cut34 = ifelse(round(.data$Hostility34,2) >= .74, 1, 0),
+             hostility_hi_cut34 = ifelse(round(.data$Hostility34,2) >= 1.17, 1, 0),
+             alcohol_low_cut34 = ifelse(round(.data$Alcohol34,2) >= .64, 1, 0),
+             alcohol_hi_cut34 = ifelse(round(.data$Alcohol34,2) >= 1.10, 1, 0),
+             DI_low_cut = ifelse(round(.data$DI,2) >= 1.21, 1, 0),
+             DI_hi_cut = ifelse(round(.data$DI,2) >= 2.25, 1, 0)
       )
+    message("CCAPS-34 low cut scores based on original 2012 norms and high cut scores based on 2018 norms.")
 }

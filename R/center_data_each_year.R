@@ -7,16 +7,16 @@
 #'
 #'
 center_data_each_year <- function(data) {
-  if(!"Data_year" %in% names(data) | !"CenterID" %in% names(data)) {
-    print("Data_year or CenterID columns missing.")
+  if(!"Data_year" %in% names(data) | !"CcmhID" %in% names(data)) {
+    print("Data_year or CcmhID columns missing.")
   } else{
     if(sum(is.na(data$Data_year)) >0) {
       print("Data_year variable contains missing data.")
     } else{
-      group_by(data, CenterID) %>%
-        mutate(N = n_distinct(Data_year)) %>%
-        filter(N == length(unique(data$Data_year))) %>%
-        select(-N)
+      dplyr::group_by(data, .data$CcmhID) %>%
+        dplyr::mutate(N = dplyr::n_distinct(.data$Data_year)) %>%
+        dplyr::filter(.data$N == length(unique(data$Data_year))) %>%
+        dplyr::select(-.data$N)
     }
   }
 }

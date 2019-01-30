@@ -23,9 +23,9 @@
 create_courses <- function(data, firstOnly = FALSE){
   if(!"UniqueClientID" %in% names(data)) stop('Data does not contain column: UniqueClientID')
   if(!"Date" %in% names(data)) stop('Data does not contain column: Date')
-  ccmh_bycourse <- dplyr::arrange(data, UniqueClientID, Date) %>%
-    dplyr::group_by(UniqueClientID) %>%
-    dplyr::mutate(Date_1 = dplyr::lag(Date))
+  ccmh_bycourse <- dplyr::arrange(data, .data$UniqueClientID, .data$Date) %>%
+    dplyr::group_by(.data$UniqueClientID) %>%
+    dplyr::mutate(Date_1 = dplyr::lag(.data$Date))
   ccmh_bycourse$Daysbetween <-
     difftime(ccmh_bycourse$Date , ccmh_bycourse$Date_1 , units = c("days"))
 
@@ -35,12 +35,12 @@ create_courses <- function(data, firstOnly = FALSE){
   ccmh_bycourse$NewCourse[which(ccmh_bycourse$Daysbetween > 90)] <- 1
 
   # Ranks a client's new courses if there are multiple
-  ccmh_bycourse <- dplyr::arrange(ccmh_bycourse, UniqueClientID, NewCourse, Date)
+  ccmh_bycourse <- dplyr::arrange(ccmh_bycourse, .data$UniqueClientID, .data$NewCourse, .data$Date)
   ccmh_bycourse$RankCourse <-
     with(ccmh_bycourse,
          ave(UniqueClientID, UniqueClientID, NewCourse, FUN = seq_along))
   ccmh_bycourse$RankCourse[which(is.na(ccmh_bycourse$NewCourse))] = NA
-  ccmh_bycourse <- dplyr::arrange(ccmh_bycourse, UniqueClientID, Date)
+  ccmh_bycourse <- dplyr::arrange(ccmh_bycourse, .data$UniqueClientID, .data$Date)
 
   # Add 1 to current RankCourse
   ccmh_bycourse$RankCourse <- ccmh_bycourse$RankCourse + 1
@@ -58,15 +58,15 @@ create_courses <- function(data, firstOnly = FALSE){
   if (firstOnly == FALSE) {
     ccmh_bycourse$UniqueClientID_byCourse = ccmh_bycourse$RankCourse/10
     ccmh_bycourse$UniqueClientID_byCourse = ccmh_bycourse$UniqueClientID_byCourse + ccmh_bycourse$UniqueClientID
-    ccmh_bycourse <- dplyr::select(ccmh_bycourse, -Date_1, -Daysbetween, -NewCourse) %>%
-    dplyr::select(UniqueClientID, UniqueClientID_byCourse, tidyselect::everything()) %>%
+    ccmh_bycourse <- dplyr::select(ccmh_bycourse, -.data$Date_1, -.data$Daysbetween, -.data$NewCourse) %>%
+    dplyr::select(.data$UniqueClientID, .data$UniqueClientID_byCourse, tidyselect::everything()) %>%
       as.data.frame()
     return(ccmh_bycourse)
 
   } else if (firstOnly == TRUE) {
     # First course only
-    ccmh_firstcourse <- dplyr::filter(ccmh_bycourse, FirstCourse == 1) %>%
-    dplyr::select(-Date_1, -Daysbetween, -NewCourse, -RankCourse, -FirstCourse) %>%
+    ccmh_firstcourse <- dplyr::filter(ccmh_bycourse, .data$FirstCourse == 1) %>%
+    dplyr::select(-.data$Date_1, -.data$Daysbetween, -.data$NewCourse, -.data$RankCourse, -.data$FirstCourse) %>%
     as.data.frame()
     return(ccmh_firstcourse)
   }
