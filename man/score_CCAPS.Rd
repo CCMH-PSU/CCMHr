@@ -10,14 +10,14 @@ score_CCAPS(data)
 \item{data}{A data file containing CCAPS item data}
 }
 \value{
-A data frame with all the original data in `data`, and several additional columns: `Has_CCAPS`, `Is_CCAPS62`, `Is_ValidCCAPS`, `Is_ValidCCAPS62`, `Is_CCAPS34`, `Is_ValidCCAPS34`, `Depression34`, `Anxiety34`, `Social_Anxiety34`, `Academics34`, `Eating34`, `Hostility34`, `Alcohol34`, `DI`, `Depression62`, `Eating62`, `Substance62`, `Anxiety62`, `Hostility62`, `Social_Anxiety62`, `Family62`, `Academics62`
+A data frame with all the original data in \code{data}, and several additional columns: \code{Has_CCAPS}, \code{Is_CCAPS62}, \code{Is_ValidCCAPS}, \code{Is_ValidCCAPS62}, \code{Is_CCAPS34}, \code{Is_ValidCCAPS34}, \code{Depression34}, \code{Anxiety34}, \code{Social_Anxiety34}, \code{Academics34}, \code{Eating34}, \code{Hostility34}, \code{Alcohol34}, \code{DI}, \code{Depression62}, \code{Eating62}, \code{Substance62}, \code{Anxiety62}, \code{Hostility62}, \code{Social_Anxiety62}, \code{Family62}, \code{Academics62}
 }
 \description{
 Scores the CCAPS subscales for valid CCAPS administrations
 }
 \note{
-`score_CCAPS` calls on CCAPS items by name, so they must be named properly in
-`data`. Variable naming convention is `CCAPS_01`... `CCAPS_70`.
+\code{score_CCAPS} calls on CCAPS items by name, so they must be named properly in
+\code{data}. Variable naming convention is \code{CCAPS_01}... \code{CCAPS_70}.
 If 'data does not contain the proper CCAPS variable names
 (or the naming convention was changed in the new year's data), the
 function will return an error.

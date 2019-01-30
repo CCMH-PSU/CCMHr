@@ -9,10 +9,10 @@ first_present(x, order_by)
 \arguments{
 \item{x}{A vector}
 
-\item{order_by}{Another vector to sort `x` by.}
+\item{order_by}{Another vector to sort \code{x} by.}
 }
 \value{
-The first non-NA value in `x`.
+The first non-NA value in \code{x}.
 }
 \description{
 Extract first non-NA value
