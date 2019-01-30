@@ -11,5 +11,5 @@
 #'last_present(x = c(NA, 1, 2, NA), order_by = c(4, 3, 2, 1))
 #'
 last_present <- function(x, order_by) {
-  na.omit(x[order(order_by, decreasing = T)])[1L]
+  stats::na.omit(x[order(order_by, decreasing = T)])[1L]
 }
