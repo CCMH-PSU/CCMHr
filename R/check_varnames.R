@@ -21,7 +21,7 @@
 #' @export
 
 
-varnames <- function(data, old_names=NULL){
+check_varnames <- function(data, old_names=NULL){
   if(is.null(old_names)){
     old_names <- CCMHvars
   }
