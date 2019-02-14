@@ -17,7 +17,7 @@
 #' old_names <- letters[1:3]
 #' data <- as.data.frame(matrix(rnorm(12),3,4))
 #' colnames(data) <- c("a","B","c","x")
-#' varnames(old_names, data)
+#' check_varnames(old_names, data)
 #' @export
 
 
