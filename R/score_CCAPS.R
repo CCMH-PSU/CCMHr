@@ -1,6 +1,6 @@
-#' A function to score the CCAPS subscales from CCAPS items
+#' Score the CCAPS subscales from CCAPS items
 #'
-#' @description Scores the CCAPS subscales for valid CCAPS administrations
+#' @description Scores the CCAPS subscales for valid CCAPS administrations.
 #' @param data A data file containing CCAPS item data
 #' @note `score_CCAPS` calls on CCAPS items by name, so they must be named properly in
 #' `data`. Variable naming convention is `CCAPS_01`... `CCAPS_70`.
@@ -10,6 +10,7 @@
 #' Administrations are considered valid and will be scored if 1/3 or less of the items on any subscale are missing, and if less than
 #' 1/2 of the data overall is missing, and if the variance of the items is > 0, indicating that the items were not all marked
 #' as the same number.
+#' Function does not overwrite CCAPS items to reverse score them. It creates new reverse scored version, which it then deletes.
 #' Note that this takes several minutes to run.
 #' @return A data frame with all the original data in `data`, and several additional columns: `Has_CCAPS`, `Is_CCAPS62`, `Is_ValidCCAPS`, `Is_ValidCCAPS62`, `Is_CCAPS34`, `Is_ValidCCAPS34`, `Depression34`, `Anxiety34`, `Social_Anxiety34`, `Academics34`, `Eating34`, `Hostility34`, `Alcohol34`, `DI`, `Depression62`, `Eating62`, `Substance62`, `Anxiety62`, `Hostility62`, `Social_Anxiety62`, `Family62`, `Academics62`
 #' @export

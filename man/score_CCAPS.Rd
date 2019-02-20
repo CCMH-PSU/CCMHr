@@ -2,7 +2,7 @@
 % Please edit documentation in R/score_CCAPS.R
 \name{score_CCAPS}
 \alias{score_CCAPS}
-\title{A function to score the CCAPS subscales from CCAPS items}
+\title{Score the CCAPS subscales from CCAPS items}
 \usage{
 score_CCAPS(data)
 }
@@ -13,7 +13,7 @@ score_CCAPS(data)
 A data frame with all the original data in \code{data}, and several additional columns: \code{Has_CCAPS}, \code{Is_CCAPS62}, \code{Is_ValidCCAPS}, \code{Is_ValidCCAPS62}, \code{Is_CCAPS34}, \code{Is_ValidCCAPS34}, \code{Depression34}, \code{Anxiety34}, \code{Social_Anxiety34}, \code{Academics34}, \code{Eating34}, \code{Hostility34}, \code{Alcohol34}, \code{DI}, \code{Depression62}, \code{Eating62}, \code{Substance62}, \code{Anxiety62}, \code{Hostility62}, \code{Social_Anxiety62}, \code{Family62}, \code{Academics62}
 }
 \description{
-Scores the CCAPS subscales for valid CCAPS administrations
+Scores the CCAPS subscales for valid CCAPS administrations.
 }
 \note{
 \code{score_CCAPS} calls on CCAPS items by name, so they must be named properly in
@@ -24,5 +24,6 @@ function will return an error.
 Administrations are considered valid and will be scored if 1/3 or less of the items on any subscale are missing, and if less than
 1/2 of the data overall is missing, and if the variance of the items is > 0, indicating that the items were not all marked
 as the same number.
+Function does not overwrite CCAPS items to reverse score them. It creates new reverse scored version, which it then deletes.
 Note that this takes several minutes to run.
 }
