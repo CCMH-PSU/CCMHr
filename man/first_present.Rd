@@ -2,7 +2,7 @@
 % Please edit documentation in R/first_present.R
 \name{first_present}
 \alias{first_present}
-\title{Extract first non-NA value}
+\title{Extract first non-NA values}
 \usage{
 first_present(x, order_by)
 }
@@ -15,7 +15,10 @@ first_present(x, order_by)
 The first non-NA value in \code{x}.
 }
 \description{
-Extract first non-NA value
+Returns the first non-NA value of \code{x} when sorted by \code{order_by}.
+}
+\note{
+If there are no non-NA values, NA is returned.
 }
 \examples{
 first_present(x = c(NA, 1, 2, NA), order_by = c(1, 2, 3, 4))

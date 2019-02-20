@@ -15,7 +15,10 @@ last_present(x, order_by)
 The last non-NA value in \code{x}.
 }
 \description{
-Extract the last non-NA value
+Returns the last non-NA value of \code{x} when sorted by \code{order_by}.
+}
+\note{
+If there are no non-NA values, NA is returned.
 }
 \examples{
 last_present(x = c(NA, 1, 2, NA), order_by = c(1, 2, 3, 4))

@@ -1,9 +1,12 @@
-#' Extract first non-NA value
+#' Extract first non-NA values
+#'
+#' @description Returns the first non-NA value of `x` when sorted by `order_by`.
 #'
 #' @param x A vector
 #' @param order_by Another vector to sort `x` by.
 #'
 #' @return The first non-NA value in `x`.
+#' @note If there are no non-NA values, NA is returned.
 #' @export
 #'
 #' @examples
@@ -12,4 +15,8 @@
 #'
 first_present <- function(x, order_by) {
   stats::na.omit(x[order(order_by)])[1L]
+}
+
+last_present <- function(x, order_by) {
+  stats::na.omit(x[order(order_by, decreasing = T)])[1L]
 }

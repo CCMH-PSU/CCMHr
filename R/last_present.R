@@ -1,9 +1,13 @@
 #' Extract the last non-NA value
 #'
+#' @description Returns the last non-NA value of `x` when sorted by `order_by`.
+#'
+#'
 #' @param x A vector
 #' @param order_by Another vector to sort `x` by
 #'
 #' @return The last non-NA value in `x`.
+#' @note If there are no non-NA values, NA is returned.
 #' @export
 #'
 #' @examples
