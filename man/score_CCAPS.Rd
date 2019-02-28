@@ -4,10 +4,12 @@
 \alias{score_CCAPS}
 \title{Score the CCAPS subscales from CCAPS items}
 \usage{
-score_CCAPS(data)
+score_CCAPS(data, CCAPS62 = T)
 }
 \arguments{
 \item{data}{A data file containing CCAPS item data}
+
+\item{CCAPS62}{A logical value indicating whether the CCAPS62 should be scored. If FALSE, only the CCAPS34 will be scored.}
 }
 \value{
 A data frame with all the original data in \code{data}, and several additional columns: \code{Has_CCAPS}, \code{Is_CCAPS62}, \code{Is_ValidCCAPS}, \code{Is_ValidCCAPS62}, \code{Is_CCAPS34}, \code{Is_ValidCCAPS34}, \code{Depression34}, \code{Anxiety34}, \code{Social_Anxiety34}, \code{Academics34}, \code{Eating34}, \code{Hostility34}, \code{Alcohol34}, \code{DI}, \code{Depression62}, \code{Eating62}, \code{Substance62}, \code{Anxiety62}, \code{Hostility62}, \code{Social_Anxiety62}, \code{Family62}, \code{Academics62}
