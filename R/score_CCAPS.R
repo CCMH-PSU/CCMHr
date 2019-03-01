@@ -50,7 +50,7 @@ score_CCAPS <- function(data, CCAPS62 = T) {
   data$CCAPS34_Tmiss <- rowSums(dplyr::select(data, Depression34_MISS, Anxiety34_MISS, Social_Anxiety34_MISS, Academics34_MISS, Eating34_MISS, Hostility34_MISS, Alcohol34_MISS), na.rm = T)
 
   # Variance
-  data$variance <- apply(dplyr::select(data,CCAPS_01:CCAPS_70), 1, stats::var, na.rm=T)
+  data$variance <- matrixStats::rowVars(as.matrix(dplyr::select(data,CCAPS_01:CCAPS_70)), na.rm = T)
 
   # Indicators of valid/invalid administrations to score
   data$Is_ValidCCAPS <- 0
@@ -143,7 +143,7 @@ score_CCAPS <- function(data, CCAPS62 = T) {
     data$CCAPS34_Tmiss <- rowSums(dplyr::select(data, Depression34_MISS, Anxiety34_MISS, Social_Anxiety34_MISS, Academics34_MISS, Eating34_MISS, Hostility34_MISS, Alcohol34_MISS), na.rm = T)
 
     # Variance
-    data$variance <- apply(dplyr::select(data, CCAPS_03,CCAPS_05,CCAPS_06,CCAPS_11,CCAPS_13,CCAPS_16,CCAPS_17,CCAPS_18,CCAPS_21,CCAPS_22,CCAPS_24,CCAPS_27,CCAPS_29,CCAPS_30,CCAPS_31,CCAPS_33,CCAPS_34,CCAPS_36,CCAPS_39,CCAPS_40,CCAPS_45,CCAPS_46,CCAPS_48,CCAPS_49,CCAPS_51,CCAPS_52,CCAPS_54,CCAPS_57,CCAPS_58,CCAPS_59,CCAPS_63,CCAPS_64,CCAPS_66,CCAPS_68), 1, stats::var, na.rm=T)
+    data$variance <- matrixStats::rowVars(as.matrix(dplyr::select(data, CCAPS_03,CCAPS_05,CCAPS_06,CCAPS_11,CCAPS_13,CCAPS_16,CCAPS_17,CCAPS_18,CCAPS_21,CCAPS_22,CCAPS_24,CCAPS_27,CCAPS_29,CCAPS_30,CCAPS_31,CCAPS_33,CCAPS_34,CCAPS_36,CCAPS_39,CCAPS_40,CCAPS_45,CCAPS_46,CCAPS_48,CCAPS_49,CCAPS_51,CCAPS_52,CCAPS_54,CCAPS_57,CCAPS_58,CCAPS_59,CCAPS_63,CCAPS_64,CCAPS_66,CCAPS_68)), na.rm=T)
 
     # Indicators of valid/invalid administrations to score
     data$Is_ValidCCAPS <- 0

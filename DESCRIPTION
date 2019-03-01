@@ -19,6 +19,7 @@ Imports: dplyr,
     descr,
     tibble,
     tidyselect,
-    lazyeval
+    lazyeval, 
+    matrixStats
 Suggests: 
     testthat
