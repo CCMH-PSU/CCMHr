@@ -20,10 +20,10 @@
 
 check_CCAPS <- function(dat){
   violate <- dat %>% dplyr::select(.data$CCAPS_01:.data$CCAPS_70) %>%
-    dplyr::mutate_all(dplyr::funs(viol = !dplyr::between(.data,left = 0,right = 4)))
+    dplyr::mutate_all(list(viol = function(x) !dplyr::between(x, left = 0,right = 4)))
 
   sum_violate <- violate %>% dplyr::select(.data$CCAPS_01_viol:.data$CCAPS_70_viol) %>%
-    dplyr::summarise_all(dplyr::funs(sum = sum(.data,na.rm = T)))
+    dplyr::summarise_all(list(sum = function(x) sum(x, na.rm = T)))
 
   total <- sum(sum_violate)
 
