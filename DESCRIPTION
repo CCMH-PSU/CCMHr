@@ -20,6 +20,7 @@ Imports: dplyr,
     tibble,
     tidyselect,
     lazyeval, 
-    matrixStats
+    matrixStats,
+    arrangements
 Suggests: 
     testthat
