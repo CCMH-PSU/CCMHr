@@ -20,7 +20,7 @@ find_cutpoint_boundaries <- function(items, cutpoint) {
     return(subscale)
   }
 
-  admins <- Filter(function(x) round(1-(x/items),2) <= .33, seq(1, items, by = 1))
+  admins <- Filter(function(x) round(1-(x/items),2) < .33, seq(1, items, by = 1))
 
   purrr::map_df(admins, unique_scores) %>%
       dplyr::arrange(desc(Items)) %>%
