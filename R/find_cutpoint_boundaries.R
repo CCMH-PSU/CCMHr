@@ -28,7 +28,7 @@ find_cutpoint_boundaries <- function(items, cutpoint) {
       dplyr::summarize_all(dplyr::first) %>%
       # dplyr::filter(Score == max(Score < cutpoint)|Score == max(Score > cutpoint))
       dplyr::filter(Score == max(Score[Score < cutpoint])|
-                      Score == min(Score[Score > cutpoint])|
+                      Score == min(Score[Score >= cutpoint])|
                       Score == cutpoint) %>%
     dplyr::mutate(result = case_when(Score < cutpoint ~ "Below",
                                        Score > cutpoint ~ "Above",
