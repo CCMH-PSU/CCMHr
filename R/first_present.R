@@ -13,10 +13,10 @@
 #'first_present(x = c(NA, 1, 2, NA), order_by = c(1, 2, 3, 4))
 #'first_present(x = c(NA, 1, 2, NA), order_by = c(4, 3, 2, 1))
 #'
-first_present <- function(x, order_by) {
+first_present <- function(x, order_by = Date) {
   stats::na.omit(x[order(order_by)])[1L]
 }
 
-last_present <- function(x, order_by) {
+last_present <- function(x, order_by = Date) {
   stats::na.omit(x[order(order_by, decreasing = T)])[1L]
 }
