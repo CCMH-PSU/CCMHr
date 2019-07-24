@@ -12,7 +12,7 @@ find_cutpoint_boundaries <- function(items, cutpoint) {
 # If there's a score == cut point, return that, as well as the ones above and below
   unique_scores <- function(items) {
     subscale <- as.data.frame(arrangements::combinations(x = c(0,1,2,3,4), k = items, replace=TRUE))
-    subscale$Score <- round(apply(subscale, 1, mean), 4)
+    subscale$Score <- round(apply(subscale, 1, mean), 2)
     subscale <- dplyr::arrange(subscale, Score) %>%
       dplyr::group_by(Score) %>%
       dplyr::slice(1) %>%
