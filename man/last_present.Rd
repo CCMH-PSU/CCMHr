@@ -4,7 +4,7 @@
 \alias{last_present}
 \title{Extract the last non-NA value}
 \usage{
-last_present(x, order_by)
+last_present(x, order_by = Date)
 }
 \arguments{
 \item{x}{A vector}

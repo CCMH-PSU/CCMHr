@@ -4,7 +4,7 @@
 \alias{first_present}
 \title{Extract first non-NA values}
 \usage{
-first_present(x, order_by)
+first_present(x, order_by = Date)
 }
 \arguments{
 \item{x}{A vector}
