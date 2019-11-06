@@ -477,6 +477,16 @@ sds_to_factor <- function(data){
                     `5` = "5+")
   }
 
+  if ("SDS_42" %in% names(data)) {
+    data$SDS_42 <- as.factor(data$SDS_42) %>%
+      forcats::fct_inseq() %>%
+      dplyr::recode(`1` = "On-campus residence hall/apartment",
+                    `2` = "On/off campus fraternity/sorority house",
+                    `3` = "On/off campus co-operative house",
+                    `4` = "Off-campus apartment/house",
+                    `5` = "Other (please specify")
+  }
+
   if ("SDS_46" %in% names(data)) {
     data$SDS_46 <- as.factor(data$SDS_46) %>%
       forcats::fct_inseq() %>%
