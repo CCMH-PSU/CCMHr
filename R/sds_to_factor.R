@@ -438,7 +438,7 @@ sds_to_factor <- function(data){
   }
 
   if ("SDS_37" %in% names(data)) {
-    data$SDS_36 <- as.factor(data$SDS_36) %>%
+    data$SDS_37 <- as.factor(data$SDS_37) %>%
       forcats::fct_inseq() %>%
       dplyr::recode(`1` = "Freshman/First-year",
                     `2` = "Sophomore",
