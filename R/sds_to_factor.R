@@ -375,7 +375,7 @@ sds_to_factor <- function(data){
                     `2` = "Mostly attracted to women",
                     `3` = "Equally attracted to women and men",
                     `4` = "Mostly attracted to men",
-                    `5` = "Only attracted to women",
+                    `5` = "Only attracted to men",
                     `6` = "Not sure",
                     `7` = "I do not experience sexual attraction")
   }
