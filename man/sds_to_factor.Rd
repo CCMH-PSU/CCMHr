@@ -7,7 +7,7 @@
 sds_to_factor(data)
 }
 \arguments{
-\item{data}{}
+\item{data}{A CCMH data file with SDS variables}
 }
 \value{
 data with all present SDS variables converted to factors

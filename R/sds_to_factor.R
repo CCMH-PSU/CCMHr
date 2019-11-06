@@ -1,6 +1,6 @@
 #' Convert SDS numeric labels to answer option factors
 #'
-#' @param data
+#' @param data A CCMH data file with SDS variables
 #'
 #' @return data with all present SDS variables converted to factors
 #' @export

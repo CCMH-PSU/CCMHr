@@ -21,6 +21,8 @@ Imports: dplyr,
     tidyselect,
     lazyeval, 
     matrixStats,
-    arrangements
+    arrangements,
+    purrr, 
+    forcats
 Suggests: 
     testthat

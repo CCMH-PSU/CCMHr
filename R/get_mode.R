@@ -7,7 +7,7 @@
 
 
 get_mode <- function(x) {
-  values <- unique(na.omit(x))
+  values <- unique(stats::na.omit(x))
   values[which.max(tabulate(match(x, values)))]
 }
 
