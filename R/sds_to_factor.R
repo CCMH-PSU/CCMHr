@@ -471,7 +471,7 @@ sds_to_factor <- function(data){
     data$SDS_41 <- as.factor(data$SDS_41) %>%
       forcats::fct_inseq() %>%
       dplyr::recode(`1` = "1",
-                    `2` = "1",
+                    `2` = "2",
                     `3` = "3",
                     `4` = "4",
                     `5` = "5+")
