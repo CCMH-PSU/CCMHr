@@ -9,8 +9,8 @@
 #' }
 #' @export
 
-ccaps34_cuts <- function(data){
-  if(all(c("Depression34", "Anxiety34", "Social_Anxiety34", "Academics34", "Eating34", "Hostility34", "Alcohol34", "DI") %in% colnames(data))) {
+ccaps34_cuts <- function(data, version = c("2018", "2019"), first = F){
+  if(first == F & all(c("Depression34", "Anxiety34", "Social_Anxiety34", "Academics34", "Eating34", "Hostility34", "Alcohol34", "DI") %in% colnames(data))) {
     data <- data %>%
       dplyr::mutate(depression_low_cut34 = ifelse(round(.data$Depression34, 2) >= 1, 1, 0),
              depression_hi_cut34 = ifelse(round(.data$Depression34, 2) >= 1.83, 1, 0),
@@ -31,7 +31,7 @@ ccaps34_cuts <- function(data){
       )
       return(data)
     message("CCAPS-34 low cut scores based on original 2012 norms and high cut scores based on 2018 norms.")
-  } else if (all(c("Depression34_first", "Anxiety34_first", "Social_Anxiety34_first", "Academics34_first", "Eating34_first", "Hostility34_first", "Alcohol34_first", "DI_first") %in% colnames(data))) {
+  } else if (first == T & all(c("Depression34_first", "Anxiety34_first", "Social_Anxiety34_first", "Academics34_first", "Eating34_first", "Hostility34_first", "Alcohol34_first", "DI_first") %in% colnames(data))) {
     data <- data %>%
       dplyr::mutate(depression_low_cut34 = ifelse(round(.data$Depression34_first, 2) >= 1.00, 1, 0),
                     depression_hi_cut34 = ifelse(round(.data$Depression34_first, 2) >= 1.83, 1, 0),
