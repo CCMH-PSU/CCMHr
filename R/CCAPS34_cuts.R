@@ -1,6 +1,6 @@
 #' Create CCAPS-34 cut points
 #'
-#' @description Creates binary variables for CCAPS-34 subscales indicating whether the score is above or below the low and high cut respectively, using the 2018 cut points.
+#' @description Creates binary variables for CCAPS-34 subscales indicating whether the score is above or below the low and high cut respectively.
 #' @param data A data file containing CCAPS-34 subscales
 #' @param version The version of CCAPS cut points to use. Currently, 2018 & 2019 are available.
 #' @param first True indicates the cut points should be based on variabels with _first.
