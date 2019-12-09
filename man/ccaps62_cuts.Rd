@@ -4,16 +4,20 @@
 \alias{ccaps62_cuts}
 \title{Create CCAPS-62 cut points}
 \usage{
-ccaps62_cuts(data)
+ccaps62_cuts(data, version = c("2018", "2019"), first = F)
 }
 \arguments{
 \item{data}{A data file containing CCAPS-62 subscales}
+
+\item{version}{The version of CCAPS cut points to use. Currently, 2018 & 2019 are available.}
+
+\item{first}{True indicates the cut points should be based on variabels with _first.}
 }
 \value{
 A data frame with all the original data in \code{data}, and several additional columns of cut scores coded 1 for above cut score and 0 for below cut score.
 }
 \description{
-Creates binary variables for CCAPS-62 subscales indicating whether the score is above or below the low and high cut respectively, using the 2018 cut points.
+Creates binary variables for CCAPS-62 subscales indicating whether the score is equal to or above (1) or below (0) the low and high cut respectively.
 }
 \note{
 If \code{data} does not contain the proper CCAPS subscale names, it will return an error.

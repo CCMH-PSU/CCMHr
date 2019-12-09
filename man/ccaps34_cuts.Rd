@@ -17,7 +17,7 @@ ccaps34_cuts(data, version = c("2018", "2019"), first = F)
 A data frame with all the original data in \code{data}, and several additional columns of cut scores coded 1 for above cut score and 0 for below cut score.
 }
 \description{
-Creates binary variables for CCAPS-34 subscales indicating whether the score is above or below the low and high cut respectively.
+Creates binary variables for CCAPS-34 subscales indicating whether the score is equal to or above (1) or below (0) the low and high cut respectively.
 }
 \note{
 If \code{data} does not contain the proper CCAPS subscale names, it will return an error.
