@@ -449,7 +449,7 @@ sds_to_factor <- function(data){
                     `7` = "High-school student taking college classes",
                     `8` = "Non-degree student",
                     `9` = "Faculty or staff",
-                    `10` = "Other (please specify")
+                    `10` = "Other (please specify)")
   }
 
   if ("SDS_39" %in% names(data)) {
@@ -464,7 +464,7 @@ sds_to_factor <- function(data){
                     `7` = "Dental",
                     `8` = "Veterinary Medicine",
                     `9` = "Not applicable",
-                    `10` = "Other (please specify")
+                    `10` = "Other (please specify)")
   }
 
   if ("SDS_41" %in% names(data)) {
@@ -484,7 +484,7 @@ sds_to_factor <- function(data){
                     `2` = "On/off campus fraternity/sorority house",
                     `3` = "On/off campus co-operative house",
                     `4` = "Off-campus apartment/house",
-                    `5` = "Other (please specify")
+                    `5` = "Other (please specify)")
   }
 
   if ("SDS_46" %in% names(data)) {
@@ -500,8 +500,8 @@ sds_to_factor <- function(data){
       dplyr::recode(`1` = "None",
                     `2` = "Occasional participation",
                     `3` = "One regularly attended activity",
-                    `4` = "Two regularly attended acitivities",
-                    `5` = "Three or more regularly attended acitivities")
+                    `4` = "Two regularly attended activities",
+                    `5` = "Three or more regularly attended activities")
   }
 
   if ("SDS_1049" %in% names(data)) {
