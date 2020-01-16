@@ -6,7 +6,7 @@ Authors@R: person("Rebecca", "Janis", email = "ruj134@psu.edu",
   role = c("aut", "cre"))
 Description: Functions used when performing regular data cleaning
     tasks for CCMH data.
-License: CC0
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
