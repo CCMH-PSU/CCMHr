@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 
 The goal of CCMHr is to collect functions commonly used when working with CCMH data.
 
-## Installation
+# Installation
 
 This package isn't on CRAN, so you'll need to use the devtools package to install it.
 
@@ -24,3 +24,33 @@ This package isn't on CRAN, so you'll need to use the devtools package to instal
 devtools::install_github("CCMH-PSU/CCMHr")
 ```
 
+then load it  
+
+```r
+library(CCMHr)
+```
+
+# Functions
+
+## Basic data cleaning
+- `check_CCAPS` is used in initially cleaning the CCAPS data from TI or the webservice to check that all of the CCAPS item values are in bounds. It alerts you if any of the items are out of bounds. Karl at TI also runs a check on this, so it should never return an error, but better safe than sorry. This is run before the CCAPS subscales are scored each time we get a new year of data.  
+
+- `score_CCAPS` runs all the scoring syntax to produce CCAPS subscale scores for the CCAPS-34 and CCAPS-62, running checks for validity and not scoring any administrations that don't pass validity checks (e.g. variance of 0 or too much missing data).  
+
+- `CCAPS34_cuts` and `CCAPS62_cuts` create dichotomous variables for the CCAPS-34 and CCAPS-62 indicating whether each subsclae was above the low and high cut scores. The function takes a data frame with CCAPS subscales, either in the form `Depression34` or `Depression34_first`, specified by the `first` argument, as well as an arguemnt specifying which year of cut scores to use, with options currently for 2018 & 2019.  
+
+<!-- `check_column_classes` -->
+
+## Advanced data cleaning
+- `create_courses` separates the data into courses of therapy based on a 90 day criteria. This provides the option of keeping all courses or only each client's first course.  
+
+- `sds_to_factor` converts SDS variables from numeric into factors of their actual response options.  
+
+<!-- ## Other CCMH functions -->
+
+## Other general functions
+- `loadRDa` loads .rda and .rdata files with the ability to assign them to a new object name instead of the one they were originally saved with. Using `load` on .rda files loads them into the environment with the object name they had when they were saved.  
+
+- `get_mode` gets the mode of a numeric vector. 
+
+- `first_present` and `last_present` provide the first/last non-NA value in a vector.  
