@@ -4,12 +4,14 @@
 \alias{create_courses}
 \title{Create courses of therapy within data}
 \usage{
-create_courses(data, firstOnly = FALSE)
+create_courses(data, firstOnly = FALSE, daysbetween = 90)
 }
 \arguments{
 \item{data}{CCMH data files with UniqueClientID and Date variables}
 
 \item{firstOnly}{If FALSE, will return the whole data set. If TRUE, will return only each client's first course.}
+
+\item{daysbetween}{The number of days between records that triggers an additional course. By default, 90.}
 }
 \value{
 A data frame with added variables indicating courses.

@@ -4,6 +4,7 @@
 #'
 #' @param data CCMH data files with UniqueClientID and Date variables
 #' @param firstOnly If FALSE, will return the whole data set. If TRUE, will return only each client's first course.
+#' @param daysbetween The number of days between records that triggers an additional course. By default, 90.
 #'
 #' @return A data frame with added variables indicating courses.
 #'
@@ -20,9 +21,10 @@
 #'
 #' @export
 #'
-create_courses <- function(data, firstOnly = FALSE){
+create_courses <- function(data, firstOnly = FALSE, daysbetween = 90){
   if(!"UniqueClientID" %in% names(data)) stop('Data does not contain column: UniqueClientID')
   if(!"Date" %in% names(data)) stop('Data does not contain column: Date')
+  if(!is.numeric(daysbetween) | daysbetween <= 0) stop('daysbetween appointments must be a numeric value greater than 0.')
   ccmh_bycourse <- dplyr::arrange(data, .data$UniqueClientID, .data$Date) %>%
     dplyr::group_by(.data$UniqueClientID) %>%
     dplyr::mutate(Date_1 = dplyr::lag(.data$Date))
@@ -32,7 +34,7 @@ create_courses <- function(data, firstOnly = FALSE){
   # Creates variables indicating the start of a new course of treatment
   ccmh_bycourse <- dplyr::ungroup(ccmh_bycourse)
   ccmh_bycourse$NewCourse <- NA
-  ccmh_bycourse$NewCourse[which(ccmh_bycourse$Daysbetween > 90)] <- 1
+  ccmh_bycourse$NewCourse[which(ccmh_bycourse$Daysbetween > daysbetween)] <- 1
 
   # Ranks a client's new courses if there are multiple
   ccmh_bycourse <- dplyr::arrange(ccmh_bycourse, .data$UniqueClientID, .data$NewCourse, .data$Date)
