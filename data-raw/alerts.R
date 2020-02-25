@@ -39,6 +39,7 @@ DI <- openxlsx::read.xlsx("data-raw/Equations and alerts-Titanium_4.19.15.xlsx",
 
 alerts <- rbind(depression, anxiety, social_anxiety, academics, eating, hostility, alcohol, DI) %>%
   dplyr::rename("bin" = "Bin#") %>%
-  dplyr::select(subscale, dplyr::everything())
+  dplyr::select(subscale, dplyr::everything()) %>%
+  dplyr::mutate(session = as.numeric(session))
 
 usethis::use_data(alerts, overwrite = T)
