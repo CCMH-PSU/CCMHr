@@ -7,6 +7,7 @@ require(tidyverse)
 # Load data
 data <- CCMHr::loadRDa("")
 
+# Remove unnecessary columns
 data <- CCMHr::remove_free_response(data)
 data <- CCMHr::remove_empty(data)
 data <- select(data, -contains("AUDIT"))
@@ -25,4 +26,5 @@ appt <- dplyr::filter(appt, duplicate == FALSE) %>%
 data <- rbind(appt, survey) %>%
   dplyr::arrange(UniqueClientID, Date)
 
+# Save data into the "Data for {{{requester_name}}}" folder
 write.csv(data, file = "")
