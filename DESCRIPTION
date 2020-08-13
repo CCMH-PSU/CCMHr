@@ -24,6 +24,7 @@ Imports: dplyr,
     arrangements,
     purrr, 
     forcats,
-    plyr
+    plyr,
+    usethis
 Suggests: 
     testthat (>= 2.1.0)

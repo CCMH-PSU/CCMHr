@@ -56,6 +56,9 @@ library(CCMHr)
   - `sds_to_factor` converts SDS variables from numeric into factors of
     their actual response options.
 
+  - `delete_duplicate_appointments` removes a client’s duplicate
+    appointments that have the same AppointID
+
 <!-- ## Other CCMH functions -->
 
 ## Other general functions
