@@ -384,7 +384,7 @@ sds_to_factor <- function(data){
     data$SDS_95 <- as.factor(data$SDS_95) %>%
       forcats::fct_inseq() %>%
       dplyr::recode(`1` = "African American/Black",
-                    `2` = "American Indian or Alaska Native",
+                    `2` = "American Indian or Alaskan Native",
                     `3` = "Asian American/Asian",
                     `4` = "Hispanic/Latino/a",
                     `5` = "Native Hawaiian or Pacific Islander",
