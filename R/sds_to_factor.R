@@ -333,7 +333,10 @@ sds_to_factor <- function(data){
       dplyr::recode(`1` = "Woman",
                     `2` = "Man",
                     `3` = "Transgender",
-                    `4` = "Self-identify")
+                    `4` = "Self-identify",
+                    `5` = "Transgender woman",
+                    `6` = "Transgender man",
+                    `7` = "Non-binary")
   }
 
   if ("SDS_90" %in% names(data)) {
@@ -353,7 +356,10 @@ sds_to_factor <- function(data){
                     `3` = "Gay",
                     `4` = "Bisexual",
                     `5` = "Questioning",
-                    `6` = "Self-identify") %>%
+                    `6` = "Self-identify",
+                    `7` = "Asexual",
+                    `8` = "Pansexual",
+                    `9` = "Queer") %>%
       forcats::fct_relevel("Heterosexual/Straight")
   }
 
