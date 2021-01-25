@@ -4,12 +4,10 @@
 \alias{setup_data_request}
 \title{Setup data cleaning file for data request}
 \usage{
-setup_data_request(cleaning_folder, requester_name)
+setup_data_request(requester_last_name)
 }
 \arguments{
-\item{cleaning_folder}{The folder where the data cleaning file should be saved. Should be formatted "{Requester last name} data cleaning".}
-
-\item{requester_name}{The last name of the data requester.}
+\item{requester_last_name}{The last name of the data requester.}
 }
 \value{
 An R syntax file with the skeleton sections needed to clean data for a data request
@@ -19,6 +17,6 @@ Setup data cleaning file for data request
 }
 \examples{
 \dontrun{
-setup_data_request(cleaning_folder = "Janis data cleaning", requester_name = "Janis")
+setup_data_request(requester_last_name = "Janis")
 }
 }

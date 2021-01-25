@@ -1,11 +1,11 @@
-# Data cleaning for {{{requester_name}}}
+# Data cleaning for {{{requester_last_name}}}
 
 # List requested data here
 
 require(tidyverse)
 
 # Load data
-data <- CCMHr::loadRDa("")
+data <- CCMHr::loadRDa("{{{cleaning_folder}}}/")
 
 # Remove unnecessary columns
 data <- CCMHr::remove_free_response(data)
@@ -26,5 +26,5 @@ appt <- dplyr::filter(appt, duplicate == FALSE) %>%
 data <- rbind(appt, survey) %>%
   dplyr::arrange(UniqueClientID, Date)
 
-# Save data into the "Data for {{{requester_name}}}" folder
-write.csv(data, file = "")
+# Save data into the "Data for {{{requester_last_name}}}" folder
+write.csv(data, file = here::here("{{{final_folder}}}/"))
