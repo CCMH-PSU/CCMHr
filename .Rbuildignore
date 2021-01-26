@@ -3,3 +3,4 @@
 README.Rmd
 profiling/
 ^LICENSE\.md$
+^data-raw$
