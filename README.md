@@ -84,3 +84,17 @@ library(CCMHr)
 
   - `first_present` and `last_present` provide the first/last non-NA
     value in a vector.
+
+## Data files
+
+CCMHr also contains several data objects that can be loaded into R from
+the package.
+
+  - `alerts` provides a lookup table for each subscale, starting CCAPS
+    bin, and session indicating the score above which a CCAPS alert is
+    produced on the CCAPS profile report.
+
+  - `clicc_key` contains a key for the CLICC items and numbers.
+
+  - `case_closure_key` contains a key for the Case Closure items and
+    numbers.
