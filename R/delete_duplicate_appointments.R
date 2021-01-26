@@ -9,9 +9,16 @@
 #'
 delete_duplicate_appointments <- function(data, client_identifier = "UniqueClientID", appointment_identifier = "AppointID") {
 
-  appointment_identifier_temp <- sym(appointment_identifier)
+  if (!client_identifier %in% names(data)) {
+    stop(glue::glue("client_identifier ({client_identifier}) not present in the data."))
+  }
 
-  # TODO: confirm how unquote variable name in dplyr syntax
+  if(!appointment_identifier %in% names(data)) {
+    stop(glue::glue("appointment_identifier ({appointment_identifier}) not present in the data."))
+  }
+
+  appointment_identifier_temp <- rlang::sym(appointment_identifier)
+
   appt <- dplyr::filter(data, !is.na(!!appointment_identifier_temp)) # creates a data frame of only appointments
   survey <- dplyr::filter(data, is.na(!!appointment_identifier_temp))
 
@@ -27,6 +34,8 @@ delete_duplicate_appointments <- function(data, client_identifier = "UniqueClien
     data <- rbind(appt, survey) %>%
       dplyr::arrange(UniqueClientID, !!appointment_identifier_temp)
   }
+
+  data
 
 
 }
