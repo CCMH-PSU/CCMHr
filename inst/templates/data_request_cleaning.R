@@ -15,16 +15,10 @@ data <- select(data, -contains("Dx"))
 data <- select(data, -c(ClientID, TherapistAge:Theory_Systems, CcapsVer2012StartDate:CaseNoteID, Enrollment:CCAPSFrequencyX))
 
 # Removing duplicate appointments
-appt <- dplyr::filter(data, !is.na(AppointID))
-survey <- dplyr::filter(data, is.na(AppointID))
+data <- CCMHr::delete_duplicate_appointments(data)
 
-appt$duplicate <- duplicated(appt[c("UniqueClientID","AppointID")])
-
-appt <- dplyr::filter(appt, duplicate == FALSE) %>%
-  dplyr::select(-duplicate)
-
-data <- rbind(appt, survey) %>%
-  dplyr::arrange(UniqueClientID, Date)
+# Scramble CcmhID to further deidentify it
+data <- mutate(data, CcmhID = as.numeric(as.factor(CcmhID)))
 
 # Save data into the "Data for {{{requester_last_name}}}" folder
 write.csv(data, file = here::here("{{{final_folder}}}/"))
