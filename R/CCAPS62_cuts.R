@@ -11,7 +11,7 @@
 #' }
 #' @export
 
-ccaps62_cuts <- function(data, version = c("2018", "2019"), first = F){
+ccaps62_cuts <- function(data, version, first = F){
   if(first == F & !all(c("Depression62", "Anxiety62", "Social_Anxiety62", "Academics62", "Eating62", "Hostility62", "Substance62", "DI") %in% colnames(data))) {
     stop('CCAPS columns not named correctly.')
     } else if(first == T & !all(c("Depression62_first", "Anxiety62_first", "Social_Anxiety62_first", "Academics62_first", "Eating62_first", "Hostility62_first", "Substance62_first", "DI_first") %in% colnames(data))) {

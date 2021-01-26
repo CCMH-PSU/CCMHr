@@ -4,7 +4,7 @@
 \alias{ccaps62_cuts}
 \title{Create CCAPS-62 cut points}
 \usage{
-ccaps62_cuts(data, version = c("2018", "2019"), first = F)
+ccaps62_cuts(data, version, first = F)
 }
 \arguments{
 \item{data}{A data file containing CCAPS-62 subscales}
