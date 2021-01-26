@@ -4,13 +4,15 @@
 \name{alerts}
 \alias{alerts}
 \title{CCAPS Alerts data}
-\format{A data frame with columns:
+\format{
+A data frame with columns:
 \describe{
 \item{subscale}{CCAPS subscale}
 \item{bin}{Bin for the baseline CCAPS}
 \item{session}{Session number}
 \item{score}{Score above which a CCAPS alert is produced}
-}}
+}
+}
 \usage{
 alerts
 }

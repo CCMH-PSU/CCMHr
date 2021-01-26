@@ -5,7 +5,7 @@
 #' @return A frequency table with percentages and cumulative percentages.
 #' @export
 #'
-#' @example
+#' @examples
 #' df <- data.frame(y = c(1,1,1,2,2,3))
 #' freqtab(df$y)
 #'
