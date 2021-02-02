@@ -29,10 +29,10 @@ delete_duplicate_appointments <- function(data, client_identifier = "UniqueClien
 
   if ("Date" %in% names(data)) {
     data <- rbind(appt, survey) %>%
-      dplyr::arrange(UniqueClientID, Date)
+      dplyr::arrange(.data$UniqueClientID, .data$Date)
   } else {
     data <- rbind(appt, survey) %>%
-      dplyr::arrange(UniqueClientID, !!appointment_identifier_temp)
+      dplyr::arrange(.data$UniqueClientID, !!appointment_identifier_temp)
   }
 
   data
