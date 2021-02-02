@@ -25,6 +25,9 @@ Imports: dplyr,
     purrr, 
     forcats,
     plyr,
-    usethis
+    usethis,
+    ggplot2,
+    glue,
+    stringr
 Suggests: 
     testthat (>= 2.1.0)
