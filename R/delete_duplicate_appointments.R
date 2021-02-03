@@ -24,8 +24,8 @@ delete_duplicate_appointments <- function(data, client_identifier = "UniqueClien
 
   appt$duplicate <- duplicated(appt[c(client_identifier,appointment_identifier)])
 
-  appt <- dplyr::filter(appt, duplicate == FALSE) %>%
-    dplyr::select(-duplicate)
+  appt <- dplyr::filter(appt, .data$duplicate == FALSE) %>%
+    dplyr::select(-.data$duplicate)
 
   if ("Date" %in% names(data)) {
     data <- rbind(appt, survey) %>%
