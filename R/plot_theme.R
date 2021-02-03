@@ -19,8 +19,7 @@ ccmh_theme <- function(plot_title = 20, axis_title = 16, axis_text = 14, caption
                  plot.title = element_text(size = plot_title),
                  axis.title = element_text(size = axis_title),
                  axis.text = element_text(size = axis_text),
-                 plot.caption = element_text(size = caption_text)) +
-    ccmh_caption()
+                 plot.caption = element_text(size = caption_text))
 }
 
 #' @export
