@@ -10,7 +10,13 @@
 #' setup_data_request(requester_last_name = "Janis")
 #' }
 
-setup_data_request <- function(requester_last_name) {
+setup_data_request <- function(requester_last_name = NULL) {
+
+  if (is.null(requester_last_name)) {
+    requester_last_name <- stringr::str_extract(basename(getwd()), "[^-]+")
+  } else {
+    requester_last_name
+  }
 
   cleaning_folder <- glue::glue("{requester_last_name} data cleaning")
   final_folder <- glue::glue("Data for {requester_last_name}")
