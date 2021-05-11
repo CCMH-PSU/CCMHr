@@ -336,7 +336,8 @@ sds_to_factor <- function(data){
                     `4` = "Self-identify",
                     `5` = "Transgender woman",
                     `6` = "Transgender man",
-                    `7` = "Non-binary")
+                    `7` = "Non-binary") %>%
+      mutate(SDS_88 = forcats::fct_relevel(SDS_88, "Woman", "Transgender woman", "Man", "Transgender man", "Non-binary"))
   }
 
   if ("SDS_90" %in% names(data)) {
@@ -360,7 +361,7 @@ sds_to_factor <- function(data){
                     `7` = "Asexual",
                     `8` = "Pansexual",
                     `9` = "Queer") %>%
-      forcats::fct_relevel("Heterosexual/Straight")
+      forcats::fct_relevel("Asexual", "Bisexual", "Gay", "Heterosexual/Straight", "Lesbian", "Pansexual", "Queer", "Questioning")
   }
 
   if ("SDS_93" %in% names(data)) {
