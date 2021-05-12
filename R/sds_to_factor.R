@@ -337,7 +337,7 @@ sds_to_factor <- function(data){
                     `5` = "Transgender woman",
                     `6` = "Transgender man",
                     `7` = "Non-binary") %>%
-      mutate(SDS_88 = forcats::fct_relevel(SDS_88, "Woman", "Transgender woman", "Man", "Transgender man", "Non-binary"))
+      dplyr::mutate(SDS_88 = forcats::fct_relevel(data$SDS_88, "Woman", "Transgender woman", "Man", "Transgender man", "Non-binary"))
   }
 
   if ("SDS_90" %in% names(data)) {
