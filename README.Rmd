@@ -56,7 +56,7 @@ library(CCMHr)
 
 - `setup_data_request` creates the folders necessary for data request cleaning and creates a skeleton data request cleaning syntax file with basic syntax that is run on most data requests.
 
-- `format_subscales` takes a column of subscale names and renames them for use in a graph or a table (e.g. Depression34 -> Depression)  
+- The `rename_subscales` functions renames CCAPS subscles them for use in a graph or a table (e.g. Anxiety34 -> Generalized Anxiety)  
 
 ## Other general functions
 - `loadRDa` loads .rda and .rdata files with the ability to assign them to a new object name instead of the one they were originally saved with. Using `load` on .rda files loads them into the environment with the object name they had when they were saved.  

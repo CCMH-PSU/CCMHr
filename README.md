@@ -73,8 +73,8 @@ library(CCMHr)
     cleaning and creates a skeleton data request cleaning syntax file
     with basic syntax that is run on most data requests.
 
-  - `format_subscales` takes a column of subscale names and renames them
-    for use in a graph or a table (e.g. Depression34 -\> Depression)
+  - The `rename_subscales` functions renames CCAPS subscles them for use
+    in a graph or a table (e.g. Anxiety34 -\> Generalized Anxiety)
 
 ## Other general functions
 
