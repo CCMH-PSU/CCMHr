@@ -51,7 +51,7 @@ rename_subscales_long <- function(data, column, formal = F) {
   if(!deparse(substitute(column)) %in% names(data)) {
     stop(glue::glue("Column: {deparse(substitute(column))} not found in data: {deparse(substitute(data))}."))
   }
-  if (!all(unique(data[,deparse(substitute(column))]) %in% col_names)) {
+  if (!all(unique(pull(data, {{column}})) %in% col_names)) {
     stop(glue::glue('CCAPS cols not named correctly.
 
     Expected {paste(col_names, collapse=", ")}.
@@ -66,29 +66,31 @@ rename_subscales_long <- function(data, column, formal = F) {
                           {{column}} := stringr::str_remove({{column}}, "34"),
                           {{column}} := stringr::str_remove({{column}}, "62"),
                           {{column}} := stringr::str_replace({{column}}, "_", " "))
-    order <- intersect(c("Depression", "Anxiety", "Social Anxiety", "Academics", "Eating", "Anger/Frustration", "Alcohol Use", "Substance Use", "Family Distress", "Distress Index"),
-                       data[, column_str])
+    order <- intersect(c("Depression", "Anxiety", "Social Anxiety", "Academics",
+                         "Eating", "Anger/Frustration", "Alcohol Use",
+                         "Substance Use", "Family Distress", "Distress Index"),
+                       unique(pull(data, {{column}})))
 
     dplyr::mutate(data, {{column}} := forcats::fct_relevel({{column}}, order)) %>%
       dplyr::arrange({{column}})
 
   } else {
     data <- dplyr::mutate(data, {{column}} := stringr::str_remove({{column}}, "34"),
-                                {{column}} := stringr::str_remove({{column}}, "62"),
-                                {{column}} := dplyr::recode({{column}}, "Academics"= "Academic Distress",
-                                                                         "Alcohol" = "Alcohol Use",
-                                                                         "Substance" = "Substance Use",
-                                                                         "Hostility" = "Anger/Frustration",
-                                                                         "Family" = "Family Distress",
-                                                                         "Eating" = "Eating Concerns",
-                                                                         "Anxiety" = "Generalized Anxiety",
-                                                                         "DI" = "Distress Index",
-                                                                         "Social_Anxiety" = "Social Anxiety"))
+                          {{column}} := stringr::str_remove({{column}}, "62"),
+                          {{column}} := dplyr::recode({{column}}, "Academics"= "Academic Distress",
+                                                      "Alcohol" = "Alcohol Use",
+                                                      "Substance" = "Substance Use",
+                                                      "Hostility" = "Anger/Frustration",
+                                                      "Family" = "Family Distress",
+                                                      "Eating" = "Eating Concerns",
+                                                      "Anxiety" = "Generalized Anxiety",
+                                                      "DI" = "Distress Index",
+                                                      "Social_Anxiety" = "Social Anxiety"))
 
     order <- intersect(c("Depression", "Generalized Anxiety", "Social Anxiety", "Academic Distress", "Eating Concerns", "Anger/Frustration", "Alcohol Use", "Substance Use", "Family Distress", "Distress Index"),
-                                          data[, column_str])
+                       data[, column_str])
 
-     dplyr::mutate(data, {{column}} := forcats::fct_relevel({{column}}, order)) %>%
-       dplyr::arrange({{column}})
+    dplyr::mutate(data, {{column}} := forcats::fct_relevel({{column}}, order)) %>%
+      dplyr::arrange({{column}})
   }
 }
