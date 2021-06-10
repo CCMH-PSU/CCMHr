@@ -67,7 +67,7 @@ rename_subscales_long <- function(data, column, formal = F) {
                           {{column}} := stringr::str_remove({{column}}, "62"),
                           {{column}} := stringr::str_replace({{column}}, "_", " "))
     order <- intersect(c("Depression", "Anxiety", "Social Anxiety", "Academics",
-                         "Eating", "Anger/Frustration", "Alcohol Use",
+                         "Eating", "Hostility", "Alcohol Use",
                          "Substance Use", "Family Distress", "Distress Index"),
                        unique(pull(data, {{column}})))
 
