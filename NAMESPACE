@@ -2,6 +2,10 @@
 
 export("%>%")
 export(.data)
+export(bin_capacity)
+export(bin_enrollment)
+export(bin_inst_utilization)
+export(bin_utilization)
 export(ccaps34_cuts)
 export(ccaps62_cuts)
 export(ccmh_caption)
