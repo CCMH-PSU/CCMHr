@@ -24,7 +24,7 @@ rename_subscales_wide <- function(data, CCAPS62 = F) {
                   "Social Anxiety" = "Social_Anxiety62",
                   "Academic Distress" = "Academics62",
                   "Eating Concerns" = "Eating62",
-                  "Anger Frustration" = "Hostility62",
+                  "Anger/Frustration" = "Hostility62",
                   "Substance Use" = "Substance62",
                   "Family Distress" = "Family62",
                   "Distress Index" = "DI")
@@ -34,7 +34,7 @@ rename_subscales_wide <- function(data, CCAPS62 = F) {
                   "Social Anxiety" = "Social_Anxiety34",
                   "Academic Distress" = "Academics34",
                   "Eating Concerns" = "Eating34",
-                  "Anger Frustration" = "Hostility34",
+                  "Anger/Frustration" = "Hostility34",
                   "Alcohol Use" = "Alcohol34",
                   "Distress Index" = "DI")
   }
