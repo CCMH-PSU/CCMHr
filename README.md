@@ -59,7 +59,7 @@ library(CCMHr)
   - `delete_duplicate_appointments` removes a client’s duplicate
     appointments that have the same AppointID
 
-## Other CCMH functions
+## Plotting
 
   - `ccmh_theme` adds some CCMH specific theming to ggplots. This
     includes changing the font to Avenir, adding spacing between axes
@@ -69,12 +69,25 @@ library(CCMHr)
 
   - `add_caption` adds a caption to a plot attributing it to CCMH.
 
+## Other CCMH functions
+
   - `setup_data_request` creates the folders necessary for data request
     cleaning and creates a skeleton data request cleaning syntax file
     with basic syntax that is run on most data requests.
 
+  - `remove_empty` removes columns that are entirely empty. This is
+    usually due to items being deactivated.
+
+  - `remove_free_response` removes any free response columns. This is
+    done prior to sharing data in case those columns have identifying
+    information.
+
   - The `rename_subscales` functions renames CCAPS subscles them for use
     in a graph or a table (e.g. Anxiety34 -\> Generalized Anxiety)
+
+  - CLI cleaning functions: `bin_enrollment`, `bin_utilization`,
+    `bin_utilization`, and `bin_inst_utilization` discretize the CLI
+    variables into predetermined bins.
 
 ## Other general functions
 
