@@ -1,7 +1,7 @@
 #' Select each client's first administration of a specified survey
 #'
 #' @param data data frame
-#' @param order_by variable to order by when selecting the first CCAPS
+#' @param order_by variable to order by when selecting the first administration.
 #' @param keep_all Columns to keep. `TRUE` will keep all columns, while `FALSE` will keep only IDs and CCAPS subscales, SDS items, or CLICC items.
 #' @param keep_columns A string list of column names to retain. If not specified, and keep_all = FALSE, defaults to the relevent columns for that data form.
 #'

@@ -28,7 +28,7 @@ select_first_CLICC(
 \arguments{
 \item{data}{data frame}
 
-\item{order_by}{variable to order by when selecting the first CCAPS}
+\item{order_by}{variable to order by when selecting the first administration.}
 
 \item{keep_all}{Columns to keep. \code{TRUE} will keep all columns, while \code{FALSE} will keep only IDs and CCAPS subscales, SDS items, or CLICC items.}
 
