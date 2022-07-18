@@ -80,7 +80,7 @@ select_first_SDS <- function(data,
   } else if (keep_all == FALSE) {
     if (keep_columns[1] == "SDS") {
       sds %>%
-        dplyr::select(.data$UniqueClientID, .data$CcmhID, dplyr::starts_with("SDS_"))
+        dplyr::select(.data$UniqueClientID, .data$CcmhID, dplyr::starts_with("SDS_"), ClientAge)
     } else {
       if (!all(keep_columns %in% names(data))) {
         usethis::ui_warn("All columns specified in keep_columns were not present in the data. Only present columns were retained.")
