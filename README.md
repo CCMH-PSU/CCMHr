@@ -59,6 +59,10 @@ library(CCMHr)
   - `delete_duplicate_appointments` removes a client’s duplicate
     appointments that have the same AppointID
 
+  - `CCAPS_change` creates change scores for the CCAPS from first to
+    last administration, with the option to also include first and last
+    CCAPS scores and change scores for specific CCAPS items.
+
 ## Plotting
 
   - `ccmh_theme` adds some CCMH specific theming to ggplots. This
