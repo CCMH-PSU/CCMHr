@@ -22,39 +22,47 @@ CCAPS_change <- function(data,
     library(tidyverse)
 
   #Check to see if variables are named correctly
-    #ValidCCAPS
-      if (!"Is_ValidCCAPS" %in% names(data)) {
-        stop("Is_ValidCCAPS variable not present in data")
-      }
-    #CCAPS 34 Subscales
-      #List of subscales
-        subscale_names <- c("Depression34",
-                            "Anxiety34",
-                            "Social_Anxiety34",
-                            "Academics34",
-                            "Eating34",
-                            "Hostility34",
-                            "Alcohol34",
-                            "DI")
+    #List of variables required to run function
+      var_names <- c("Is_ValidCCAPS",
+                     "Depression34",
+                     "Anxiety34",
+                     "Social_Anxiety34",
+                     "Academics34",
+                     "Eating34",
+                     "Hostility34",
+                     "Alcohol34",
+                     "DI")
 
-      #For loops to return message if subscale variables are missing
+      #For loops to detect for missing variables
         #Parameters
           #Number of loops
-            loop.num <- dim(data.frame(subscale_names))[1]
+            loop.num <- dim(data.frame(var_names))[1]
+          #Data frame for missing variables
+            df.detect.miss <- NULL
+            df.detect.miss$var_names <- var_names
+            df.detect.miss <- data.frame(df.detect.miss)
+            df.detect.miss$missing <- NA
 
         #Loops
           for(i in 1:loop.num){
-            if(!data.frame(subscale_names[[i]]) %in% names(data)) {
-              stop(paste0(data.frame(subscale_names[[i]])," variable not present in data"))
-            }
+            df.detect.miss$missing[i] <- data.frame(var_names[[i]]) %in% names(data)
           }
 
+      #Warning Message
+        #Removing present variables
+          df.detect.miss <- subset(df.detect.miss,
+                                   df.detect.miss$missing == F)
+          missing.vars <- toString(df.detect.miss$var_names)
+
+        #Warning
+          if(nrow(df.detect.miss) > 0){
+            stop(paste0("The following variables are not present or properly named in data: ", missing.vars,". To use this function, variable names listed in this error message need to be present in data."))
+          } else{
+          }
 
   #Excluding data with no CCAPS data
     data <- subset(data,
                    data$Is_ValidCCAPS == 1)
-
-    client_identifer_un <- sym(client_identifier)
 
   #Excluding participants that didn't complete the CCAPS at least two times
     data <- data %>%
@@ -81,6 +89,46 @@ CCAPS_change <- function(data,
                                       Depression34:DI)
 
     } else if(add_items_all[1] == T) { #If all CCAPS items are to be added or "all" is specified in add_items
+      #Check to see if variables are named correctly to use this arguement
+        #List of variables required to run function
+          var_names <- c("CCAPS_03", "CCAPS_05", "CCAPS_06", "CCAPS_11",
+                         "CCAPS_13", "CCAPS_16", "CCAPS_17", "CCAPS_18",
+                         "CCAPS_21", "CCAPS_22", "CCAPS_24", "CCAPS_27",
+                         "CCAPS_29", "CCAPS_30", "CCAPS_31", "CCAPS_33",
+                         "CCAPS_34", "CCAPS_36", "CCAPS_39", "CCAPS_40",
+                         "CCAPS_45", "CCAPS_46", "CCAPS_48", "CCAPS_49",
+                         "CCAPS_51", "CCAPS_52", "CCAPS_54", "CCAPS_57",
+                         "CCAPS_58", "CCAPS_59", "CCAPS_63", "CCAPS_64",
+                         "CCAPS_66", "CCAPS_68")
+
+        #For loops to detect for missing variables
+          #Parameters
+            #Number of loops
+              loop.num <- dim(data.frame(var_names))[1]
+            #Data frame for missing variables
+              df.detect.miss <- NULL
+              df.detect.miss$var_names <- var_names
+              df.detect.miss <- data.frame(df.detect.miss)
+              df.detect.miss$missing <- NA
+
+          #Loops
+            for(i in 1:loop.num){
+              df.detect.miss$missing[i] <- data.frame(var_names[[i]]) %in% names(data)
+            }
+
+        #Warning Message
+          #Removing present variables
+          df.detect.miss <- subset(df.detect.miss,
+                                   df.detect.miss$missing == F)
+          #Listing out missing variables
+          missing.vars <- toString(df.detect.miss$var_names)
+
+        #Warning
+          if(nrow(df.detect.miss) > 0){
+            stop(paste0("The following variables are not present or properly named in data: ", missing.vars,". To use 'all' in the argument 'add_items', variable names listed in this error message need to be present in data."))
+          } else{
+          }
+
       #Returned data frame
         CCAPS_data <- data %>%
                         dplyr::select({{client_identifier}}, {{center_identifier}},
@@ -105,17 +153,20 @@ CCAPS_change <- function(data,
             data.tmp <- data.frame(data.tmp)
 
         #For loop that will insert each variable specified in add_items into data.tmp
-          for(i in loop.num){
-            data.tmp[,i] <- data.frame(data[,df_add_items[i,1]])
+          for(i in 1:loop.num){
+            data.tmp[,i] <- data[,df_add_items[i,1]]
           }
 
         #Rename columns of data.tmp to match add_items
           colnames(data.tmp) <- add_items
 
         #Adding client_identifier and center_identifier data.tmp
-          data.tmp <- data %>%
-                         dplyr::select({{client_identifier}},
-                                       {{center_identifier}})
+          p1 <- dim(data.tmp)[2]+1
+          p2 <- dim(data.tmp)[2]+2
+
+          data.tmp[,p1:p2] <- data %>%
+                                select({{client_identifier}}, {{center_identifier}})
+
 
         #Creating basic CCAPS_data and ensure it is a dataframe
           CCAPS_data <- data %>%
