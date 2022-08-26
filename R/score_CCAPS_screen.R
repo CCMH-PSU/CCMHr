@@ -1,9 +1,8 @@
 #' Score the CCAPS subscales from CCAPS screen items
 #'
 #' @description Scores the CCAPS screen subscales for valid CCAPS administrations.
-#' @param data A data file containing CCAPS screen item data
-#' @param The column uniquely identifying each client. By default, `UniqueClientID`.
-#' @note `score_CCAPS` calls on CCAPS items by name, so they must be named properly in
+#' @param data A data file containing CCAPS screen items
+#' @note `score_CCAPS_screen` calls on CCAPS items by name, so they must be named properly in
 #' `data`. Variable naming convention is `CCAPS_01`... `CCAPS_70`.
 #' If 'data does not contain the proper CCAPS variable names
 #' (or the naming convention was changed in the new year's data), the
@@ -13,30 +12,51 @@
 #' as the same number.
 #' Function does not overwrite CCAPS items to reverse score them. It creates new reverse scored version, which it then deletes.
 #' Note that this takes several minutes to run.
-#' @return A data frame with all the original data in `data`, and several additional columns: `Has_CCAPS`, `Is_ValidCCAPS`, `Depression34`, `Anxiety34`, `Social_Anxiety34`, `Academics34`, `Eating34`, `Frustration34`, `Alcohol34`
+#' @return A data frame with all the original data in `data`, and several additional columns: `Has_CCAPS`, `Is_ValidCCAPS`, `Depression`, `Anxiety`, `Social_Anxiety`, `Academics`, `Eating`, `Frustration`, `Alcohol`
 #' @export
 
-score_CCAPS_screen <- function(data,
-                               client_identifier = "UniqueClientID") {
+score_CCAPS_screen <- function(data) {
 
     #Packages
       library(tidyverse)
 
-    #Detect if variables are missing (if missing a message will appear) (possible 36 itmes and error message for all missing)
-      #For loop paramters
-        var.all<-c("01", "03", "04", "05", "06", "08", "09", "10", "11", "13",
-                   "14", "15", "16", "17", "18", "19", "21", "22", "23", "24",
-                   "25", "26", "27", "28", "29", "30", "31", "32", "33", "34",
-                   "35", "36", "37", "38", "39", "40", "41", "43", "44", "45",
-                   "46", "47", "48", "49", "50", "51", "52", "53", "54", "56",
-                   "57", "58", "59", "60", "61", "63", "64", "65", "66", "68",
-                   "69", "70")
-        loop.num <- length(var.all)
-      #For loop
-        for(i in 1:loop.num){
-          if(!(paste0("CCAPS_", var.all[i]))%in% colnames(data))
-            stop(paste0("'CCAPS_", var.all[i], " items not present in data or not properly named. CCAPS items should be named CCAPS_01 through CCAPS_70.'"))
-        }
+    #Check to see if variables are named correctly
+      #List of variables required to run function
+        var_names <- c("CCAPS_01", "CCAPS_03", "CCAPS_05", "CCAPS_06", "CCAPS_11",
+                       "CCAPS_13", "CCAPS_14", "CCAPS_16", "CCAPS_17", "CCAPS_18",
+                       "CCAPS_21", "CCAPS_22", "CCAPS_24", "CCAPS_25", "CCAPS_27",
+                       "CCAPS_29", "CCAPS_30", "CCAPS_31", "CCAPS_33", "CCAPS_34",
+                       "CCAPS_36", "CCAPS_39", "CCAPS_40", "CCAPS_45", "CCAPS_46",
+                       "CCAPS_47", "CCAPS_48", "CCAPS_49", "CCAPS_51", "CCAPS_52",
+                       "CCAPS_54", "CCAPS_57", "CCAPS_59", "CCAPS_63", "CCAPS_64",
+                       "CCAPS_66", "UniqueClientID")
+
+      #For loops to detect for missing variables
+        #Parameters
+          #Number of loops
+            loop.num <- dim(data.frame(var_names))[1]
+          #Data frame for missing variables
+            df.detect.miss <- NULL
+            df.detect.miss$var_names <- var_names
+            df.detect.miss <- data.frame(df.detect.miss)
+            df.detect.miss$missing <- NA
+
+        #Loops
+          for(i in 1:loop.num){
+            df.detect.miss$missing[i] <- data.frame(var_names[[i]]) %in% names(data)
+          }
+
+      #Warning Message
+        #Removing present variables
+          df.detect.miss <- subset(df.detect.miss,
+                                   df.detect.miss$missing == F)
+          missing.vars <- toString(df.detect.miss$var_names)
+
+        #Warning message displayed if there are missing variables
+          if(nrow(df.detect.miss) > 0){
+            stop(paste0("The following variables are not present or properly named in data: ", missing.vars,". To use this function, variable names listed in this error message need to be present in data."))
+          } else{
+          }
 
     #Add variable Has_CCAPS, that detects if there is CCAPS Data
       data$Has_CCAPS <- rowSums(!is.na(dplyr::select(data, .data$CCAPS_01:.data$CCAPS_70)),
@@ -58,31 +78,59 @@ score_CCAPS_screen <- function(data,
     #Number of missing data points per subscale
       #For loop parameters
         #Variables
-          Depression <- data.frame(data$CCAPS_11, data$CCAPS_13, data$CCAPS_24,
-                                     data$CCAPS_27, data$CCAPS_45, data$CCAPS_51)
+          Depression <- data.frame(data$CCAPS_11,
+                                   data$CCAPS_13,
+                                   data$CCAPS_24,
+                                   data$CCAPS_27,
+                                   data$CCAPS_45,
+                                   data$CCAPS_51)
 
-          Anxiety <- data.frame(data$CCAPS_05, data$CCAPS_17, data$CCAPS_21,
-                                  data$CCAPS_22, data$CCAPS_31, data$CCAPS_34)
+          Anxiety <- data.frame(data$CCAPS_05,
+                                data$CCAPS_17,
+                                data$CCAPS_21,
+                                data$CCAPS_22,
+                                data$CCAPS_31,
+                                data$CCAPS_34)
 
-          Social_Anxiety <- data.frame(data$CCAPS_03, data$CCAPS_39r, data$CCAPS_46,
-                                         data$CCAPS_49, data$CCAPS_52)
+          Social_Anxiety <- data.frame(data$CCAPS_03,
+                                       data$CCAPS_39r,
+                                       data$CCAPS_46,
+                                       data$CCAPS_49,
+                                       data$CCAPS_52)
 
-          Academics <- data.frame(data$CCAPS_18r, data$CCAPS_57, data$CCAPS_59,
-                                    data$CCAPS_66)
+          Academics <- data.frame(data$CCAPS_18r,
+                                  data$CCAPS_57,
+                                  data$CCAPS_59,
+                                  data$CCAPS_66)
 
-          Eating <- data.frame(data$CCAPS_06, data$CCAPS_16, data$CCAPS_29)
+          Eating <- data.frame(data$CCAPS_06,
+                               data$CCAPS_16,
+                               data$CCAPS_29)
 
-          Frustration <- data.frame(data$CCAPS_36, data$CCAPS_40, data$CCAPS_48,
+          Frustration <- data.frame(data$CCAPS_36,
+                                    data$CCAPS_40,
+                                    data$CCAPS_48,
                                     data$CCAPS_64)
 
-          Alcohol <- data.frame(data$CCAPS_30, data$CCAPS_33, data$CCAPS_54,
-                                  data$CCAPS_63)
+          Alcohol <- data.frame(data$CCAPS_30,
+                                data$CCAPS_33,
+                                data$CCAPS_54,
+                                data$CCAPS_63)
 
-          Family <- data.frame(data$CCAPS_14, data$CCAPS_25r, data$CCAPS_47, data$CCAPS_01)
+          Family <- data.frame(data$CCAPS_14,
+                               data$CCAPS_25r,
+                               data$CCAPS_47,
+                               data$CCAPS_01)
 
         #Variable list
-          var.list <- c("Depression", "Anxiety", "Social_Anxiety", "Academics",
-                        "Eating", "Frustration", "Alcohol", "Family")
+          var.list <- c("Depression",
+                        "Anxiety",
+                        "Social_Anxiety",
+                        "Academics",
+                        "Eating",
+                        "Frustration",
+                        "Alcohol",
+                        "Family")
 
         #Loop number
           loop.num <- length(var.list)
@@ -108,7 +156,7 @@ score_CCAPS_screen <- function(data,
 
         #Renaming columns
           colnames(df_missing)<-var.nam
-        #Total
+        #Total Missing
           df_missing$CCAPS_Tmiss <- rowSums(df_missing)
         #Variance Score
           df_missing$variance <- apply(dplyr::select(data, CCAPS_01:CCAPS_70),
@@ -118,13 +166,9 @@ score_CCAPS_screen <- function(data,
 
      #Calculating Is_ValidCCAPS
        #Add Unique identifer
-         x <- assign(client_identifier,
-                     data %>%
-                       dplyr::select({{client_identifier}}))
-
-          p <- dim(df_missing)[2]+1
-
-          df_missing[,p] <- x[1]
+         p <- dim(df_missing)[2]+1
+         df_missing$UniqueClientID <- data$UniqueClientID
+         colnames(df_missing)[p]<-"UniqueClientID"
 
         #Merge Dataframes
           data <- merge(data, df_missing)
@@ -163,13 +207,14 @@ score_CCAPS_screen <- function(data,
           colnames(df_subscale)<-var.list
         #Add Unique identifer
           p <- dim(df_subscale)[2]+1
-          df_subscale[,p] <- x[1]
+          df_subscale$UniqueClientID <- data$UniqueClientID
+          colnames(df_subscale)[p]<-"UniqueClientID"
 
       #Merge Dataframes
          data <- merge(data, df_subscale)
 
-    # Delete created vars after creating subscales
-    data <- dplyr::select(data, -c(.data$CCAPS_18r:.data$CCAPS_60r,.data$Depression_MISS:.data$variance))
+    #Delete created variables after creating subscales
+      data <- dplyr::select(data, -c(.data$CCAPS_18r:.data$CCAPS_60r,.data$Depression_MISS:.data$variance))
 
     return(data)
 }

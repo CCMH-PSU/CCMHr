@@ -4,21 +4,19 @@
 \alias{score_CCAPS_screen}
 \title{Score the CCAPS subscales from CCAPS screen items}
 \usage{
-score_CCAPS_screen(data, client_identifier = "UniqueClientID")
+score_CCAPS_screen(data)
 }
 \arguments{
-\item{data}{A data file containing CCAPS screen item data}
-
-\item{The}{column uniquely identifying each client. By default, \code{UniqueClientID}.}
+\item{data}{A data file containing CCAPS screen items}
 }
 \value{
-A data frame with all the original data in \code{data}, and several additional columns: \code{Has_CCAPS}, \code{Is_ValidCCAPS}, \code{Depression34}, \code{Anxiety34}, \code{Social_Anxiety34}, \code{Academics34}, \code{Eating34}, \code{Frustration34}, \code{Alcohol34}
+A data frame with all the original data in \code{data}, and several additional columns: \code{Has_CCAPS}, \code{Is_ValidCCAPS}, \code{Depression}, \code{Anxiety}, \code{Social_Anxiety}, \code{Academics}, \code{Eating}, \code{Frustration}, \code{Alcohol}
 }
 \description{
 Scores the CCAPS screen subscales for valid CCAPS administrations.
 }
 \note{
-\code{score_CCAPS} calls on CCAPS items by name, so they must be named properly in
+\code{score_CCAPS_screen} calls on CCAPS items by name, so they must be named properly in
 \code{data}. Variable naming convention is \code{CCAPS_01}... \code{CCAPS_70}.
 If 'data does not contain the proper CCAPS variable names
 (or the naming convention was changed in the new year's data), the
