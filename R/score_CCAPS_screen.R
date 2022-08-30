@@ -59,7 +59,7 @@ score_CCAPS_screen <- function(data) {
           }
 
     #Add variable Has_CCAPS, that detects if there is CCAPS Data
-      data$Has_CCAPS <- rowSums(!is.na(dplyr::select(data, .data$CCAPS_01:.data$CCAPS_70)),
+      data$Has_CCAPS <- rowSums(!is.na(dplyr::select(data, dplyr::starts_with("CCAPS_"))),
                                 na.rm = T)
         #If any CCAPS data was completed, the data will display 1 as the score.
           data$Has_CCAPS[which(data$Has_CCAPS > 0)] <- 1
