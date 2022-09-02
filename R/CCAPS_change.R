@@ -20,6 +20,7 @@ CCAPS_change <- function(data,
 
   #Packages required to run function
     library(tidyverse)
+    library(CCMHr)
 
   #Check to see if variables are named correctly
     #List of variables required to run function
@@ -33,32 +34,9 @@ CCAPS_change <- function(data,
                      "Alcohol34",
                      "DI")
 
-      #For loops to detect for missing variables
-        #Parameters
-          #Number of loops
-            loop.num <- dim(data.frame(var_names))[1]
-          #Data frame for missing variables
-            df.detect.miss <- NULL
-            df.detect.miss$var_names <- var_names
-            df.detect.miss <- data.frame(df.detect.miss)
-            df.detect.miss$missing <- NA
-
-        #Loops
-          for(i in 1:loop.num){
-            df.detect.miss$missing[i] <- data.frame(var_names[[i]]) %in% names(data)
-          }
-
-      #Warning Message
-        #Removing present variables
-          df.detect.miss <- subset(df.detect.miss,
-                                   df.detect.miss$missing == F)
-          missing.vars <- toString(df.detect.miss$var_names)
-
-        #Warning
-          if(nrow(df.detect.miss) > 0){
-            stop(paste0("The following variables are not present or properly named in data: ", missing.vars,". To use this function, variable names listed in this error message need to be present in data."))
-          } else{
-          }
+    #Running Function to check for missing variables
+      CCMHr::required_items(data,
+                            var_names)
 
   #Excluding data with no CCAPS data
     data <- subset(data,
