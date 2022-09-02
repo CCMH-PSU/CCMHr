@@ -1,4 +1,4 @@
-#' Displays a error message when specifed variables are not present in data
+#' Displays a error message when specified variables are not present in data
 #'
 #' @param data A data frame.
 #' @param items Specify the variables that must be present in a data frame to use a function or run an R script. Variables should be listed using the c() function, and each variable name should be quoted. For example, "items = c("Var1", "Var2").
