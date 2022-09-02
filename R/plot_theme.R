@@ -8,19 +8,32 @@
 #' @param axis_title The font size of the axis title
 #' @param axis_text The font size of the axis labels
 #' @param caption_text The font size for the caption
+#' @param text_font The font type of the text. By default, Avenir.
 #'
 #' @export
 #'
-ccmh_theme <- function(plot_title = 20, axis_title = 16, axis_text = 14, caption_text = 12) {
+ccmh_theme <- function(plot_title = 20,
+                       axis_title = 16,
+                       axis_text = 14,
+                       caption_text = 12,
+                       text_font = "Avenir") {
+
   ggplot2::theme_minimal() +
-  ggplot2::theme(text = ggplot2::element_text(family = "Avenir"),
-                 axis.title.y = ggplot2::element_text(margin = ggplot2::margin(t = 0, r = 7, b = 0, l = 0)),
-                 axis.title.x = ggplot2::element_text(margin = ggplot2::margin(t = 7, r = 0, b = 0, l = 0)),
+  ggplot2::theme(text = ggplot2::element_text(family = text_font),
+                 axis.title.y = ggplot2::element_text(margin = ggplot2::margin(t = 0,
+                                                                               r = 7,
+                                                                               b = 0,
+                                                                               l = 0)),
+                 axis.title.x = ggplot2::element_text(margin = ggplot2::margin(t = 7,
+                                                                               r = 0,
+                                                                               b = 0,
+                                                                               l = 0)),
                  plot.title = element_text(size = plot_title),
                  axis.title = element_text(size = axis_title),
                  axis.text = element_text(size = axis_text),
                  plot.caption = element_text(size = caption_text),
-                 plot.background = element_rect(fill = 'white', color = NA))
+                 plot.background = element_rect(fill = 'white',
+                                                color = NA))
 }
 
 #' @export
