@@ -35,8 +35,8 @@ CCAPS_change <- function(data,
                      "DI")
 
     #Running Function to check for missing variables
-      CCMHr::required_items(data,
-                            var_names)
+      required_items(data,
+                     var_names)
 
   #Excluding data with no CCAPS data
     data <- subset(data,

@@ -32,8 +32,8 @@ score_CCAPS_screen <- function(data) {
                        "CCAPS_66", "UniqueClientID")
 
       #Running Function to check for missing variables
-        CCMHr::required_items(data,
-                              var_names)
+        required_items(data,
+                       var_names)
 
     #Add variable Has_CCAPS, that detects if there is CCAPS Data
       data$Has_CCAPS <- rowSums(!is.na(dplyr::select(data, dplyr::starts_with("CCAPS_"))),
