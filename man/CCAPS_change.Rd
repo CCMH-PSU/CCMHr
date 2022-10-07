@@ -2,7 +2,7 @@
 % Please edit documentation in R/CCAPS_change.R
 \name{CCAPS_change}
 \alias{CCAPS_change}
-\title{Upload CCAPS data with change scores between first and last completion}
+\title{Create a data frame with CCAPS change scores between first and last administration}
 \usage{
 CCAPS_change(
   data,
@@ -20,15 +20,15 @@ CCAPS_change(
 
 \item{center_identifier}{The column uniquely identifying each center. By default \code{CcmhID}.}
 
-\item{add_items}{Specify the columns or CCAPS variables outside of CCAPS subscales to be included in the returned data frame. By default \code{NA} resulting in no additional CCAPS variables being added to the returned data frame. Multiple features should be listed in the following manner: c("Variable1", "Variable2"). Option \code{"all"} selects all CCAPS 34 variables to be in the returned data frame.}
+\item{add_items}{Specify the columns or CCAPS variables outside of CCAPS subscales to be included in the returned data frame. Default is \code{NA}, resulting in no additional CCAPS items being added to the returned data frame. Multiple items should be listed in the following manner: c("Variable1", "Variable2"). Option \code{"all"} selects all CCAPS 34 items to be in the returned data frame.}
 
-\item{include_first}{A logical argument that specifies if subscale or variable scores from the first completion of the CCAPs should be included in the returned data frame. By default \code{FALSE} resulting in CCAPS subscale or specified variable scores of the first completion not being included in the returned data frame. Option \code{"TRUE"} adds first completion scores of CCAPS subscales and specified variables to the returned data frame.}
+\item{include_first}{A logical argument that specifies if subscale or item scores from the first completion of the CCAPS should be included in the returned data frame. By default \code{FALSE} resulting in CCAPS subscale or specified variable scores of the first administration not being included in the returned data frame. Option \code{"TRUE"} adds first administration scores of CCAPS subscales and specified items to the returned data frame.}
 
-\item{include_last}{A logical argument that specifies if subscale or variable scores from the last completion of the CCAPs should be included in the returned data frame. By default \code{FALSE} resulting in CCAPS subscale or specified variable scores of the last completion not being included in the returned data frame. Option \code{"TRUE"} adds last completion scores of CCAPS subscales and specified variables to the returned data frame.}
+\item{include_last}{A logical argument that specifies if subscale or item scores from the last completion of the CCAPS should be included in the returned data frame. By default \code{FALSE} resulting in CCAPS subscale or specified variable scores of the last administration not being included in the returned data frame. Option \code{"TRUE"} adds last administration scores of CCAPS subscales and specified items to the returned data frame.}
 }
 \value{
-A data frame with CCAPS change scores of subscales and specified variables. Based on additional arguments, scores from first and last completion could be added to the data frame.
+A data frame with CCAPS change scores of subscales and specified CCAPS items. Based on additional arguments, scores from first and last administration will be included as well.
 }
 \description{
-Upload CCAPS data with change scores between first and last completion
+Create a data frame with CCAPS change scores between first and last administration
 }

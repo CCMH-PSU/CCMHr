@@ -1,13 +1,13 @@
-#' Upload CCAPS data with change scores between first and last completion
+#' Create a data frame with CCAPS change scores between first and last administration
 #'
 #' @param data A data frame with CCAPS data.
 #' @param client_identifier The column uniquely identifying each client. By default, `UniqueClientID`.
 #' @param center_identifier The column uniquely identifying each center. By default `CcmhID`.
-#' @param add_items Specify the columns or CCAPS variables outside of CCAPS subscales to be included in the returned data frame. By default `NA` resulting in no additional CCAPS variables being added to the returned data frame. Multiple features should be listed in the following manner: c("Variable1", "Variable2"). Option `"all"` selects all CCAPS 34 variables to be in the returned data frame.
-#' @param include_first A logical argument that specifies if subscale or variable scores from the first completion of the CCAPs should be included in the returned data frame. By default `FALSE` resulting in CCAPS subscale or specified variable scores of the first completion not being included in the returned data frame. Option `"TRUE"` adds first completion scores of CCAPS subscales and specified variables to the returned data frame.
-#' @param include_last A logical argument that specifies if subscale or variable scores from the last completion of the CCAPs should be included in the returned data frame. By default `FALSE` resulting in CCAPS subscale or specified variable scores of the last completion not being included in the returned data frame. Option `"TRUE"` adds last completion scores of CCAPS subscales and specified variables to the returned data frame.
+#' @param add_items Specify the columns or CCAPS variables outside of CCAPS subscales to be included in the returned data frame. Default is `NA`, resulting in no additional CCAPS items being added to the returned data frame. Multiple items should be listed in the following manner: c("Variable1", "Variable2"). Option `"all"` selects all CCAPS 34 items to be in the returned data frame.
+#' @param include_first A logical argument that specifies if subscale or item scores from the first completion of the CCAPS should be included in the returned data frame. By default `FALSE` resulting in CCAPS subscale or specified variable scores of the first administration not being included in the returned data frame. Option `"TRUE"` adds first administration scores of CCAPS subscales and specified items to the returned data frame.
+#' @param include_last A logical argument that specifies if subscale or item scores from the last completion of the CCAPS should be included in the returned data frame. By default `FALSE` resulting in CCAPS subscale or specified variable scores of the last administration not being included in the returned data frame. Option `"TRUE"` adds last administration scores of CCAPS subscales and specified items to the returned data frame.
 #'
-#' @return A data frame with CCAPS change scores of subscales and specified variables. Based on additional arguments, scores from first and last completion could be added to the data frame.
+#' @return A data frame with CCAPS change scores of subscales and specified CCAPS items. Based on additional arguments, scores from first and last administration will be included as well.
 #' @export
 #'
 
