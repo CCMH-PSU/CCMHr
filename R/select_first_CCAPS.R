@@ -10,7 +10,7 @@
 #'
 
 select_first_CCAPS <- function(data,
-                               order_by = Date,
+                               order_by = "Date",
                                keep_all = FALSE,
                                keep_columns = c("UniqueClientID", "CcmhID",
                                                 "Depression34", "Anxiety34",
@@ -24,7 +24,7 @@ select_first_CCAPS <- function(data,
 
 #Error messages if variables are missing
   #if order_by is missing
-    if(!any(names(data) == deparse(substitute(order_by)))) {
+    if(!any(names(data) == order_by)) {
      stop("order_by variable not present in data")
     }
   #if Is_ValidCCAPS is missing
@@ -40,8 +40,12 @@ select_first_CCAPS <- function(data,
   #Only Valid CCAPS
     ccaps <- temp.data[Is_ValidCCAPS == 1,]
     print("Pass Valid")
-  #Group and obtain by first occurrences
-    ccaps <- ccaps[, .SD[which.min(Date)], by = UniqueClientID]
+    orderlist<- c("UniqueClientID", order_by)
+    print(orderlist)
+  #Group
+    ccaps <- setorderv(ccaps, orderlist)
+    ccaps <- ccaps[, .SD[1], by=.(UniqueClientID)]
+  #Obtain by first occurrences
     print("Pass Grouping")
 
 #Specify what vectors to keep
