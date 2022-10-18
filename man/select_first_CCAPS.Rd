@@ -34,9 +34,6 @@ select_first_CLICC(
 
 \item{keep_columns}{A string list of column names to retain. If not specified, and keep_all = FALSE, defaults to the relevent columns for that data form.}
 }
-\value{
-
-}
 \description{
 Select each client's first administration of a specified survey
 }

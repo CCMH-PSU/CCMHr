@@ -9,45 +9,68 @@
 #' @export
 #'
 
-select_first_CCAPS <- function(data, order_by = Date, keep_all = FALSE, keep_columns = c("UniqueClientID", "CcmhID", "Depression34", "Anxiety34",
-                                                                                         "Social_Anxiety34", "Academics34", "Eating34", "Hostility34",
-                                                                                         "Alcohol34", "DI", "Depression62", "Eating62", "Substance62",
-                                                                                         "Anxiety62", "Hostility62", "Social_Anxiety62", "Family62", "Academics62")) {
+select_first_CCAPS <- function(data,
+                               order_by = Date,
+                               keep_all = FALSE,
+                               keep_columns = c("UniqueClientID", "CcmhID",
+                                                "Depression34", "Anxiety34",
+                                                "Social_Anxiety34", "Academics34",
+                                                "Eating34", "Hostility34",
+                                                "Alcohol34", "DI", "Depression62",
+                                                "Eating62", "Substance62",
+                                                "Anxiety62", "Hostility62",
+                                                "Social_Anxiety62", "Family62",
+                                                "Academics62")) {
 
-  if (!deparse(substitute(order_by)) %in% names(data)) {
-    stop("order_by variable not present in data")
-  }
+#Error messages if variables are missing
+  #if order_by is missing
+    if(!any(names(data) == deparse(substitute(order_by)))) {
+     stop("order_by variable not present in data")
+    }
+  #if Is_ValidCCAPS is missing
+    if (!any(names(data) == "Is_ValidCCAPS")) {
+     stop("Is_ValidCCAPS variable not present in data")
+    }
 
-  if (!"Is_ValidCCAPS" %in% names(data)) {
-    stop("Is_ValidCCAPS variable not present in data")
-  }
+#Packages
+  library(data.table)
+#Setting data table
+  temp.data <- data.table::setDT(data)
+#Cleaning CCAPS
+  #Only Valid CCAPS
+    ccaps <- temp.data[Is_ValidCCAPS == 1,]
+    print("Pass Valid")
+  #Group and obtain by first occurrences
+    ccaps <- ccaps[, .SD[which.min(Date)], by = UniqueClientID]
+    print("Pass Grouping")
 
-  ccaps <- dplyr::filter(data, .data$Is_ValidCCAPS ==1) %>%
-    dplyr::arrange(.data$UniqueClientID, {{order_by}}) %>%
-    dplyr::group_by(.data$UniqueClientID) %>%
-    dplyr::slice(1) %>%
-    dplyr::ungroup()
-
-
+#Specify what vectors to keep
   if (keep_all == TRUE) {
     if (!setequal(keep_columns,
         c("Depression34", "Anxiety34",
-                          "Social_Anxiety34", "Academics34", "Eating34", "Hostility34",
-                          "Alcohol34", "DI", "Depression62", "Eating62", "Substance62",
-                          "Anxiety62", "Hostility62", "Social_Anxiety62", "Family62", "Academics62"))) {
-      usethis::ui_warn("Vector of column names to keep not used when keep_all = TRUE. All columns were retained.")
+          "Social_Anxiety34", "Academics34",
+          "Eating34", "Hostility34",
+          "Alcohol34", "DI",
+          "Depression62", "Eating62",
+          "Substance62", "Anxiety62",
+          "Hostility62", "Social_Anxiety62",
+          "Family62", "Academics62"))) {
+       usethis::ui_warn("Vector of column names to keep not used when keep_all = TRUE. All columns were retained.")
+     }
+  #return data
+    return(data.frame(ccaps))
+
+    } else if (keep_all == FALSE) {
+       if(!all(keep_columns %in% names(data))) {
+       usethis::ui_warn("All columns specified in keep_columns were not present in the data. Only present columns were retained.")
+     }
+      ccaps <- ccaps[, keep_columns, with=FALSE]
+    return(data.frame(ccaps))
     }
-
-    return(ccaps)
-
-  } else if (keep_all == FALSE) {
-    if (!all(keep_columns %in% names(data))) {
-      usethis::ui_warn("All columns specified in keep_columns were not present in the data. Only present columns were retained.")
-    }
-      dplyr::select(ccaps, tidyselect::any_of(keep_columns))
-  }
-
 }
+
+
+
 
 #' @export
 #' @rdname select_first_CCAPS
@@ -130,5 +153,51 @@ select_first_CLICC <- function(data,
       dplyr::select(clicc, tidyselect::any_of(keep_columns))
     }
     }
+
+}
+
+
+
+
+
+select_first_CCAPS1 <- function(data, order_by = Date, keep_all = FALSE, keep_columns = c("UniqueClientID", "CcmhID", "Depression34", "Anxiety34",
+                                                                                         "Social_Anxiety34", "Academics34", "Eating34", "Hostility34",
+                                                                                         "Alcohol34", "DI", "Depression62", "Eating62", "Substance62",
+                                                                                         "Anxiety62", "Hostility62", "Social_Anxiety62", "Family62", "Academics62")) {
+
+  if (!deparse(substitute(order_by)) %in% names(data)) {
+    stop("order_by variable not present in data")
+  }
+
+  if (!"Is_ValidCCAPS" %in% names(data)) {
+    stop("Is_ValidCCAPS variable not present in data")
+  }
+data <- dtplyr::lazy_dt(data)
+
+  ccaps <- dplyr::filter(data, .data$Is_ValidCCAPS ==1) %>%
+    dplyr::arrange(.data$UniqueClientID, {{order_by}}) %>%
+    dplyr::group_by(.data$UniqueClientID) %>%
+    dplyr::slice(1) %>%
+    dplyr::ungroup()
+
+  ccaps <-data.frame(ccaps)
+
+  if (keep_all == TRUE) {
+    if (!setequal(keep_columns,
+                  c("Depression34", "Anxiety34",
+                    "Social_Anxiety34", "Academics34", "Eating34", "Hostility34",
+                    "Alcohol34", "DI", "Depression62", "Eating62", "Substance62",
+                    "Anxiety62", "Hostility62", "Social_Anxiety62", "Family62", "Academics62"))) {
+      usethis::ui_warn("Vector of column names to keep not used when keep_all = TRUE. All columns were retained.")
+    }
+
+    return(ccaps)
+
+  } else if (keep_all == FALSE) {
+    if (!all(keep_columns %in% names(data))) {
+      usethis::ui_warn("All columns specified in keep_columns were not present in the data. Only present columns were retained.")
+    }
+    dplyr::select(ccaps, tidyselect::any_of(keep_columns))
+  }
 
 }
