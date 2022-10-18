@@ -39,14 +39,12 @@ select_first_CCAPS <- function(data,
 #Cleaning CCAPS
   #Only Valid CCAPS
     ccaps <- temp.data[Is_ValidCCAPS == 1,]
-    print("Pass Valid")
+  #Order list of variable to be grouped
     orderlist<- c("UniqueClientID", order_by)
-    print(orderlist)
   #Group
-    ccaps <- setorderv(ccaps, orderlist)
-    ccaps <- ccaps[, .SD[1], by=.(UniqueClientID)]
+    ccaps <- data.table::setorderv(ccaps, orderlist)
   #Obtain by first occurrences
-    print("Pass Grouping")
+    ccaps <- ccaps[, .SD[1], by=.(UniqueClientID)]
 
 #Specify what vectors to keep
   if (keep_all == TRUE) {
@@ -68,23 +66,20 @@ select_first_CCAPS <- function(data,
        if(!all(keep_columns %in% names(data))) {
        usethis::ui_warn("All columns specified in keep_columns were not present in the data. Only present columns were retained.")
      }
-      ccaps <- ccaps[, keep_columns, with=FALSE]
+    ccaps <- ccaps[, keep_columns, with=FALSE]
     return(data.frame(ccaps))
     }
 }
-
-
-
 
 #' @export
 #' @rdname select_first_CCAPS
 
 select_first_SDS <- function(data,
-                             order_by = Date,
+                             order_by = "Date",
                              keep_all = FALSE,
                              keep_columns = "SDS") {
 
-  if (!deparse(substitute(order_by)) %in% names(data)) {
+  if (!order_by %in% names(data)) {
     stop("order_by variable not present in data")
   }
 
@@ -92,27 +87,44 @@ select_first_SDS <- function(data,
     stop("Has_SDS variable not present in data")
   }
 
-  sds <- dplyr::filter(data, .data$Has_SDS ==1) %>%
-    dplyr::arrange(.data$UniqueClientID, {{order_by}}) %>%
-    dplyr::group_by(.data$UniqueClientID) %>%
-    dplyr::slice(1) %>%
-    dplyr::ungroup()
+#Packages
+  library(data.table)
+
+#Setting data table
+  temp.data <- data.table::setDT(data)
+    #Cleaning CCAPS
+      #Only Valid CCAPS
+        sds <- temp.data[Has_SDS == 1,]
+    #Order list of variable to be grouped
+      orderlist<- c("UniqueClientID", order_by)
+    #Group
+      sds <- data.table::setorderv(sds, orderlist)
+    #Obtain by first occurrences
+      sds <- sds[, .SD[1], by=.(UniqueClientID)]
+
+  # sds <- dplyr::filter(data, .data$Has_SDS ==1) %>%
+  #   dplyr::arrange(.data$UniqueClientID, {{order_by}}) %>%
+  #   dplyr::group_by(.data$UniqueClientID) %>%
+  #   dplyr::slice(1) %>%
+  #   dplyr::ungroup()
 
   if (keep_all == TRUE) {
     if (keep_columns[1] != "SDS")
       usethis::ui_warn("Vector of column names to keep not applicable when keep_all = TRUE. All columns were retained.")
 
-    return(sds)
+    return(data.frame(sds))
 
   } else if (keep_all == FALSE) {
     if (keep_columns[1] == "SDS") {
+      sds <- sds[, .SD[1], by=.(UniqueClientID)]
       sds %>%
-        dplyr::select(.data$UniqueClientID, .data$CcmhID, dplyr::starts_with("SDS_"), ClientAge)
+        dplyr::select(.data$UniqueClientID, .data$CcmhID, dplyr::starts_with("SDS_"), Age)
     } else {
       if (!all(keep_columns %in% names(data))) {
         usethis::ui_warn("All columns specified in keep_columns were not present in the data. Only present columns were retained.")
       }
-        dplyr::select(sds, tidyselect::any_of(keep_columns))
+      sds <- sds[, keep_columns, with=FALSE]
+      return(data.frame(sds))
     }
 
   }
