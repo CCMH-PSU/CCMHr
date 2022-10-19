@@ -21,6 +21,8 @@ select_first_CCAPS <- function(data,
                                                 "Anxiety62", "Hostility62",
                                                 "Social_Anxiety62", "Family62",
                                                 "Academics62")) {
+#Packages
+  library(data.table)
 
 #Error messages if variables are missing
   #if order_by is missing
@@ -32,44 +34,36 @@ select_first_CCAPS <- function(data,
      stop("Is_ValidCCAPS variable not present in data")
     }
 
-#Packages
-  library(data.table)
-#Setting data table
-  temp.data <- data.table::setDT(data)
-#Cleaning CCAPS
-  #Only Valid CCAPS
-    ccaps <- temp.data[Is_ValidCCAPS == 1,]
-  #Order list of variable to be grouped
-    orderlist<- c("UniqueClientID", order_by)
-  #Group
-    ccaps <- data.table::setorderv(ccaps, orderlist)
-  #Obtain by first occurrences
-    ccaps <- ccaps[, .SD[1], by=.(UniqueClientID)]
-
-#Specify what vectors to keep
-  if (keep_all == TRUE) {
-    if (!setequal(keep_columns,
-        c("Depression34", "Anxiety34",
-          "Social_Anxiety34", "Academics34",
-          "Eating34", "Hostility34",
-          "Alcohol34", "DI",
-          "Depression62", "Eating62",
-          "Substance62", "Anxiety62",
-          "Hostility62", "Social_Anxiety62",
-          "Family62", "Academics62"))) {
-       usethis::ui_warn("Vector of column names to keep not used when keep_all = TRUE. All columns were retained.")
-     }
-  #return data
-    return(data.frame(ccaps))
-
-    } else if (keep_all == FALSE) {
-       if(!all(keep_columns %in% names(data))) {
-       usethis::ui_warn("All columns specified in keep_columns were not present in the data. Only present columns were retained.")
-     }
-    ccaps <- ccaps[, keep_columns, with=FALSE]
-    return(data.frame(ccaps))
+if (keep_all == TRUE) {
+  keep_columns <- names(data)
+} else if (keep_all == FALSE) {
+    if(!all(keep_columns %in% names(data))) {
+       usethis::ui_stop("All columns specified in keep_columns were not present in the data.")
     }
 }
+
+#Setting data table
+  data.table::setDT(data)
+
+#Cleaning CCAPS
+  #Only Valid CCAPS
+    data <- data[Is_ValidCCAPS == 1,]
+
+  #Order list of variable to be grouped
+    orderlist<- c("UniqueClientID", order_by)
+
+  #Order data.table by order list
+    data <- data.table::setorderv(data, orderlist)
+
+  #Obtain by first occurrences
+    data <- data[, .SD[1], by=.(UniqueClientID)][, ..keep_columns]
+    return(data)
+
+}
+
+
+
+
 
 #' @export
 #' @rdname select_first_CCAPS
