@@ -41,9 +41,9 @@ create_courses <- function(data,
     #data table
       data.table::setDT(data)
     #Order list of variable to be grouped
-      #orderlist <- c("UniqueClientID", "Date")
+      orderlist <- c("UniqueClientID", "Date")
     #Arrange
-      #ccmh_bycourse <- data.table::setorderv(data, orderlist)
+      ccmh_bycourse <- data.table::setorderv(data, orderlist)
     #Calculate lag between dates
       ccmh_bycourse <- data[,Date_1:=data.table::shift(Date), by=UniqueClientID]
     #Calculate data difference
@@ -51,45 +51,46 @@ create_courses <- function(data,
     #Creates variables indicating the start of a new course of treatment
       ccmh_bycourse <- ccmh_bycourse[,NewCourse:=NA,][, NewCourse:= ifelse(Daysbetween > daysbetween, 1, NewCourse)]
     #Order list of variable to be grouped
-      #orderlist <- c("UniqueClientID", "NewCourse", "Date")
+      orderlist <- c("UniqueClientID", "NewCourse", "Date")
     #Group
-      #ccmh_bycourse <- data.table::setorderv(ccmh_bycourse, orderlist)
+      ccmh_bycourse <- data.table::setorderv(ccmh_bycourse, orderlist)
     #Ranks a client's new courses if there are multiple
       ccmh_bycourse <- ccmh_bycourse[,RankCourse:=ave(UniqueClientID, UniqueClientID, NewCourse, FUN = seq_along),][, RankCourse:= ifelse(is.na(NewCourse), NA, RankCourse)]
     #Order list of variable to be grouped
-      #orderlist <- c("UniqueClientID", "Date")
+      orderlist <- c("UniqueClientID", "Date")
     #Group
-      #ccmh_bycourse <- data.table::setorderv(ccmh_bycourse, orderlist)
+      ccmh_bycourse <- data.table::setorderv(ccmh_bycourse, orderlist)
     #Add 1 to current RankCourse
       ccmh_bycourse <- ccmh_bycourse[,RankCourse:=RankCourse+1,]
     #Need a 1 at the first observation of each new client
-      ccmh_bycourse[, RankCourse:= ifelse(is.na(Date_1), 1, RankCourse)]
+      ccmh_bycourse <- ccmh_bycourse[, RankCourse:= ifelse(is.na(Date_1), 1, RankCourse)]
     #Carry last observation forward
-      ccmh_bycourse[, RankCourse:= zoo::na.locf(RankCourse, na.rm = F)]
+      ccmh_bycourse <- ccmh_bycourse[, RankCourse:= zoo::na.locf(RankCourse, na.rm = F)]
 
   #First course variable
-    ccmh_bycourse[,FirstCourse:=NA,][, FirstCourse:= ifelse(RankCourse == 1, 1, FirstCourse)]
+      ccmh_bycourse <- ccmh_bycourse[,FirstCourse:=NA,][, FirstCourse:= ifelse(RankCourse == 1, 1, FirstCourse)]
 
   #If else statments
   if (firstOnly == FALSE) {
-    ccmh_bycourse[,UniqueClientID_byCourse:=RankCourse/10,][, UniqueClientID_byCourse:= UniqueClientID_byCourse+UniqueClientID]
+    ccmh_bycourse <- ccmh_bycourse[,UniqueClientID_byCourse:=RankCourse/10,][, UniqueClientID_byCourse:= UniqueClientID_byCourse+UniqueClientID]
 
     #Removing unwanted vectors
-    ccmh_bycourse[,`:=`(Date_1 = NULL,
-                        Daysbetween = NULL,
-                        NewCourse = NULL)]
-    setcolorder(ccmh_bycourse, c("UniqueClientID", "UniqueClientID_byCourse"))
+    ccmh_bycourse <- ccmh_bycourse[,`:=`(Date_1 = NULL,
+                                          Daysbetween = NULL,
+                                          NewCourse = NULL)]
+    ccmh_bycourse <- setcolorder(ccmh_bycourse, c("UniqueClientID", "UniqueClientID_byCourse"))
+
     return(as.data.frame(ccmh_bycourse))
 
   } else if (firstOnly == TRUE) {
     #First course only
-      ccmh_bycourse[FirstCourse == 1, ]
+      ccmh_bycourse <- ccmh_bycourse[FirstCourse == 1, ]
     #Removing unwanted vectors
-      ccmh_bycourse[,`:=`(Date_1 = NULL,
-                          Daysbetween = NULL,
-                          NewCourse = NULL,
-                          RankCourse = NULL,
-                          FirstCourse = NULL)]
+      ccmh_bycourse <- ccmh_bycourse[,`:=`(Date_1 = NULL,
+                                           Daysbetween = NULL,
+                                           NewCourse = NULL,
+                                           RankCourse = NULL,
+                                           FirstCourse = NULL)]
 
     return(as.data.frame(ccmh_bycourse))
   }
