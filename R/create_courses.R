@@ -16,7 +16,7 @@
 #'
 #' * `FirstCourse`: A dichotomous variable indicating whether the lines of data belong to a client's first course or not.
 #'
-#' If `firstOnly` = `TRUE`, only the first course is selected, and no variables are added:
+#' If `firstOnly` = `TRUE`, only the first course is selected, and no variables are added.
 #'
 #'
 #' @export
@@ -40,7 +40,7 @@ create_courses <- function(data,
       library(data.table)
     #data table
       data.table::setDT(data)
-    #Order list of variable to be grouped
+    #Order list of variable to order by
       orderlist <- c("UniqueClientID", "Date")
     #Arrange
       ccmh_bycourse <- data.table::setorderv(data, orderlist)
@@ -50,15 +50,17 @@ create_courses <- function(data,
       ccmh_bycourse <- ccmh_bycourse[,Daysbetween:=as.integer(Date)-as.integer(Date_1), by=UniqueClientID]
     #Creates variables indicating the start of a new course of treatment
       ccmh_bycourse <- ccmh_bycourse[,NewCourse:=NA,][, NewCourse:= ifelse(Daysbetween > daysbetween, 1, NewCourse)]
-    #Order list of variable to be grouped
+    #Create a variable to save data.table order
+      ccmh_bycourse <- ccmh_bycourse[,OrderVar:=1:nrow(ccmh_bycourse),]
+    #Order list of variable to order by
       orderlist <- c("UniqueClientID", "NewCourse", "Date")
-    #Group
+    #Arrange
       ccmh_bycourse <- data.table::setorderv(ccmh_bycourse, orderlist)
     #Ranks a client's new courses if there are multiple
       ccmh_bycourse <- ccmh_bycourse[,RankCourse:=ave(UniqueClientID, UniqueClientID, NewCourse, FUN = seq_along),][, RankCourse:= ifelse(is.na(NewCourse), NA, RankCourse)]
-    #Order list of variable to be grouped
-      orderlist <- c("UniqueClientID", "Date")
-    #Group
+    #Order list of variable to order by
+      orderlist <- c("OrderVar")
+    #Arrange
       ccmh_bycourse <- data.table::setorderv(ccmh_bycourse, orderlist)
     #Add 1 to current RankCourse
       ccmh_bycourse <- ccmh_bycourse[,RankCourse:=RankCourse+1,]
@@ -77,7 +79,8 @@ create_courses <- function(data,
     #Removing unwanted vectors
     ccmh_bycourse <- ccmh_bycourse[,`:=`(Date_1 = NULL,
                                           Daysbetween = NULL,
-                                          NewCourse = NULL)]
+                                          NewCourse = NULL,
+                                         OrderVar = NULL)]
     ccmh_bycourse <- setcolorder(ccmh_bycourse, c("UniqueClientID", "UniqueClientID_byCourse"))
 
     return(as.data.frame(ccmh_bycourse))
@@ -90,7 +93,8 @@ create_courses <- function(data,
                                            Daysbetween = NULL,
                                            NewCourse = NULL,
                                            RankCourse = NULL,
-                                           FirstCourse = NULL)]
+                                           FirstCourse = NULL,
+                                           OrderVar = NULL)]
 
     return(as.data.frame(ccmh_bycourse))
   }
