@@ -23,7 +23,7 @@ If \code{firstOnly} = \code{FALSE}, all courses are retained, with the following
 \item \code{FirstCourse}: A dichotomous variable indicating whether the lines of data belong to a client's first course or not.
 }
 
-If \code{firstOnly} = \code{TRUE}, only the first course is selected, and no variables are added:
+If \code{firstOnly} = \code{TRUE}, only the first course is selected, and no variables are added.
 }
 \description{
 Create courses of therapy in CCMH data.
