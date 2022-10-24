@@ -7,7 +7,7 @@
 #' @note If `data` does not contain the proper CCAPS subscale names, it will return an error.
 #' @return A data frame with all the original data in `data`, and several additional columns of cut scores coded 1 for above cut score and 0 for below cut score.
 #' @examples \dontrun{
-#' TI1718 <- ccaps6262_lowcut(TI1718)
+#' TI1718 <- ccaps62_lowcut(TI1718)
 #' }
 #' @export
 
