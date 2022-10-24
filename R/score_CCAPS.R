@@ -17,10 +17,49 @@
 #' @export
 
 score_CCAPS <- function(data, CCAPS62 = T) {
-  if(CCAPS62 == T) {
-  if(!all(c("CCAPS_01", "CCAPS_03", "CCAPS_04", "CCAPS_05", "CCAPS_06", "CCAPS_08", "CCAPS_09", "CCAPS_10", "CCAPS_11", "CCAPS_13", "CCAPS_14", "CCAPS_15", "CCAPS_16", "CCAPS_17", "CCAPS_18", "CCAPS_19", "CCAPS_21", "CCAPS_22", "CCAPS_23", "CCAPS_24", "CCAPS_25", "CCAPS_26", "CCAPS_27", "CCAPS_28", "CCAPS_29", "CCAPS_30", "CCAPS_31", "CCAPS_32", "CCAPS_33", "CCAPS_34", "CCAPS_35", "CCAPS_36", "CCAPS_37", "CCAPS_38", "CCAPS_39", "CCAPS_40", "CCAPS_41", "CCAPS_43", "CCAPS_44", "CCAPS_45", "CCAPS_46", "CCAPS_47", "CCAPS_48", "CCAPS_49", "CCAPS_50", "CCAPS_51", "CCAPS_52", "CCAPS_53", "CCAPS_54", "CCAPS_56", "CCAPS_57", "CCAPS_58", "CCAPS_59", "CCAPS_60", "CCAPS_61", "CCAPS_63", "CCAPS_64", "CCAPS_65", "CCAPS_66", "CCAPS_68", "CCAPS_69", "CCAPS_70") %in% colnames(data))) stop('CCAPS items not present in data or not properly named. CCAPS items should be named CCAPS_01 through CCAPS_70.')
 
-  # Has_CCAPS
+  #making data frame as a data table
+    data <- data.table::as.data.table(data)
+
+  if(CCAPS62 == T) {
+  if(!all(c("CCAPS_01", "CCAPS_03",
+            "CCAPS_04", "CCAPS_05",
+            "CCAPS_06", "CCAPS_08",
+            "CCAPS_09", "CCAPS_10",
+            "CCAPS_11", "CCAPS_13",
+            "CCAPS_14", "CCAPS_15",
+            "CCAPS_16", "CCAPS_17",
+            "CCAPS_18", "CCAPS_19",
+            "CCAPS_21", "CCAPS_22",
+            "CCAPS_23", "CCAPS_24",
+            "CCAPS_25", "CCAPS_26",
+            "CCAPS_27", "CCAPS_28",
+            "CCAPS_29", "CCAPS_30",
+            "CCAPS_31", "CCAPS_32",
+            "CCAPS_33", "CCAPS_34",
+            "CCAPS_35", "CCAPS_36",
+            "CCAPS_37", "CCAPS_38",
+            "CCAPS_39", "CCAPS_40",
+            "CCAPS_41", "CCAPS_43",
+            "CCAPS_44", "CCAPS_45",
+            "CCAPS_46", "CCAPS_47",
+            "CCAPS_48", "CCAPS_49",
+            "CCAPS_50", "CCAPS_51",
+            "CCAPS_52", "CCAPS_53",
+            "CCAPS_54", "CCAPS_56",
+            "CCAPS_57", "CCAPS_58",
+            "CCAPS_59", "CCAPS_60",
+            "CCAPS_61", "CCAPS_63",
+            "CCAPS_64", "CCAPS_65",
+            "CCAPS_66", "CCAPS_68",
+            "CCAPS_69", "CCAPS_70") %in% colnames(data)))
+    stop('CCAPS items not present in data or not properly named. CCAPS items should be named CCAPS_01 through CCAPS_70.')
+
+  #Calculate Has_CCAPS
+    data <- data[, Has_CCAPS := !is.na(rowSums(.SD, na.rm = T), .SDcol = CCAPS_01:CCAPS_70)]
+      data[, rowSums(CCAPS_01:CCAPS_70)]
+
+
   data$Has_CCAPS <- rowSums(!is.na(dplyr::select(data, .data$CCAPS_01:.data$CCAPS_70)), na.rm = T)
   data$Has_CCAPS[which(data$Has_CCAPS > 0)] <- 1
 
