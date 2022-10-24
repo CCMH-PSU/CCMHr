@@ -423,7 +423,7 @@ sds_to_factor <- function(data){
     data$SDS_97 <- as.factor(data$SDS_97) %>%
       forcats::fct_inseq() %>%
       dplyr::recode(`1` = "Agnostic",
-                    `2` = "Athiest",
+                    `2` = "Atheist",
                     `3` = "Buddhist",
                     `4` = "Catholic",
                     `5` = "Christian",
