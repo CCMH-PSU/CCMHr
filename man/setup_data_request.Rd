@@ -4,7 +4,7 @@
 \alias{setup_data_request}
 \title{Setup data cleaning file for data request}
 \usage{
-setup_data_request(requester_last_name)
+setup_data_request(requester_last_name = NULL)
 }
 \arguments{
 \item{requester_last_name}{The last name of the data requester.}
