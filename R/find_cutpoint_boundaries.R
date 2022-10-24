@@ -27,13 +27,13 @@ find_cutpoint_boundaries <- function(items, cutpoint) {
       dplyr::group_by(.data$Score) %>%
       dplyr::summarize_all(dplyr::first) %>%
       # dplyr::filter(Score == max(Score < cutpoint)|Score == max(Score > cutpoint))
-      dplyr::filter(Score == max(Score[Score < cutpoint])|
-                      Score == min(Score[Score >= cutpoint])|
-                      Score == cutpoint) %>%
-    dplyr::mutate(result = dplyr::case_when(Score < cutpoint ~ "Below",
-                                       Score > cutpoint ~ "Above",
-                                       Score == cutpoint ~ "Equal (above)")) %>%
+      dplyr::filter(.data$Score == max(.data$Score[.data$Score < cutpoint])|
+                      .data$Score == min(.data$Score[.data$Score >= cutpoint])|
+                      .data$Score == cutpoint) %>%
+    dplyr::mutate(result = dplyr::case_when(.data$Score < cutpoint ~ "Below",
+                                            .data$Score > cutpoint ~ "Above",
+                                            .data$Score == cutpoint ~ "Equal (above)")) %>%
     dplyr::select(-.data$Items) %>%
     dplyr::mutate(cutpoint = cutpoint) %>%
-    dplyr::select(Score, cutpoint, result, dplyr::everything())
+    dplyr::select(.data$Score, .data$cutpoint, .data$result, dplyr::everything())
 }

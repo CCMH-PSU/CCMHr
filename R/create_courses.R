@@ -18,12 +18,15 @@
 #'
 #' If `firstOnly` = `TRUE`, only the first course is selected, and no variables are added.
 #'
-#'
 #' @export
+#' @import data.table
 #'
 create_courses <- function(data,
                            firstOnly = FALSE,
                            daysbetween = 90){
+  # Addressing "no visible binding for global variable" notes in R CMD check
+  Date_1 = Date = UniqueClientID = Daysbetween = NewCourse = OrderVar = RankCourse = FirstCourse = UniqueClientID_byCourse = NULL
+
   #Error message for missing variables
     #UniqueClientID
       if(!"UniqueClientID" %in% names(data))
@@ -36,8 +39,6 @@ create_courses <- function(data,
       stop('daysbetween appointments must be a numeric value greater than 0.')
 
   #Creating a data table
-    #Packages
-      library(data.table)
     #data table
       data.table::setDT(data)
     #Order list of variable to order by
@@ -57,7 +58,7 @@ create_courses <- function(data,
     #Arrange
       ccmh_bycourse <- data.table::setorderv(ccmh_bycourse, orderlist)
     #Ranks a client's new courses if there are multiple
-      ccmh_bycourse <- ccmh_bycourse[,RankCourse:=ave(UniqueClientID, UniqueClientID, NewCourse, FUN = seq_along),][, RankCourse:= ifelse(is.na(NewCourse), NA, RankCourse)]
+      ccmh_bycourse <- ccmh_bycourse[,RankCourse:=stats::ave(UniqueClientID, UniqueClientID, NewCourse, FUN = seq_along),][, RankCourse:= ifelse(is.na(NewCourse), NA, RankCourse)]
     #Order list of variable to order by
       orderlist <- c("OrderVar")
     #Arrange
@@ -81,7 +82,7 @@ create_courses <- function(data,
                                           Daysbetween = NULL,
                                           NewCourse = NULL,
                                          OrderVar = NULL)]
-    ccmh_bycourse <- setcolorder(ccmh_bycourse, c("UniqueClientID", "UniqueClientID_byCourse"))
+    ccmh_bycourse <- data.table::setcolorder(ccmh_bycourse, c("UniqueClientID", "UniqueClientID_byCourse"))
 
     return(as.data.frame(ccmh_bycourse))
 

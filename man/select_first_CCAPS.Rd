@@ -8,7 +8,7 @@
 \usage{
 select_first_CCAPS(
   data,
-  order_by = Date,
+  order_by = "Date",
   keep_all = FALSE,
   keep_columns = c("UniqueClientID", "CcmhID", "Depression34", "Anxiety34",
     "Social_Anxiety34", "Academics34", "Eating34", "Hostility34", "Alcohol34", "DI",
@@ -16,11 +16,16 @@ select_first_CCAPS(
     "Social_Anxiety62", "Family62", "Academics62")
 )
 
-select_first_SDS(data, order_by = Date, keep_all = FALSE, keep_columns = "SDS")
+select_first_SDS(
+  data,
+  order_by = "Date",
+  keep_all = FALSE,
+  keep_columns = "SDS"
+)
 
 select_first_CLICC(
   data,
-  order_by = Date,
+  order_by = "Date",
   keep_all = FALSE,
   keep_columns = "CLICC"
 )

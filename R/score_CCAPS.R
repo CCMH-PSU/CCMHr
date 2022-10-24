@@ -53,13 +53,37 @@ score_CCAPS <- function(data, CCAPS62 = T) {
   data$variance <- matrixStats::rowVars(as.matrix(dplyr::select(data,.data$CCAPS_01:.data$CCAPS_70)), na.rm = T)
 
   # Indicators of valid/invalid administrations to score
+  # Administration is invalid if any subscale has 50% or more missing items, or entire administration has 50% or more missing, or variance is 0
   data$Is_ValidCCAPS <- 0
-  data$Is_ValidCCAPS[which(data$Has_CCAPS == 1 & data$Depression34_MISS < 3 & data$Anxiety34_MISS < 3 & data$Social_Anxiety34_MISS < 2 & data$Academics34_MISS < 2 & data$Eating34_MISS < 2 & data$Hostility34_MISS < 3 & data$Alcohol34_MISS < 2 & data$CCAPS34_Tmiss <= 17 & data$variance >0)] <- 1
-  data$Is_ValidCCAPS[which(data$Is_CCAPS62 == 1 & (data$Depression62_MISS > 4 | data$Anxiety62_MISS > 3 | data$Social_Anxiety62_MISS > 2 | data$Academics62_MISS > 1 | data$Eating62_MISS > 3 | data$Hostility62_MISS > 2 | data$Substance62_MISS > 2 | data$Family62_MISS > 2 | data$CCAPS62_Tmiss >= 32))] <- 0
+  data$Is_ValidCCAPS[which(data$Has_CCAPS == 1 & data$Depression34_MISS < 3 &
+                             data$Anxiety34_MISS < 3 & data$Social_Anxiety34_MISS < 2 &
+                             data$Academics34_MISS < 2 & data$Eating34_MISS < 2 &
+                             data$Hostility34_MISS < 3 & data$Alcohol34_MISS < 2 &
+                             data$CCAPS34_Tmiss <= 17 & data$variance >0)] <- 1
+
+  data$Is_ValidCCAPS[which(data$Is_CCAPS62 == 1 & (data$Depression62_MISS > 4 |
+                                                     data$Anxiety62_MISS > 3 |
+                                                     data$Social_Anxiety62_MISS > 2 |
+                                                     data$Academics62_MISS > 1 |
+                                                     data$Eating62_MISS > 3 |
+                                                     data$Hostility62_MISS > 2 |
+                                                     data$Substance62_MISS > 2 |
+                                                     data$Family62_MISS > 2 |
+                                                     data$CCAPS62_Tmiss >= 32))] <- 0
+
   data$Is_ValidCCAPS62 <- 0
-  data$Is_ValidCCAPS62[which(data$Is_CCAPS62 == 1 & data$Depression62_MISS < 5 & data$Anxiety62_MISS < 4 & data$Social_Anxiety62_MISS < 3 & data$Academics62_MISS < 2 & data$Eating62_MISS < 4 & data$Hostility62_MISS < 3 & data$Substance62_MISS < 3 & data$Family62_MISS < 3 & data$CCAPS62_Tmiss <= 31 & data$variance > 0)] <- 1
+
+  data$Is_ValidCCAPS62[which(data$Is_CCAPS62 == 1 & data$Depression62_MISS < 5 &
+                               data$Anxiety62_MISS < 4 & data$Social_Anxiety62_MISS < 3 &
+                               data$Academics62_MISS < 2 & data$Eating62_MISS < 4 &
+                               data$Hostility62_MISS < 3 & data$Substance62_MISS < 3 &
+                               data$Family62_MISS < 3 & data$CCAPS62_Tmiss <= 31 &
+                               data$variance > 0)] <- 1
+
   data$Is_ValidCCAPS62[which(data$Is_ValidCCAPS == 0 )] <- 0
+
   data$Is_ValidCCAPS34 <- 0
+
   data$Is_ValidCCAPS34[which(data$Is_ValidCCAPS == 1 & data$Is_ValidCCAPS62 == 0)] <- 1
 
   # Reverse scoring

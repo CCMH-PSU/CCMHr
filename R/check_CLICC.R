@@ -25,23 +25,23 @@ check_CLICC <- function(dat){
   }
 
   sum_violate_01 <- dat %>%
-    dplyr::select(CLICC_01_01:CLICC_01_44) %>%
-    dplyr::mutate_all(funs(viol = !one_or_na(.))) %>%
-    dplyr::select(CLICC_01_01_viol:CLICC_01_44_viol) %>%
-    dplyr::summarise_all(funs(sum = sum(.,na.rm = T)))
+    dplyr::select(.data$CLICC_01_01:.data$CLICC_01_44) %>%
+    dplyr::mutate_all(dplyr::funs(viol = !one_or_na(.))) %>%
+    dplyr::select(.data$CLICC_01_01_viol:.data$CLICC_01_44_viol) %>%
+    dplyr::summarise_all(dplyr::funs(sum = sum(.,na.rm = T)))
 
   sum_violate_03 <- dat %>%
-    dplyr::select(CLICC_03) %>%
-    dplyr::mutate_all(funs(CLICC_03_viol = !between(.,left = 0,right = 44))) %>%
-    dplyr::select(CLICC_03_viol) %>%
-    dplyr::summarise_all(funs(sum = sum(.,na.rm = T)))
+    dplyr::select(.data$CLICC_03) %>%
+    dplyr::mutate_all(dplyr::funs(CLICC_03_viol = !dplyr::between(.,left = 0,right = 44))) %>%
+    dplyr::select(.data$CLICC_03_viol) %>%
+    dplyr::summarise_all(dplyr::funs(sum = sum(.,na.rm = T)))
 
   total <- sum(sum_violate_01) + sum(sum_violate_03)
 
   if(total==0){
     violations <- NULL
   } else{
-    violations <- colnames(select(dat,CLICC_01_01:CLICC_01_44,CLICC_03))[which(c(sum_violate_01,sum_violate_03)>0)]
+    violations <- colnames(dplyr::select(dat,.data$CLICC_01_01:.data$CLICC_01_44,.data$CLICC_03))[which(c(.data$sum_violate_01,.data$sum_violate_03)>0)]
   }
   return(violations)
 }

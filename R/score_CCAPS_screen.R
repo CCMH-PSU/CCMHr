@@ -17,9 +17,6 @@
 
 score_CCAPS_screen <- function(data) {
 
-    #Packages
-      library(tidyverse)
-
     #Check to see if variables are named correctly
       #List of variables required to run function
         var_names <- c("CCAPS_01", "CCAPS_03", "CCAPS_05", "CCAPS_06", "CCAPS_11",
@@ -136,9 +133,9 @@ score_CCAPS_screen <- function(data) {
         #Total Missing
           df_missing$CCAPS_Tmiss <- rowSums(df_missing)
         #Variance Score
-          df_missing$variance <- apply(dplyr::select(data, CCAPS_01:CCAPS_70),
+          df_missing$variance <- apply(dplyr::select(data, .data$CCAPS_01:.data$CCAPS_70),
                                        1,
-                                       var,
+                                       stats::var,
                                        na.rm=T)
 
      #Calculating Is_ValidCCAPS

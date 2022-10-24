@@ -14,7 +14,8 @@ center_data_each_year <- function(data) {
       stop("Data_year variable contains missing data.")
     } else{
       dplyr::group_by(data, .data$CcmhID) %>%
-        dplyr::filter(dplyr::n_distinct(.data$Data_year) == length(unique(data$Data_year))) %>%
+        dplyr::filter(dplyr::n_distinct(data$Data_year) == length(unique(.data$Data_year))) %>%
+        dplyr::ungroup() %>%
         return()
     }
   }

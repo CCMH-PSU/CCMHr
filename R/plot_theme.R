@@ -28,11 +28,11 @@ ccmh_theme <- function(plot_title = 20,
                                                                                r = 0,
                                                                                b = 0,
                                                                                l = 0)),
-                 plot.title = element_text(size = plot_title),
-                 axis.title = element_text(size = axis_title),
-                 axis.text = element_text(size = axis_text),
-                 plot.caption = element_text(size = caption_text),
-                 plot.background = element_rect(fill = 'white',
+                 plot.title = ggplot2::element_text(size = plot_title),
+                 axis.title = ggplot2::element_text(size = axis_title),
+                 axis.text = ggplot2::element_text(size = axis_text),
+                 plot.caption = ggplot2::element_text(size = caption_text),
+                 plot.background = ggplot2::element_rect(fill = 'white',
                                                 color = NA))
 }
 

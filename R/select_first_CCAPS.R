@@ -5,7 +5,6 @@
 #' @param keep_all Columns to keep. `TRUE` will keep all columns, while `FALSE` will keep only IDs and CCAPS subscales, SDS items, or CLICC items.
 #' @param keep_columns A string list of column names to retain. If not specified, and keep_all = FALSE, defaults to the relevent columns for that data form.
 #'
-#' @return
 #' @export
 #'
 
@@ -21,8 +20,8 @@ select_first_CCAPS <- function(data,
                                                 "Anxiety62", "Hostility62",
                                                 "Social_Anxiety62", "Family62",
                                                 "Academics62")) {
-  #Required Packages
-    library(data.table)
+  # Addressing "no visible binding for global variable" notes in R CMD check
+  Is_ValidCCAPS = UniqueClientID = NULL
 
   #Error messages presented if specific variables are missing
     #if order_by specified as an argument (quoted) is missing
@@ -73,8 +72,8 @@ select_first_SDS <- function(data,
                              keep_all = FALSE,
                              keep_columns = "SDS") {
 
-  #Required Packages
-    library(data.table)
+  # Addressing "no visible binding for global variable" notes in R CMD check
+  Has_SDS = UniqueClientID = NULL
 
   #Error messages presented if specific variables are missing
     #if order_by specified as an argument (quoted) is missing
@@ -137,8 +136,8 @@ select_first_CLICC <- function(data,
                                keep_all = FALSE,
                                keep_columns = "CLICC") {
 
-  #Required Packages
-    library(data.table)
+  # Addressing "no visible binding for global variable" notes in R CMD check
+  Has_CLICC = UniqueClientID = NULL
 
   #Error messages presented if specific variables are missing
     #if order_by specified as an argument (quoted) is missing

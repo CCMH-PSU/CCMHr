@@ -18,9 +18,6 @@ CCAPS_change <- function(data,
                          include_first = F,
                          include_last = F) {
 
-  #Packages required to run function
-    library(tidyverse)
-    library(CCMHr)
 
   #Check to see if variables are named correctly
     #List of variables required to run function
@@ -40,7 +37,7 @@ CCAPS_change <- function(data,
 
   #Excluding data with no CCAPS data
     data <- subset(data,
-                   data$Is_ValidCCAPS == 1)
+                   .data$Is_ValidCCAPS == 1)
 
   #Excluding participants that didn't complete the CCAPS at least two times
     data <- data %>%
@@ -49,7 +46,7 @@ CCAPS_change <- function(data,
 
   #Excluding all data rows outside of first and last responses of the CCAPS
     data <- data %>%
-              dplyr::slice(1, n())
+              dplyr::slice(1, dplyr::n())
 
   #Variable that will detect if "all" is being specified in argument add_items
     add_items_all <- add_items == "all"[1]
@@ -64,10 +61,10 @@ CCAPS_change <- function(data,
         CCAPS_data <- data %>%
                         dplyr::select({{client_identifier}},
                                       {{center_identifier}},
-                                      Depression34:DI)
+                                      .data$Depression34:.data$DI)
 
     } else if(add_items_all[1] == T) { #If all CCAPS items are to be added or "all" is specified in add_items
-      #Check to see if variables are named correctly to use this arguement
+      #Check to see if variables are named correctly to use this argument
         #List of variables required to run function
           var_names <- c("CCAPS_03", "CCAPS_05", "CCAPS_06", "CCAPS_11",
                          "CCAPS_13", "CCAPS_16", "CCAPS_17", "CCAPS_18",
@@ -110,15 +107,15 @@ CCAPS_change <- function(data,
       #Returned data frame
         CCAPS_data <- data %>%
                         dplyr::select({{client_identifier}}, {{center_identifier}},
-                                      Depression34:DI, CCAPS_03, CCAPS_05,
-                                      CCAPS_06, CCAPS_11, CCAPS_13, CCAPS_16,
-                                      CCAPS_17, CCAPS_18, CCAPS_21, CCAPS_22,
-                                      CCAPS_24, CCAPS_27, CCAPS_29, CCAPS_30,
-                                      CCAPS_31, CCAPS_33, CCAPS_34, CCAPS_36,
-                                      CCAPS_39, CCAPS_40, CCAPS_45,CCAPS_46,
-                                      CCAPS_48, CCAPS_49, CCAPS_51, CCAPS_52,
-                                      CCAPS_54, CCAPS_57, CCAPS_58, CCAPS_59,
-                                      CCAPS_63, CCAPS_64, CCAPS_66, CCAPS_68)
+                                      .data$Depression34:.data$DI, .data$CCAPS_03, .data$CCAPS_05,
+                                      .data$CCAPS_06, .data$CCAPS_11, .data$CCAPS_13, .data$CCAPS_16,
+                                      .data$CCAPS_17, .data$CCAPS_18, .data$CCAPS_21, .data$CCAPS_22,
+                                      .data$CCAPS_24, .data$CCAPS_27, .data$CCAPS_29, .data$CCAPS_30,
+                                      .data$CCAPS_31, .data$CCAPS_33, .data$CCAPS_34, .data$CCAPS_36,
+                                      .data$CCAPS_39, .data$CCAPS_40, .data$CCAPS_45, .data$CCAPS_46,
+                                      .data$CCAPS_48, .data$CCAPS_49, .data$CCAPS_51, .data$CCAPS_52,
+                                      .data$CCAPS_54, .data$CCAPS_57, .data$CCAPS_58, .data$CCAPS_59,
+                                      .data$CCAPS_63, .data$CCAPS_64, .data$CCAPS_66, .data$CCAPS_68)
 
     } else { #If specific items are added to add_items by listing out variable names
         #Specify R loop parameters
@@ -143,14 +140,14 @@ CCAPS_change <- function(data,
           p2 <- dim(data.tmp)[2]+2
 
           data.tmp[,p1:p2] <- data %>%
-                                select({{client_identifier}}, {{center_identifier}})
+            dplyr::select({{client_identifier}}, {{center_identifier}})
 
 
         #Creating basic CCAPS_data and ensure it is a dataframe
           CCAPS_data <- data %>%
                           dplyr::select({{client_identifier}},
                                         {{center_identifier}},
-                                        Depression34:DI)
+                                        .data$Depression34:.data$DI)
           CCAPS_data <- as.data.frame(CCAPS_data)
 
         #Merging data frames
@@ -168,7 +165,7 @@ CCAPS_change <- function(data,
           data <- CCAPS_data %>%
                     dplyr::group_by({{client_identifier}}, {{center_identifier}},) %>%
                     dplyr::select(names(CCAPS_data)) %>%
-                    dplyr::summarize(dplyr::across(Depression34:all_of(last.var),
+                    dplyr::summarize(dplyr::across(Depression34:dplyr::all_of(last.var),
                                                    ~first(.x)-last(.x),
                                                    .names = "{col}_change"),
                                      .groups = "keep")
@@ -178,10 +175,10 @@ CCAPS_change <- function(data,
             data <- CCAPS_data %>%
                         dplyr::group_by({{client_identifier}}, {{center_identifier}},) %>%
                         dplyr::select(names(CCAPS_data)) %>%
-                        dplyr::summarize(dplyr::across(Depression34:all_of(last.var),
-                                                       first,
+                        dplyr::summarize(dplyr::across(.data$Depression34:dplyr::all_of(last.var),
+                                                       dplyr::first,
                                                        .names = "{.col}_first"),
-                                         dplyr::across(Depression34:all_of(last.var),
+                                         dplyr::across(.data$Depression34:dplyr::all_of(last.var),
                                                        ~first(.x)-last(.x),
                                                        .names = "{col}_change"),
                                          .groups = "keep")
@@ -191,10 +188,10 @@ CCAPS_change <- function(data,
             data <- CCAPS_data %>%
                         dplyr::group_by({{client_identifier}}, {{center_identifier}},) %>%
                         dplyr::select(names(CCAPS_data)) %>%
-                        dplyr::summarize(dplyr::across(Depression34:all_of(last.var),
-                                                       last,
+                        dplyr::summarize(dplyr::across(.data$Depression34:dplyr::all_of(last.var),
+                                                       dplyr::last,
                                                        .names = "{.col}_last"),
-                                         dplyr::across(Depression34:all_of(last.var),
+                                         dplyr::across(.data$Depression34:dplyr::all_of(last.var),
                                                        ~first(.x)-last(.x),
                                                        .names = "{col}_change"),
                                          .groups = "keep")
@@ -204,13 +201,13 @@ CCAPS_change <- function(data,
           data <- CCAPS_data %>%
                       dplyr::group_by({{client_identifier}}, {{center_identifier}},) %>%
                       dplyr::select(names(CCAPS_data)) %>%
-                      dplyr::summarize(dplyr::across(Depression34:all_of(last.var),
+                      dplyr::summarize(dplyr::across(.data$Depression34:dplyr::all_of(last.var),
                                                      first,
                                                      .names = "{.col}_first"),
-                                       dplyr::across(Depression34:all_of(last.var),
+                                       dplyr::across(.data$Depression34:dplyr::all_of(last.var),
                                                      last,
                                                      .names = "{.col}_last"),
-                                       dplyr::across(Depression34:all_of(last.var),
+                                       dplyr::across(.data$Depression34:dplyr::all_of(last.var),
                                                      ~first(.x)-last(.x),
                                                      .names = "{col}_change"),
                                       .groups = "keep")
