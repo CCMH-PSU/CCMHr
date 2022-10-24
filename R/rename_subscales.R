@@ -11,7 +11,6 @@
 #'
 #' @return A data frame with renamed subscale column names or single column of subscale names.
 #' @export
-#' @importFrom rlang :=
 #'
 #' @examples \dontrun{
 #' format_subscales(data, subscale, formal = F)
@@ -51,7 +50,7 @@ rename_subscales_long <- function(data, column, formal = F) {
   if(!deparse(substitute(column)) %in% names(data)) {
     stop(glue::glue("Column: {deparse(substitute(column))} not found in data: {deparse(substitute(data))}."))
   }
-  if (!all(unique(pull(data, {{column}})) %in% col_names)) {
+  if (!all(unique(dplyr::pull(data, {{column}})) %in% col_names)) {
     stop(glue::glue('CCAPS cols not named correctly.
 
     Expected {paste(col_names, collapse=", ")}.
@@ -63,35 +62,35 @@ rename_subscales_long <- function(data, column, formal = F) {
 
   if (formal == F) {
     data <- dplyr::mutate(data,
-                          {{column}} := stringr::str_remove({{column}}, "34"),
-                          {{column}} := stringr::str_remove({{column}}, "62"),
-                          {{column}} := stringr::str_replace({{column}}, "_", " "),
-                          {{column}} := ifelse({{column}} == "Hostility", "Anger/Frustration", {{column}}))
+                          dplyr::across(c({{column}}), stringr::str_remove, "34"),
+                          dplyr::across(c({{column}}), stringr::str_remove, "62"),
+                          dplyr::across(c({{column}}), stringr::str_replace, "_", " "),
+                          dplyr::across(c({{column}}), ~ifelse(.x == "Hostility", "Anger/Frustration", .x)))
     order <- intersect(c("Depression", "Anxiety", "Social Anxiety", "Academics",
                          "Eating", "Hostility", "Alcohol Use",
                          "Substance Use", "Family Distress", "Distress Index"),
-                       unique(pull(data, {{column}})))
+                       unique(dplyr::pull(data, {{column}})))
 
-    dplyr::mutate(data, {{column}} := forcats::fct_relevel({{column}}, order)) %>%
+    dplyr::mutate(data, dplyr::across(c({{column}}), forcats::fct_relevel, order)) %>%
       dplyr::arrange({{column}})
 
   } else {
-    data <- dplyr::mutate(data, {{column}} := stringr::str_remove({{column}}, "34"),
-                          {{column}} := stringr::str_remove({{column}}, "62"),
-                          {{column}} := dplyr::recode({{column}}, "Academics"= "Academic Distress",
-                                                      "Alcohol" = "Alcohol Use",
-                                                      "Substance" = "Substance Use",
-                                                      "Hostility" = "Anger/Frustration",
-                                                      "Family" = "Family Distress",
-                                                      "Eating" = "Eating Concerns",
-                                                      "Anxiety" = "Generalized Anxiety",
-                                                      "DI" = "Distress Index",
-                                                      "Social_Anxiety" = "Social Anxiety"))
+    data <- dplyr::mutate(data, dplyr::across(c({{column}}), stringr::str_remove, "34"),
+                          dplyr::across(c({{column}}), stringr::str_remove, "62"),
+                          dplyr::across(c({{column}}), ~dplyr::recode(.x, "Academics"= "Academic Distress",
+                                                               "Alcohol" = "Alcohol Use",
+                                                               "Substance" = "Substance Use",
+                                                               "Hostility" = "Anger/Frustration",
+                                                               "Family" = "Family Distress",
+                                                               "Eating" = "Eating Concerns",
+                                                               "Anxiety" = "Generalized Anxiety",
+                                                               "DI" = "Distress Index",
+                                                               "Social_Anxiety" = "Social Anxiety")))
 
     order <- intersect(c("Depression", "Generalized Anxiety", "Social Anxiety", "Academic Distress", "Eating Concerns", "Anger/Frustration", "Alcohol Use", "Substance Use", "Family Distress", "Distress Index"),
                        data[, column_str])
 
-    dplyr::mutate(data, {{column}} := forcats::fct_relevel({{column}}, order)) %>%
+    dplyr::mutate(data, dplyr::across(c({{column}}), forcats::fct_relevel, order)) %>%
       dplyr::arrange({{column}})
   }
 }
