@@ -5,7 +5,6 @@
 #' @param message The message that returns when specified variable(s) are missing. By default, "The following variable(s) need to be present in data:"
 #'
 #' @return A error message if specified variable is missing.
-#' @export
 #'
 
 
