@@ -31,8 +31,8 @@ required_items <- function(data,
 
   #Warning Message displayed if specified variable(s) are missing
     #Removing present variables
-      df.detect.miss <- subset(df.detect.miss,
-                               df.detect.miss$missing == F)
+      df.detect.miss <- dplyr::filter(df.detect.miss,
+                               .data$missing == F)
     #Cleaning up list of missing variables
       missing.vars <- toString(df.detect.miss$var_names)
     #Display message

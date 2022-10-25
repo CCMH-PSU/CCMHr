@@ -36,7 +36,7 @@ CCAPS_change <- function(data,
                      var_names)
 
   #Excluding data with no CCAPS data
-    data <- subset(data,
+    data <- dplyr::filter(data,
                    .data$Is_ValidCCAPS == 1)
 
   #Excluding participants that didn't complete the CCAPS at least two times
@@ -93,7 +93,7 @@ CCAPS_change <- function(data,
 
         #Warning Message
           #Removing present variables
-          df.detect.miss <- subset(df.detect.miss,
+          df.detect.miss <- dplyr::filter(df.detect.miss,
                                    df.detect.miss$missing == F)
           #Listing out missing variables
           missing.vars <- toString(df.detect.miss$var_names)
