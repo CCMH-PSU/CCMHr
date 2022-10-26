@@ -84,7 +84,9 @@ create_courses <- function(data,
                                          OrderVar = NULL)]
     ccmh_bycourse <- data.table::setcolorder(ccmh_bycourse, c("UniqueClientID", "UniqueClientID_byCourse"))
 
-    return(as.data.frame(ccmh_bycourse))
+    data.table::setDF(ccmh_bycourse)
+
+    return(ccmh_bycourse)
 
   } else if (firstOnly == TRUE) {
     #First course only
@@ -97,7 +99,9 @@ create_courses <- function(data,
                                            FirstCourse = NULL,
                                            OrderVar = NULL)]
 
-    return(as.data.frame(ccmh_bycourse))
+      data.table::setDF(ccmh_bycourse)
+
+      return(ccmh_bycourse)
   }
 
 }

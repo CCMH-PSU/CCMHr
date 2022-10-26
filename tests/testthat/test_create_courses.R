@@ -44,3 +44,11 @@ test_that("Course creation no UniqueClientID error", {
 test_that("Course creation no Date error", {
   expect_error(create_courses(dplyr::select(test, -Date)), "Data does not contain column: Date")
 })
+
+test_that("Course creation returns data.frame", {
+  expect_equal(class(create_courses(test)), "data.frame")
+})
+
+test_that("Course creation returns data.frame", {
+  expect_equal(class(create_courses(test, firstOnly = TRUE)), "data.frame")
+})
