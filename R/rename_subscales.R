@@ -65,9 +65,10 @@ rename_subscales_long <- function(data, column, formal = F) {
                           dplyr::across(c({{column}}), stringr::str_remove, "34"),
                           dplyr::across(c({{column}}), stringr::str_remove, "62"),
                           dplyr::across(c({{column}}), stringr::str_replace, "_", " "),
-                          dplyr::across(c({{column}}), ~ifelse(.x == "Hostility", "Anger/Frustration", .x)))
+                          dplyr::across(c({{column}}), ~ifelse(.x == "Hostility", "Frustration/Anger", .x)))
+
     order <- intersect(c("Depression", "Anxiety", "Social Anxiety", "Academics",
-                         "Eating", "Hostility", "Alcohol Use",
+                         "Eating", "Frustration/Anger", "Alcohol Use",
                          "Substance Use", "Family Distress", "Distress Index"),
                        unique(dplyr::pull(data, {{column}})))
 
@@ -80,14 +81,14 @@ rename_subscales_long <- function(data, column, formal = F) {
                           dplyr::across(c({{column}}), ~dplyr::recode(.x, "Academics"= "Academic Distress",
                                                                "Alcohol" = "Alcohol Use",
                                                                "Substance" = "Substance Use",
-                                                               "Hostility" = "Anger/Frustration",
+                                                               "Hostility" = "Frustration/Anger",
                                                                "Family" = "Family Distress",
                                                                "Eating" = "Eating Concerns",
                                                                "Anxiety" = "Generalized Anxiety",
                                                                "DI" = "Distress Index",
                                                                "Social_Anxiety" = "Social Anxiety")))
 
-    order <- intersect(c("Depression", "Generalized Anxiety", "Social Anxiety", "Academic Distress", "Eating Concerns", "Anger/Frustration", "Alcohol Use", "Substance Use", "Family Distress", "Distress Index"),
+    order <- intersect(c("Depression", "Generalized Anxiety", "Social Anxiety", "Academic Distress", "Eating Concerns", "Frustration/Anger", "Alcohol Use", "Substance Use", "Family Distress", "Distress Index"),
                        data[, column_str])
 
     dplyr::mutate(data, dplyr::across(c({{column}}), forcats::fct_relevel, order)) %>%
