@@ -22,6 +22,7 @@ CCAPS_change <- function(data,
   #Check to see if variables are named correctly
     #List of variables required to run function
       var_names <- c("Is_ValidCCAPS",
+                     "Date",
                      "Depression34",
                      "Anxiety34",
                      "Social_Anxiety34",
@@ -46,12 +47,13 @@ CCAPS_change <- function(data,
 
   #Excluding all data rows outside of first and last responses of the CCAPS
     data <- data %>%
+      dplyr::arrange(Date) %>%
               dplyr::slice(1, dplyr::n())
 
   #Variable that will detect if "all" is being specified in argument add_items
     add_items_all <- add_items == "all"[1]
 
-  #Making an CCAPS_data exist before running if else statements
+  #Making CCAPS_data exist before running if else statements
     CCAPS_data <- NULL
 
 
