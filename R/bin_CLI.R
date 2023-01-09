@@ -19,7 +19,7 @@ bin_enrollment <- function(x) {
 bin_utilization <- function(x) {
   cut(x,
       c(0, 150, 200, 300, 350, 400, 500, 600, 700, 850, 1000, 1200, 1500, 2000, 3000, 10000),
-      c("under 151", "151-200", "201-300", "301-350", "306-400", "401-500", "501-600", "601-700", "701-850", "851-1000", "1001-1200", "1201-1500", "1501-2000", "2001-3000", "3001+"))
+      c("under 151", "151-200", "201-300", "301-350", "351-400", "401-500", "501-600", "601-700", "701-850", "851-1000", "1001-1200", "1201-1500", "1501-2000", "2001-3000", "3001+"))
 }
 
 #' @export
@@ -28,7 +28,7 @@ bin_utilization <- function(x) {
 bin_capacity <- function(x) {
   cut(x,
       c(0, 48, 72, 96, 120, 144, 168, 192, 240, 312, 432, 1500),
-      c("48 or less (0-2 Standardized Counselors)", "49-72 (2-3 Standardized Counselors)", "73-96 (3-4 Standardized Counselors)", "97-120 (4-5 Standardized Counselors)", "121-144 (5-6 Standardized Counselors)", "145-168 (6-7 Standardized Counselors)", "167-192 (7-8 Standardized Counselors)", "193-240 (7-9 Standardized Counselors)", "241-312 (9-13 Standardized Counselors)", "313-432 (13-18 Standardized Counselors)", "over 433 (18+ Standardized Counselors)"))
+      c("48 or less (0-2 Standardized Counselors)", "49-72 (2-3 Standardized Counselors)", "73-96 (3-4 Standardized Counselors)", "97-120 (4-5 Standardized Counselors)", "121-144 (5-6 Standardized Counselors)", "145-168 (6-7 Standardized Counselors)", "169-192 (7-8 Standardized Counselors)", "193-240 (7-9 Standardized Counselors)", "241-312 (9-13 Standardized Counselors)", "313-432 (13-18 Standardized Counselors)", "over 433 (18+ Standardized Counselors)"))
 }
 
 #' @export
