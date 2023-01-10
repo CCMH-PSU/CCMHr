@@ -111,8 +111,8 @@ select_first_SDS <- function(data,
           x.UniqueClientID <- which(colnames(data) == "UniqueClientID")
           x.CcmhID <- which(colnames(data) == "CcmhID")
           x.SDS <- grep("SDS_", names(data), fixed=TRUE)
-          x.Age <- which(colnames(data) == "Age")
-          x.list <- list(x.UniqueClientID, x.CcmhID, x.SDS, x.Age)
+          x.ClientAge <- which(colnames(data) == "ClientAge")
+          x.list <- list(x.UniqueClientID, x.CcmhID, x.SDS, x.ClientAge)
           x.list <- unlist(x.list, recursive = FALSE)
           data <- data[, x.list, with=F]
         } else {
