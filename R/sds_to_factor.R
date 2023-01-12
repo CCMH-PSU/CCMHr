@@ -8,6 +8,7 @@
 #' @examples sds_to_factor(data.frame(SDS_01 = c(3, 2, 4, 1), SDS_02 = c(4, 3, 2, 1)))
 #'
 sds_to_factor <- function(data){
+  suppressWarnings{(
   if ("SDS_01" %in% names(data)) {
     data$SDS_01 <- as.factor(data$SDS_01) %>%
       forcats::fct_inseq() %>%
@@ -611,6 +612,7 @@ sds_to_factor <- function(data){
   }
 
   return(data)
+    )}
 }
 
 
