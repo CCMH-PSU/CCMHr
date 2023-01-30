@@ -46,7 +46,7 @@ rename_subscales_wide <- function(data, CCAPS62 = F) {
 rename_subscales_long <- function(data, column, formal = F) {
   col_names <- c("Depression34", "Anxiety34", "Social_Anxiety34", "Academics34", "Eating34", "Hostility34", "Alcohol34", "DI")
 
-  data <- dplyr::unroup(data)
+  data <- dplyr::ungroup(data)
 
 
   if(!deparse(substitute(column)) %in% names(data)) {
@@ -91,7 +91,7 @@ rename_subscales_long <- function(data, column, formal = F) {
                                                                "Social_Anxiety" = "Social Anxiety")))
 
     order <- intersect(c("Depression", "Generalized Anxiety", "Social Anxiety", "Academic Distress", "Eating Concerns", "Frustration/Anger", "Alcohol Use", "Substance Use", "Family Distress", "Distress Index"),
-                       pull(data[, column_str]))
+                       dplyr::pull(data[, column_str]))
 
     dplyr::mutate(data, dplyr::across(c({{column}}), forcats::fct_relevel, order)) %>%
       dplyr::arrange({{column}})
