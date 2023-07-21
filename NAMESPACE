@@ -3,6 +3,7 @@
 export("%>%")
 export(.data)
 export(CCAPS_change)
+export(bar_plot)
 export(bin_capacity)
 export(bin_enrollment)
 export(bin_inst_utilization)
