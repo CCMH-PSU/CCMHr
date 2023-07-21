@@ -30,17 +30,17 @@
 #' @param legend.title A quoted string to indicate the legend title. By default, `NULL`.
 #' @param legend.title.size A numeric value to indicate the legend title text size. By default, `16`.
 #' @param legend.label.size A numeric value to indicate the legend label text size. By default, `14`.
-#' @param alpha A numeric value to indicate the histogram bars transparency. Values may range between 0 to 1. By default, `1`. 
+#' @param alpha A numeric value to indicate the histogram bars transparency. Values may range between 0 to 1. By default, `1`.
 #' @param bins A numeric value to indicate the number of bins. By default, `NULL`.
 #' @param plot.element1 A ggplot plot function and arguments needed for the plot and specified as an object. By default, `NULL`.
 #' @param plot.element2 A ggplot plot function and arguments needed for the plot and specified as an object. By default, `NULL`.
 #' @param plot.element3 A ggplot plot function and arguments needed for the plot and specified as an object. By default, `NULL`.
 #' @param plot.element4 A ggplot plot function and arguments needed for the plot and specified as an object. By default, `NULL`.
 #' @param plot.element5 A ggplot plot function and arguments needed for the plot and specified as an object. By default, `NULL`.
-#' 
-#' @note Note 1. The argument `color` specifies the color of items within the grouped variable. For example, the group variable items could be the name of automobile companies (i.e., Ford, Dodge, BMV). You can specify color randomly for each company using this list: `c("#21501b", "#c51329", "#074e67")`. Or you can specify color directly to each specific company using this list: `c("Ford" = "#21501b", "Dodge" = "#c51329", "BMV" = "#074e67")`. 
-#' @note The `plot.element` arguments specify additional ggplot2 graphical element(s) needed to complete a specific task, but are not specified as an argument in the `bar_plot` function. For example, the axis label text will always be black unless specified in one of the `plot.element` arguments. To change the axis label text color in one of the `plot.element` arguments, you would first create an object to represent graphing element (e.g., green.axis.text <- ggplot2::theme(axis.text = ggplot2::element_text(color = "green"))). Then the object would be added to one of the `plot.element` arguments (e.g., `plot.element01 = green.axis.text`).
-#' @return A histogram plot returned as a object or saved under a local file.  
+#'
+#' @note Note 1. The argument `color` specifies the color of items within the grouped variable. For example, the group variable items could be the name of automobile companies (i.e., Ford, Dodge, BMV). You can specify color randomly for each company using this list: `c("#21501b", "#c51329", "#074e67")`. Or you can specify color directly to each specific company using this list: `c("Ford" = "#21501b", "Dodge" = "#c51329", "BMV" = "#074e67")`.
+#' @note The `plot.element` arguments specify additional ggplot2 graphical element(s) needed to complete a specific task, but are not specified as an argument in the `hist_plot` function. For example, the axis label text will always be black unless specified in one of the `plot.element` arguments. To change the axis label text color in one of the `plot.element` arguments, you would first create an object to represent graphing element (e.g., green.axis.text <- ggplot2::theme(axis.text = ggplot2::element_text(color = "green"))). Then the object would be added to one of the `plot.element` arguments (e.g., `plot.element01 = green.axis.text`).
+#' @return A histogram plot returned as a object or saved under a local file.
 #' @export
 #'
 
@@ -71,7 +71,7 @@ histogram_plot <- function(data,
                            legend.position = "none",
                            legend.order.manual = NULL,
                            legend.title = NULL,
-                           legend.title.size= 16, 
+                           legend.title.size= 16,
                            legend.label.size= 14,
                            alpha = 1,
                            bins = NULL,
@@ -80,131 +80,131 @@ histogram_plot <- function(data,
                            plot.element3 = NULL,
                            plot.element4 = NULL,
                            plot.element5 = NULL){
-  
+
   # Specify the x-axis variable as a symbol
     x.var1 <- rlang::sym(x.var)
-    
+
   # Specify grouping variable
     if(group.var != ""){
-      
+
       # Specify the fill variable as a symbol
         group.var1 <- rlang::sym(group.var)
-      
+
       # Rename grouping variable
         data$group77d8214 <-  data[[{{group.var1}}]]
-      
+
     } else{
-      
+
     }
-    
+
   # Remove rownames
     rownames(data) <- NULL
-    
+
   # Error message to indicate the legend.order.manual items does not match the items in the filler variable
     if(!is.null(legend.order.manual) &
        group.var != ""){
-      
+
       group.varz <- unique(data$group77d8214)
       test1 <- ifelse(group.varz %in% legend.order.manual, "TRUE", "FALSE")
       test2 <- ifelse(legend.order.manual %in% group.varz, "TRUE", "FALSE")
       test.final <- c(test1, test2)
       test.final <- FALSE %in% test.final
-      
-      if(test.final == TRUE){ 
-        
+
+      if(test.final == TRUE){
+
         stop("Unique characters listed legend.order.manual must match the characters of fill variable")
-        
+
       } else{
-        
+
       }
     } else{
-      
+
     }
-    
+
   # Specify if the legend should be reordered
     if(!is.null(legend.order.manual) &
        group.var != ""){
-      
-      data$group77d8214 <- factor(data$group77d8214, 
+
+      data$group77d8214 <- factor(data$group77d8214,
                                   levels = legend.order.manual)
-      
+
      } else{
-      
+
      }
-    
+
   # Specify the primary graph properties
     his.graph <- ggplot2::ggplot(data,
      {if(group.var != ""){
-       
+
        ggplot2::aes(x = {{x.var1}},
                     fill = group77d8214)
-       
+
       } else{
-        
+
        ggplot2::aes(x = {{x.var1}},
                     fill = color)
-        
+
        }
      }) +
-      
+
   # Specify plot as geom_histogram
     {if(y.type == "count"){
-      
-      ggplot2::geom_histogram(ggplot2::aes(x = {{x.var1}}, 
+
+      ggplot2::geom_histogram(ggplot2::aes(x = {{x.var1}},
                                            y = after_stat(count)),
                               position = hist.position,
-                              alpha = alpha, 
+                              alpha = alpha,
                               bins = bins)
-        
+
       } else if(y.type == "density"){.
-        
-        ggplot2::geom_histogram(ggplot2::aes(x = {{x.var1}}, 
+
+        ggplot2::geom_histogram(ggplot2::aes(x = {{x.var1}},
                                              y = after_stat(density)),
                                 position = hist.position,
-                                alpha = alpha, 
+                                alpha = alpha,
                                 bins = bins)
-        
+
       } else if(y.type == "relative_freq"){
-        
-        ggplot2::geom_histogram(ggplot2::aes(x = {{x.var1}}, 
+
+        ggplot2::geom_histogram(ggplot2::aes(x = {{x.var1}},
                                              y = ggplot2::after_stat(count/sum(count))),
                                 position = hist.position,
-                                alpha = alpha, 
+                                alpha = alpha,
                                 bins = bins)
-          
+
       } else{
-        
+
         stop("Specify y.type from one of the following options: count, density, or relative frequency")
-        
+
       }
     } +
-      
+
   # Specify manual fill
     ggplot2::scale_fill_manual(values = color) +
-      
+
   # Specify title information
     ggplot2::labs(title = plot.title,
                   y = y.title,
                   x = x.title,
                   fill = legend.title) +
-      
+
   # If y-axis is a percentage
     {if(y.label.percent == TRUE){
-      
+
       ggplot2::scale_y_continuous(labels = scales::percent,
                                   limits = c(y.min,
                                              y.max),
                                   expand = c(0,0))
-      
+
       } else{
-        
+
         ggplot2::scale_y_continuous(limits = c(y.min,
                                                y.max),
                                     expand = c(0,0))
-        
+
       }
      } +
-      
+
   # Specify the plots theme information
     ggplot2::theme(panel.grid = ggplot2::element_blank(),
                    panel.background = ggplot2::element_rect(fill = 'white',
@@ -238,39 +238,39 @@ histogram_plot <- function(data,
                                                             color = "white"),
                   legend.title = ggplot2::element_text(size= legend.title.size),
                   legend.text = ggplot2::element_text(size = legend.label.size)) +
-    
+
   # Specify plot elements
     plot.element1 +
     plot.element2 +
     plot.element3 +
     plot.element4 +
     plot.element5
-    
+
   # Specify caption
     {if(caption == TRUE){
-      
+
       his.graph <- his.graph + CCMHr::ccmh_caption()
-      
+
      } else{
-       
+
      }
-      
+
     }
-    
+
   # Specify if the graph should be saved as file or returned as an object
     if(save == TRUE){
-      
+
       ggsave(paste0(path),
              plot = his.graph,
              width = plot.width,
              height = plot.height,
              units = plot.units,
              dpi = plot.dpi)
-      
+
     } else{
-      
+
        return(his.graph)
-      
+
     }
-    
+
 }
