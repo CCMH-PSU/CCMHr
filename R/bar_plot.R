@@ -41,11 +41,11 @@
 #' @param plot.element3 A ggplot plot function and arguments needed for the plot and specified as an object. By default, `NULL`.
 #' @param plot.element4 A ggplot plot function and arguments needed for the plot and specified as an object. By default, `NULL`.
 #' @param plot.element5 A ggplot plot function and arguments needed for the plot and specified as an object. By default, `NULL`.
-#' 
-#' @note Note 1. The argument `color` specifies the color of items within the grouped variable. For example, the group variable items could be the name of automobile companies (i.e., Ford, Dodge, BMV). You can specify color randomly for each company using this list: `c("#21501b", "#c51329", "#074e67")`. Or you can specify color directly to each specific company using this list: `c("Ford" = "#21501b", "Dodge" = "#c51329", "BMV" = "#074e67")`. 
+#'
+#' @note Note 1. The argument `color` specifies the color of items within the grouped variable. For example, the group variable items could be the name of automobile companies (i.e., Ford, Dodge, BMV). You can specify color randomly for each company using this list: `c("#21501b", "#c51329", "#074e67")`. Or you can specify color directly to each specific company using this list: `c("Ford" = "#21501b", "Dodge" = "#c51329", "BMV" = "#074e67")`.
 #' @note Note 2. The `hide.x.items` and `hide.group.items` function hides bars in the plot while keeping the hidden bars position. This argument was intended to be used when preparing plots for presentation, where the presenter wants to present data in a specified order instead of displaying all the data at once.
 #' @note The `plot.element` arguments specify additional ggplot2 graphical element(s) needed to complete a specific task, but are not specified as an argument in the `bar_plot` function. For example, the axis label text will always be black unless specified in one of the `plot.element` arguments. To change the axis label text color in one of the `plot.element` arguments, you would first create an object to represent graphing element (e.g., green.axis.text <- ggplot2::theme(axis.text = ggplot2::element_text(color = "green"))). Then the object would be added to one of the `plot.element` arguments (e.g., `plot.element01 = green.axis.text`).
-#' @return A bar plot returned as a object or saved under a local file.  
+#' @return A bar plot returned as a object or saved under a local file.
 #' @export
 #'
 
@@ -80,7 +80,7 @@ bar_plot <- function(data,
                      legend.position = "none",
                      legend.order.manual = NULL,
                      legend.title = NULL,
-                     legend.title.size= 16, 
+                     legend.title.size= 16,
                      legend.label.size= 14,
                      bar.width = NULL,
                      coord.flip = FALSE,
@@ -89,236 +89,236 @@ bar_plot <- function(data,
                      plot.element3 = NULL,
                      plot.element4 = NULL,
                      plot.element5 = NULL){
-      
+
   # Specify the x-axis variable as a symbol
     x.var1 <- rlang::sym(x.var)
 
   # Specify grouping variable
-    if(!is.null(group.var)){
-      
+    if(group.var != ""){
+
       # Specify the fill variable as a symbol
         group.var1 <- rlang::sym(group.var)
-      
+
       # Rename grouping variable
         data$group77d8214 <-  data[[{{group.var1}}]]
-      
+
     } else{
-      
+
     }
-    
+
   # Remove rownames
     rownames(data) <- NULL
-    
+
   # Error message to indicate the x.order.manual items does not match the items in x-axis variable
     if(!is.null(x.order.manual)){
-      
+
       x.var <- unique(data[[{{x.var1}}]])
       test1 <- ifelse(x.var %in% x.order.manual, "TRUE", "FALSE")
       test2 <- ifelse(x.order.manual %in% x.var, "TRUE", "FALSE")
       test.final <- c(test1, test2)
       test.final <- FALSE %in% test.final
-      
-      if(test.final == TRUE){ 
-        
+
+      if(test.final == TRUE){
+
         stop("Unique characters listed x.order.manual must match the characters of x-axis variable")
-        
+
       } else{
-        
+
       }
     } else{
-      
-    } 
-    
+
+    }
+
   # Error message to indicate the legend.order.manual items does not match the items in the filler variable
     if(!is.null(legend.order.manual) &
        group.var != ""){
-      
+
         group.varz <- unique(data$group77d8214)
         test1 <- ifelse(group.varz %in% legend.order.manual, "TRUE", "FALSE")
         test2 <- ifelse(legend.order.manual %in% group.varz, "TRUE", "FALSE")
         test.final <- c(test1, test2)
         test.final <- FALSE %in% test.final
-      
-      if(test.final == TRUE){ 
-        
+
+      if(test.final == TRUE){
+
         stop("Unique characters listed legend.order.manual must match the characters of fill variable")
-        
+
       } else{
-        
+
       }
     } else{
-      
+
     }
-    
+
   # Specify custom x axis order
     if(!is.null(x.order.manual)){
-      
+
       data[[{{x.var1}}]] <- factor(data[[{{x.var1}}]],
                                    levels = c(x.order.manual))
-      
+
     } else{
-      
+
     }
-    
+
   # Specify to remove legend or x axis information from the plot
     if(!is.null(hide.group.items) |
        !is.null(hide.x.items)){
-      
+
       # Remove bar based on fill information
         if(!is.null(hide.group.items)){
-          
+
           data <- data %>%
             dplyr::mutate(alpha.fill = ifelse(group77d8214 %in% hide.group.items, "b", "a"))
-          
+
         } else{
-          
+
           data$alpha.fill <- "a"
-          
+
         }
-      
+
       # Remove bar based on x axis information
         if(!is.null(hide.x.items)){
-          
+
           data <- data %>%
             dplyr::mutate(alpha.varx = ifelse({{x.var1}} %in% hide.x.items, "b", "a"))
-          
+
         } else{
-          
+
           data$alpha.varx <- "a"
-          
+
         }
-      
+
      # Specify an overall alpha variable
        data <- data %>%
          dplyr::mutate(alpha = ifelse(alpha.fill == "b" | alpha.varx == "b", "b", "a"))
-      
+
      # Specify if the legend should be reordered
        if(!is.null(legend.order.manual) &
           group.var != ""){
-         
-         data$group77d8214 <- factor(data$group77d8214, 
+
+         data$group77d8214 <- factor(data$group77d8214,
                                      levels = legend.order.manual)
-         
+
          data.temp <- data %>%
            dplyr::arrange(group77d8214)%>%
            dplyr::filter(alpha == "a") %>%
            dplyr::select(group77d8214)
-         
+
          names(data.temp) <- "break1"
          break1 <- as.character(unique(data.temp$break1))
-         
+
        } else if(is.null(legend.order.manual) &
                  group.var != ""){
-         
+
          data.temp <- data %>%
            dplyr::filter(alpha == "a") %>%
            dplyr::select(group77d8214)
-         
+
          names(data.temp) <- "break1"
          break1 <- as.character(unique(data.temp$break1))
-         
+
        } else{
-         
+
        }
-       
+
     } else{
-      
+
     }
 
   # Specify the primary graph properties and x axis order
     bar.graph <- ggplot2::ggplot(data,
-      {if(group.var != "" & 
+      {if(group.var != "" &
           y.type == "count"){
-        
+
          ggplot2::aes(x = {{x.var1}},
                       fill = {{group.var1}})
-        
-       } else if(group.var == "" & 
+
+       } else if(group.var == "" &
                  y.type == "count"){
-         
+
          ggplot2::aes(x = {{x.var1}})
-         
-       } else if(group.var != "" & 
+
+       } else if(group.var != "" &
                  y.type == "percent"){
-         
+
          ggplot2::aes(x = {{x.var1}},
                       y = (..count..)/sum(..count..),
                       fill = {{group.var1}})
-         
+
        } else{
-         
+
          ggplot2::aes(x = {{x.var1}},
                       y = (..count..)/sum(..count..))
-         
+
       }})+
-  
+
   # Specify plot as geom_col and alpha
-    {if(!is.null(hide.x.items) | 
+    {if(!is.null(hide.x.items) |
         !is.null(hide.group.items) &
         y.type == "count"){
-      
+
       ggplot2::geom_bar(position = col.position,
                         ggplot2::aes(alpha = alpha),
                         width = bar.width,
                         stat = "count")
-      
-     } else if(is.null(hide.x.items) | 
+
+     } else if(is.null(hide.x.items) |
                is.null(hide.group.items) &
                y.type == "count"){
-       
+
         ggplot2::geom_bar(position = col.position,
                           stat = "count",
                           width = bar.width)
-       
-     } else if(is.null(hide.x.items) | 
+
+     } else if(is.null(hide.x.items) |
                is.null(hide.group.items) &
                y.type == "percent"){
-       
+
          ggplot2::geom_bar(position = col.position,
                            ggplot2::aes(y = (..count..)/sum(..count..)),
                            width = bar.width)
-       
+
      } else{
-       
+
          ggplot2::geom_bar(position = col.position,
                            ggplot2::aes(alpha = alpha,
                                         y = (..count..)/sum(..count..)),
                            width = bar.width)
-       
+
      }
     } +
-  
+
   # Remove bars based on alpha
-    {if(!is.null(hide.x.items) | 
+    {if(!is.null(hide.x.items) |
         !is.null(hide.group.items)){
-      
+
       ggplot2::scale_alpha_manual(values = c("a" = 1, "b" = 0),
                                   guide = 'none')
-      
+
      } else{
-       
+
      }
     } +
-  
+
   # Remove legend information based on alpha and specify fill color
-    {if(!is.null(hide.x.items) | 
+    {if(!is.null(hide.x.items) |
         !is.null(hide.group.items) &
         group.var != ""){
-      
+
       ggplot2::scale_fill_manual(values = color,
                                  breaks = break1)
-      
+
      } else{
-       
+
       ggplot2::scale_fill_manual(values = color)
-       
+
      }
     } +
-  
+
   # Specify legend information
     ggplot2::guides(color = ggplot2::guide_legend(byrow = TRUE,
                                                   override.aes = ggplot2::aes(label = ""))) +
- 
+
   # Specify title information
     ggplot2::labs(title = plot.title,
                   y = y.title,
@@ -327,21 +327,21 @@ bar_plot <- function(data,
 
   # If y-axis is a percentage
     {if(y.type == "percent"){
-      
+
       ggplot2::scale_y_continuous(labels = scales::percent,
                                   limits = c(y.min,
                                              y.max),
                                   expand = c(0,0))
-      
+
       } else{
-        
+
         ggplot2::scale_y_continuous(limits = c(y.min,
                                                y.max),
                                     expand = c(0,0))
-        
+
       }
     } +
-    
+
   # Specify the plots theme information
     ggplot2::theme(panel.grid = ggplot2::element_blank(),
                    panel.background = ggplot2::element_rect(fill = 'white',
@@ -375,64 +375,64 @@ bar_plot <- function(data,
                                                              color = "white"),
                    legend.title = ggplot2::element_text(size= legend.title.size),
                    legend.text = ggplot2::element_text(size = legend.label.size)) +
-  
+
   # Specify x axis label text wrap
     ggplot2::scale_x_discrete(labels = scales::wrap_format(x.wrap)) +
 
   # Specify if the coords should be flipped
     {if(coord.flip == TRUE){
-      
+
       ggplot2::coord_flip()
-      
+
      } else{
-       
+
      }
     } +
-    
+
   # Specify if x axis information should be removed
     {if(x.remove == TRUE){
-      
+
       ggplot2::theme(axis.title.x = ggplot2::element_blank(),
                      axis.text.x = ggplot2::element_blank(),
                      axis.ticks.x = ggplot2::element_blank())
-      
+
      } else{
-       
+
      }
-    } + 
-    
+    } +
+
   # Specify plot elements
     plot.element1 +
     plot.element2 +
     plot.element3 +
     plot.element4 +
     plot.element5
-  
+
   # Specify caption information
     {if(caption == TRUE){
-      
-      bar.graph <- bar.graph + 
+
+      bar.graph <- bar.graph +
                    CCMHr::ccmh_caption()
-      
+
      } else{
-       
+
      }
     }
 
   # Specify if the graph should be saved as file or returned as an object
     if(save == TRUE){
-      
+
       ggsave(paste0(path),
              plot = bar.graph,
              width = plot.width,
              height = plot.height,
              units = plot.units,
              dpi = plot.dpi)
-      
+
      } else{
-       
+
       return(bar.graph)
-       
+
     }
 
   }
