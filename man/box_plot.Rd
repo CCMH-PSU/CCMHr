@@ -8,38 +8,40 @@ box_plot(
   data,
   x.var,
   y.var,
-  grouping = FALSE,
   group.var = "",
+  color = "#838B8B",
+  x.order.manual = NULL,
   save = FALSE,
   path = "plot.png",
   plot.width = 20,
   plot.height = 20,
   plot.units = "cm",
   plot.dpi = 320,
-  box.colors = "#838B8B",
   mean.sym = FALSE,
   mean.sym.shape = 3,
   mean.sym.size = 2,
   mean.sym.color = "#000000",
   mean.sym.position = 0.75,
   plot.title = "",
-  x.axis.title = "",
-  y.axis.title = "",
+  x.title = "",
+  y.title = "",
   plot.title.size = 20,
   axis.title.size = 16,
-  axis.text.size = 14,
+  axis.label.size = 14,
   text.font = "Avenir",
-  y.axis.percent = FALSE,
-  y.axis.min = NULL,
-  y.axis.max = NULL,
-  x.axis.text.wrap = 15,
-  x.axis.remove = FALSE,
-  caption.text = FALSE,
-  caption.text.size = 12,
+  y.label.percent = FALSE,
+  y.min = NULL,
+  y.max = NULL,
+  x.wrap = 15,
+  x.remove = FALSE,
+  caption = FALSE,
+  caption.size = 12,
   legend.position = "none",
+  legend.order.manual = NULL,
   legend.title = NULL,
   legend.title.size = 16,
-  legend.text.size = 14,
+  legend.label.size = 14,
+  coord.flip = FALSE,
   plot.element1 = NULL,
   plot.element2 = NULL,
   plot.element3 = NULL,
@@ -50,27 +52,27 @@ box_plot(
 \arguments{
 \item{data}{A data file containing all variables that will be used in the plot}
 
-\item{x.var}{A quoted string to indicate the variable that will be plotted on the x-axis. The variable could be a string, numeric, or factor.}
+\item{x.var}{A quoted string to indicate the variable that will be plotted on the x-axis. The variable class must be a character or factor.}
 
-\item{y.var}{A quoted string to indicate the variable that will be plotted on the y axis. The variable must be numeric.}
+\item{y.var}{A quoted string to indicate the variable that will be plotted on the y axis. The variable class must be numeric.}
 
-\item{grouping}{A logical statement specifies if a grouping variable will be used in the plot. By default, \code{FALSE}.}
+\item{group.var}{A quoted string to indicate the variable that will group the boxes on the x-axis and specify the color of the boxes. The x-axis variable could used to specify colors of each individual boxes. By default, \code{""}.}
 
-\item{group.var}{A quoted string to indicate the variable that will act as a grouping variable if \code{grouping = TRUE}. The grouping variable would be represented in the legend. By default, \code{""}.}
+\item{color}{A hex code or list of hex codes that indicates the color of the grouped boxes. See Note 1 for more details. By default, \code{"#838B8B"} or a shade of dark grey.}
 
-\item{save}{A logical statement specifies whether the plot should be saved as a file under a local folder. By default, \code{FALSE}.}
+\item{x.order.manual}{A list of quoted strings to indicate the order of the x axis. By default, \code{NULL}.}
+
+\item{save}{A logical statement indicates whether the plot should be saved as a file under a local folder. If false, the plot will be returned as an object. By default, \code{FALSE}.}
 
 \item{path}{A quoted string to indicate the file's pathway and name if \code{save = TRUE}. By default, \code{"plot.png"}.}
 
-\item{plot.width}{A numeric value to indicate the plot's width. By default, \code{20}.}
+\item{plot.width}{A numeric value to indicate the plot's width. By default, \code{30}.}
 
 \item{plot.height}{A numeric value to indicate the plot's height. By default, \code{20}.}
 
 \item{plot.units}{A quoted string to indicate the plot's width and height size units. Options include \verb{in}, \code{cm}, \code{mm}, and \code{px}. By default, \code{cm}.}
 
 \item{plot.dpi}{A numeric value to indicate the plot's image resolution. By default, \code{320}.}
-
-\item{box.colors}{A hex code or list of hex codes that indicates the fill color of the box plots. By default, \code{"##838B8B"} or dark grey.}
 
 \item{mean.sym}{A logical statement specifies whether a point should be displayed to indicate the mean. By default, \code{FALSE}.}
 
@@ -82,41 +84,45 @@ box_plot(
 
 \item{mean.sym.position}{A numeric value to indicate the mean point position. By default, \code{0.75}.}
 
-\item{plot.title}{A quoted string to create the title of the plot. By default, \code{""}.}
+\item{plot.title}{A quoted string to indicate the title of the plot. By default, \code{""}.}
 
-\item{x.axis.title}{A quoted string to create the x axis title. By default, \code{""}.}
+\item{x.title}{A quoted string to indicate the x axis title. By default, \code{""}.}
 
-\item{y.axis.title}{A quoted string to create the y axis title. By default, \code{""}.}
+\item{y.title}{A quoted string to indicate the y axis title. By default, \code{""}.}
 
 \item{plot.title.size}{A numeric value to indicate the plot title text size. By default, \code{20}.}
 
 \item{axis.title.size}{A numeric value to indicate the axis title text size. By default, \code{16}.}
 
-\item{axis.text.size}{A numeric value to indicate the axis labels text size. By default, \code{14}.}
+\item{axis.label.size}{A numeric value to indicate the axis labels text size. By default, \code{14}.}
 
 \item{text.font}{A quoted string to indicate the plot's text font. By default, \code{Avenir}.}
 
-\item{y.axis.percent}{A logical statement to indicate whether the y axis labels are percentages. By default, \code{FALSE}.}
+\item{y.label.percent}{A logical statement to indicate whether the y axis labels are percentages. By default, \code{FALSE}.}
 
-\item{y.axis.min}{A numeric value to indicate the minimum number presented on the y axis. By default, \code{NULL}.}
+\item{y.min}{A numeric value to indicate the minimum number presented on the y axis. By default, \code{NULL}.}
 
-\item{y.axis.max}{A numeric value to indicate the maximum number presented on the y axis. By default, \code{NULL}.}
+\item{y.max}{A numeric value to indicate the maximum number presented on the y axis. By default, \code{NULL}.}
 
-\item{x.axis.text.wrap}{A numeric value to indicate the number of characters to wrap the x axis text. By default, \code{15}.}
+\item{x.wrap}{A numeric value to indicate the number of characters to wrap the x axis text. By default, \code{15}.}
 
-\item{x.axis.remove}{A logical statement to indicate whether y-axis information should be removed. By default, \code{FALSE}.}
+\item{x.remove}{A logical statement to indicate whether x-axis title, labels, and ticks should be removed. By default, \code{FALSE}.}
 
-\item{caption.text}{A logical statement to indicate whether the CCMH caption should be included in the plot. By default, \code{FALSE}.}
+\item{caption}{A logical statement to indicate whether the CCMH caption should be included in the plot. By default, \code{FALSE}.}
 
-\item{caption.text.size}{A numeric value to indicate the caption text size. By default, \code{12}.}
+\item{caption.size}{A numeric value to indicate the caption text size. By default, \code{12}.}
 
 \item{legend.position}{A quoted string or numeric vector to indicate the location of the legend. Options include \code{"left"},\code{"top"}, \code{"right"}, \code{"bottom"}, \code{"none"}, or numeric vector c(x,y). By default, \code{"none"}.}
 
-\item{legend.title}{A quoted string to indicate the legend title. By default, \code{NULL}.}
+\item{legend.order.manual}{A list of quoted strings to indicate the order of the legend. By default, \code{NULL}.}
+
+\item{legend.title}{A quoted string to indicate the legend title. By default, \code{""}.}
 
 \item{legend.title.size}{A numeric value to indicate the legend title text size. By default, \code{16}.}
 
-\item{legend.text.size}{A numeric value to indicate the legend label text size. By default, \code{14}.}
+\item{legend.label.size}{A numeric value to indicate the legend label text size. By default, \code{14}.}
+
+\item{coord.flip}{A logical statement to indicate if the plot's x and y axis should be flipped. By default, \code{FALSE}.}
 
 \item{plot.element1}{A ggplot plot function and arguments needed for the plot and specified as an object. By default, \code{NULL}.}
 
@@ -135,5 +141,7 @@ A box plot returned as a object or saved under a local file.
 Creates standardized CCMH box plot's using ggplot2.
 }
 \note{
+Note 1. The argument \code{color} specifies the color of items within the grouped variable. For example, the group variable items could be the name of automobile companies (i.e., Ford, Dodge, BMV). You can specify color randomly for each company using this list: \code{c("#21501b", "#c51329", "#074e67")}. Or you can specify color directly to each specific company using this list: \code{c("Ford" = "#21501b", "Dodge" = "#c51329", "BMV" = "#074e67")}.
+
 The \code{plot.element} arguments specify additional ggplot2 graphical element(s) needed to complete a specific box plot, but are not specified as an argument in the \code{box_plot} function. For example, the axis label text will always be black unless specified in one of the \code{plot.element} arguments. To change the axis label text color in one of the \code{plot.element} arguments, you would first create an object to represent graphing element (e.g., green.axis.text <- ggplot2::theme(axis.text = ggplot2::element_text(color = "green"))). Then the object would be added to one of the \code{plot.element} arguments (e.g., \code{plot.element01 = green.axis.text}).
 }
