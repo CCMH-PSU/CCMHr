@@ -611,6 +611,40 @@ sds_to_factor <- function(data){
                     `5` = "Never stressful")
   }
 
+  if ("SDS_103" %in% names(data)) {
+    data$SDS_103 <- as.factor(data$SDS_103) %>%
+      forcats::fct_inseq() %>%
+      dplyr::recode(`1` = "1 time",
+                    `2` = "2-3 times",
+                    `3` = "4-5 times",
+                    `4` = "More than 5 times",
+                    `5` = "I don’t think I’ve had COVID-19")
+  }
+
+  if ("SDS_117" %in% names(data)) {
+    data$SDS_117<- as.factor(data$SDS_117) %>%
+      forcats::fct_inseq() %>%
+      dplyr::recode(`0` = "No",
+                    `1` = "Yes")
+  }
+
+  if ("SDS_1037" %in% names(data)) {
+    data$SDS_1037 <- as.factor(data$SDS_1037) %>%
+      forcats::fct_inseq() %>%
+      dplyr::recode(`1` = "1st year undergraduate",
+                    `2` = "2nd year undergraduate",
+                    `3` = "3rd year undergraduate",
+                    `4` = "4th year undergraduate",
+                    `5` = "5th year or more undergraduate",
+                    `6` = "Graduate student",
+                    `7` = "Professional degree student",
+                    `8` = "Non-student",
+                    `9` = "High-school student taking college classes",
+                    `10` = "Non-degree student",
+                    `11` = "Faculty or staff",
+                    `12` = "Other (please specify)")
+  }
+
   return(data)
   })
 }
