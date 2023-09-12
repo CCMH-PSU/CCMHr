@@ -40,13 +40,13 @@ create_courses <- function(data,
 
   #Creating a data table
     #data table
-      data.table::setDT(data)
+      datatable <- data.table::as.data.table(data)
     #Order list of variable to order by
       orderlist <- c("UniqueClientID", "Date")
     #Arrange
-      ccmh_bycourse <- data.table::setorderv(data, orderlist)
+      ccmh_bycourse <- data.table::setorderv(datatable, orderlist)
     #Calculate lag between dates
-      ccmh_bycourse <- data[,Date_1:=data.table::shift(Date), by=UniqueClientID]
+      ccmh_bycourse <- datatable[,Date_1:=data.table::shift(Date), by=UniqueClientID]
     #Calculate data difference
       ccmh_bycourse <- ccmh_bycourse[,Daysbetween:=as.integer(Date)-as.integer(Date_1), by=UniqueClientID]
     #Creates variables indicating the start of a new course of treatment
