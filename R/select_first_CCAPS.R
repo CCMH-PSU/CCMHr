@@ -59,6 +59,8 @@ select_first_CCAPS <- function(data,
   #Obtain by first occurrences
     data <- data[, .SD[1], by=.(UniqueClientID)][, ..keep_columns]
 
+    data <- data.table::setDF(data)
+
   #Return data table as a data frame
     return(as.data.frame(data))
 }
@@ -123,6 +125,8 @@ select_first_SDS <- function(data,
         }
       }
 
+    data <- data.table::setDF(data)
+
   #Return data frame
     return(as.data.frame(data))
 }
@@ -185,6 +189,8 @@ select_first_CLICC <- function(data,
           data <- data[, keep_columns, with=FALSE]
         }
       }
+
+    data <- data.table::setDF(data)
 
     #Return as a data frame
       return(as.data.frame(data))
