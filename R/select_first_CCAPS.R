@@ -43,26 +43,24 @@ select_first_CCAPS <- function(data,
       }
 
   #Setting data table
-    data.table::setDT(data)
+  datatable <- data.table::as.data.table(data)
 
   #Only Valid CCAPS
-    data <- data[Is_ValidCCAPS == 1,]
+  datatable <- datatable[Is_ValidCCAPS == 1,]
 
   #Order list of variables to be grouped
     orderlist<- c("UniqueClientID",
                   order_by)
 
   #Order data table by order list
-    data <- data.table::setorderv(data,
+    datatable <- data.table::setorderv(datatable,
                                   orderlist)
 
   #Obtain by first occurrences
-    data <- data[, .SD[1], by=.(UniqueClientID)][, ..keep_columns]
-
-    data <- data.table::setDF(data)
+    datatable <- datatable[, .SD[1], by=.(UniqueClientID)][, ..keep_columns]
 
   #Return data table as a data frame
-    return(as.data.frame(data))
+    return(as.data.frame(datatable))
 }
 
 
@@ -88,21 +86,21 @@ select_first_SDS <- function(data,
       }
 
   #Setting data table
-    data <- data.table::setDT(data)
+  datatable <- data.table::as.data.table(data)
 
   #Only Valid SDS
-    data <- data[Has_SDS == 1,]
+  datatable <- datatable[Has_SDS == 1,]
 
   #Order list of variables to be grouped
     orderlist<- c("UniqueClientID",
                   order_by)
 
   #Order data table by order list
-    data <- data.table::setorderv(data,
+    datatable <- data.table::setorderv(datatable,
                                   orderlist)
 
   #Obtain by first occurrences
-    data <- data[, .SD[1], by=.(UniqueClientID)]
+    datatable <- datatable[, .SD[1], by=.(UniqueClientID)]
 
   #Specify keep_all and keep_columns argument (what columns need to be kept)
     if(keep_all == TRUE) {
@@ -110,25 +108,23 @@ select_first_SDS <- function(data,
           usethis::ui_warn("Vector of column names to keep not applicable when keep_all = TRUE. All columns were retained.")
       } else if(keep_all == FALSE) {
         if(keep_columns[1] == "SDS") {
-          x.UniqueClientID <- which(colnames(data) == "UniqueClientID")
-          x.CcmhID <- which(colnames(data) == "CcmhID")
-          x.SDS <- grep("SDS_", names(data), fixed=TRUE)
-          x.ClientAge <- which(colnames(data) == "ClientAge")
+          x.UniqueClientID <- which(colnames(datatable) == "UniqueClientID")
+          x.CcmhID <- which(colnames(datatable) == "CcmhID")
+          x.SDS <- grep("SDS_", names(datatable), fixed=TRUE)
+          x.ClientAge <- which(colnames(datatable) == "ClientAge")
           x.list <- list(x.UniqueClientID, x.CcmhID, x.SDS, x.ClientAge)
           x.list <- unlist(x.list, recursive = FALSE)
-          data <- data[, x.list, with=F]
+          datatable <- datatable[, x.list, with=F]
         } else {
-          if(!all(keep_columns %in% names(data))) {
+          if(!all(keep_columns %in% names(datatable))) {
             usethis::ui_warn("All columns specified in keep_columns were not present in the data. Only present columns were retained.")
           }
-          data <- data[, keep_columns, with=FALSE]
+          datatable <- datatable[, keep_columns, with=FALSE]
         }
       }
 
-    data <- data.table::setDF(data)
-
   #Return data frame
-    return(as.data.frame(data))
+    return(as.data.frame(datatable))
 }
 
 
@@ -154,21 +150,21 @@ select_first_CLICC <- function(data,
       }
 
   #Setting data table
-    data <- data.table::setDT(data)
+  datatable <- data.table::as.data.table(data)
 
   #Only Valid CLICC
-    data <- data[Has_CLICC == 1,]
+  datatable <- datatable[Has_CLICC == 1,]
 
   #Order list of variables to be grouped
     orderlist<- c("UniqueClientID",
                   order_by)
 
   #Order data table by order list
-    data <- data.table::setorderv(data,
+    datatable <- data.table::setorderv(datatable,
                                   orderlist)
 
   #Obtain by first occurrences
-    data <- data[, .SD[1], by=.(UniqueClientID)]
+    datatable <- datatable[, .SD[1], by=.(UniqueClientID)]
 
   #Specify keep_all and keep_columns argument (what columns need to be kept)
     if(keep_all == TRUE) {
@@ -176,24 +172,23 @@ select_first_CLICC <- function(data,
         usethis::ui_warn("Vector of column names to keep not applicable when keep_all = TRUE. All columns were retained.")
       } else if(keep_all == FALSE) {
         if (keep_columns[1] == "CLICC") {
-          x.UniqueClientID <- which(colnames(data) == "UniqueClientID")
-          x.CcmhID <- which(colnames(data) == "CcmhID")
-          x.CLICC <- grep("CLICC_", names(data), fixed=TRUE)
+          x.UniqueClientID <- which(colnames(datatable) == "UniqueClientID")
+          x.CcmhID <- which(colnames(datatable) == "CcmhID")
+          x.CLICC <- grep("CLICC_", names(datatable), fixed=TRUE)
           x.list <- list(x.UniqueClientID, x.CcmhID, x.CLICC)
           x.list <- unlist(x.list, recursive = FALSE)
-          data <- data[, x.list, with=F]
+          datatable <- datatable[, x.list, with=F]
         } else {
-          if (!all(keep_columns %in% names(data))) {
+          if (!all(keep_columns %in% names(datatable))) {
             usethis::ui_warn("All columns specified in keep_columns were not present in the data. Only present columns were retained.")
           }
-          data <- data[, keep_columns, with=FALSE]
+          datatable <- datatable[, keep_columns, with=FALSE]
         }
       }
 
-    data <- data.table::setDF(data)
 
     #Return as a data frame
-      return(as.data.frame(data))
+      return(as.data.frame(datatable))
 }
 
 
