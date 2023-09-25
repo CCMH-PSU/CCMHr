@@ -16,6 +16,7 @@ ccmh_theme <- function(plot_title = 20,
                        axis_title = 16,
                        axis_text = 14,
                        caption_text = 12,
+                       strip_text = 14,
                        text_font = "Avenir") {
 
   ggplot2::theme_minimal() +
@@ -31,6 +32,7 @@ ccmh_theme <- function(plot_title = 20,
                  plot.title = ggplot2::element_text(size = plot_title),
                  axis.title = ggplot2::element_text(size = axis_title),
                  axis.text = ggplot2::element_text(size = axis_text),
+                 strip.text = ggplot2::element_text(size = strip_text),
                  plot.caption = ggplot2::element_text(size = caption_text),
                  plot.background = ggplot2::element_rect(fill = 'white',
                                                 color = NA))
