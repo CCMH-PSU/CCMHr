@@ -446,4 +446,3 @@ plot_box <- function(data,
 
 }
 
-box_plot <- plot_box

@@ -508,4 +508,3 @@ plot_scatter <- function(data,
 
   }
 
-scatter_plot <- plot_scatter

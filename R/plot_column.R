@@ -613,5 +613,4 @@ plot_column <- function(data,
 
   }
 
-column_plot <- plot_column
 

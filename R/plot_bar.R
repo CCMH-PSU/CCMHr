@@ -535,4 +535,3 @@ plot_bar <- function(data,
 
 }
 
-bar_plot <- plot_bar

@@ -291,7 +291,7 @@ plot_histogram <- function(data,
     {if(y.axis.type == "count"){
 
       ggplot2::geom_histogram(ggplot2::aes(x = {{x.var1}},
-                                           y = after_stat(count)),
+                                           y = ggplot2::after_stat(count)),
                               position = hist.position,
                               alpha = alpha,
                               binwidth = bin.width)
@@ -299,7 +299,7 @@ plot_histogram <- function(data,
       } else if(y.axis.type == "density"){
 
         ggplot2::geom_histogram(ggplot2::aes(x = {{x.var1}},
-                                             y = after_stat(density)),
+                                             y = ggplot2::after_stat(density)),
                                 position = hist.position,
                                 alpha = alpha,
                                 binwidth = bin.width)
@@ -429,4 +429,4 @@ plot_histogram <- function(data,
 
 }
 
-histogram_plot <- plot_histogram
+

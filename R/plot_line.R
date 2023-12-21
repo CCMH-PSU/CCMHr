@@ -490,4 +490,3 @@ plot_line <- function(data,
 
 }
 
-line_plot <- plot_line
