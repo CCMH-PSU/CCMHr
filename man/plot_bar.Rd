@@ -8,7 +8,7 @@ plot_bar(
   data,
   x.var,
   group.var = "",
-  color = c("#E6AB02", "#1B9E77", "#666666", "#D95F02", "#6db6ff", "#b66dff", "#ff6db6",
+  color = c("#666666", "#1B9E77", "#E6AB02", "#D95F02", "#6db6ff", "#b66dff", "#ff6db6",
     "#920000"),
   y.type = "count",
   x.order.manual = NULL,

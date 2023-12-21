@@ -1,5 +1,6 @@
 #' A function to create standardized CCMH histogram plot's
 #'
+#' @name plot_histogram
 #' @description Creates standardized CCMH histogram plot's using ggplot2.
 #' @param data A data file containing all variables that will be used in the plot
 #' @param x.var A quoted string or unquoted characters to indicate the variable that will be plotted on the x-axis. The variable class must be a character or factor.
@@ -429,4 +430,6 @@ plot_histogram <- function(data,
 
 }
 
-
+#' @rdname plot_histogram
+#' @export
+  histogram_plot <- plot_histogram
