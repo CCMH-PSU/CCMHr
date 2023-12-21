@@ -427,7 +427,7 @@ plot_line <- function(data,
                                                              inherit.blank = TRUE,
                                                              color = "white"),
                    legend.title = ggplot2::element_text(size= legend.title.size),
-                   legend.key=element_blank(),
+                   legend.key = ggplot2::element_blank(),
                    legend.text = ggplot2::element_text(size = legend.label.size)) +
 
   # Specify if the coords should be flipped
