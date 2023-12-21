@@ -409,10 +409,10 @@ plot_scatter <- function(data,
                    panel.grid.major.x = grid.maj.x,
                    panel.background = ggplot2::element_rect(fill = 'white',
                                                             color = NA),
-                   plot.margin = margin(t = 0.5,  # Top margin
-                                        r = 0.5,  # Right margin
-                                        b = 0.5,  # Bottom margin
-                                        l = 0.5,  # Left margin
+                   plot.margin = ggplot2::margin(t = 0.5,  # Top margin
+                                                 r = 0.5,  # Right margin
+                                                 b = 0.5,  # Bottom margin
+                                                 l = 0.5,  # Left margin
                                         unit = "cm"),
                    text = ggplot2::element_text(family = text.font),
                    plot.title = ggplot2::element_text(size = plot.title.size,
