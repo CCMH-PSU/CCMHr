@@ -10,6 +10,7 @@ ccmh_theme(
   axis_title = 16,
   axis_text = 14,
   caption_text = 12,
+  strip_text = 14,
   text_font = "Avenir"
 )
 

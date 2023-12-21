@@ -2,27 +2,33 @@
 #'
 #' @description Creates standardized CCMH histogram plot's using ggplot2.
 #' @param data A data file containing all variables that will be used in the plot
-#' @param x.var A quoted string to indicate the variable that will be plotted on the x-axis. The variable class must be a character or factor.
+#' @param x.var A quoted string or unquoted characters to indicate the variable that will be plotted on the x-axis. The variable class must be a character or factor.
 #' @param group.var A quoted string to indicate the variable that will used to specify grouping. By default, `""`.
-#' @param color A hex code or list of hex codes that indicates the color based on grouping. See Note 1 for more details. By default, `"#838B8B"` or a shade of dark grey.
-#' @param y.type A quoted string to indicate the type of information displayed on the y axis. Options include `count`, `density`, and `relative_freq`. By default, `count`.
+#' @param color A hex code or list of hex codes that indicates the color based on grouping. See Note 1 for more details. By default, `c('#E6AB02', '#1B9E77', '#666666', '#D95F02', '#6db6ff', '#b66dff', '#ff6db6', '#920000')`.
+#' @param y.axis.type A quoted string to indicate the type of information displayed on the y axis. Options include `count`, `density`, and `relative_freq`. By default, `count`.
 #' @param hist.position A quoted string to indicate the histogram position adjustment. By default, `identity`.
 #' @param save A logical statement indicates whether the plot should be saved as a file under a local folder. If false, the plot will be returned as an object. By default, `FALSE`.
 #' @param path A quoted string to indicate the file's pathway and name if `save = TRUE`. By default, `"plot.png"`.
-#' @param plot.width A numeric value to indicate the plot's width. By default, `30`.
-#' @param plot.height A numeric value to indicate the plot's height. By default, `20`.
+#' @param plot.width A numeric value to indicate the plot's width. By default, `15.24`.
+#' @param plot.height A numeric value to indicate the plot's height. By default, `12.7`.
 #' @param plot.units A quoted string to indicate the plot's width and height size units. Options include `in`, `cm`, `mm`, and `px`. By default, `cm`.
 #' @param plot.dpi A numeric value to indicate the plot's image resolution. By default, `320`.
-#' @param plot.title A quoted string to indicate the title of the plot. By default, `""`.
-#' @param x.title A quoted string to indicate the x axis title. By default, `""`.
-#' @param y.title A quoted string to indicate the y axis title. By default, `""`.
+#' @param plot.device A quoted string or function to indicate the plot's device. By default, `NULL`.
+#' @param plot.title A quoted string to indicate the title of the plot. By default, `NULL`.
+#' @param x.title A quoted string to indicate the x axis title. By default, `NULL`.
+#' @param y.title A quoted string to indicate the y axis title. By default, `NULL`.
 #' @param plot.title.size A numeric value to indicate the plot title text size. By default, `20`.
 #' @param axis.title.size A numeric value to indicate the axis title text size. By default, `16`.
 #' @param axis.label.size A numeric value to indicate the axis labels text size. By default, `14`.
 #' @param text.font A quoted string to indicate the plot's text font. By default, `Avenir`.
-#' @param y.label.percent A logical statement to indicate whether the y axis labels are percentages. By default, `FALSE`.
+#' @param y.label.type A quoted string or list to customize the y axis labels. Options include `"numeric"`, `"percent"`, `"comma"`, or `"sci`. By default, `numeric`.
 #' @param y.min A numeric value to indicate the minimum number presented on the y axis. By default, `NULL`.
 #' @param y.max A numeric value to indicate the maximum number presented on the y axis. By default, `NULL`.
+#' @param y.breaks Numeric values or a sequence that indicates breaks on the y axis. By default, `NULL`.
+#' @param x.label.type A quoted string or list to customize the x axis labels. Options include `"numeric"`, `"percent"`, `"comma"`, `"sci`, or `"dollar"` . By default, `numeric`.
+#' @param x.min A numeric value to indicate the minimum number presented on the x axis. By default, `NULL`.
+#' @param x.max A numeric value to indicate the maximum number presented on the x axis. By default, `NULL`.
+#' @param x.breaks Numeric values or a sequence that indicates breaks on the x axis. By default, `NULL`.
 #' @param caption A logical statement to indicate whether the CCMH caption should be included in the plot. By default, `FALSE`.
 #' @param caption.size A numeric value to indicate the caption text size. By default, `12`.
 #' @param legend.position A quoted string or numeric vector to indicate the location of the legend. Options include `"left"`,`"top"`, `"right"`, `"bottom"`, `"none"`, or numeric vector c(x,y). By default, `"none"`.
@@ -31,41 +37,65 @@
 #' @param legend.title.size A numeric value to indicate the legend title text size. By default, `16`.
 #' @param legend.label.size A numeric value to indicate the legend label text size. By default, `14`.
 #' @param alpha A numeric value to indicate the histogram bars transparency. Values may range between 0 to 1. By default, `1`.
-#' @param bins A numeric value to indicate the number of bins. By default, `NULL`.
+#' @param bin.width A numeric value to indicate the width of the bins. By default, `NULL`.
+#' @param y.grid.major A logical statement to indicate if the y axis major grid lines should be added to the plot. By default, `FALSE`,
+#' @param y.grid.major.color A hex code that indicates the color of the y axis major grid lines. By default, `"#d3d3d3"` or a shade of light grey.
+#' @param y.grid.major.size A numeric value to indicate the thickness of the y axis major grid lines. By default, `0.5`.
+#' @param y.grid.major.linetype A numeric value to indicate the line type of the y axis major grid. By default, `1`.
+#' @param x.grid.major A logical statement to indicate if the y axis major grid lines should be added to the plot. By default, `FALSE`,
+#' @param x.grid.major.color A hex code that indicates the color of the y axis major grid lines. By default, `"#d3d3d3"` or a shade of light grey.
+#' @param x.grid.major.size A numeric value to indicate the thickness of the y axis major grid lines. By default, `0.5`.
+#' @param x.grid.major.linetype A numeric value to indicate the line type of the y axis major grid. By default, `1`.
+#' @param y.axis.line A logical statement to indicate if the y axis line should be included. By default, `TRUE`.
+#' @param x.axis.line A logical statement to indicate if the x axis line should be included. By default, `TRUE`.
+#' @param remove.axis.ticks A logical statement to indicate if the axis ticks should be excluded. By default, `FALSE`.
 #' @param plot.element1 A ggplot plot function and arguments needed for the plot and specified as an object. By default, `NULL`.
 #' @param plot.element2 A ggplot plot function and arguments needed for the plot and specified as an object. By default, `NULL`.
 #' @param plot.element3 A ggplot plot function and arguments needed for the plot and specified as an object. By default, `NULL`.
 #' @param plot.element4 A ggplot plot function and arguments needed for the plot and specified as an object. By default, `NULL`.
 #' @param plot.element5 A ggplot plot function and arguments needed for the plot and specified as an object. By default, `NULL`.
+#' @param plot.element6 A ggplot plot function and arguments needed for the plot and specified as an object. By default, `NULL`.
+#' @param plot.element7 A ggplot plot function and arguments needed for the plot and specified as an object. By default, `NULL`.
+#' @param plot.element8 A ggplot plot function and arguments needed for the plot and specified as an object. By default, `NULL`.
+#' @param plot.element9 A ggplot plot function and arguments needed for the plot and specified as an object. By default, `NULL`.
 #'
-#' @note Note 1. The argument `color` specifies the color of items within the grouped variable. For example, the group variable items could be the name of automobile companies (i.e., Ford, Dodge, BMV). You can specify color randomly for each company using this list: `c("#21501b", "#c51329", "#074e67")`. Or you can specify color directly to each specific company using this list: `c("Ford" = "#21501b", "Dodge" = "#c51329", "BMV" = "#074e67")`.
+#' @note Note 1. The argument `color` specifies the color of items within the grouped variable. For example, the group variable items could be the name of automobile companies (i.e., Ford, Dodge, BMV). You can specify color randomly for each company using this list: `c("#21501b", "#c51329", "#074e67")`. Or you can specify color directly to each specific company using this list: `c("Ford" = "#21501b", "Dodge" = "#c51329", "BMV" = "#074e67")`. Default colors are color blind safe.
 #' @note The `plot.element` arguments specify additional ggplot2 graphical element(s) needed to complete a specific task, but are not specified as an argument in the `hist_plot` function. For example, the axis label text will always be black unless specified in one of the `plot.element` arguments. To change the axis label text color in one of the `plot.element` arguments, you would first create an object to represent graphing element (e.g., green.axis.text <- ggplot2::theme(axis.text = ggplot2::element_text(color = "green"))). Then the object would be added to one of the `plot.element` arguments (e.g., `plot.element01 = green.axis.text`).
 #' @return A histogram plot returned as a object or saved under a local file.
 #' @export
 #'
 
-histogram_plot <- function(data,
+plot_histogram <- function(data,
                            x.var,
                            group.var = "",
-                           color = "#808080",
-                           y.type = "count",
+                           color = c('#E6AB02', '#1B9E77',
+                                     '#666666', '#D95F02',
+                                     '#6db6ff', '#b66dff',
+                                     '#ff6db6', '#920000'),
+                           y.axis.type = "count",
                            hist.position = "identity",
                            save = FALSE,
                            path = "plot.png",
-                           plot.width = 20,
-                           plot.height = 20,
+                           plot.width = 15.24,
+                           plot.height = 12.7,
                            plot.units = "cm",
                            plot.dpi = 320,
-                           plot.title = "",
-                           x.title = "",
-                           y.title = "",
+                           plot.device = NULL,
+                           plot.title = NULL,
+                           x.title = NULL,
+                           y.title = NULL,
                            plot.title.size = 20,
                            axis.title.size = 16,
                            axis.label.size = 14,
                            text.font = "Avenir",
-                           y.label.percent = FALSE,
+                           y.label.type = "numeric",
                            y.min = NULL,
                            y.max = NULL,
+                           y.breaks = NULL,
+                           x.label.type = "numeric",
+                           x.min = NULL,
+                           x.max = NULL,
+                           x.breaks = NULL,
                            caption = FALSE,
                            caption.size = 12,
                            legend.position = "none",
@@ -74,15 +104,31 @@ histogram_plot <- function(data,
                            legend.title.size= 16,
                            legend.label.size= 14,
                            alpha = 1,
-                           bins = NULL,
+                           bin.width = NULL,
+                           y.grid.major = FALSE,
+                           y.grid.major.color = "#d3d3d3",
+                           y.grid.major.size = 0.5,
+                           y.grid.major.linetype = 1,
+                           x.grid.major = FALSE,
+                           x.grid.major.color = "#d3d3d3",
+                           x.grid.major.size = 0.5,
+                           x.grid.major.linetype = 1,
+                           y.axis.line = TRUE,
+                           x.axis.line = TRUE,
+                           remove.axis.ticks = FALSE,
                            plot.element1 = NULL,
                            plot.element2 = NULL,
                            plot.element3 = NULL,
                            plot.element4 = NULL,
-                           plot.element5 = NULL){
+                           plot.element5 = NULL,
+                           plot.element6 = NULL,
+                           plot.element7 = NULL,
+                           plot.element8 = NULL,
+                           plot.element9 = NULL){
 
   # Specify the x-axis variable as a symbol
-    x.var1 <- rlang::sym(x.var)
+    x.var1 <- rlang::as_name(rlang::enquo(x.var))
+    x.var1 <- rlang::sym(x.var1)
 
   # Specify grouping variable
     if(group.var != ""){
@@ -132,6 +178,93 @@ histogram_plot <- function(data,
 
      }
 
+  # Specify Y breaks
+    if(is.null(y.breaks)){
+      y.breaks.c <- ggplot2::waiver()
+    } else {
+      y.breaks.c <- y.breaks
+    }
+
+  # Specify y axis labels
+    if(y.label.type == "percent"){
+      y.label.typea <- scales::percent
+
+    } else if(y.label.type == "comma"){
+      y.label.typea <- scales::comma
+
+    } else if(y.label.type == "numeric"){
+      y.label.typea <- ggplot2::waiver()
+
+    } else if(y.label.type == "sci"){
+      y.label.typea <- scales::scientific
+
+    } else {
+      y.label.typea <- NULL
+    }
+
+  # Specify X breaks
+    if(is.null(x.breaks)){
+      x.breaks.c <- ggplot2::waiver()
+    } else {
+      x.breaks.c <- x.breaks
+    }
+
+  # Specify x axis labels
+    if(x.label.type == "percent"){
+      x.label.typea <- scales::percent
+
+    } else if(x.label.type == "comma"){
+      x.label.typea <- scales::comma
+
+    } else if(x.label.type == "numeric"){
+      x.label.typea <- ggplot2::waiver()
+
+    } else if(x.label.type == "sci"){
+      x.label.typea <- scales::scientific
+
+    } else if(x.label.type == "dollar"){
+      x.label.typea <- scales::dollar
+
+    } else {
+      x.label.typea <- NULL
+    }
+
+  # Specify Y Major Grid
+    if(y.grid.major == TRUE){
+      grid.maj.y <- ggplot2::element_line(color = y.grid.major.color,
+                                          linewidth = y.grid.major.size,
+                                          linetype = y.grid.major.linetype)
+    } else {
+      grid.maj.y <- ggplot2::element_blank()
+    }
+
+  # Specify X Major Grid
+    if(x.grid.major == TRUE){
+      grid.maj.x <- ggplot2::element_line(color = x.grid.major.color,
+                                          linewidth = x.grid.major.size,
+                                          linetype = x.grid.major.linetype)
+    } else {
+      grid.maj.x <- ggplot2::element_blank()
+    }
+
+  # Specify y axis line
+    if(y.axis.line == TRUE){
+      y.axis.line.c <- ggplot2::element_line(colour = 'black',
+                                             linewidth=0.5,
+                                             linetype='solid')
+    } else{
+      y.axis.line.c <- ggplot2::element_blank()
+    }
+
+  # Specify x axis line
+    if(x.axis.line == TRUE){
+      x.axis.line.c <- ggplot2::element_line(colour = 'black',
+                                             linewidth=0.5,
+                                             linetype='solid')
+    } else{
+      x.axis.line.c <- ggplot2::element_blank()
+    }
+
   # Specify the primary graph properties
     his.graph <- ggplot2::ggplot(data,
      {if(group.var != ""){
@@ -148,33 +281,33 @@ histogram_plot <- function(data,
      }) +
 
   # Specify plot as geom_histogram
-    {if(y.type == "count"){
+    {if(y.axis.type == "count"){
 
       ggplot2::geom_histogram(ggplot2::aes(x = {{x.var1}},
                                            y = after_stat(count)),
                               position = hist.position,
                               alpha = alpha,
-                              bins = bins)
+                              binwidth = bin.width)
 
-      } else if(y.type == "density"){.
+      } else if(y.axis.type == "density"){
 
         ggplot2::geom_histogram(ggplot2::aes(x = {{x.var1}},
                                              y = after_stat(density)),
                                 position = hist.position,
                                 alpha = alpha,
-                                bins = bins)
+                                binwidth = bin.width)
 
-      } else if(y.type == "relative_freq"){
+      } else if(y.axis.type == "relative_freq"){
 
         ggplot2::geom_histogram(ggplot2::aes(x = {{x.var1}},
                                              y = ggplot2::after_stat(count/sum(count))),
                                 position = hist.position,
                                 alpha = alpha,
-                                bins = bins)
+                                binwidth = bin.width)
 
       } else{
 
-        stop("Specify y.type from one of the following options: count, density, or relative frequency")
+        stop("Specify y.axis.type from one of the following options: count, density, or relative frequency")
 
       }
     } +
@@ -188,27 +321,31 @@ histogram_plot <- function(data,
                   x = x.title,
                   fill = legend.title) +
 
-  # If y-axis is a percentage
-    {if(y.label.percent == TRUE){
-
-      ggplot2::scale_y_continuous(labels = scales::percent,
+    # Specify y-axis scale
+      ggplot2::scale_y_continuous(labels = y.label.typea,
                                   limits = c(y.min,
                                              y.max),
-                                  expand = c(0,0))
+                                  expand = c(0,0),
+                                  breaks = y.breaks.c) +
 
-      } else{
-
-        ggplot2::scale_y_continuous(limits = c(y.min,
-                                               y.max),
-                                    expand = c(0,0))
-
-      }
-     } +
+    # Specify x-axis scale
+      ggplot2::scale_x_continuous(labels = x.label.typea,
+                                  limits = c(x.min,
+                                             x.max),
+                                  expand = c(0,0),
+                                  breaks = x.breaks.c) +
 
   # Specify the plots theme information
     ggplot2::theme(panel.grid = ggplot2::element_blank(),
+                   panel.grid.major.y = grid.maj.y,
+                   panel.grid.major.x = grid.maj.x,
                    panel.background = ggplot2::element_rect(fill = 'white',
                                                             color = NA),
+                   plot.margin = margin(t = 0.5,  # Top margin
+                                        r = 0.5,  # Right margin
+                                        b = 0.5,  # Bottom margin
+                                        l = 0.5,  # Left margin
+                                        unit = "cm"),
                    text = ggplot2::element_text(family = text.font),
                    plot.title = ggplot2::element_text(size = plot.title.size,
                                                       hjust = 0.5),
@@ -224,12 +361,8 @@ histogram_plot <- function(data,
                                                                                 r = 0,
                                                                                 b = 0,
                                                                                 l = 0)),
-                  axis.line.x = ggplot2::element_line(colour = 'black',
-                                                      linewidth=0.5,
-                                                      linetype='solid'),
-                  axis.line.y = ggplot2::element_line(colour = 'black',
-                                                      linewidth=0.5,
-                                                      linetype='solid'),
+                  axis.line.x = x.axis.line.c,
+                  axis.line.y = y.axis.line.c,
                   plot.caption = ggplot2::element_text(size = caption.size),
                   legend.position = legend.position,
                   legend.background = ggplot2::element_rect(fill = "white",
@@ -239,12 +372,25 @@ histogram_plot <- function(data,
                   legend.title = ggplot2::element_text(size= legend.title.size),
                   legend.text = ggplot2::element_text(size = legend.label.size)) +
 
+  # Specify to remove axis ticks
+    {if(remove.axis.ticks == TRUE){
+
+      ggplot2::theme(axis.ticks = ggplot2::element_blank())
+
+    } else {
+
+    }} +
+
   # Specify plot elements
     plot.element1 +
     plot.element2 +
     plot.element3 +
     plot.element4 +
-    plot.element5
+    plot.element5 +
+    plot.element6 +
+    plot.element7 +
+    plot.element8 +
+    plot.element9
 
   # Specify caption
     {if(caption == TRUE){
@@ -265,7 +411,8 @@ histogram_plot <- function(data,
              width = plot.width,
              height = plot.height,
              units = plot.units,
-             dpi = plot.dpi)
+             dpi = plot.dpi,
+             device = plot.device)
 
     } else{
 
@@ -274,3 +421,5 @@ histogram_plot <- function(data,
     }
 
 }
+
+histogram_plot <- plot_histogram
