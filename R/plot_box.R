@@ -309,12 +309,12 @@ plot_box <- function(data,
   # Specify if a mean point should be placed in the box plot
     {if(mean.sym == TRUE){
 
-      stat_summary(fun = "mean",
-                   position = position_dodge(width = mean.sym.position),
-                   geom = "point",
-                   shape = mean.sym.shape,
-                   size = mean.sym.size,
-                   color = mean.sym.color)}
+      ggplot2::stat_summary(fun = "mean",
+                           position = ggplot2::position_dodge(width = mean.sym.position),
+                           geom = "point",
+                           shape = mean.sym.shape,
+                           size = mean.sym.size,
+                           color = mean.sym.color)}
 
       else {
 
@@ -375,7 +375,7 @@ plot_box <- function(data,
                    legend.text = ggplot2::element_text(size = legend.label.size)) +
 
   # Specify x axis label text wrap
-    scale_x_discrete(labels = scales::wrap_format(x.wrap)) +
+    ggplot2::scale_x_discrete(labels = scales::wrap_format(x.wrap)) +
 
   # Specify if x axis should be removed
     {if(x.remove == TRUE){
@@ -421,7 +421,7 @@ plot_box <- function(data,
   # Specify caption
     {if(caption == TRUE){
 
-      plot.1 <-plot.1 + CCMHr::ccmh_caption()
+      plot.1 <- plot.1 + CCMHr::ccmh_caption()
 
     } else{
 
