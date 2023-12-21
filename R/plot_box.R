@@ -273,15 +273,15 @@ plot_box <- function(data,
     plot.1 <- ggplot2::ggplot(data,
       {if(group.var == ""){
 
-          aes(x = {{x.var1}},
-              y = {{y.var1}},
-              fill = color)
+        ggplot2::aes(x = {{x.var1}},
+                     y = {{y.var1}},
+                     fill = color)
 
         } else{
 
-          aes(x = {{x.var1}},
-              y = {{y.var1}},
-              fill = group77d8214)
+          ggplot2::aes(x = {{x.var1}},
+                       y = {{y.var1}},
+                       fill = group77d8214)
 
         }})  +
 
@@ -370,7 +370,7 @@ plot_box <- function(data,
                                                              colour = "white",
                                                              inherit.blank = TRUE,
                                                              color = "white"),
-                   legend.key=element_blank(),
+                   legend.key = ggplot2::element_blank(),
                    legend.title = ggplot2::element_text(size= legend.title.size),
                    legend.text = ggplot2::element_text(size = legend.label.size)) +
 
