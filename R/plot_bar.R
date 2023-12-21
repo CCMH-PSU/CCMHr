@@ -66,8 +66,8 @@
 plot_bar <- function(data,
                      x.var,
                      group.var = "",
-                     color = c('#E6AB02', '#1B9E77',
-                               '#666666', '#D95F02',
+                     color = c('#666666', '#1B9E77',
+                               '#E6AB02', '#D95F02',
                                '#6db6ff', '#b66dff',
                                '#ff6db6', '#920000'),
                      y.type = "count",
@@ -308,6 +308,12 @@ plot_bar <- function(data,
       x.axis.line.c <- ggplot2::element_blank()
     }
 
+  # Specify color
+    if(group.var == ""){
+      color <- color[1]
+    } else{
+
+    }
 
   # Specify the primary graph properties and x axis order
     bar.graph <- ggplot2::ggplot(data,
@@ -320,7 +326,8 @@ plot_bar <- function(data,
        } else if(group.var == "" &
                  y.type == "count"){
 
-         ggplot2::aes(x = {{x.var1}})
+         ggplot2::aes(x = {{x.var1}},
+                      fill = color)
 
        } else if(group.var != "" &
                  y.type == "percent"){
@@ -332,7 +339,8 @@ plot_bar <- function(data,
        } else{
 
          ggplot2::aes(x = {{x.var1}},
-                      y = (..count..)/sum(..count..))
+                      y = (..count..)/sum(..count..),
+                      fill = color)
 
       }})+
 

@@ -68,8 +68,8 @@
 plot_histogram <- function(data,
                            x.var,
                            group.var = "",
-                           color = c('#E6AB02', '#1B9E77',
-                                     '#666666', '#D95F02',
+                           color = c('#666666', '#1B9E77',
+                                     '#E6AB02', '#D95F02',
                                      '#6db6ff', '#b66dff',
                                      '#ff6db6', '#920000'),
                            y.axis.type = "count",
@@ -263,6 +263,13 @@ plot_histogram <- function(data,
                                              linetype='solid')
     } else{
       x.axis.line.c <- ggplot2::element_blank()
+    }
+
+  # Specify color
+    if(group.var == ""){
+      color <- color[1]
+    } else{
+
     }
 
   # Specify the primary graph properties

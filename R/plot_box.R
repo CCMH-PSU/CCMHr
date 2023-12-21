@@ -67,8 +67,8 @@ plot_box <- function(data,
                      x.var,
                      y.var,
                      group.var = "",
-                     color = c('#E6AB02', '#1B9E77',
-                               '#666666', '#D95F02',
+                     color = c('#666666', '#1B9E77',
+                               '#E6AB02', '#D95F02',
                                '#6db6ff', '#b66dff',
                                '#ff6db6', '#920000'),
                      x.order.manual = NULL,
@@ -261,6 +261,13 @@ plot_box <- function(data,
       } else{
         x.axis.line.c <- ggplot2::element_blank()
       }
+
+  # Specify color
+    if(group.var == ""){
+      color <- color[1]
+    } else{
+
+    }
 
   # Specify basic plot information and if grouping will occur
     plot.1 <- ggplot2::ggplot(data,

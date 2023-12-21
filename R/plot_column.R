@@ -69,8 +69,8 @@ plot_column <- function(data,
                         x.var,
                         y.var,
                         group.var = "",
-                        color = c('#E6AB02', '#1B9E77',
-                                  '#666666', '#D95F02',
+                        color = c('#666666', '#1B9E77',
+                                  '#E6AB02', '#D95F02',
                                   '#6db6ff', '#b66dff',
                                   '#ff6db6', '#920000'),
                         x.ascend = FALSE,
@@ -377,13 +377,21 @@ plot_column <- function(data,
       y.label.typea <- NULL
     }
 
+  # Specify color
+    if(group.var == ""){
+      color <- color[1]
+    } else{
+
+    }
+
   # Specify the primary graph properties and x axis order
     col.graph <- ggplot2::ggplot(data,
       {if(x.ascend  == TRUE &
           group.var == ""){
 
         ggplot2::aes(x = forcats::fct_reorder({{x.var1}}, {{y.var1}}),
-                     y = {{y.var1}})
+                     y = {{y.var1}},
+                     fill = color)
 
        } else if(x.ascend  == TRUE &
                  group.var != ""){
@@ -396,7 +404,8 @@ plot_column <- function(data,
                  group.var == ""){
 
          ggplot2::aes(x = forcats::fct_rev(forcats::fct_reorder({{x.var1}}, {{y.var1}})),
-                      y = {{y.var1}})
+                      y = {{y.var1}},
+                      fill = color)
 
        } else if(x.descend  == TRUE &
                  group.var != ""){
@@ -409,7 +418,8 @@ plot_column <- function(data,
                  group.var == ""){
 
          ggplot2::aes(x = {{x.var1}},
-                      y = {{y.var1}})
+                      y = {{y.var1}},
+                      fill = color)
 
        } else if(!is.null(x.order.manual) &
                  group.var != ""){
@@ -430,7 +440,8 @@ plot_column <- function(data,
        } else{
 
          ggplot2::aes(x = {{x.var1}},
-                      y = {{y.var1}})
+                      y = {{y.var1}},
+                      fill = color)
 
       }}) +
 
