@@ -1,5 +1,6 @@
 #' A function to create standardized CCMH box plot's
 #'
+#' @name plot_box
 #' @description Creates standardized CCMH box plot's using ggplot2.
 #' @param data A data file containing all variables that will be used in the plot
 #' @param x.var A quoted string or unquoted characters to indicate the variable that will be plotted on the x-axis. The variable class must be a character or factor.
@@ -446,3 +447,6 @@ plot_box <- function(data,
 
 }
 
+#' @rdname plot_box
+#' @export
+  box_plot <- plot_box

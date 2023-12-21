@@ -1,5 +1,6 @@
 #' A function to create standardized CCMH count or percentage bar plot's
 #'
+#' @name plot_bar
 #' @description Creates standardized CCMH count or percentage bar plot's using ggplot2.
 #' @param data A data file containing all variables that will be used in the plot
 #' @param x.var A quoted string to or unquoted characters indicate the variable that will be plotted on the x-axis. The variable class must be a character or factor.
@@ -535,3 +536,6 @@ plot_bar <- function(data,
 
 }
 
+#' @rdname plot_bar
+#' @export
+  bar_plot <- plot_bar

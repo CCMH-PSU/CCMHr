@@ -1,5 +1,6 @@
 #' A function to create standardized CCMH column plot's
 #'
+#' @name plot_column
 #' @description Creates standardized CCMH column plot's using ggplot2.
 #' @param data A data file containing all variables that will be used in the plot
 #' @param x.var A quoted string or unquoted characters to indicate the variable that will be plotted on the x-axis. The variable class must be a character or factor.
@@ -613,4 +614,6 @@ plot_column <- function(data,
 
   }
 
-
+#' @rdname plot_column
+#' @export
+  column_plot <- plot_column
