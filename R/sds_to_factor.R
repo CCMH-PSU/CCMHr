@@ -645,6 +645,48 @@ sds_to_factor <- function(data){
                     `12` = "Other (please specify)")
   }
 
+  if ("SDS_111" %in% names(data)) {
+    data$SDS_111<- as.factor(data$SDS_111) %>%
+      forcats::fct_inseq() %>%
+      dplyr::recode(`0` = "No",
+                    `1` = "Yes")
+  }
+
+  if ("SDS_112" %in% names(data)) {
+    data$SDS_112<- as.factor(data$SDS_112) %>%
+      forcats::fct_inseq() %>%
+      dplyr::recode(`0` = "No",
+                    `1` = "Yes")
+  }
+
+  if ("SDS_113" %in% names(data)) {
+    data$SDS_113<- as.factor(data$SDS_113) %>%
+      forcats::fct_inseq() %>%
+      dplyr::recode(`0` = "No",
+                    `1` = "Yes")
+  }
+
+  if ("SDS_114" %in% names(data)) {
+    data$SDS_114<- as.factor(data$SDS_114) %>%
+      forcats::fct_inseq() %>%
+      dplyr::recode(`0` = "No",
+                    `1` = "Yes")
+  }
+
+  if ("SDS_115" %in% names(data)) {
+    data$SDS_115<- as.factor(data$SDS_115) %>%
+      forcats::fct_inseq() %>%
+      dplyr::recode(`0` = "No",
+                    `1` = "Yes")
+  }
+
+  if ("SDS_116" %in% names(data)) {
+    data$SDS_116<- as.factor(data$SDS_116) %>%
+      forcats::fct_inseq() %>%
+      dplyr::recode(`0` = "No",
+                    `1` = "Yes")
+  }
+
   return(data)
   })
 }
