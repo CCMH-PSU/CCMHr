@@ -45,6 +45,10 @@
 #' @param y.grid.major.color A hex code that indicates the color of the y axis major grid lines. By default, `"#d3d3d3"` or a shade of light grey.
 #' @param y.grid.major.size A numeric value to indicate the thickness of the y axis major grid lines. By default, `0.5`.
 #' @param y.grid.major.linetype A numeric value to indicate the line type of the y axis major grid. By default, `1`.
+#' @param y.grid.minor A logical statement to indicate if the y axis minor grid lines should be added to the plot. By default, `FALSE`,
+#' @param y.grid.minor.color A hex code that indicates the color of the y axis minor grid lines. By default, `"#d3d3d3"` or a shade of light grey.
+#' @param y.grid.minor.size A numeric value to indicate the thickness of the y axis minor grid lines. By default, `0.25`.
+#' @param y.grid.minor.linetype A numeric value to indicate the line type of the y axis minor grid. By default, `1`.
 #' @param y.axis.line A logical statement to indicate if the y axis line should be included. By default, `TRUE`.
 #' @param x.axis.line A logical statement to indicate if the x axis line should be included. By default, `TRUE`.
 #' @param remove.axis.ticks A logical statement to indicate if the axis ticks should be excluded. By default, `FALSE`.
@@ -110,6 +114,10 @@ plot_box <- function(data,
                      y.grid.major.color = "#d3d3d3",
                      y.grid.major.size = 0.5,
                      y.grid.major.linetype = 1,
+                     y.grid.minor = FALSE,
+                     y.grid.minor.color = "#d3d3d3",
+                     y.grid.minor.size = 0.25,
+                     y.grid.minor.linetype = 1,
                      y.axis.line = TRUE,
                      x.axis.line = TRUE,
                      remove.axis.ticks = FALSE,
@@ -224,6 +232,15 @@ plot_box <- function(data,
       } else {
         y.breaks.c <- y.breaks
       }
+
+  # Specify Y Minor Grid
+    if(y.grid.minor == TRUE){
+      grid.min <- ggplot2::element_line(color = y.grid.minor.color,
+                                        linewidth = y.grid.minor.size,
+                                        linetype = y.grid.minor.linetype)
+    } else {
+      grid.min <- ggplot2::element_blank()
+    }
 
     # Specify y axis lables
       if(y.label.type == "percent"){
@@ -341,6 +358,7 @@ plot_box <- function(data,
   # Specify the plots theme information
     ggplot2::theme(panel.grid = ggplot2::element_blank(),
                    panel.grid.major.y = grid.maj,
+                   panel.grid.minor.y = grid.min,
                    panel.background = ggplot2::element_rect(fill = 'white',
                                                             color = NA),
                    plot.margin = ggplot2::margin(t = 0.5,  # Top margin

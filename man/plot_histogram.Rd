@@ -48,10 +48,18 @@ plot_histogram(
   y.grid.major.color = "#d3d3d3",
   y.grid.major.size = 0.5,
   y.grid.major.linetype = 1,
+  y.grid.minor = FALSE,
+  y.grid.minor.color = "#d3d3d3",
+  y.grid.minor.size = 0.25,
+  y.grid.minor.linetype = 1,
   x.grid.major = FALSE,
   x.grid.major.color = "#d3d3d3",
   x.grid.major.size = 0.5,
   x.grid.major.linetype = 1,
+  x.grid.minor = FALSE,
+  x.grid.minor.color = "#d3d3d3",
+  x.grid.minor.size = 0.25,
+  x.grid.minor.linetype = 1,
   y.axis.line = TRUE,
   x.axis.line = TRUE,
   remove.axis.ticks = FALSE,
@@ -109,10 +117,18 @@ histogram_plot(
   y.grid.major.color = "#d3d3d3",
   y.grid.major.size = 0.5,
   y.grid.major.linetype = 1,
+  y.grid.minor = FALSE,
+  y.grid.minor.color = "#d3d3d3",
+  y.grid.minor.size = 0.25,
+  y.grid.minor.linetype = 1,
   x.grid.major = FALSE,
   x.grid.major.color = "#d3d3d3",
   x.grid.major.size = 0.5,
   x.grid.major.linetype = 1,
+  x.grid.minor = FALSE,
+  x.grid.minor.color = "#d3d3d3",
+  x.grid.minor.size = 0.25,
+  x.grid.minor.linetype = 1,
   y.axis.line = TRUE,
   x.axis.line = TRUE,
   remove.axis.ticks = FALSE,
@@ -210,6 +226,14 @@ histogram_plot(
 
 \item{y.grid.major.linetype}{A numeric value to indicate the line type of the y axis major grid. By default, \code{1}.}
 
+\item{y.grid.minor}{A logical statement to indicate if the y axis minor grid lines should be added to the plot. By default, \code{FALSE},}
+
+\item{y.grid.minor.color}{A hex code that indicates the color of the y axis minor grid lines. By default, \code{"#d3d3d3"} or a shade of light grey.}
+
+\item{y.grid.minor.size}{A numeric value to indicate the thickness of the y axis minor grid lines. By default, \code{0.25}.}
+
+\item{y.grid.minor.linetype}{A numeric value to indicate the line type of the y axis minor grid. By default, \code{1}.}
+
 \item{x.grid.major}{A logical statement to indicate if the y axis major grid lines should be added to the plot. By default, \code{FALSE},}
 
 \item{x.grid.major.color}{A hex code that indicates the color of the y axis major grid lines. By default, \code{"#d3d3d3"} or a shade of light grey.}
@@ -217,6 +241,14 @@ histogram_plot(
 \item{x.grid.major.size}{A numeric value to indicate the thickness of the y axis major grid lines. By default, \code{0.5}.}
 
 \item{x.grid.major.linetype}{A numeric value to indicate the line type of the y axis major grid. By default, \code{1}.}
+
+\item{x.grid.minor}{A logical statement to indicate if the x axis minor grid lines should be added to the plot. By default, \code{FALSE},}
+
+\item{x.grid.minor.color}{A hex code that indicates the color of the x axis minor grid lines. By default, \code{"#d3d3d3"} or a shade of light grey.}
+
+\item{x.grid.minor.size}{A numeric value to indicate the thickness of the x axis minor grid lines. By default, \code{0.25}.}
+
+\item{x.grid.minor.linetype}{A numeric value to indicate the line type of the x axis minor grid. By default, \code{1}.}
 
 \item{y.axis.line}{A logical statement to indicate if the y axis line should be included. By default, \code{TRUE}.}
 

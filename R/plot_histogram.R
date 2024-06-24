@@ -43,10 +43,18 @@
 #' @param y.grid.major.color A hex code that indicates the color of the y axis major grid lines. By default, `"#d3d3d3"` or a shade of light grey.
 #' @param y.grid.major.size A numeric value to indicate the thickness of the y axis major grid lines. By default, `0.5`.
 #' @param y.grid.major.linetype A numeric value to indicate the line type of the y axis major grid. By default, `1`.
+#' @param y.grid.minor A logical statement to indicate if the y axis minor grid lines should be added to the plot. By default, `FALSE`,
+#' @param y.grid.minor.color A hex code that indicates the color of the y axis minor grid lines. By default, `"#d3d3d3"` or a shade of light grey.
+#' @param y.grid.minor.size A numeric value to indicate the thickness of the y axis minor grid lines. By default, `0.25`.
+#' @param y.grid.minor.linetype A numeric value to indicate the line type of the y axis minor grid. By default, `1`.
 #' @param x.grid.major A logical statement to indicate if the y axis major grid lines should be added to the plot. By default, `FALSE`,
 #' @param x.grid.major.color A hex code that indicates the color of the y axis major grid lines. By default, `"#d3d3d3"` or a shade of light grey.
 #' @param x.grid.major.size A numeric value to indicate the thickness of the y axis major grid lines. By default, `0.5`.
 #' @param x.grid.major.linetype A numeric value to indicate the line type of the y axis major grid. By default, `1`.
+#' @param x.grid.minor A logical statement to indicate if the x axis minor grid lines should be added to the plot. By default, `FALSE`,
+#' @param x.grid.minor.color A hex code that indicates the color of the x axis minor grid lines. By default, `"#d3d3d3"` or a shade of light grey.
+#' @param x.grid.minor.size A numeric value to indicate the thickness of the x axis minor grid lines. By default, `0.25`.
+#' @param x.grid.minor.linetype A numeric value to indicate the line type of the x axis minor grid. By default, `1`.
 #' @param y.axis.line A logical statement to indicate if the y axis line should be included. By default, `TRUE`.
 #' @param x.axis.line A logical statement to indicate if the x axis line should be included. By default, `TRUE`.
 #' @param remove.axis.ticks A logical statement to indicate if the axis ticks should be excluded. By default, `FALSE`.
@@ -110,10 +118,18 @@ plot_histogram <- function(data,
                            y.grid.major.color = "#d3d3d3",
                            y.grid.major.size = 0.5,
                            y.grid.major.linetype = 1,
+                           y.grid.minor = FALSE,
+                           y.grid.minor.color = "#d3d3d3",
+                           y.grid.minor.size = 0.25,
+                           y.grid.minor.linetype = 1,
                            x.grid.major = FALSE,
                            x.grid.major.color = "#d3d3d3",
                            x.grid.major.size = 0.5,
                            x.grid.major.linetype = 1,
+                           x.grid.minor = FALSE,
+                           x.grid.minor.color = "#d3d3d3",
+                           x.grid.minor.size = 0.25,
+                           x.grid.minor.linetype = 1,
                            y.axis.line = TRUE,
                            x.axis.line = TRUE,
                            remove.axis.ticks = FALSE,
@@ -239,6 +255,15 @@ plot_histogram <- function(data,
       grid.maj.y <- ggplot2::element_blank()
     }
 
+  # Specify Y Minor Grid
+    if(y.grid.minor == TRUE){
+      grid.min.y <- ggplot2::element_line(color = y.grid.minor.color,
+                                          linewidth = y.grid.minor.size,
+                                          linetype = y.grid.minor.linetype)
+    } else {
+      grid.min.y <- ggplot2::element_blank()
+    }
+
   # Specify X Major Grid
     if(x.grid.major == TRUE){
       grid.maj.x <- ggplot2::element_line(color = x.grid.major.color,
@@ -246,6 +271,15 @@ plot_histogram <- function(data,
                                           linetype = x.grid.major.linetype)
     } else {
       grid.maj.x <- ggplot2::element_blank()
+    }
+
+  # Specify X Minor Grid
+    if(x.grid.minor == TRUE){
+      grid.min.x <- ggplot2::element_line(color = x.grid.minor.color,
+                                          linewidth = x.grid.minor.size,
+                                          linetype = x.grid.minor.linetype)
+    } else {
+      grid.min.x <- ggplot2::element_blank()
     }
 
   # Specify y axis line
@@ -346,7 +380,9 @@ plot_histogram <- function(data,
   # Specify the plots theme information
     ggplot2::theme(panel.grid = ggplot2::element_blank(),
                    panel.grid.major.y = grid.maj.y,
+                   panel.grid.minor.y = grid.min.y,
                    panel.grid.major.x = grid.maj.x,
+                   panel.grid.minor.x = grid.min.x,
                    panel.background = ggplot2::element_rect(fill = 'white',
                                                             color = NA),
                    plot.margin = ggplot2::margin(t = 0.5,  # Top margin
