@@ -4,6 +4,7 @@
 #' @param order_by variable to order by when selecting the first administration.
 #' @param keep_all Columns to keep. `TRUE` will keep all columns, while `FALSE` will keep only IDs and CCAPS subscales, SDS items, or CLICC items.
 #' @param keep_columns A string list of column names to retain. If not specified, and keep_all = FALSE, defaults to the relevent columns for that data form.
+#' @param by_year A logical statement to indicate if first administration by year instead of overall. If `TRUE`, the first administration of each client will be selected by year. If `FALSE`, the first administration of each client will be selected regardless of year. Default = `FALSE`.
 #'
 #' @export
 #'
@@ -19,7 +20,8 @@ select_first_CCAPS <- function(data,
                                                 "Eating62", "Substance62",
                                                 "Anxiety62", "Hostility62",
                                                 "Social_Anxiety62", "Family62",
-                                                "Academics62")) {
+                                                "Academics62"),
+                               by_year = FALSE) {
   # Addressing "no visible binding for global variable" notes in R CMD check
   Is_ValidCCAPS = UniqueClientID = NULL
 
@@ -31,6 +33,10 @@ select_first_CCAPS <- function(data,
     #if Is_ValidCCAPS is missing
       if (!any(names(data) == "Is_ValidCCAPS")) {
        stop("Is_ValidCCAPS variable not present in data")
+      }
+    #if Data_year is missing when by_year = FALSE
+      if (!any(names(data) == "Data_year") & by_year == TRUE) {
+        stop("Data_year variable not present in data")
       }
 
   #Specify keep_all argument (what columns need to be kept)
@@ -56,8 +62,12 @@ select_first_CCAPS <- function(data,
     datatable <- data.table::setorderv(datatable,
                                   orderlist)
 
-  #Obtain by first occurrences
-    datatable <- datatable[, .SD[1], by=.(UniqueClientID)][, ..keep_columns]
+  #First administration by year
+    if(by_year == TRUE) {
+      datatable <- datatable[, .SD[1], by=.(UniqueClientID, Data_year)][, ..keep_columns]
+    } else {
+      datatable <- datatable[, .SD[1], by=.(UniqueClientID)][, ..keep_columns]
+    }
 
   #Return data table as a data frame
     return(as.data.frame(datatable))
@@ -70,7 +80,8 @@ select_first_CCAPS <- function(data,
 select_first_SDS <- function(data,
                              order_by = "Date",
                              keep_all = FALSE,
-                             keep_columns = "SDS") {
+                             keep_columns = "SDS",
+                             by_year = FALSE) {
 
   # Addressing "no visible binding for global variable" notes in R CMD check
   Has_SDS = UniqueClientID = NULL
@@ -83,6 +94,10 @@ select_first_SDS <- function(data,
     #if Has_SDS is missing
       if (!"Has_SDS" %in% names(data)) {
         stop("Has_SDS variable not present in data")
+      }
+    #if Data_year is missing when by_year = FALSE
+      if (!any(names(data) == "Data_year") & by_year == TRUE) {
+        stop("Data_year variable not present in data")
       }
 
   #Setting data table
@@ -99,8 +114,12 @@ select_first_SDS <- function(data,
     datatable <- data.table::setorderv(datatable,
                                   orderlist)
 
-  #Obtain by first occurrences
-    datatable <- datatable[, .SD[1], by=.(UniqueClientID)]
+  #First administration by year
+    if(by_year == TRUE) {
+      datatable <- datatable[, .SD[1], by=.(UniqueClientID, Data_year)]
+    } else {
+      datatable <- datatable[, .SD[1], by=.(UniqueClientID)]
+    }
 
   #Specify keep_all and keep_columns argument (what columns need to be kept)
     if(keep_all == TRUE) {
@@ -134,7 +153,8 @@ select_first_SDS <- function(data,
 select_first_CLICC <- function(data,
                                order_by = "Date",
                                keep_all = FALSE,
-                               keep_columns = "CLICC") {
+                               keep_columns = "CLICC",
+                               by_year = FALSE) {
 
   # Addressing "no visible binding for global variable" notes in R CMD check
   Has_CLICC = UniqueClientID = NULL
@@ -147,6 +167,10 @@ select_first_CLICC <- function(data,
     #If Has_CLICC is missing
       if (!"Has_CLICC" %in% names(data)) {
         stop("Has_CLICC variable not present in data")
+      }
+    #if Data_year is missing when by_year = FALSE
+      if (!any(names(data) == "Data_year") & by_year == TRUE) {
+        stop("Data_year variable not present in data")
       }
 
   #Setting data table
@@ -163,8 +187,12 @@ select_first_CLICC <- function(data,
     datatable <- data.table::setorderv(datatable,
                                   orderlist)
 
-  #Obtain by first occurrences
-    datatable <- datatable[, .SD[1], by=.(UniqueClientID)]
+  #First administration by year
+    if(by_year == TRUE) {
+      datatable <- datatable[, .SD[1], by=.(UniqueClientID, Data_year)]
+    } else {
+      datatable <- datatable[, .SD[1], by=.(UniqueClientID)]
+    }
 
   #Specify keep_all and keep_columns argument (what columns need to be kept)
     if(keep_all == TRUE) {
@@ -186,12 +214,7 @@ select_first_CLICC <- function(data,
         }
       }
 
-
     #Return as a data frame
       return(as.data.frame(datatable))
 }
-
-
-
-
 

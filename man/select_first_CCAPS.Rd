@@ -13,21 +13,24 @@ select_first_CCAPS(
   keep_columns = c("UniqueClientID", "CcmhID", "Depression34", "Anxiety34",
     "Social_Anxiety34", "Academics34", "Eating34", "Hostility34", "Alcohol34", "DI",
     "Depression62", "Eating62", "Substance62", "Anxiety62", "Hostility62",
-    "Social_Anxiety62", "Family62", "Academics62")
+    "Social_Anxiety62", "Family62", "Academics62"),
+  by_year = FALSE
 )
 
 select_first_SDS(
   data,
   order_by = "Date",
   keep_all = FALSE,
-  keep_columns = "SDS"
+  keep_columns = "SDS",
+  by_year = FALSE
 )
 
 select_first_CLICC(
   data,
   order_by = "Date",
   keep_all = FALSE,
-  keep_columns = "CLICC"
+  keep_columns = "CLICC",
+  by_year = FALSE
 )
 }
 \arguments{
@@ -38,6 +41,8 @@ select_first_CLICC(
 \item{keep_all}{Columns to keep. \code{TRUE} will keep all columns, while \code{FALSE} will keep only IDs and CCAPS subscales, SDS items, or CLICC items.}
 
 \item{keep_columns}{A string list of column names to retain. If not specified, and keep_all = FALSE, defaults to the relevent columns for that data form.}
+
+\item{by_year}{A logical statement to indicate if first administration by year instead of overall. If \code{TRUE}, the first administration of each client will be selected by year. If \code{FALSE}, the first administration of each client will be selected regardless of year. Default = \code{FALSE}.}
 }
 \description{
 Select each client's first administration of a specified survey
