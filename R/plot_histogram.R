@@ -10,11 +10,12 @@
 #' @param hist.position A quoted string to indicate the histogram position adjustment. By default, `identity`.
 #' @param save A logical statement indicates whether the plot should be saved as a file under a local folder. If false, the plot will be returned as an object. By default, `FALSE`.
 #' @param path A quoted string to indicate the file's pathway and name if `save = TRUE`. By default, `"plot.png"`.
-#' @param plot.width A numeric value to indicate the plot's width. By default, `15.24`.
-#' @param plot.height A numeric value to indicate the plot's height. By default, `12.7`.
-#' @param plot.units A quoted string to indicate the plot's width and height size units. Options include `in`, `cm`, `mm`, and `px`. By default, `cm`.
-#' @param plot.dpi A numeric value to indicate the plot's image resolution. By default, `320`.
+#' @param plot.width A numeric value to indicate the plot's width. By default, `1200`.
+#' @param plot.height A numeric value to indicate the plot's height. By default, `900`.
+#' @param plot.units A quoted string to indicate the plot's width and height size units. Options include `in`, `cm`, `mm`, and `px`. By default, `px`.
+#' @param plot.dpi A numeric value to indicate the plot's image resolution. By default, `96`.
 #' @param plot.device A quoted string or function to indicate the plot's device. By default, `NULL`.
+#' @param plot.scale A numeric value to indicate the plot's scale. By default, `1`.
 #' @param plot.title A quoted string to indicate the title of the plot. By default, `NULL`.
 #' @param x.title A quoted string to indicate the x axis title. By default, `NULL`.
 #' @param y.title A quoted string to indicate the y axis title. By default, `NULL`.
@@ -86,11 +87,12 @@ plot_histogram <- function(data,
                            hist.position = "identity",
                            save = FALSE,
                            path = "plot.png",
-                           plot.width = 15.24,
-                           plot.height = 12.7,
-                           plot.units = "cm",
-                           plot.dpi = 320,
+                           plot.width = 1200,
+                           plot.height = 900,
+                           plot.units = "px",
+                           plot.dpi = 96,
                            plot.device = NULL,
+                           plot.scale = 1,
                            plot.title = NULL,
                            x.title = NULL,
                            y.title = NULL,
@@ -459,7 +461,8 @@ plot_histogram <- function(data,
              height = plot.height,
              units = plot.units,
              dpi = plot.dpi,
-             device = plot.device)
+             device = plot.device,
+             scale = plot.scale)
 
     } else{
 

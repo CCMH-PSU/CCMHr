@@ -14,11 +14,12 @@ plot_line(
     "#920000"),
   save = FALSE,
   path = "plot.png",
-  plot.width = 15.24,
-  plot.height = 12.7,
-  plot.units = "cm",
-  plot.dpi = 320,
+  plot.width = 1200,
+  plot.height = 900,
+  plot.units = "px",
+  plot.dpi = 96,
   plot.device = NULL,
+  plot.scale = 1,
   hide.group.items = NULL,
   plot.title = NULL,
   x.title = NULL,
@@ -77,11 +78,12 @@ line_plot(
     "#920000"),
   save = FALSE,
   path = "plot.png",
-  plot.width = 15.24,
-  plot.height = 12.7,
-  plot.units = "cm",
-  plot.dpi = 320,
+  plot.width = 1200,
+  plot.height = 900,
+  plot.units = "px",
+  plot.dpi = 96,
   plot.device = NULL,
+  plot.scale = 1,
   hide.group.items = NULL,
   plot.title = NULL,
   x.title = NULL,
@@ -146,15 +148,17 @@ line_plot(
 
 \item{path}{A quoted string to indicate the file's pathway and name if \code{save = TRUE}. By default, \code{"plot.png"}.}
 
-\item{plot.width}{A numeric value to indicate the plot's width. By default, \code{15.24}.}
+\item{plot.width}{A numeric value to indicate the plot's width. By default, \code{1200}.}
 
-\item{plot.height}{A numeric value to indicate the plot's height. By default, \code{12.7}.}
+\item{plot.height}{A numeric value to indicate the plot's height. By default, \code{900}.}
 
-\item{plot.units}{A quoted string to indicate the plot's width and height size units. Options include \verb{in}, \code{cm}, \code{mm}, and \code{px}. By default, \code{cm}.}
+\item{plot.units}{A quoted string to indicate the plot's width and height size units. Options include \verb{in}, \code{cm}, \code{mm}, and \code{px}. By default, \code{px}.}
 
-\item{plot.dpi}{A numeric value to indicate the plot's image resolution. By default, \code{320}.}
+\item{plot.dpi}{A numeric value to indicate the plot's image resolution. By default, \code{96}.}
 
 \item{plot.device}{A quoted string or function to indicate the plot's device. By default, \code{NULL}.}
+
+\item{plot.scale}{A numeric value to indicate the plot's scale. By default, \code{1}.}
 
 \item{hide.group.items}{A quoted string or list to indicate the group variable items to be hidden in the plot. See Note 2. By default, \code{NULL}.}
 
