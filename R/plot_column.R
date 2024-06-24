@@ -35,6 +35,7 @@
 #' @param x.remove A logical statement to indicate whether x-axis title, labels, and ticks should be removed. By default, `FALSE`.
 #' @param caption A logical statement to indicate whether the CCMH caption should be included in the plot. By default, `FALSE`.
 #' @param caption.size A numeric value to indicate the caption text size. By default, `12`.
+#' @param caption.vjust A numeric value to indicate the caption vertical adjustment. By default, `0`.
 #' @param legend.position A quoted string or numeric vector to indicate the location of the legend. Options include `"left"`,`"top"`, `"right"`, `"bottom"`, `"none"`, or numeric vector c(x,y). By default, `"none"`.
 #' @param legend.order.manual A list of quoted strings to indicate the order of the legend. By default, `NULL`.
 #' @param legend.title A quoted string to indicate the legend title. By default, `NULL`.
@@ -106,6 +107,7 @@ plot_column <- function(data,
                         x.remove = FALSE,
                         caption = FALSE,
                         caption.size = 12,
+                        caption.vjust = 0,
                         legend.position = "none",
                         legend.order.manual = NULL,
                         legend.title = NULL,
@@ -270,6 +272,20 @@ plot_column <- function(data,
   # Specify to remove legend or x axis information from the plot
     if(!is.null(hide.group.items) |
        !is.null(hide.x.items)){
+
+     # Add hide.x.items if null
+       if(is.null(hide.x.items)){
+         hide.x.items <- ""
+       } else{
+
+       }
+
+     # Add hide.group.items if null
+       if(is.null(hide.group.items)){
+         hide.group.items <- ""
+       } else{
+
+       }
 
      # Remove column based on fill information
        if(!is.null(hide.group.items)){
@@ -548,7 +564,8 @@ plot_column <- function(data,
                                                                                  l = 0)),
                    axis.line.x = x.axis.line.c,
                    axis.line.y = y.axis.line.c,
-                   plot.caption = ggplot2::element_text(size = caption.size),
+                   plot.caption = ggplot2::element_text(size = caption.size,
+                                                        vjust = caption.vjust),
                    legend.position = legend.position,
                    legend.background = ggplot2::element_rect(fill = "white",
                                                              colour = "white",

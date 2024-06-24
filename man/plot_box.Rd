@@ -40,6 +40,7 @@ plot_box(
   x.remove = FALSE,
   caption = FALSE,
   caption.size = 12,
+  caption.vjust = 0,
   legend.position = "none",
   legend.order.manual = NULL,
   legend.title = NULL,
@@ -103,6 +104,7 @@ box_plot(
   x.remove = FALSE,
   caption = FALSE,
   caption.size = 12,
+  caption.vjust = 0,
   legend.position = "none",
   legend.order.manual = NULL,
   legend.title = NULL,
@@ -197,6 +199,8 @@ box_plot(
 \item{caption}{A logical statement to indicate whether the CCMH caption should be included in the plot. By default, \code{FALSE}.}
 
 \item{caption.size}{A numeric value to indicate the caption text size. By default, \code{12}.}
+
+\item{caption.vjust}{A numeric value to indicate the caption vertical adjustment. By default, \code{0}.}
 
 \item{legend.position}{A quoted string or numeric vector to indicate the location of the legend. Options include \code{"left"},\code{"top"}, \code{"right"}, \code{"bottom"}, \code{"none"}, or numeric vector c(x,y). By default, \code{"none"}.}
 

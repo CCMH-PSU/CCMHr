@@ -33,6 +33,7 @@ plot_line(
   y.breaks = NULL,
   caption = FALSE,
   caption.size = 12,
+  caption.vjust = 0,
   legend.position = "none",
   legend.order.manual = NULL,
   legend.title = NULL,
@@ -95,6 +96,7 @@ line_plot(
   y.breaks = NULL,
   caption = FALSE,
   caption.size = 12,
+  caption.vjust = 0,
   legend.position = "none",
   legend.order.manual = NULL,
   legend.title = NULL,
@@ -182,6 +184,8 @@ line_plot(
 
 \item{caption.size}{A numeric value to indicate the caption text size. By default, \code{12}.}
 
+\item{caption.vjust}{A numeric value to indicate the caption vertical adjustment. By default, \code{0}.}
+
 \item{legend.position}{A quoted string or numeric vector to indicate the location of the legend. Options include \code{"left"},\code{"top"}, \code{"right"}, \code{"bottom"}, \code{"none"}, or numeric vector c(x,y). By default, \code{"none"}.}
 
 \item{legend.order.manual}{A list of quoted strings to indicate the order of the legend. By default, \code{NULL}.}
@@ -235,6 +239,14 @@ line_plot(
 \item{plot.element4}{A ggplot plot function and arguments needed for the plot and specified as an object. By default, \code{NULL}.}
 
 \item{plot.element5}{A ggplot plot function and arguments needed for the plot and specified as an object. By default, \code{NULL}.}
+
+\item{plot.element6}{A ggplot plot function and arguments needed for the plot and specified as an object. By default, \code{NULL}.}
+
+\item{plot.element7}{A ggplot plot function and arguments needed for the plot and specified as an object. By default, \code{NULL}.}
+
+\item{plot.element8}{A ggplot plot function and arguments needed for the plot and specified as an object. By default, \code{NULL}.}
+
+\item{plot.element9}{A ggplot plot function and arguments needed for the plot and specified as an object. By default, \code{NULL}.}
 }
 \value{
 A column plot returned as a object or saved under a local file.

@@ -28,6 +28,7 @@
 #' @param y.breaks Numeric values or a sequence that indicates breaks on the y axis. By default, `NULL`.
 #' @param caption A logical statement to indicate whether the CCMH caption should be included in the plot. By default, `FALSE`.
 #' @param caption.size A numeric value to indicate the caption text size. By default, `12`.
+#' @param caption.vjust A numeric value to indicate the caption vertical adjustment. By default, `0`.
 #' @param legend.position A quoted string or numeric vector to indicate the location of the legend. Options include `"left"`,`"top"`, `"right"`, `"bottom"`, `"none"`, or numeric vector c(x,y). By default, `"none"`.
 #' @param legend.order.manual A list of quoted strings to indicate the order of the legend. By default, `NULL`.
 #' @param legend.title A quoted string to indicate the legend title. By default, `NULL`.
@@ -55,6 +56,10 @@
 #' @param plot.element3 A ggplot plot function and arguments needed for the plot and specified as an object. By default, `NULL`.
 #' @param plot.element4 A ggplot plot function and arguments needed for the plot and specified as an object. By default, `NULL`.
 #' @param plot.element5 A ggplot plot function and arguments needed for the plot and specified as an object. By default, `NULL`.
+#' @param plot.element6 A ggplot plot function and arguments needed for the plot and specified as an object. By default, `NULL`.
+#' @param plot.element7 A ggplot plot function and arguments needed for the plot and specified as an object. By default, `NULL`.
+#' @param plot.element8 A ggplot plot function and arguments needed for the plot and specified as an object. By default, `NULL`.
+#' @param plot.element9 A ggplot plot function and arguments needed for the plot and specified as an object. By default, `NULL`.
 #'
 #' @note Note 1. The argument `color` specifies the color of points within the grouped variable. For example, the group variable items could be the name of automobile companies (i.e., Ford, Dodge, BMV). You can specify color randomly for each company using this list: `c("#21501b", "#c51329", "#074e67")`. Or you can specify color directly to each specific company using this list: `c("Ford" = "#21501b", "Dodge" = "#c51329", "BMV" = "#074e67")`. Default colors are color blind safe.
 #' @note Note 2. The `hide.group.items` function hides points in the plot while keeping the hidden points position. This argument was intended to be used when preparing plots for presentation, where the presenter wants to present data in a specified order instead of displaying all the data at once. Fit lines will not be removed.
@@ -92,6 +97,7 @@ plot_line <- function(data,
                       y.breaks = NULL,
                       caption = FALSE,
                       caption.size = 12,
+                      caption.vjust = 0,
                       legend.position = "none",
                       legend.order.manual = NULL,
                       legend.title = NULL,
@@ -439,7 +445,8 @@ plot_line <- function(data,
                                                                                  l = 0)),
                    axis.line.x = x.axis.line.c,
                    axis.line.y = y.axis.line.c,
-                   plot.caption = ggplot2::element_text(size = caption.size),
+                   plot.caption = ggplot2::element_text(size = caption.size,
+                                                        vjust = caption.vjust),
                    legend.position = legend.position,
                    legend.background = ggplot2::element_rect(fill = "white",
                                                              colour = "white",
