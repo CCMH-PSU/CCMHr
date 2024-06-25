@@ -89,7 +89,8 @@ setup_analysis <- function(name,
 
       # Add templates
         if(R.folder == TRUE & add.rfiles == TRUE){
-            usethis::use_template(template = "data_processing",
+
+            usethis::use_template(template = "data_processing.R",
                                   save_as = paste0("R/01_process.R"),
                                   package = "CCMHr",
                                   data = list(main.folder.name = main.folder.name),
