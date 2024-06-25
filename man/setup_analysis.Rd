@@ -8,7 +8,7 @@ setup_analysis(
   name,
   data.folder = TRUE,
   data.folder.rawclean = TRUE,
-  visual.folder = TRUE,
+  visuals.folder = TRUE,
   R.folder = TRUE,
   add.date = TRUE,
   add.folder = NULL,
@@ -23,6 +23,8 @@ setup_analysis(
 
 \item{data.folder.rawclean}{A logical statement to add raw and clean subfolder within the data subfolder. Default is \code{TRUE}.}
 
+\item{visuals.folder}{A logical statement to add visuals subfolder to the main folder. Default is \code{TRUE}.}
+
 \item{R.folder}{A logical statement to add R subfolder to the main subfolder. Default is \code{TRUE}.}
 
 \item{add.date}{A logical statement to add the date to the main folder name. Format is Year-Month (numeric). Default is \code{TRUE}.}
@@ -32,8 +34,6 @@ setup_analysis(
 \item{add.rfiles}{A logical statement to add R files based on templates to the R folder. Default is \code{TRUE}.}
 
 \item{create.rproj}{A logical statement to create a .Rproj file in the main folder. Default is \code{TRUE}.}
-
-\item{visuals.folder}{A logical statement to add visuals subfolder to the main folder. Default is \code{TRUE}.}
 }
 \value{
 A analysis folder and R syntax files to conduct data analysis.

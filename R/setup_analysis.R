@@ -9,20 +9,20 @@
 #' @param add.folder A string or vector list with the names of additional folders to be added to the main and subfolders. When creating a folder that will contain subfolder(s), make sure the main folder is listed before the subfolder(s). Default is `NULL`.
 #' @param add.rfiles A logical statement to add R files based on templates to the R folder. Default is `TRUE`.
 #' @param create.rproj A logical statement to create a .Rproj file in the main folder. Default is `TRUE`.
-#' 
+#'
 #'
 #' @return A analysis folder and R syntax files to conduct data analysis.
 #' @export
 #'
 
-setup_analysis <- function(name, 
-                           data.folder = TRUE, 
-                           data.folder.rawclean = TRUE, 
-                           visual.folder = TRUE, 
-                           R.folder = TRUE, 
+setup_analysis <- function(name,
+                           data.folder = TRUE,
+                           data.folder.rawclean = TRUE,
+                           visuals.folder = TRUE,
+                           R.folder = TRUE,
                            add.date = TRUE,
-                           add.folder = NULL, 
-                           add.rfiles = TRUE, 
+                           add.folder = NULL,
+                           add.rfiles = TRUE,
                            create.rproj = TRUE) {
 
     # Stop if data.folder is FALSE and data.folder.rawclean is TRUE
@@ -54,7 +54,7 @@ setup_analysis <- function(name,
           dir.create(file.path(main.folder.name, "data"))
         } else {
           # Skip
-        }   
+        }
 
       # data/rawclean
         if(data.folder.rawclean == TRUE) {
@@ -107,7 +107,7 @@ setup_analysis <- function(name,
 
     # Create .Rproj file content
       if(create.rproj == TRUE){
-        rproj_content <- 
+        rproj_content <-
             sprintf('Version: 1.0\nProject: %s\n', main.folder.name) %>%
             paste('RStudio.project.context: "Version": "1.0"\n', collapse = "") %>%
             paste('RStudio.cloud.project.name: ""\n', collapse = "") %>%
