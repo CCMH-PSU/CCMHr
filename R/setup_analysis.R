@@ -91,13 +91,13 @@ setup_analysis <- function(name,
         if(R.folder == TRUE & add.rfiles == TRUE){
 
             usethis::use_template(template = "data_processing.R",
-                                  save_as = paste0("R/01_process.R"),
+                                  save_as = paste0(main.folder.name, "/R/01_process.R"),
                                   package = "CCMHr",
                                   data = list(main.folder.name = main.folder.name),
                                   open = TRUE)
 
             usethis::use_template(template = "create_visuals.R",
-                                  save_as = paste0("R/02_visuals.R"),
+                                  save_as = paste0(main.folder.name, "/R/02_visuals.R"),
                                   package = "CCMHr",
                                   data = list(main.folder.name = main.folder.name),
                                   open = TRUE)
