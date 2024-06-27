@@ -149,12 +149,14 @@ select_first_SDS <- function(data,
 
 #' @export
 #' @rdname select_first_CCAPS
+#' @param recode_NA A logical statement to indicate if NA should be recoded to 0. If `TRUE`, NA will be recoded to 0. Default = `FALSE`.
 
 select_first_CLICC <- function(data,
                                order_by = "Date",
                                keep_all = FALSE,
                                keep_columns = "CLICC",
-                               by_year = FALSE) {
+                               by_year = FALSE,
+                               recode_NA = FALSE) {
 
   # Addressing "no visible binding for global variable" notes in R CMD check
   Has_CLICC = UniqueClientID = NULL
@@ -214,18 +216,27 @@ select_first_CLICC <- function(data,
         }
       }
 
+    #Recode NA to 0
+      if(recode_NA == TRUE) {
+        datatable[is.na(datatable)] <- 0
+      } else {
+        #Skip
+      }
+
     #Return as a data frame
       return(as.data.frame(datatable))
 }
 
 #' @export
 #' @rdname select_first_CCAPS
+#' @param recode_NA A logical statement to indicate if NA should be recoded to 0. If `TRUE`, NA will be recoded to 0. Default = `FALSE`.
 
 select_first_Closure <- function(data,
                                  order_by = "Date",
                                  keep_all = FALSE,
                                  keep_columns = "Closure",
-                                 by_year = FALSE) {
+                                 by_year = FALSE,
+                                 recode_NA = FALSE) {
 
   # Addressing "no visible binding for global variable" notes in R CMD check
     Has_Closure = UniqueClientID = NULL
@@ -283,6 +294,13 @@ select_first_Closure <- function(data,
         }
         datatable <- datatable[, keep_columns, with=FALSE]
       }
+    }
+
+  #Recode NA to 0
+    if(recode_NA == TRUE) {
+      datatable[is.na(datatable)] <- 0
+    } else {
+      #Skip
     }
 
   #Return as a data frame

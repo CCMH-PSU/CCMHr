@@ -31,7 +31,8 @@ select_first_CLICC(
   order_by = "Date",
   keep_all = FALSE,
   keep_columns = "CLICC",
-  by_year = FALSE
+  by_year = FALSE,
+  recode_NA = FALSE
 )
 
 select_first_Closure(
@@ -39,7 +40,8 @@ select_first_Closure(
   order_by = "Date",
   keep_all = FALSE,
   keep_columns = "Closure",
-  by_year = FALSE
+  by_year = FALSE,
+  recode_NA = FALSE
 )
 }
 \arguments{
@@ -52,6 +54,8 @@ select_first_Closure(
 \item{keep_columns}{A string list of column names to retain. If not specified, and keep_all = FALSE, defaults to the relevent columns for that data form.}
 
 \item{by_year}{A logical statement to indicate if first administration by year instead of overall. If \code{TRUE}, the first administration of each client will be selected by year. If \code{FALSE}, the first administration of each client will be selected regardless of year. Default = \code{FALSE}.}
+
+\item{recode_NA}{A logical statement to indicate if NA should be recoded to 0. If \code{TRUE}, NA will be recoded to 0. Default = \code{FALSE}.}
 }
 \description{
 Select each client's first administration of a specified survey
