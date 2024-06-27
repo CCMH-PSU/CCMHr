@@ -218,3 +218,73 @@ select_first_CLICC <- function(data,
       return(as.data.frame(datatable))
 }
 
+#' @export
+#' @rdname select_first_CCAPS
+
+select_first_Closure <- function(data,
+                                 order_by = "Date",
+                                 keep_all = FALSE,
+                                 keep_columns = "Closure",
+                                 by_year = FALSE) {
+
+  # Addressing "no visible binding for global variable" notes in R CMD check
+    Has_Closure = UniqueClientID = NULL
+
+  #Error messages presented if specific variables are missing
+    #if order_by specified as an argument (quoted) is missing
+    if (!any(names(data) == order_by)) {
+      stop("order_by variable not present in data")
+    }
+  #If Has_CLOSURE is missing
+    if (!"Has_Closure" %in% names(data)) {
+      stop("Has_Closure variable not present in data")
+    }
+  #if Data_year is missing when by_year = FALSE
+    if (!any(names(data) == "Data_year") & by_year == TRUE) {
+      stop("Data_year variable not present in data")
+    }
+
+  #Setting data table
+    datatable <- data.table::as.data.table(data)
+
+  #Only Valid CLICC
+    datatable <- datatable[Has_Closure == 1,]
+
+  #Order list of variables to be grouped
+    orderlist<- c("UniqueClientID",
+                  order_by)
+
+  #Order data table by order list
+    datatable <- data.table::setorderv(datatable,
+                                       orderlist)
+
+  #First administration by year
+    if(by_year == TRUE) {
+      datatable <- datatable[, .SD[1], by=.(UniqueClientID, Data_year)]
+    } else {
+      datatable <- datatable[, .SD[1], by=.(UniqueClientID)]
+    }
+
+  #Specify keep_all and keep_columns argument (what columns need to be kept)
+    if(keep_all == TRUE) {
+      if(keep_columns[1] != "Closure")
+        usethis::ui_warn("Vector of column names to keep not applicable when keep_all = TRUE. All columns were retained.")
+    } else if(keep_all == FALSE) {
+      if (keep_columns[1] == "Closure") {
+        x.UniqueClientID <- which(colnames(datatable) == "UniqueClientID")
+        x.CcmhID <- which(colnames(datatable) == "CcmhID")
+        x.CLICC <- grep("Closure_", names(datatable), fixed=TRUE)
+        x.list <- list(x.UniqueClientID, x.CcmhID, x.CLICC)
+        x.list <- unlist(x.list, recursive = FALSE)
+        datatable <- datatable[, x.list, with=F]
+      } else {
+        if (!all(keep_columns %in% names(datatable))) {
+          usethis::ui_warn("All columns specified in keep_columns were not present in the data. Only present columns were retained.")
+        }
+        datatable <- datatable[, keep_columns, with=FALSE]
+      }
+    }
+
+  #Return as a data frame
+    return(as.data.frame(datatable))
+}

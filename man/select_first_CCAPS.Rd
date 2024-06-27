@@ -4,6 +4,7 @@
 \alias{select_first_CCAPS}
 \alias{select_first_SDS}
 \alias{select_first_CLICC}
+\alias{select_first_Closure}
 \title{Select each client's first administration of a specified survey}
 \usage{
 select_first_CCAPS(
@@ -30,6 +31,14 @@ select_first_CLICC(
   order_by = "Date",
   keep_all = FALSE,
   keep_columns = "CLICC",
+  by_year = FALSE
+)
+
+select_first_Closure(
+  data,
+  order_by = "Date",
+  keep_all = FALSE,
+  keep_columns = "Closure",
   by_year = FALSE
 )
 }
