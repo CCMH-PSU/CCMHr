@@ -12,17 +12,18 @@ LazyData: true
 RoxygenNote: 7.3.1
 Roxygen: list(markdown = TRUE)
 Depends: R (>= 2.10)
-Imports: dplyr,
+Imports: 
+    dplyr,
     rlang,
     zoo,
     magrittr,
     descr,
     tibble,
     tidyselect,
-    lazyeval, 
+    lazyeval,
     matrixStats,
     gtools,
-    purrr, 
+    purrr,
     forcats,
     plyr,
     usethis,
@@ -30,7 +31,8 @@ Imports: dplyr,
     glue,
     stringr,
     data.table,
-    lubridate, 
-    tidyr
+    lubridate,
+    tidyr,
+    palettes
 Suggests: 
     testthat (>= 2.1.0)
