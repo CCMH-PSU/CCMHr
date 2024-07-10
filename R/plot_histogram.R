@@ -5,7 +5,7 @@
 #' @param data A data file containing all variables that will be used in the plot
 #' @param x.var A quoted string or unquoted characters to indicate the variable that will be plotted on the x-axis. The variable class must be a character or factor.
 #' @param group.var A quoted string to indicate the variable that will used to specify grouping. By default, `""`.
-#' @param color A hex code or list of hex codes that indicates the color based on grouping. See Note 1 for more details. By default, `c('#E6AB02', '#1B9E77', '#666666', '#D95F02', '#6db6ff', '#b66dff', '#ff6db6', '#920000')`.
+#' @param color A hex code or list of hex codes that indicates the color based on grouping. See Note 1 for more details. By default, the 10 colors from `CCMHr::CCMH_categorical_palettes$tolmuted_category10` palette.
 #' @param y.axis.type A quoted string to indicate the type of information displayed on the y axis. Options include `count`, `density`, and `relative_freq`. By default, `count`.
 #' @param hist.position A quoted string to indicate the histogram position adjustment. By default, `identity`.
 #' @param save A logical statement indicates whether the plot should be saved as a file under a local folder. If false, the plot will be returned as an object. By default, `FALSE`.
@@ -27,10 +27,12 @@
 #' @param y.min A numeric value to indicate the minimum number presented on the y axis. By default, `NULL`.
 #' @param y.max A numeric value to indicate the maximum number presented on the y axis. By default, `NULL`.
 #' @param y.breaks Numeric values or a sequence that indicates breaks on the y axis. By default, `NULL`.
+#' @param y.expand A list of two numeric values to indicate the expansion of the y axis. By default, `ggplot2::waiver()`.
 #' @param x.label.type A quoted string or list to customize the x axis labels. Options include `"numeric"`, `"percent"`, `"comma"`, `"sci`, or `"dollar"` . By default, `numeric`.
 #' @param x.min A numeric value to indicate the minimum number presented on the x axis. By default, `NULL`.
 #' @param x.max A numeric value to indicate the maximum number presented on the x axis. By default, `NULL`.
 #' @param x.breaks Numeric values or a sequence that indicates breaks on the x axis. By default, `NULL`.
+#' @param x.expand A list of two numeric values to indicate the expansion of the x axis. By default, `ggplot2::waiver()`.
 #' @param caption A logical statement to indicate whether the CCMH caption should be included in the plot. By default, `FALSE`.
 #' @param caption.size A numeric value to indicate the caption text size. By default, `12`.
 #' @param caption.vjust A numeric value to indicate the caption vertical adjustment. By default, `0`.
@@ -79,10 +81,7 @@
 plot_histogram <- function(data,
                            x.var,
                            group.var = "",
-                           color = c('#666666', '#1B9E77',
-                                     '#E6AB02', '#D95F02',
-                                     '#6db6ff', '#b66dff',
-                                     '#ff6db6', '#920000'),
+                           color = CCMHr::CCMH_categorical_palettes$tolmuted_category10,
                            y.axis.type = "count",
                            hist.position = "identity",
                            save = FALSE,
@@ -104,10 +103,12 @@ plot_histogram <- function(data,
                            y.min = NULL,
                            y.max = NULL,
                            y.breaks = NULL,
+                           y.expand = ggplot2::waiver(),
                            x.label.type = "numeric",
                            x.min = NULL,
                            x.max = NULL,
                            x.breaks = NULL,
+                           x.expand = ggplot2::waiver(),
                            caption = FALSE,
                            caption.size = 12,
                            caption.vjust = 0,
@@ -146,6 +147,9 @@ plot_histogram <- function(data,
                            plot.element7 = NULL,
                            plot.element8 = NULL,
                            plot.element9 = NULL){
+
+  # Specify data as a data frame
+    data <- as.data.frame(data)
 
   # Specify the x-axis variable as a symbol
     x.var1 <- rlang::as_name(rlang::enquo(x.var))
@@ -371,14 +375,14 @@ plot_histogram <- function(data,
       ggplot2::scale_y_continuous(labels = y.label.typea,
                                   limits = c(y.min,
                                              y.max),
-                                  expand = c(0,0),
+                                  expand = y.expand,
                                   breaks = y.breaks.c) +
 
     # Specify x-axis scale
       ggplot2::scale_x_continuous(labels = x.label.typea,
                                   limits = c(x.min,
                                              x.max),
-                                  expand = c(0,0),
+                                  expand = x.expand,
                                   breaks = x.breaks.c) +
 
   # Specify the plots theme information

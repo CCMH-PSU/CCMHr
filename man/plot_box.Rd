@@ -10,8 +10,7 @@ plot_box(
   x.var,
   y.var,
   group.var = "",
-  color = c("#666666", "#1B9E77", "#E6AB02", "#D95F02", "#6db6ff", "#b66dff", "#ff6db6",
-    "#920000"),
+  color = CCMHr::CCMH_categorical_palettes$tolmuted_category10,
   x.order.manual = NULL,
   save = FALSE,
   path = "plot.png",
@@ -37,6 +36,7 @@ plot_box(
   y.min = NULL,
   y.max = NULL,
   y.breaks = NULL,
+  y.expand = ggplot2::waiver(),
   x.wrap = 15,
   x.remove = FALSE,
   caption = FALSE,
@@ -75,8 +75,7 @@ box_plot(
   x.var,
   y.var,
   group.var = "",
-  color = c("#666666", "#1B9E77", "#E6AB02", "#D95F02", "#6db6ff", "#b66dff", "#ff6db6",
-    "#920000"),
+  color = CCMHr::CCMH_categorical_palettes$tolmuted_category10,
   x.order.manual = NULL,
   save = FALSE,
   path = "plot.png",
@@ -102,6 +101,7 @@ box_plot(
   y.min = NULL,
   y.max = NULL,
   y.breaks = NULL,
+  y.expand = ggplot2::waiver(),
   x.wrap = 15,
   x.remove = FALSE,
   caption = FALSE,
@@ -144,7 +144,7 @@ box_plot(
 
 \item{group.var}{A quoted string to indicate the variable that will group the boxes on the x-axis and specify the color of the boxes. The x-axis variable could used to specify colors of each individual boxes. By default, \code{""}.}
 
-\item{color}{A hex code or list of hex codes that indicates the color of the grouped boxes. See Note 1 for more details. By default, \code{c('#E6AB02', '#1B9E77', '#666666', '#D95F02', '#6db6ff', '#b66dff', '#ff6db6', '#920000')}.}
+\item{color}{A hex code or list of hex codes that indicates the color of the grouped boxes. See Note 1 for more details. By default, the 10 colors from \code{CCMHr::CCMH_categorical_palettes$tolmuted_category10} palette.}
 
 \item{x.order.manual}{A list of quoted strings to indicate the order of the x axis. By default, \code{NULL}.}
 
@@ -195,6 +195,8 @@ box_plot(
 \item{y.max}{A numeric value to indicate the maximum number presented on the y axis. By default, \code{NULL}.}
 
 \item{y.breaks}{Numeric values or a sequence that indicates breaks on the y axis. By default, \code{NULL}.}
+
+\item{y.expand}{A list of two numeric values to indicate the expansion of the y axis. By default, \code{ggplot2::waiver()}.}
 
 \item{x.wrap}{A numeric value to indicate the number of characters to wrap the x axis text. By default, \code{15}.}
 

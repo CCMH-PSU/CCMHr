@@ -9,8 +9,7 @@ plot_histogram(
   data,
   x.var,
   group.var = "",
-  color = c("#666666", "#1B9E77", "#E6AB02", "#D95F02", "#6db6ff", "#b66dff", "#ff6db6",
-    "#920000"),
+  color = CCMHr::CCMH_categorical_palettes$tolmuted_category10,
   y.axis.type = "count",
   hist.position = "identity",
   save = FALSE,
@@ -32,10 +31,12 @@ plot_histogram(
   y.min = NULL,
   y.max = NULL,
   y.breaks = NULL,
+  y.expand = ggplot2::waiver(),
   x.label.type = "numeric",
   x.min = NULL,
   x.max = NULL,
   x.breaks = NULL,
+  x.expand = ggplot2::waiver(),
   caption = FALSE,
   caption.size = 12,
   caption.vjust = 0,
@@ -80,8 +81,7 @@ histogram_plot(
   data,
   x.var,
   group.var = "",
-  color = c("#666666", "#1B9E77", "#E6AB02", "#D95F02", "#6db6ff", "#b66dff", "#ff6db6",
-    "#920000"),
+  color = CCMHr::CCMH_categorical_palettes$tolmuted_category10,
   y.axis.type = "count",
   hist.position = "identity",
   save = FALSE,
@@ -103,10 +103,12 @@ histogram_plot(
   y.min = NULL,
   y.max = NULL,
   y.breaks = NULL,
+  y.expand = ggplot2::waiver(),
   x.label.type = "numeric",
   x.min = NULL,
   x.max = NULL,
   x.breaks = NULL,
+  x.expand = ggplot2::waiver(),
   caption = FALSE,
   caption.size = 12,
   caption.vjust = 0,
@@ -154,7 +156,7 @@ histogram_plot(
 
 \item{group.var}{A quoted string to indicate the variable that will used to specify grouping. By default, \code{""}.}
 
-\item{color}{A hex code or list of hex codes that indicates the color based on grouping. See Note 1 for more details. By default, \code{c('#E6AB02', '#1B9E77', '#666666', '#D95F02', '#6db6ff', '#b66dff', '#ff6db6', '#920000')}.}
+\item{color}{A hex code or list of hex codes that indicates the color based on grouping. See Note 1 for more details. By default, the 10 colors from \code{CCMHr::CCMH_categorical_palettes$tolmuted_category10} palette.}
 
 \item{y.axis.type}{A quoted string to indicate the type of information displayed on the y axis. Options include \code{count}, \code{density}, and \code{relative_freq}. By default, \code{count}.}
 
@@ -198,6 +200,8 @@ histogram_plot(
 
 \item{y.breaks}{Numeric values or a sequence that indicates breaks on the y axis. By default, \code{NULL}.}
 
+\item{y.expand}{A list of two numeric values to indicate the expansion of the y axis. By default, \code{ggplot2::waiver()}.}
+
 \item{x.label.type}{A quoted string or list to customize the x axis labels. Options include \code{"numeric"}, \code{"percent"}, \code{"comma"}, \verb{"sci}, or \code{"dollar"} . By default, \code{numeric}.}
 
 \item{x.min}{A numeric value to indicate the minimum number presented on the x axis. By default, \code{NULL}.}
@@ -205,6 +209,8 @@ histogram_plot(
 \item{x.max}{A numeric value to indicate the maximum number presented on the x axis. By default, \code{NULL}.}
 
 \item{x.breaks}{Numeric values or a sequence that indicates breaks on the x axis. By default, \code{NULL}.}
+
+\item{x.expand}{A list of two numeric values to indicate the expansion of the x axis. By default, \code{ggplot2::waiver()}.}
 
 \item{caption}{A logical statement to indicate whether the CCMH caption should be included in the plot. By default, \code{FALSE}.}
 

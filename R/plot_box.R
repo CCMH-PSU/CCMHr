@@ -6,7 +6,7 @@
 #' @param x.var A quoted string or unquoted characters to indicate the variable that will be plotted on the x-axis. The variable class must be a character or factor.
 #' @param y.var A quoted string or unquoted characters to indicate the variable that will be plotted on the y axis. The variable class must be numeric.
 #' @param group.var A quoted string to indicate the variable that will group the boxes on the x-axis and specify the color of the boxes. The x-axis variable could used to specify colors of each individual boxes. By default, `""`.
-#' @param color A hex code or list of hex codes that indicates the color of the grouped boxes. See Note 1 for more details. By default, `c('#E6AB02', '#1B9E77', '#666666', '#D95F02', '#6db6ff', '#b66dff', '#ff6db6', '#920000')`.
+#' @param color A hex code or list of hex codes that indicates the color of the grouped boxes. See Note 1 for more details. By default, the 10 colors from `CCMHr::CCMH_categorical_palettes$tolmuted_category10` palette.
 #' @param x.order.manual A list of quoted strings to indicate the order of the x axis. By default, `NULL`.
 #' @param save A logical statement indicates whether the plot should be saved as a file under a local folder. If false, the plot will be returned as an object. By default, `FALSE`.
 #' @param path A quoted string to indicate the file's pathway and name if `save = TRUE`. By default, `"plot.png"`.
@@ -32,6 +32,7 @@
 #' @param y.min A numeric value to indicate the minimum number presented on the y axis. By default, `NULL`.
 #' @param y.max A numeric value to indicate the maximum number presented on the y axis. By default, `NULL`.
 #' @param y.breaks Numeric values or a sequence that indicates breaks on the y axis. By default, `NULL`.
+#' @param y.expand A list of two numeric values to indicate the expansion of the y axis. By default, `ggplot2::waiver()`.
 #' @param x.wrap A numeric value to indicate the number of characters to wrap the x axis text. By default, `15`.
 #' @param x.remove A logical statement to indicate whether x-axis title, labels, and ticks should be removed. By default, `FALSE`.
 #' @param caption A logical statement to indicate whether the CCMH caption should be included in the plot. By default, `FALSE`.
@@ -74,10 +75,7 @@ plot_box <- function(data,
                      x.var,
                      y.var,
                      group.var = "",
-                     color = c('#666666', '#1B9E77',
-                               '#E6AB02', '#D95F02',
-                               '#6db6ff', '#b66dff',
-                               '#ff6db6', '#920000'),
+                     color = CCMHr::CCMH_categorical_palettes$tolmuted_category10,
                      x.order.manual = NULL,
                      save = FALSE,
                      path = "plot.png",
@@ -103,6 +101,7 @@ plot_box <- function(data,
                      y.min = NULL,
                      y.max = NULL,
                      y.breaks = NULL,
+                     y.expand = ggplot2::waiver(),
                      x.wrap = 15,
                      x.remove = FALSE,
                      caption = FALSE,
@@ -134,6 +133,9 @@ plot_box <- function(data,
                      plot.element7 = NULL,
                      plot.element8 = NULL,
                      plot.element9 = NULL){
+
+    # Specify data as a data frame
+      data <- as.data.frame(data)
 
     # Specify the x-axis variable as a symbol
       x.var1 <- rlang::as_name(rlang::enquo(x.var))
@@ -356,7 +358,7 @@ plot_box <- function(data,
     ggplot2::scale_y_continuous(labels = y.label.typea,
                                 limits = c(y.min,
                                             y.max),
-                                expand = c(0,0),
+                                expand = y.expand,
                                 breaks = y.breaks.c)+
 
   # Specify the plots theme information
