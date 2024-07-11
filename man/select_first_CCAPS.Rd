@@ -11,7 +11,7 @@ select_first_CCAPS(
   data,
   order_by = "Date",
   keep_all = FALSE,
-  keep_columns = c("UniqueClientID", "CcmhID", "Depression34", "Anxiety34",
+  keep_columns = c("UniqueClientID", "CcmhID", "Data_year", "Depression34", "Anxiety34",
     "Social_Anxiety34", "Academics34", "Eating34", "Hostility34", "Alcohol34", "DI",
     "Depression62", "Eating62", "Substance62", "Anxiety62", "Hostility62",
     "Social_Anxiety62", "Family62", "Academics62"),

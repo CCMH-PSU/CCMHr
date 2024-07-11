@@ -13,10 +13,11 @@ select_first_CCAPS <- function(data,
                                order_by = "Date",
                                keep_all = FALSE,
                                keep_columns = c("UniqueClientID", "CcmhID",
-                                                "Depression34", "Anxiety34",
-                                                "Social_Anxiety34", "Academics34",
-                                                "Eating34", "Hostility34",
-                                                "Alcohol34", "DI", "Depression62",
+                                                "Data_year", "Depression34",
+                                                "Anxiety34", "Social_Anxiety34",
+                                                "Academics34", "Eating34",
+                                                "Hostility34", "Alcohol34",
+                                                "DI", "Depression62",
                                                 "Eating62", "Substance62",
                                                 "Anxiety62", "Hostility62",
                                                 "Social_Anxiety62", "Family62",
@@ -129,9 +130,10 @@ select_first_SDS <- function(data,
         if(keep_columns[1] == "SDS") {
           x.UniqueClientID <- which(colnames(datatable) == "UniqueClientID")
           x.CcmhID <- which(colnames(datatable) == "CcmhID")
+          x.Data_year <- which(colnames(datatable) == "Data_year")
           x.SDS <- grep("SDS_", names(datatable), fixed=TRUE)
           x.ClientAge <- which(colnames(datatable) == "ClientAge")
-          x.list <- list(x.UniqueClientID, x.CcmhID, x.SDS, x.ClientAge)
+          x.list <- list(x.UniqueClientID, x.CcmhID, x.Data_year, x.SDS, x.ClientAge)
           x.list <- unlist(x.list, recursive = FALSE)
           datatable <- datatable[, x.list, with=F]
         } else {
@@ -204,8 +206,9 @@ select_first_CLICC <- function(data,
         if (keep_columns[1] == "CLICC") {
           x.UniqueClientID <- which(colnames(datatable) == "UniqueClientID")
           x.CcmhID <- which(colnames(datatable) == "CcmhID")
+          x.Data_year <- which(colnames(datatable) == "Data_year")
           x.CLICC <- grep("CLICC_", names(datatable), fixed=TRUE)
-          x.list <- list(x.UniqueClientID, x.CcmhID, x.CLICC)
+          x.list <- list(x.UniqueClientID, x.CcmhID, x.Data_year, x.CLICC)
           x.list <- unlist(x.list, recursive = FALSE)
           datatable <- datatable[, x.list, with=F]
         } else {
@@ -284,8 +287,9 @@ select_first_Closure <- function(data,
       if (keep_columns[1] == "Closure") {
         x.UniqueClientID <- which(colnames(datatable) == "UniqueClientID")
         x.CcmhID <- which(colnames(datatable) == "CcmhID")
-        x.CLICC <- grep("Closure_", names(datatable), fixed=TRUE)
-        x.list <- list(x.UniqueClientID, x.CcmhID, x.CLICC)
+        x.Data_year <- which(colnames(datatable) == "Data_year")
+        x.CLICC <- grep("CLOSURE_", names(datatable), fixed=TRUE)
+        x.list <- list(x.UniqueClientID, x.CcmhID, x.Data_year, x.CLICC)
         x.list <- unlist(x.list, recursive = FALSE)
         datatable <- datatable[, x.list, with=F]
       } else {
