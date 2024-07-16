@@ -1,0 +1,391 @@
+standard_var_name,description,ccmh_var_name
+SDS_25,Date of Birth <inactive>,SDS_25
+SDS_26,OBSOLETE: Gender <inactive>,SDS_26
+SDS_88,Gender Identity,SDS_88
+SDS_90,Sex at birth <inactive>,SDS_90
+SDS_28,OBSOLETE: Race / Ethnicity <inactive>,SDS_28
+SDS_95,Race / Ethnicity,SDS_95
+SDS_31,Country of Origin,SDS_31
+SDS_32,International Student,SDS_32
+SDS_27,OBSOLETE: Sexual Orientation <inactive>,SDS_27
+SDS_91,Sexual Orientation,SDS_91
+SDS_94,Sexual Attraction <inactive>,SDS_94
+SDS_93,Sexual Experience <inactive>,SDS_93
+SDS_33,Relationship Status,SDS_33
+SDS_37,Academic Status <inactive>,SDS_37
+SDS_1037,Academic Status,SDS_1037
+SDS_39,Graduate Program <inactive>,SDS_39
+SDS_41,Graduate Year <inactive>,SDS_41
+SDS_46,Did you transfer from another campus / institution to this school?,SDS_46
+SDS_117,Fraternity or Sorority,SDS_117
+SDS_42,Housing <inactive>,SDS_42
+SDS_1042,Housing,SDS_1042
+SDS_44_1,Living with answer: Alone,SDS_44_01
+SDS_44_2,"Living with answer: Spouse, partner, or significant other",SDS_44_02
+SDS_44_3,Living with answer: Roommate(s),SDS_44_03
+SDS_44_4,Living with answer: Children,SDS_44_04
+SDS_44_5,Living with answer: Parent(s)  or guardian(s),SDS_44_05
+SDS_44_6,Living with answer: Family other,SDS_44_06
+SDS_44_7,Living with answer: Other (please specify),SDS_44_07
+SDS_1049,Extra-Curricular Hours,SDS_1049
+SDS_1055,Work Hours,SDS_1055
+SDS_34,OBSOLETE: Religion <inactive>,SDS_34
+SDS_97,Religion,SDS_97
+SDS_36,Religion Importance,SDS_36
+SDS_60,"Are you registered, with the office for disability services on this campus, as having a documented and diagnosed disability?",SDS_60
+SDS_61_1,"OBSOLETE: If you selected, ""Yes"" for the previous question, please indicate which category of disability you are registered for (check all that apply) <inactive> answer: OBSOLETE: No / None",SDS_61_01
+SDS_61_2,"OBSOLETE: If you selected, ""Yes"" for the previous question, please indicate which category of disability you are registered for (check all that apply) <inactive> answer: Attention Deficit/Hyperactivity Disorders",SDS_61_02
+SDS_61_3,"OBSOLETE: If you selected, ""Yes"" for the previous question, please indicate which category of disability you are registered for (check all that apply) <inactive> answer: Deaf or Hard of Hearing",SDS_61_03
+SDS_61_4,"OBSOLETE: If you selected, ""Yes"" for the previous question, please indicate which category of disability you are registered for (check all that apply) <inactive> answer: Learning Disorders",SDS_61_04
+SDS_61_5,"OBSOLETE: If you selected, ""Yes"" for the previous question, please indicate which category of disability you are registered for (check all that apply) <inactive> answer: Mobility Impairments",SDS_61_05
+SDS_61_6,"OBSOLETE: If you selected, ""Yes"" for the previous question, please indicate which category of disability you are registered for (check all that apply) <inactive> answer: Neurological Disorders",SDS_61_06
+SDS_61_7,"OBSOLETE: If you selected, ""Yes"" for the previous question, please indicate which category of disability you are registered for (check all that apply) <inactive> answer: Physical/health related Disorders",SDS_61_07
+SDS_61_8,"OBSOLETE: If you selected, ""Yes"" for the previous question, please indicate which category of disability you are registered for (check all that apply) <inactive> answer: Psychological Disorder/Condition",SDS_61_08
+SDS_61_9,"OBSOLETE: If you selected, ""Yes"" for the previous question, please indicate which category of disability you are registered for (check all that apply) <inactive> answer: Visual Impairments",SDS_61_09
+SDS_61_10,"OBSOLETE: If you selected, ""Yes"" for the previous question, please indicate which category of disability you are registered for (check all that apply) <inactive> answer: Other (please specify)",SDS_61_10
+SDS_1061_1,"If you selected, ""Yes"" for the previous question, please indicate which category of disability you are registered for (check all that apply) answer: Difficulty hearing",SDS_1061_01
+SDS_1061_2,"If you selected, ""Yes"" for the previous question, please indicate which category of disability you are registered for (check all that apply) answer: Difficulty seeing",SDS_1061_02
+SDS_1061_3,"If you selected, ""Yes"" for the previous question, please indicate which category of disability you are registered for (check all that apply) answer: Difficulty speaking or language impairment",SDS_1061_03
+SDS_1061_4,"If you selected, ""Yes"" for the previous question, please indicate which category of disability you are registered for (check all that apply) answer: Mobility limitation/ orthopedic impairment",SDS_1061_04
+SDS_1061_5,"If you selected, ""Yes"" for the previous question, please indicate which category of disability you are registered for (check all that apply) answer: Traumatic brain injury",SDS_1061_05
+SDS_1061_6,"If you selected, ""Yes"" for the previous question, please indicate which category of disability you are registered for (check all that apply) answer: Specific learning disabilities",SDS_1061_06
+SDS_1061_7,"If you selected, ""Yes"" for the previous question, please indicate which category of disability you are registered for (check all that apply) answer: ADD or ADHD",SDS_1061_07
+SDS_1061_8,"If you selected, ""Yes"" for the previous question, please indicate which category of disability you are registered for (check all that apply) answer: Autism spectrum disorders",SDS_1061_08
+SDS_1061_9,"If you selected, ""Yes"" for the previous question, please indicate which category of disability you are registered for (check all that apply) answer: Cognitive difficulties or intellectual disability",SDS_1061_09
+SDS_1061_10,"If you selected, ""Yes"" for the previous question, please indicate which category of disability you are registered for (check all that apply) answer: Health impairment/ condition, including chronic conditions",SDS_1061_10
+SDS_1061_11,"If you selected, ""Yes"" for the previous question, please indicate which category of disability you are registered for (check all that apply) answer: Psychological or psychiatric condition",SDS_1061_11
+SDS_1061_12,"If you selected, ""Yes"" for the previous question, please indicate which category of disability you are registered for (check all that apply) answer: Other",SDS_1061_12
+SDS_20_1,OBSOLETE: Do you have a diagnosed and documented disability? (check all that apply) <inactive> answer: OBSOLETE: No / None,SDS_20_01
+SDS_20_2,OBSOLETE: Do you have a diagnosed and documented disability? (check all that apply) <inactive> answer: Attention Deficit/Hyperactivity Disorders,SDS_20_02
+SDS_20_3,OBSOLETE: Do you have a diagnosed and documented disability? (check all that apply) <inactive> answer: Deaf or Hard of Hearing,SDS_20_03
+SDS_20_4,OBSOLETE: Do you have a diagnosed and documented disability? (check all that apply) <inactive> answer: Learning Disorders,SDS_20_04
+SDS_20_5,OBSOLETE: Do you have a diagnosed and documented disability? (check all that apply) <inactive> answer: Mobility Impairments,SDS_20_05
+SDS_20_6,OBSOLETE: Do you have a diagnosed and documented disability? (check all that apply) <inactive> answer: Neurological Disorders,SDS_20_06
+SDS_20_7,OBSOLETE: Do you have a diagnosed and documented disability? (check all that apply) <inactive> answer: Physical/health related Disorders,SDS_20_07
+SDS_20_8,OBSOLETE: Do you have a diagnosed and documented disability? (check all that apply) <inactive> answer: Psychological Disorder/Condition,SDS_20_08
+SDS_20_9,OBSOLETE: Do you have a diagnosed and documented disability? (check all that apply) <inactive> answer: Visual Impairments,SDS_20_09
+SDS_20_10,OBSOLETE: Do you have a diagnosed and documented disability? (check all that apply) <inactive> answer: Other (please specify),SDS_20_10
+SDS_50,OBSOLETE: Athlete <inactive>,SDS_50
+SDS_1151,Intramural,SDS_1151
+SDS_1152,Club,SDS_1152
+SDS_1153,Varsity,SDS_1153
+SDS_56,First Generation,SDS_56
+SDS_57,Financial Stress Now,SDS_57
+SDS_98,Military Service,SDS_98
+SDS_52,OBSOLETE: Military Service <inactive>,SDS_52
+SDS_53,Military Stress,SDS_53
+SDS_19,Binge Drinking,SDS_19
+SDS_96,OBSOLETE: Smoked Marijuana <inactive>,SDS_96
+SDS_1096,Used Marijuana,SDS_1096
+SDS_1,Prior Counseling,SDS_01
+SDS_2,Prior Meds,SDS_02
+SDS_64,Prior Hospitalization (How many),SDS_64
+SDS_65,Prior Hospitalization (Last time),SDS_65
+SDS_66,Need to Reduce D&A (How many),SDS_66
+SDS_67,Need to Reduce D&A (Last time),SDS_67
+SDS_68,Others Concern Alcohol (How many),SDS_68
+SDS_69,Others Concern Alcohol (Last time),SDS_69
+SDS_70,Prior D&A Treatment (How many),SDS_70
+SDS_71,Prior D&A Treatment (Last time),SDS_71
+SDS_72,Self-Injury (How many),SDS_72
+SDS_73,Self-Injury (Last time),SDS_73
+SDS_74,Considered Suicide (How many),SDS_74
+SDS_75,Considered Suicide (Last time),SDS_75
+SDS_76,Suicide Attempt (How many),SDS_76
+SDS_77,Suicide Attempt (Last time),SDS_77
+SDS_78,Considered Harming (How many),SDS_78
+SDS_79,Considered Harming (Last time),SDS_79
+SDS_80,Harmed Another (How many),SDS_80
+SDS_81,Harmed Another (Last time),SDS_81
+SDS_82,Unwanted Sexual Exp. (How many),SDS_82
+SDS_83,Unwanted Sexual Exp. (Last time),SDS_83
+SDS_84,Harassment/Abuse (How many),SDS_84
+SDS_85,Harassment/Abuse (Last time),SDS_85
+SDS_86,PTSD Experience (How many),SDS_86
+SDS_87,PTSD Experience (Last time),SDS_87
+SDS_111,Disability,SDS_111
+SDS_112,Gender,SDS_112
+SDS_113,Nationality / Country of Origin,SDS_113
+SDS_114,Race / Ethnicity / Culture,SDS_114
+SDS_115,Religion,SDS_115
+SDS_116,Sexual Orientation,SDS_116
+SDS_119,Enough food to eat,SDS_119
+SDS_120,Housing / Utilities,SDS_120
+SDS_121,Basic transportation needs,SDS_121
+SDS_122,Necessary medical care,SDS_122
+SDS_123,"Educational materials (books, technology)",SDS_123
+SDS_3,OBSOLETE: Prior Hospitalization <inactive>,SDS_03
+SDS_4,OBSOLETE: Need to Reduce D&A <inactive>,SDS_04
+SDS_5,OBSOLETE: Other Concern Alcohol <inactive>,SDS_05
+SDS_6,OBSOLETE: Prior D&A Treatment <inactive>,SDS_06
+SDS_7,OBSOLETE: Self-Injury <inactive>,SDS_07
+SDS_8,OBSOLETE: Considered Suicide <inactive>,SDS_08
+SDS_9,OBSOLETE: Suicide Attempt <inactive>,SDS_09
+SDS_10,OBSOLETE: Considering Other Harm <inactive>,SDS_10
+SDS_62,OBSOLETE: Considered Harming <inactive>,SDS_62
+SDS_63,OBSOLETE: Harmed Another <inactive>,SDS_63
+SDS_11,OBSOLETE: Harmed Another <inactive>,SDS_11
+SDS_12,OBSOLETE: Unwanted Sexual Exp. <inactive>,SDS_12
+SDS_13,OBSOLETE: Harassment/Abuse <inactive>,SDS_13
+SDS_14,OBSOLETE: PTSD Experiences <inactive>,SDS_14
+SDS_15,OBSOLETE: PTSD Symptoms <inactive>,SDS_15
+SDS_59,OBSOLETE: PTSD Experience <inactive>,SDS_59
+SDS_100_1,Which area(s) of your life have been negatively impacted by COVID-19? (check all that apply) <inactive> answer: Academics,SDS_100_01
+SDS_100_2,Which area(s) of your life have been negatively impacted by COVID-19? (check all that apply) <inactive> answer: Career / Employment,SDS_100_02
+SDS_100_3,Which area(s) of your life have been negatively impacted by COVID-19? (check all that apply) <inactive> answer: Discrimination / Harassment,SDS_100_03
+SDS_100_4,Which area(s) of your life have been negatively impacted by COVID-19? (check all that apply) <inactive> answer: Financial,SDS_100_04
+SDS_100_5,Which area(s) of your life have been negatively impacted by COVID-19? (check all that apply) <inactive> answer: Food or housing insecurity,SDS_100_05
+SDS_100_6,Which area(s) of your life have been negatively impacted by COVID-19? (check all that apply) <inactive> answer: Grief / loss of someone,SDS_100_06
+SDS_100_7,Which area(s) of your life have been negatively impacted by COVID-19? (check all that apply) <inactive> answer: Health concerns (others),SDS_100_07
+SDS_100_8,Which area(s) of your life have been negatively impacted by COVID-19? (check all that apply) <inactive> answer: Health concerns (self),SDS_100_08
+SDS_100_9,Which area(s) of your life have been negatively impacted by COVID-19? (check all that apply) <inactive> answer: Loneliness or isolation,SDS_100_09
+SDS_100_10,Which area(s) of your life have been negatively impacted by COVID-19? (check all that apply) <inactive> answer: Mental health,SDS_100_10
+SDS_100_11,Which area(s) of your life have been negatively impacted by COVID-19? (check all that apply) <inactive> answer: Missed experiences or opportunities,SDS_100_11
+SDS_100_12,Which area(s) of your life have been negatively impacted by COVID-19? (check all that apply) <inactive> answer: Motivation or focus,SDS_100_12
+SDS_100_13,"Which area(s) of your life have been negatively impacted by COVID-19? (check all that apply) <inactive> answer: Relationships (significant other, friends, family)",SDS_100_13
+SDS_100_14,Which area(s) of your life have been negatively impacted by COVID-19? (check all that apply) <inactive> answer: Other (please specify),SDS_100_14
+SDS_102,Seeking Services Due To COVID-19 <inactive>,SDS_102
+SDS_103,How many times have you had COVID-19? <inactive>,SDS_103
+SDS_99_1,Please select the traumatic event(s) you have experienced <inactive> answer: Childhood physical abuse,SDS_99_01
+SDS_99_2,Please select the traumatic event(s) you have experienced <inactive> answer: Childhood sexual abuse,SDS_99_02
+SDS_99_3,Please select the traumatic event(s) you have experienced <inactive> answer: Childhood emotional abuse,SDS_99_03
+SDS_99_4,"Please select the traumatic event(s) you have experienced <inactive> answer: Physical attack (e.g., mugged, beaten up, shot, stabbed, threatened with weapon)",SDS_99_04
+SDS_99_5,"Please select the traumatic event(s) you have experienced <inactive> answer: Sexual violence (rape or attempted rape, sexually assaulted, stalked, abused by intimate partner, etc.)",SDS_99_05
+SDS_99_6,Please select the traumatic event(s) you have experienced <inactive> answer: Military combat or war zone experiences,SDS_99_06
+SDS_99_7,Please select the traumatic event(s) you have experienced <inactive> answer: Kidnapped or taken hostage,SDS_99_07
+SDS_99_8,"Please select the traumatic event(s) you have experienced <inactive> answer: Serious accident, fire, or explosion (e.g., an industrial, farm, car, plane, or boating accident)",SDS_99_08
+SDS_99_9,Please select the traumatic event(s) you have experienced <inactive> answer: Terrorist attack,SDS_99_09
+SDS_99_24,Please select the traumatic event(s) you have experienced <inactive> answer: School / mass shooting,SDS_99_24
+SDS_99_10,Please select the traumatic event(s) you have experienced <inactive> answer: Near drowning,SDS_99_10
+SDS_99_11,Please select the traumatic event(s) you have experienced <inactive> answer: Diagnosed with life threatening illness,SDS_99_11
+SDS_99_12,"Please select the traumatic event(s) you have experienced <inactive> answer: Natural disaster (e.g., flood, quake, hurricane, etc.)",SDS_99_12
+SDS_99_13,Please select the traumatic event(s) you have experienced <inactive> answer: Imprisonment or Torture,SDS_99_13
+SDS_99_14,Please select the traumatic event(s) you have experienced <inactive> answer: Animal attack,SDS_99_14
+SDS_99_15,Please select the traumatic event(s) you have experienced <inactive> answer: OBSOLETE: Other experienced event (please specify below),SDS_99_15
+SDS_99_16,"Please select the traumatic event(s) you have experienced <inactive> answer: OBSOLETE: Witnessed the serious injury or unnatural death of a person due to an accident, war or disaster",SDS_99_16
+SDS_99_17,Please select the traumatic event(s) you have experienced <inactive> answer: OBSOLETE: Unexpectedly witnessed a dead body or body part,SDS_99_17
+SDS_99_18,Please select the traumatic event(s) you have experienced <inactive> answer: OBSOLETE: Other witnessed (please specify below),SDS_99_18
+SDS_99_19,Please select the traumatic event(s) you have experienced <inactive> answer: OBSOLETE: Learned that one's child or close loved one has a life threatening disease,SDS_99_19
+SDS_99_20,"Please select the traumatic event(s) you have experienced <inactive> answer: OBSOLETE: Learned about the violent personal assault, serious accident or serious injury of a close family member or friend",SDS_99_20
+SDS_99_21,Please select the traumatic event(s) you have experienced <inactive> answer: OBSOLETE: Learned about the sudden unexpected death of a very close family member or friend,SDS_99_21
+SDS_99_22,Please select the traumatic event(s) you have experienced <inactive> answer: OBSOLETE: Other learned about (please specify below),SDS_99_22
+SDS_99_23,Please select the traumatic event(s) you have experienced <inactive> answer: Other (please specify),SDS_99_23
+SDS_17_1,"OBSOLETE: Please select the traumatic event(s) you have experienced, witnessed, or learned about <inactive> answer: Childhood physical abuse",SDS_17_01
+SDS_17_2,"OBSOLETE: Please select the traumatic event(s) you have experienced, witnessed, or learned about <inactive> answer: Childhood sexual abuse",SDS_17_02
+SDS_17_3,"OBSOLETE: Please select the traumatic event(s) you have experienced, witnessed, or learned about <inactive> answer: Childhood emotional abuse",SDS_17_03
+SDS_17_4,"OBSOLETE: Please select the traumatic event(s) you have experienced, witnessed, or learned about <inactive> answer: Physical attack (e.g., mugged, beaten up, shot, stabbed, threatened with weapon)",SDS_17_04
+SDS_17_5,"OBSOLETE: Please select the traumatic event(s) you have experienced, witnessed, or learned about <inactive> answer: Sexual violence (rape or attempted rape, sexually assaulted, stalked, abused by intimate partner, etc.)",SDS_17_05
+SDS_17_6,"OBSOLETE: Please select the traumatic event(s) you have experienced, witnessed, or learned about <inactive> answer: Military combat or war zone experiences",SDS_17_06
+SDS_17_7,"OBSOLETE: Please select the traumatic event(s) you have experienced, witnessed, or learned about <inactive> answer: Kidnapped or taken hostage",SDS_17_07
+SDS_17_8,"OBSOLETE: Please select the traumatic event(s) you have experienced, witnessed, or learned about <inactive> answer: Serious accident, fire, or explosion (e.g., an industrial, farm, car, plane, or boating accident)",SDS_17_08
+SDS_17_9,"OBSOLETE: Please select the traumatic event(s) you have experienced, witnessed, or learned about <inactive> answer: Terrorist attack",SDS_17_09
+SDS_17_24,"OBSOLETE: Please select the traumatic event(s) you have experienced, witnessed, or learned about <inactive> answer: School / mass shooting",SDS_17_24
+SDS_17_10,"OBSOLETE: Please select the traumatic event(s) you have experienced, witnessed, or learned about <inactive> answer: Near drowning",SDS_17_10
+SDS_17_11,"OBSOLETE: Please select the traumatic event(s) you have experienced, witnessed, or learned about <inactive> answer: Diagnosed with life threatening illness",SDS_17_11
+SDS_17_12,"OBSOLETE: Please select the traumatic event(s) you have experienced, witnessed, or learned about <inactive> answer: Natural disaster (e.g., flood, quake, hurricane, etc.)",SDS_17_12
+SDS_17_13,"OBSOLETE: Please select the traumatic event(s) you have experienced, witnessed, or learned about <inactive> answer: Imprisonment or Torture",SDS_17_13
+SDS_17_14,"OBSOLETE: Please select the traumatic event(s) you have experienced, witnessed, or learned about <inactive> answer: Animal attack",SDS_17_14
+SDS_17_15,"OBSOLETE: Please select the traumatic event(s) you have experienced, witnessed, or learned about <inactive> answer: OBSOLETE: Other experienced event (please specify below)",SDS_17_15
+SDS_17_16,"OBSOLETE: Please select the traumatic event(s) you have experienced, witnessed, or learned about <inactive> answer: OBSOLETE: Witnessed the serious injury or unnatural death of a person due to an accident, war or disaster",SDS_17_16
+SDS_17_17,"OBSOLETE: Please select the traumatic event(s) you have experienced, witnessed, or learned about <inactive> answer: OBSOLETE: Unexpectedly witnessed a dead body or body part",SDS_17_17
+SDS_17_18,"OBSOLETE: Please select the traumatic event(s) you have experienced, witnessed, or learned about <inactive> answer: OBSOLETE: Other witnessed (please specify below)",SDS_17_18
+SDS_17_19,"OBSOLETE: Please select the traumatic event(s) you have experienced, witnessed, or learned about <inactive> answer: OBSOLETE: Learned that one's child or close loved one has a life threatening disease",SDS_17_19
+SDS_17_20,"OBSOLETE: Please select the traumatic event(s) you have experienced, witnessed, or learned about <inactive> answer: OBSOLETE: Learned about the violent personal assault, serious accident or serious injury of a close family member or friend",SDS_17_20
+SDS_17_21,"OBSOLETE: Please select the traumatic event(s) you have experienced, witnessed, or learned about <inactive> answer: OBSOLETE: Learned about the sudden unexpected death of a very close family member or friend",SDS_17_21
+SDS_17_22,"OBSOLETE: Please select the traumatic event(s) you have experienced, witnessed, or learned about <inactive> answer: OBSOLETE: Other learned about (please specify below)",SDS_17_22
+SDS_17_23,"OBSOLETE: Please select the traumatic event(s) you have experienced, witnessed, or learned about <inactive> answer: Other (please specify)",SDS_17_23
+SDS_22,Family Support <inactive>,SDS_22
+SDS_23,Social Support <inactive>,SDS_23
+SDS_48,Extra-Curriculars <inactive>,SDS_48
+SDS_51,ROTC <inactive>,SDS_51
+SDS_58,Financial Stress Past <inactive>,SDS_58
+CCAPS62_1,I get sad or angry when I think of my family,CCAPS_01_F62
+CCAPS62_3,I am shy around others,CCAPS_03_F62
+CCAPS62_4,There are many things I am afraid of,CCAPS_04_F62
+CCAPS62_5,My heart races for no good reason,CCAPS_05_F62
+CCAPS62_6,I feel out of control when I eat,CCAPS_06_F62
+CCAPS62_8,I enjoy my classes,CCAPS_08_F62
+CCAPS62_9,I feel that my family loves me,CCAPS_09_F62
+CCAPS62_10,I feel disconnected from myself,CCAPS_10_F62
+CCAPS62_11,I don't enjoy being around people as much as I used to,CCAPS_11_F62
+CCAPS62_13,I feel isolated and alone,CCAPS_13_F62
+CCAPS62_14,My family gets on my nerves,CCAPS_14_F62
+CCAPS62_15,I lose touch with reality,CCAPS_15_F62
+CCAPS62_16,I think about food more than I would like to,CCAPS_16_F62
+CCAPS62_17,I am anxious that I might have a panic attack while in public,CCAPS_17_F62
+CCAPS62_18,I feel confident that I can succeed academically,CCAPS_18_F62
+CCAPS62_19,I become anxious when I have to speak in front of audiences,CCAPS_19_F62
+CCAPS62_21,I have sleep difficulties,CCAPS_21_F62
+CCAPS62_22,My thoughts are racing,CCAPS_22_F62
+CCAPS62_23,I am satisfied with my body shape,CCAPS_23_F62
+CCAPS62_24,I feel worthless,CCAPS_24_F62
+CCAPS62_25,My family is basically a happy one,CCAPS_25_F62
+CCAPS62_26,I am dissatisfied with my weight,CCAPS_26_F62
+CCAPS62_27,I feel helpless,CCAPS_27_F62
+CCAPS62_28,I use drugs more than I should,CCAPS_28_F62
+CCAPS62_29,I eat too much,CCAPS_29_F62
+CCAPS62_30,I drink alcohol frequently,CCAPS_30_F62
+CCAPS62_31,I have spells of terror or panic,CCAPS_31_F62
+CCAPS62_32,I am enthusiastic about life,CCAPS_32_F62
+CCAPS62_33,When I drink alcohol I can't remember what happened,CCAPS_33_F62
+CCAPS62_34,I feel tense,CCAPS_34_F62
+CCAPS62_35,When I start eating I can't stop,CCAPS_35_F62
+CCAPS62_36,I have difficulty controlling my temper,CCAPS_36_F62
+CCAPS62_37,I am easily frightened or startled,CCAPS_37_F62
+CCAPS62_38,I diet frequently,CCAPS_38_F62
+CCAPS62_39,I make friends easily,CCAPS_39_F62
+CCAPS62_40,I sometimes feel like breaking or smashing things,CCAPS_40_F62
+CCAPS62_41,I have unwanted thoughts I can't control,CCAPS_41_F62
+CCAPS62_43,There is a history of abuse in my family,CCAPS_43_F62
+CCAPS62_44,I experience nightmares or flashbacks,CCAPS_44_F62
+CCAPS62_45,I feel sad all the time,CCAPS_45_F62
+CCAPS62_46,I am concerned that other people do not like me,CCAPS_46_F62
+CCAPS62_47,I wish my family got along better,CCAPS_47_F62
+CCAPS62_48,I get angry easily,CCAPS_48_F62
+CCAPS62_49,I feel uncomfortable around people I don't know,CCAPS_49_F62
+CCAPS62_50,I feel irritable,CCAPS_50_F62
+CCAPS62_51,I have thoughts of ending my life,CCAPS_51_F62
+CCAPS62_52,I feel self conscious around others,CCAPS_52_F62
+CCAPS62_53,I purge to control my weight,CCAPS_53_F62
+CCAPS62_54,I drink more than I should,CCAPS_54_F62
+CCAPS62_56,I enjoy getting drunk,CCAPS_56_F62
+CCAPS62_57,I am not able to concentrate as well as usual,CCAPS_57_F62
+CCAPS62_58,I am afraid I may lose control and act violently,CCAPS_58_F62
+CCAPS62_59,It's hard to stay motivated for my classes,CCAPS_59_F62
+CCAPS62_60,I feel comfortable around other people,CCAPS_60_F62
+CCAPS62_61,I like myself,CCAPS_61_F62
+CCAPS62_63,I have done something I have regretted because of drinking,CCAPS_63_F62
+CCAPS62_64,I frequently get into arguments,CCAPS_64_F62
+CCAPS62_65,I find that I cry frequently,CCAPS_65_F62
+CCAPS62_66,I am unable to keep up with my schoolwork,CCAPS_66_F62
+CCAPS62_68,I have thoughts of hurting others,CCAPS_68_F62
+CCAPS62_69,"The less I eat, the better I feel about myself",CCAPS_69_F62
+CCAPS62_70,I feel that I have no one who understands me,CCAPS_70_F62
+CCAPS34_3,I am shy around others,CCAPS_03_F34
+CCAPS34_5,My heart races for no good reason,CCAPS_05_F34
+CCAPS34_6,I feel out of control when I eat,CCAPS_06_F34
+CCAPS34_11,I don't enjoy being around people as much as I used to,CCAPS_11_F34
+CCAPS34_13,I feel isolated and alone,CCAPS_13_F34
+CCAPS34_16,I think about food more than I would like to,CCAPS_16_F34
+CCAPS34_17,I am anxious that I might have a panic attack while in public,CCAPS_17_F34
+CCAPS34_18,I feel confident that I can succeed academically,CCAPS_18_F34
+CCAPS34_21,I have sleep difficulties,CCAPS_21_F34
+CCAPS34_22,My thoughts are racing,CCAPS_22_F34
+CCAPS34_24,I feel worthless,CCAPS_24_F34
+CCAPS34_27,I feel helpless,CCAPS_27_F34
+CCAPS34_29,I eat too much,CCAPS_29_F34
+CCAPS34_30,I drink alcohol frequently,CCAPS_30_F34
+CCAPS34_31,I have spells of terror or panic,CCAPS_31_F34
+CCAPS34_33,When I drink alcohol I can't remember what happened,CCAPS_33_F34
+CCAPS34_34,I feel tense,CCAPS_34_F34
+CCAPS34_36,I have difficulty controlling my temper,CCAPS_36_F34
+CCAPS34_39,I make friends easily,CCAPS_39_F34
+CCAPS34_40,I sometimes feel like breaking or smashing things,CCAPS_40_F34
+CCAPS34_45,I feel sad all the time,CCAPS_45_F34
+CCAPS34_46,I am concerned that other people do not like me,CCAPS_46_F34
+CCAPS34_48,I get angry easily,CCAPS_48_F34
+CCAPS34_49,I feel uncomfortable around people I don't know,CCAPS_49_F34
+CCAPS34_51,I have thoughts of ending my life,CCAPS_51_F34
+CCAPS34_52,I feel self conscious around others,CCAPS_52_F34
+CCAPS34_54,I drink more than I should,CCAPS_54_F34
+CCAPS34_57,I am not able to concentrate as well as usual,CCAPS_57_F34
+CCAPS34_58,I am afraid I may lose control and act violently,CCAPS_58_F34
+CCAPS34_59,It's hard to stay motivated for my classes,CCAPS_59_F34
+CCAPS34_63,I have done something I have regretted because of drinking,CCAPS_63_F34
+CCAPS34_64,I frequently get into arguments,CCAPS_64_F34
+CCAPS34_66,I am unable to keep up with my schoolwork,CCAPS_66_F34
+CCAPS34_68,I have thoughts of hurting others,CCAPS_68_F34
+CLICC_1_1,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Anxiety,CLICC_01_01
+CLICC_1_1101,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Anxiety: Generalized,CLICC_01_1101
+CLICC_1_1102,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Anxiety: Social,CLICC_01_1102
+CLICC_1_1103,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Anxiety: Panic attack(s),CLICC_01_1103
+CLICC_1_1104,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Anxiety: Test taking,CLICC_01_1104
+CLICC_1_1105,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Anxiety: Specific phobia,CLICC_01_1105
+CLICC_1_1106,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Anxiety: Unspecified/other,CLICC_01_1106
+CLICC_1_2,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Obsessions or compulsions,CLICC_01_02
+CLICC_1_3,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Perfectionism,CLICC_01_03
+CLICC_1_4,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Stress,CLICC_01_04
+CLICC_1_5,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Depression,CLICC_01_05
+CLICC_1_6,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: OBSOLETE: Mood instability,CLICC_01_06
+CLICC_1_1006,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Mood instability (bi-polar symptoms),CLICC_01_1006
+CLICC_1_46,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Emotion dysregulation,CLICC_01_46
+CLICC_1_7,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Anger management,CLICC_01_07
+CLICC_1_8,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Relationship problem (specific),CLICC_01_08
+CLICC_1_9,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Interpersonal functioning,CLICC_01_09
+CLICC_1_10,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Social isolation,CLICC_01_10
+CLICC_1_11,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Family,CLICC_01_11
+CLICC_1_12,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Grief/loss,CLICC_01_12
+CLICC_1_13,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Health/medical,CLICC_01_13
+CLICC_1_14,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Eating/body image,CLICC_01_14
+CLICC_1_15,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Sleep,CLICC_01_15
+CLICC_1_16,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Sexual concern,CLICC_01_16
+CLICC_1_17,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Pregnancy related,CLICC_01_17
+CLICC_1_18,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Identity development,CLICC_01_18
+CLICC_1_19,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Self-esteem/confidence,CLICC_01_19
+CLICC_1_20,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Adjustment to new environment,CLICC_01_20
+CLICC_1_21,"Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Racial, ethnic, or cultural concerns",CLICC_01_21
+CLICC_1_22,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Sexual orientation,CLICC_01_22
+CLICC_1_23,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Gender identity,CLICC_01_23
+CLICC_1_24,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Religion/spirituality,CLICC_01_24
+CLICC_1_25,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Discrimination,CLICC_01_25
+CLICC_1_26,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Academic performance,CLICC_01_26
+CLICC_1_27,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Career,CLICC_01_27
+CLICC_1_28,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: OBSOLETE: Attention difficulties,CLICC_01_28
+CLICC_1_1028,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Attention/concentration difficulties,CLICC_01_1028
+CLICC_1_47,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Autism spectrum,CLICC_01_47
+CLICC_1_48,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Learning disorder/disability,CLICC_01_48
+CLICC_1_29,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Alcohol,CLICC_01_29
+CLICC_1_30,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Drugs,CLICC_01_30
+CLICC_1_31,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Addiction (not drugs or alcohol),CLICC_01_31
+CLICC_1_32,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Self-injurious thoughts or behaviors,CLICC_01_32
+CLICC_1_33,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Suicidality,CLICC_01_33
+CLICC_1_34,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Violent thoughts or behaviors towards others,CLICC_01_34
+CLICC_1_35,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Psychotic thoughts or behaviors,CLICC_01_35
+CLICC_1_49,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Dissociative experience(s),CLICC_01_49
+CLICC_1_36,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Trauma,CLICC_01_36
+CLICC_1_37,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Physical abuse/assault (victim),CLICC_01_37
+CLICC_1_38,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Sexual abuse/assault (victim),CLICC_01_38
+CLICC_1_39,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Harassment/emotional abuse (victim),CLICC_01_39
+CLICC_1_40,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Stalking (victim),CLICC_01_40
+CLICC_1_41,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Financial,CLICC_01_41
+CLICC_1_42,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Legal/judicial/conduct,CLICC_01_42
+CLICC_1_43,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: None,CLICC_01_43
+CLICC_1_44,Please indicate your assessment of the client’s primary concerns (check all that apply) answer: Other,CLICC_01_44
+CLICC_3,Choose the top concern of those already selected,CLICC_03
+CASECLOSURE_1_101,This section is used to record the reason(s) for closing this case.  Check all that apply answer: End of academic term (semester/quarter),CLOSURE_01_101
+CASECLOSURE_1_102,This section is used to record the reason(s) for closing this case.  Check all that apply answer: Client is ineligible for services,CLOSURE_01_102
+CASECLOSURE_1_103,This section is used to record the reason(s) for closing this case.  Check all that apply answer: Withdrawal - voluntary,CLOSURE_01_103
+CASECLOSURE_1_104,This section is used to record the reason(s) for closing this case.  Check all that apply answer: Withdrawal - involuntary,CLOSURE_01_104
+CASECLOSURE_1_105,This section is used to record the reason(s) for closing this case.  Check all that apply answer: Graduation of client,CLOSURE_01_105
+CASECLOSURE_1_106,This section is used to record the reason(s) for closing this case.  Check all that apply answer: Transfer to another institution,CLOSURE_01_106
+CASECLOSURE_1_201,This section is used to record the reason(s) for closing this case.  Check all that apply answer: Treatment goals were completed,CLOSURE_01_201
+CASECLOSURE_1_202,This section is used to record the reason(s) for closing this case.  Check all that apply answer: Client/provider mutual agreement,CLOSURE_01_202
+CASECLOSURE_1_203,This section is used to record the reason(s) for closing this case.  Check all that apply answer: Termination against provider recommendation,CLOSURE_01_203
+CASECLOSURE_1_204,This section is used to record the reason(s) for closing this case.  Check all that apply answer: Service limit was reached,CLOSURE_01_204
+CASECLOSURE_1_205,This section is used to record the reason(s) for closing this case.  Check all that apply answer: Referred out for continuation of services,CLOSURE_01_205
+CASECLOSURE_1_206,This section is used to record the reason(s) for closing this case.  Check all that apply answer: Referred out for higher level/specialized care,CLOSURE_01_206
+CASECLOSURE_1_207,This section is used to record the reason(s) for closing this case.  Check all that apply answer: Transferred to different treatment modality within center,CLOSURE_01_207
+CASECLOSURE_1_208,This section is used to record the reason(s) for closing this case.  Check all that apply answer: Transferred to another provider within center,CLOSURE_01_208
+CASECLOSURE_1_209,This section is used to record the reason(s) for closing this case.  Check all that apply answer: Departure of provider,CLOSURE_01_209
+CASECLOSURE_1_301,This section is used to record the reason(s) for closing this case.  Check all that apply answer: Declined further services,CLOSURE_01_301
+CASECLOSURE_1_302,This section is used to record the reason(s) for closing this case.  Check all that apply answer: Did not respond to communication(s),CLOSURE_01_302
+CASECLOSURE_1_303,"This section is used to record the reason(s) for closing this case.  Check all that apply answer: Did not return for last scheduled appointment (e.g., no-show, cancellation, etc.)",CLOSURE_01_303
+CASECLOSURE_1_304,This section is used to record the reason(s) for closing this case.  Check all that apply answer: Financial reasons,CLOSURE_01_304
+CASECLOSURE_1_401,This section is used to record the reason(s) for closing this case.  Check all that apply answer: Other case closure reason:,CLOSURE_01_401
+CASECLOSURE_3,Choose the top-most reason for closure of those already selected,CLOSURE_03
+CASECLOSURE_4_108,"This section is used to record events that occurred at least once, between the first and last appointment.  Check all that apply answer: Provided supportive documentation to campus partner (e.g. letter to professor, disability services)",CLOSURE_04_108
+CASECLOSURE_4_101,"This section is used to record events that occurred at least once, between the first and last appointment.  Check all that apply answer: Client used a prescribed psychiatric medication",CLOSURE_04_101
+CASECLOSURE_4_102,"This section is used to record events that occurred at least once, between the first and last appointment.  Check all that apply answer: Self-injurious behavior",CLOSURE_04_102
+CASECLOSURE_4_103,"This section is used to record events that occurred at least once, between the first and last appointment.  Check all that apply answer: Suicidal ideation that required a safety plan",CLOSURE_04_103
+CASECLOSURE_4_104,"This section is used to record events that occurred at least once, between the first and last appointment.  Check all that apply answer: Suicide attempt",CLOSURE_04_104
+CASECLOSURE_4_105,"This section is used to record events that occurred at least once, between the first and last appointment.  Check all that apply answer: Thoughts of hurting others that required a safety plan",CLOSURE_04_105
+CASECLOSURE_4_201,"This section is used to record events that occurred at least once, between the first and last appointment.  Check all that apply answer: Referral for hospitalization (by anyone including client) for: Suicidality",CLOSURE_04_201
+CASECLOSURE_4_202,"This section is used to record events that occurred at least once, between the first and last appointment.  Check all that apply answer: Referral for hospitalization (by anyone including client) for: Thoughts or behaviors of hurting others",CLOSURE_04_202
+CASECLOSURE_4_203,"This section is used to record events that occurred at least once, between the first and last appointment.  Check all that apply answer: Referral for hospitalization (by anyone including client) for: Drugs or alcohol",CLOSURE_04_203
+CASECLOSURE_4_204,"This section is used to record events that occurred at least once, between the first and last appointment.  Check all that apply answer: Referral for hospitalization (by anyone including client) for: Other mental health concern",CLOSURE_04_204
+CASECLOSURE_4_251,"This section is used to record events that occurred at least once, between the first and last appointment.  Check all that apply answer: Psychiatric Hospitalization: Admitted to hospital for mental health concern",CLOSURE_04_251
+CASECLOSURE_4_301,"This section is used to record events that occurred at least once, between the first and last appointment.  Check all that apply answer: Death of client: Suicide",CLOSURE_04_301
+CASECLOSURE_4_302,"This section is used to record events that occurred at least once, between the first and last appointment.  Check all that apply answer: Death of client: Accident",CLOSURE_04_302
+CASECLOSURE_4_303,"This section is used to record events that occurred at least once, between the first and last appointment.  Check all that apply answer: Death of client: Drugs or alcohol",CLOSURE_04_303
+CASECLOSURE_4_304,"This section is used to record events that occurred at least once, between the first and last appointment.  Check all that apply answer: Death of client: Other",CLOSURE_04_304
+CASECLOSURE_4_107,"This section is used to record events that occurred at least once, between the first and last appointment.  Check all that apply answer: Other event:",CLOSURE_04_107
