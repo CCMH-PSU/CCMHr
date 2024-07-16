@@ -241,7 +241,7 @@ clean_TI_CCMH_export <- function(data.form,
         dplyr::select(ClientID, CaseNoteID,
                       RecordType, Date,
                       NoteType, dplyr::contains("SDS")) %>%
-        dplyr::mutate_at(dplyr::vars(dplyr::contains("SDS")), ~ dplyr::replace(., . == 0, NA)) %>%
+        dplyr::mutate_at(dplyr::vars(dplyr::contains("SDS")), ~ replace(., . == 0, NA)) %>%
         dplyr::filter(dplyr::if_any(dplyr::contains("SDS"), ~ !is.na(.))) %>%
         dplyr::mutate(Has_SDS = 1)%>%
         dplyr::arrange(Date)%>%
@@ -273,7 +273,7 @@ clean_TI_CCMH_export <- function(data.form,
             dplyr::select(ClientID, CaseNoteID,
                         RecordType, Date,
                         NoteType, dplyr::contains("CLICC")) %>%
-            dplyr::mutate_at(dplyr::vars(CLICC_01_01:CLICC_03), ~ dplyr::replace(., . == 0, NA)) %>%
+            dplyr::mutate_at(dplyr::vars(CLICC_01_01:CLICC_03), ~ replace(., . == 0, NA)) %>%
             dplyr::filter(dplyr::if_any(CLICC_01_01:CLICC_03, ~ !is.na(.))) %>%
             dplyr::mutate(Has_CLICC = 1)%>%
             dplyr::arrange(Date)%>%
@@ -302,7 +302,7 @@ clean_TI_CCMH_export <- function(data.form,
             dplyr::select(ClientID, CaseNoteID,
                         RecordType, Date,
                         NoteType, dplyr::contains("CLOSURE")) %>%
-            dplyr::mutate_at(dplyr::vars(CLOSURE_01_101:CLOSURE_04_107), ~ dplyr::replace(., . == 0, NA)) %>%
+            dplyr::mutate_at(dplyr::vars(CLOSURE_01_101:CLOSURE_04_107), ~ replace(., . == 0, NA)) %>%
             dplyr::filter(dplyr::if_any(CLOSURE_01_101:CLOSURE_04_107, ~ !is.na(.))) %>%
             dplyr::mutate(Has_Closure = 1) %>%
             dplyr::arrange(Date)%>%
