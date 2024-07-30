@@ -54,4 +54,4 @@ data <- CCMHr::delete_duplicate_appointments(data)
 data <- mutate(data, CcmhID = as.numeric(as.factor(CcmhID)))
 
 # Save data into the "Data for {{{requester_last_name}}}" folder
-write.csv(data, file = here::here("{{{final_folder}}}/"))
+write.csv(data, file = here::here("{{{final_folder}}}/"), row.names = FALSE, na = "")
