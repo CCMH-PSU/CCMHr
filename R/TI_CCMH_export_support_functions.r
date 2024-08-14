@@ -310,11 +310,11 @@ clean_TI_CCMH_export <- function(data,
         }
 
         if(save_individual_form == TRUE & is.null(path_individual_form)){
-            write.csv(df.ccaps, 
+            write.csv(df.caseclosure, 
                       file = "TI_CCMH_export_closure_clean.csv", 
                       row.names = FALSE)
         } else if(save_individual_form == TRUE & !is.null(path_individual_form)) {
-            write.csv(df.ccaps, 
+            write.csv(df.caseclosure, 
                       file = paste0(path_individual_form, "/", "TI_CCMH_export_closure_clean.csv"), 
                       row.names = FALSE)
         } else {
