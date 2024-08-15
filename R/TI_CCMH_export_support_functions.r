@@ -6,13 +6,13 @@
 #'  @param key A data frame with two columns, orginal_name and new_name, to rename the columns in the appointment data. Default is `CCMHr::TI_CCMH_export_appointment_key`
 #'  @param save A logical statement indicates whether the data frame should be saved as a file under a local folder. If false, the data will be returned as an object. By default, `FALSE`
 #'  @param path A quoted string to indicate the path where the appointment data should be saved. By default, `TI_appointment_clean.csv`
-#' 
+#'
 #' @return A data frame with cleaned TI exported appointment data.
 #' @export
 
-clean_TI_export_appointment <- function(data, 
-                                        key = CCMHr::TI_CCMH_export_appointment_key, 
-                                        save = FALSE, 
+clean_TI_export_appointment <- function(data,
+                                        key = CCMHr::TI_CCMH_export_appointment_key,
+                                        save = FALSE,
                                         path = "TI_appointment_clean.csv"){
 
 
@@ -31,39 +31,39 @@ clean_TI_export_appointment <- function(data,
     data <- data %>%
         dplyr::select(-UniqueClientID)
 
-    # Save file 
+    # Save file
     if(save == TRUE){
-        write.csv(data, 
-                  file = path, 
+        write.csv(data,
+                  file = path,
                   row.names = FALSE)
     } else {
        return(data)
     }
-    
+
 }
 
 
 #' Clean TI appointment export file
 #'
 #'  @param data A data frame.
-#'  @param id_var A quoted string to indicate the name of the ID variable if it exist. By default, `NULL`. 
+#'  @param id_var A quoted string to indicate the name of the ID variable if it exist. By default, `NULL`.
 #'  @param key A key to rename the columns in the form data file. Default is `CCMHr::TI_CCMH_export_forms_key`
 #'  @param included_forms A string or list of strings to indicate the forms that should be included in the data. Options include: "CCAPS", "SDS", "CLICC", "Closure", and "AUDIT". By default, `c("CCAPS", "SDS", "CLICC", "Closure", "AUDIT")`
 #'  @param save_individual_form A logical statement indicates whether the individual forms should be saved seperate under a local folder. By default, `FALSE`
 #'  @param path_individual_form A quoted string to indicate the path where the individual forms should be saved. By default, "NULL" or saved under the current working directory
 #'  @param save A logical statement indicates whether the overall data frame should be saved as a file under a local folder. If false, the data will be returned as an object. By default, `FALSE`
 #'  @param path A quoted string to indicate the path where the appointment data should be saved. By default, `TI_appointment_clean.csv`
-#' 
+#'
 #' @return A data frame with cleaned TI exported data forms.
 #' @export
 
-clean_TI_CCMH_export <- function(data, 
+clean_TI_CCMH_export <- function(data,
                                  id_var = NULL,
                                  key = CCMHr::TI_CCMH_export_forms_key,
                                  included_forms = c("CCAPS", "SDS", "CLICC", "Closure", "AUDIT"),
                                  save_individual_form = FALSE,
                                  path_individual_form = NULL,
-                                 save = FALSE, 
+                                 save = FALSE,
                                  path = "TI_CCMH_export_clean.csv"){
 
     # If / exists at the end of the path, remove it
@@ -86,14 +86,21 @@ clean_TI_CCMH_export <- function(data,
     # Clean data forms
         # Rename ID variables
         data <- data %>%
-            dplyr::rename("ClientID" = "clientid", 
-                          "CaseNoteID" = "casenoteid", 
-                          "RecordType" = "recordtype", 
-                          "Date" = "notedate", 
+            dplyr::rename("ClientID" = "clientid",
+                          "CaseNoteID" = "casenoteid",
+                          "RecordType" = "recordtype",
+                          "Date" = "notedate",
                           "NoteType" = "notetype")
 
+        # Names of data
+        list.df.names <- names(data)
+
+        # filter Key
+        key <- key %>%
+            dplyr::filter(standard_var_name %in% list.df.names)
+
         # rename based on key
-        data <- data %>% 
+        data <- data %>%
             dplyr::rename_with(~ key$ccmh_var_name, key$standard_var_name)
 
         # Recoding "<No Response>"
@@ -114,9 +121,9 @@ clean_TI_CCMH_export <- function(data,
     # add data frame
     df.combine <- data.frame()
 
-    # ID variable 
+    # ID variable
     if(!is.null(id_var)){
-        df.id <- data %>% 
+        df.id <- data %>%
             dplyr::select(ClientID, dplyr::all_of(id_var)) %>%
             unique()
 
@@ -125,14 +132,14 @@ clean_TI_CCMH_export <- function(data,
     }
 
     # Clean ccaps
-    if("CCAPS" %in% included_forms){ 
+    if("CCAPS" %in% included_forms){
         # Cleaning CCAPS 62
-        df.ccaps.62 <- data %>% 
-            dplyr::select(ClientID, CaseNoteID, 
-                          RecordType, Date, 
-                          NoteType, dplyr::starts_with("CCAPS62")) 
+        df.ccaps.62 <- data %>%
+            dplyr::select(ClientID, CaseNoteID,
+                          RecordType, Date,
+                          NoteType, dplyr::starts_with("CCAPS62"))
 
-        names(df.ccaps.62) <- c('ClientID', 'CaseNoteID', 'RecordType', 'Date', 
+        names(df.ccaps.62) <- c('ClientID', 'CaseNoteID', 'RecordType', 'Date',
                                 'NoteType', 'CCAPS_01',	'CCAPS_03',
                                 'CCAPS_04',	'CCAPS_05',	'CCAPS_06',	'CCAPS_08',
                                 'CCAPS_09',	'CCAPS_10',	'CCAPS_11',	'CCAPS_13',
@@ -151,12 +158,12 @@ clean_TI_CCMH_export <- function(data,
                                 'CCAPS_66',	'CCAPS_68',	'CCAPS_69',	'CCAPS_70')
 
         # Cleaning CCAPS 34
-        df.ccaps.34 <- data %>% 
-            dplyr::select(ClientID, CaseNoteID, 
-                          RecordType, Date, 
-                          NoteType, dplyr::starts_with("CCAPS34")) 
-  
-        names(df.ccaps.34) <- c('ClientID', 'CaseNoteID', 'RecordType', 'Date', 
+        df.ccaps.34 <- data %>%
+            dplyr::select(ClientID, CaseNoteID,
+                          RecordType, Date,
+                          NoteType, dplyr::starts_with("CCAPS34"))
+
+        names(df.ccaps.34) <- c('ClientID', 'CaseNoteID', 'RecordType', 'Date',
                                 'NoteType', 'CCAPS_03','CCAPS_05',
                                 'CCAPS_06',	'CCAPS_11',	'CCAPS_13',	'CCAPS_16',
                                 'CCAPS_17',	'CCAPS_18',	'CCAPS_21',	'CCAPS_22',
@@ -166,7 +173,7 @@ clean_TI_CCMH_export <- function(data,
                                 'CCAPS_48',	'CCAPS_49',	'CCAPS_51',	'CCAPS_52',
                                 'CCAPS_54',	'CCAPS_57',	'CCAPS_58',	'CCAPS_59',
                                 'CCAPS_63',	'CCAPS_64',	'CCAPS_66',	'CCAPS_68')
-  
+
         # Combine CCAPS 62 and 34
         suppressWarnings(
             df.ccaps <- plyr::rbind.fill(df.ccaps.62, df.ccaps.34) %>%
@@ -176,9 +183,9 @@ clean_TI_CCMH_export <- function(data,
             dplyr::arrange(Date)%>%
             dplyr::distinct(.keep_all = TRUE))
 
-        # ID variable 
+        # ID variable
         if(!is.null(id_var)){
-            df.ccaps <- df.ccaps %>% 
+            df.ccaps <- df.ccaps %>%
                 dplyr::left_join(df.id, by = "ClientID") %>%
                 dplyr::select(dplyr::all_of(id_var), dplyr::everything())
 
@@ -189,12 +196,12 @@ clean_TI_CCMH_export <- function(data,
         df.combine <- plyr::rbind.fill(df.combine, df.ccaps)
 
         if(save_individual_form == TRUE & is.null(path_individual_form)){
-            write.csv(df.ccaps, 
-                      file = "TI_CCMH_export_ccaps_clean.csv", 
+            write.csv(df.ccaps,
+                      file = "TI_CCMH_export_ccaps_clean.csv",
                       row.names = FALSE)
         } else if(save_individual_form == TRUE & !is.null(path_individual_form)) {
-            write.csv(df.ccaps, 
-                      file = paste0(path_individual_form, "/", "TI_CCMH_export_ccaps_clean.csv"), 
+            write.csv(df.ccaps,
+                      file = paste0(path_individual_form, "/", "TI_CCMH_export_ccaps_clean.csv"),
                       row.names = FALSE)
         } else {
             # Skip CCAPS
@@ -205,11 +212,11 @@ clean_TI_CCMH_export <- function(data,
     }
 
     # Clean SDS
-    if("SDS" %in% included_forms){ 
+    if("SDS" %in% included_forms){
 
     df.sds <- data %>%
-        dplyr::select(ClientID, CaseNoteID, 
-                      RecordType, Date, 
+        dplyr::select(ClientID, CaseNoteID,
+                      RecordType, Date,
                       NoteType, dplyr::contains("SDS")) %>%
         dplyr::mutate_at(vars(dplyr::contains("SDS")), ~ replace(., . == 0, NA)) %>%
         dplyr::filter(if_any(dplyr::contains("SDS"), ~ !is.na(.))) %>%
@@ -219,9 +226,9 @@ clean_TI_CCMH_export <- function(data,
 
     df.sds <- CCMHr::sds_to_numeric(df.sds)
 
-    # ID variable 
+    # ID variable
         if(!is.null(id_var)){
-            df.sds <- df.sds %>% 
+            df.sds <- df.sds %>%
                 dplyr::left_join(df.id, by = "ClientID") %>%
                 dplyr::select(dplyr::all_of(id_var), dplyr::everything())
 
@@ -230,12 +237,12 @@ clean_TI_CCMH_export <- function(data,
         }
 
     if(save_individual_form == TRUE & is.null(path_individual_form)){
-            write.csv(df.sds, 
-                      file = "TI_CCMH_export_sds_clean.csv", 
+            write.csv(df.sds,
+                      file = "TI_CCMH_export_sds_clean.csv",
                       row.names = FALSE)
         } else if(save_individual_form == TRUE & !is.null(path_individual_form)) {
-            write.csv(df.sds, 
-                      file = paste0(path_individual_form, "/", "TI_CCMH_export_sds_clean.csv"), 
+            write.csv(df.sds,
+                      file = paste0(path_individual_form, "/", "TI_CCMH_export_sds_clean.csv"),
                       row.names = FALSE)
         } else {
             # Skip CCAPS
@@ -248,10 +255,10 @@ clean_TI_CCMH_export <- function(data,
     }
 
     # Clean CLICC
-    if("CLICC" %in% included_forms){ 
+    if("CLICC" %in% included_forms){
         df.clicc <- data %>%
-            dplyr::select(ClientID, CaseNoteID, 
-                        RecordType, Date, 
+            dplyr::select(ClientID, CaseNoteID,
+                        RecordType, Date,
                         NoteType, dplyr::contains("CLICC")) %>%
             dplyr::mutate_at(vars(CLICC_01_01:CLICC_03), ~ replace(., . == 0, NA)) %>%
             dplyr::filter(if_any(CLICC_01_01:CLICC_03, ~ !is.na(.))) %>%
@@ -259,9 +266,9 @@ clean_TI_CCMH_export <- function(data,
             dplyr::arrange(Date)%>%
             dplyr::distinct(.keep_all = TRUE)
 
-        # ID variable 
+        # ID variable
         if(!is.null(id_var)){
-            df.clicc <- df.clicc %>% 
+            df.clicc <- df.clicc %>%
                 dplyr::left_join(df.id, by = "ClientID") %>%
                 dplyr::select(dplyr::all_of(id_var), dplyr::everything())
 
@@ -270,28 +277,28 @@ clean_TI_CCMH_export <- function(data,
         }
 
         if(save_individual_form == TRUE & is.null(path_individual_form)){
-            write.csv(df.clicc, 
-                      file = "TI_CCMH_export_clicc_clean.csv", 
+            write.csv(df.clicc,
+                      file = "TI_CCMH_export_clicc_clean.csv",
                       row.names = FALSE)
         } else if(save_individual_form == TRUE & !is.null(path_individual_form)) {
-            write.csv(df.clicc, 
-                      file = paste0(path_individual_form, "/", "TI_CCMH_export_clicc_clean.csv"), 
+            write.csv(df.clicc,
+                      file = paste0(path_individual_form, "/", "TI_CCMH_export_clicc_clean.csv"),
                       row.names = FALSE)
         } else {
             # Skip CCAPS
         }
 
         df.combine <- plyr::rbind.fill(df.combine, df.clicc)
- 
+
     } else {
         # Skip CLICC
     }
 
     # Case Closure
-    if("Closure" %in% included_forms){ 
+    if("Closure" %in% included_forms){
         df.caseclosure <- data %>%
-            dplyr::select(ClientID, CaseNoteID, 
-                        RecordType, Date, 
+            dplyr::select(ClientID, CaseNoteID,
+                        RecordType, Date,
                         NoteType, dplyr::contains("CLOSURE")) %>%
             dplyr::mutate_at(vars(CLOSURE_01_101:CLOSURE_04_107), ~ replace(., . == 0, NA)) %>%
             dplyr::filter(if_any(CLOSURE_01_101:CLOSURE_04_107, ~ !is.na(.))) %>%
@@ -299,9 +306,9 @@ clean_TI_CCMH_export <- function(data,
             dplyr::arrange(Date)%>%
             dplyr::distinct(.keep_all = TRUE)
 
-        # ID variable 
+        # ID variable
         if(!is.null(id_var)){
-            df.caseclosure <- df.caseclosure %>% 
+            df.caseclosure <- df.caseclosure %>%
                 dplyr::left_join(df.id, by = "ClientID") %>%
                 dplyr::select(dplyr::all_of(id_var), dplyr::everything())
 
@@ -310,12 +317,12 @@ clean_TI_CCMH_export <- function(data,
         }
 
         if(save_individual_form == TRUE & is.null(path_individual_form)){
-            write.csv(df.caseclosure, 
-                      file = "TI_CCMH_export_closure_clean.csv", 
+            write.csv(df.caseclosure,
+                      file = "TI_CCMH_export_closure_clean.csv",
                       row.names = FALSE)
         } else if(save_individual_form == TRUE & !is.null(path_individual_form)) {
-            write.csv(df.caseclosure, 
-                      file = paste0(path_individual_form, "/", "TI_CCMH_export_closure_clean.csv"), 
+            write.csv(df.caseclosure,
+                      file = paste0(path_individual_form, "/", "TI_CCMH_export_closure_clean.csv"),
                       row.names = FALSE)
         } else {
             # Skip CCAPS
@@ -328,31 +335,31 @@ clean_TI_CCMH_export <- function(data,
     }
 
     # Clean Audit
-    if("AUDIT" %in% included_forms){ 
+    if("AUDIT" %in% included_forms){
         df.audit <- data %>%
-            dplyr::select(ClientID, CaseNoteID, 
-                        RecordType, Date, 
+            dplyr::select(ClientID, CaseNoteID,
+                        RecordType, Date,
                         NoteType, dplyr::contains("AUDIT")) %>%
-            dplyr::rename(AUDIT_01  = AUDIT_1, 
-                          AUDIT_02  = AUDIT_2, 
-                          AUDIT_03  = AUDIT_3, 
-                          AUDIT_04  = AUDIT_4, 
-                          AUDIT_05  = AUDIT_5, 
-                          AUDIT_06  = AUDIT_6, 
-                          AUDIT_07  = AUDIT_7, 
-                          AUDIT_08  = AUDIT_8, 
-                          AUDIT_09  = AUDIT_9, 
-                          AUDIT_10  = AUDIT_10, 
-                          AUDIT_100 = AUDIT_100) %>%  
+            dplyr::rename(AUDIT_01  = AUDIT_1,
+                          AUDIT_02  = AUDIT_2,
+                          AUDIT_03  = AUDIT_3,
+                          AUDIT_04  = AUDIT_4,
+                          AUDIT_05  = AUDIT_5,
+                          AUDIT_06  = AUDIT_6,
+                          AUDIT_07  = AUDIT_7,
+                          AUDIT_08  = AUDIT_8,
+                          AUDIT_09  = AUDIT_9,
+                          AUDIT_10  = AUDIT_10,
+                          AUDIT_100 = AUDIT_100) %>%
             dplyr::mutate_at(vars(AUDIT_01:AUDIT_100), ~ replace(., . == 0, NA)) %>%
             dplyr::filter(if_any(AUDIT_01:AUDIT_100, ~ !is.na(.))) %>%
             dplyr::mutate(Has_AUDIT = 1)%>%
             dplyr::arrange(Date)%>%
             dplyr::distinct(.keep_all = TRUE)
 
-        # ID variable 
+        # ID variable
         if(!is.null(id_var)){
-            df.audit <- df.audit %>% 
+            df.audit <- df.audit %>%
                 dplyr::left_join(df.id, by = "ClientID") %>%
                 dplyr::select(dplyr::all_of(id_var), dplyr::everything())
 
@@ -361,12 +368,12 @@ clean_TI_CCMH_export <- function(data,
         }
 
         if(save_individual_form == TRUE & is.null(path_individual_form)){
-            write.csv(df.audit, 
-                      file = "TI_CCMH_export_audit_clean.csv", 
+            write.csv(df.audit,
+                      file = "TI_CCMH_export_audit_clean.csv",
                       row.names = FALSE)
         } else if(save_individual_form == TRUE & !is.null(path_individual_form)) {
-            write.csv(df.audit, 
-                      file = paste0(path_individual_form, "/", "TI_CCMH_export_audit_clean.csv"), 
+            write.csv(df.audit,
+                      file = paste0(path_individual_form, "/", "TI_CCMH_export_audit_clean.csv"),
                       row.names = FALSE)
         } else {
             # Skip CCAPS
@@ -382,13 +389,13 @@ clean_TI_CCMH_export <- function(data,
     df.combine <- df.combine %>%
         dplyr::arrange(Date)
 
-    # Save file 
+    # Save file
     if(save == TRUE){
-        write.csv(df.combine, 
-                  file = path, 
+        write.csv(df.combine,
+                  file = path,
                   row.names = FALSE)
     } else {
        return(df.combine)
     }
-    
+
 }
