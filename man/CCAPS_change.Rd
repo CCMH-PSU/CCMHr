@@ -6,8 +6,8 @@
 \usage{
 CCAPS_change(
   data,
-  client_identifier = UniqueClientID,
-  center_identifier = CcmhID,
+  client_identifier = "UniqueClientID",
+  center_identifier = "CcmhID",
   add_items = NA,
   include_first = F,
   include_last = F

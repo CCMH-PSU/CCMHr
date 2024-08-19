@@ -12,8 +12,8 @@
 #'
 
 CCAPS_change <- function(data,
-                          client_identifier = UniqueClientID,
-                          center_identifier = CcmhID,
+                          client_identifier = "UniqueClientID",
+                          center_identifier = "CcmhID",
                          add_items = NA,
                          include_first = F,
                          include_last = F) {
@@ -40,7 +40,7 @@ CCAPS_change <- function(data,
   data <- as.data.frame(data)
 
   # Rename ids
-  data <- data %>% 
+  data <- data %>%
     dplyr::rename(UniqueClientID2 = {{client_identifier}},
                   CcmhID2 = {{center_identifier}})
 
@@ -246,7 +246,7 @@ CCAPS_change <- function(data,
   data <- as.data.frame(data)
 
   # Rename ids
-  data <- data %>% 
+  data <- data %>%
    dplyr::rename(!!client_identifier := UniqueClientID2,
                  !!center_identifier:= CcmhID2)
 
