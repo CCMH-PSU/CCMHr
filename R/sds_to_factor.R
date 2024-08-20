@@ -687,6 +687,57 @@ sds_to_factor <- function(data){
                     `1` = "Yes")
   }
 
+  if ("SDS_117" %in% names(data)) {
+    data$SDS_117<- as.factor(data$SDS_117) %>%
+      forcats::fct_inseq() %>%
+      dplyr::recode(`0` = "No",
+                    `1` = "Yes")
+  }
+
+  if ("SDS_119" %in% names(data)) {
+    data$SDS_119<- as.factor(data$SDS_119) %>%
+      forcats::fct_inseq() %>%
+      dplyr::recode(`0` = "No",
+                    `1` = "Yes")
+  }
+
+  if ("SDS_120" %in% names(data)) {
+    data$SDS_120<- as.factor(data$SDS_120) %>%
+      forcats::fct_inseq() %>%
+      dplyr::recode(`0` = "No",
+                    `1` = "Yes")
+  }
+
+  if ("SDS_121" %in% names(data)) {
+    data$SDS_121<- as.factor(data$SDS_121) %>%
+      forcats::fct_inseq() %>%
+      dplyr::recode(`0` = "No",
+                    `1` = "Yes")
+  }
+
+  if ("SDS_122" %in% names(data)) {
+    data$SDS_122<- as.factor(data$SDS_122) %>%
+      forcats::fct_inseq() %>%
+      dplyr::recode(`0` = "No",
+                    `1` = "Yes")
+  }
+
+  if ("SDS_123" %in% names(data)) {
+    data$SDS_123<- as.factor(data$SDS_123) %>%
+      forcats::fct_inseq() %>%
+      dplyr::recode(`0` = "No",
+                    `1` = "Yes")
+  }
+
+  if ("SDS_1042" %in% names(data)) {
+    data$SDS_1042 <- as.factor(data$SDS_1042) %>%
+      forcats::fct_inseq() %>%
+      dplyr::recode(`1` = "On-campus",
+                    `2` = "Off-campus",
+                    `3` = "I do not live in one stable, secure residence",
+                    `4` = "Other (please specify)")
+  }
+
   return(data)
   })
 }
