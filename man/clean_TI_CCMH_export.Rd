@@ -5,10 +5,10 @@
 \title{Clean TI appointment export file}
 \usage{
 clean_TI_CCMH_export(
-  data.form,
-  data.label,
+  data,
+  id_var = NULL,
   key = CCMHr::TI_CCMH_export_forms_key,
-  included_forms = c("CCAPS", "SDS", "CLICC", "Closure"),
+  included_forms = c("CCAPS", "SDS", "CLICC", "Closure", "AUDIT"),
   save_individual_form = FALSE,
   path_individual_form = NULL,
   save = FALSE,
@@ -19,10 +19,10 @@ clean_TI_CCMH_export(
 A data frame with cleaned TI exported data forms.
 }
 \description{
-@param data.form A unquoted (when data file is an r object) or quoted string (when data file is located in a local directory) of the CCMH forms data file. If specified from directory, the data file should be a csv file.
-@param data.label A unquoted (when data file is an r object) or quoted string (when data file is located in a local directory) of the CCMH labels data file. If specified from directory, the data file should be a xls file. No precleaning is required.
+@param data A data frame.
+@param id_var A quoted string to indicate the name of the ID variable if it exist. By default, \code{NULL}.
 @param key A key to rename the columns in the form data file. Default is \code{CCMHr::TI_CCMH_export_forms_key}
-@param included_forms A string or list of strings to indicate the forms that should be included in the data. Options include: "CCAPS", "SDS", "CLICC", "Closure", and "Non-CCMH". By default, \code{c("CCAPS", "SDS", "CLICC", "Closure")}
+@param included_forms A string or list of strings to indicate the forms that should be included in the data. Options include: "CCAPS", "SDS", "CLICC", "Closure", and "AUDIT". By default, \code{c("CCAPS", "SDS", "CLICC", "Closure", "AUDIT")}
 @param save_individual_form A logical statement indicates whether the individual forms should be saved seperate under a local folder. By default, \code{FALSE}
 @param path_individual_form A quoted string to indicate the path where the individual forms should be saved. By default, "NULL" or saved under the current working directory
 @param save A logical statement indicates whether the overall data frame should be saved as a file under a local folder. If false, the data will be returned as an object. By default, \code{FALSE}
