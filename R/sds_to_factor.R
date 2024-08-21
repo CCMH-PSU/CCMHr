@@ -687,12 +687,6 @@ sds_to_factor <- function(data){
                     `1` = "Yes")
   }
 
-  if ("SDS_117" %in% names(data)) {
-    data$SDS_117<- as.factor(data$SDS_117) %>%
-      forcats::fct_inseq() %>%
-      dplyr::recode(`0` = "No",
-                    `1` = "Yes")
-  }
 
   if ("SDS_119" %in% names(data)) {
     data$SDS_119<- as.factor(data$SDS_119) %>%
