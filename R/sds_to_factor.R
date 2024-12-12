@@ -412,7 +412,7 @@ sds_to_factor <- function(data){
     data$SDS_33 <- as.factor(data$SDS_33) %>%
       forcats::fct_inseq() %>%
       dplyr::recode(`1` = "Single",
-                    `2` = "Serious dating or committed relationships",
+                    `2` = "Serious dating or committed relationship",
                     `3` = "Civil union, domestic partnership, or equivalent",
                     `4` = "Married",
                     `5` = "Divorced",
