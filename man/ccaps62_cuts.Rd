@@ -4,14 +4,14 @@
 \alias{ccaps62_cuts}
 \title{Create CCAPS-62 cut points}
 \usage{
-ccaps62_cuts(data, version = 2019, first = F)
+ccaps62_cuts(data, version = 2025, first = F)
 }
 \arguments{
 \item{data}{A data file containing CCAPS-62 subscales}
 
-\item{version}{The version of CCAPS cut points to use. Currently, 2018 & 2019 are available.}
+\item{version}{The version of CCAPS cut points to use. Currently, 2018, 2019, and 2025 are available.}
 
-\item{first}{True indicates the cut points should be based on variabels with _first.}
+\item{first}{True indicates the cut points should be based on variables with _first.}
 }
 \value{
 A data frame with all the original data in \code{data}, and several additional columns of cut scores coded 1 for above cut score and 0 for below cut score.
