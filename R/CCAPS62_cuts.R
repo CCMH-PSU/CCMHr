@@ -2,8 +2,8 @@
 #'
 #' @description Creates binary variables for CCAPS-62 subscales indicating whether the score is equal to or above (1) or below (0) the low and high cut respectively.
 #' @param data A data file containing CCAPS-62 subscales
-#' @param version The version of CCAPS cut points to use. Currently, 2018 & 2019 are available.
-#' @param first True indicates the cut points should be based on variabels with _first.
+#' @param version The version of CCAPS cut points to use. Currently, 2018, 2019, and 2025 are available.
+#' @param first True indicates the cut points should be based on variables with _first.
 #' @note If `data` does not contain the proper CCAPS subscale names, it will return an error.
 #' @return A data frame with all the original data in `data`, and several additional columns of cut scores coded 1 for above cut score and 0 for below cut score.
 #' @examples \dontrun{
@@ -11,7 +11,7 @@
 #' }
 #' @export
 
-ccaps62_cuts <- function(data, version = 2019, first = F){
+ccaps62_cuts <- function(data, version = 2025, first = F){
   if(first == F & !all(c("Depression62", "Anxiety62", "Social_Anxiety62", "Academics62", "Eating62", "Hostility62", "Substance62", "DI") %in% colnames(data))) {
     stop('CCAPS columns not named correctly.')
     } else if(first == T & !all(c("Depression62_first", "Anxiety62_first", "Social_Anxiety62_first", "Academics62_first", "Eating62_first", "Hostility62_first", "Substance62_first", "DI_first") %in% colnames(data))) {
@@ -61,6 +61,27 @@ ccaps62_cuts <- function(data, version = 2019, first = F){
               )
             return(data)
             message("CCAPS-62 low cut scores based on 2019 norms and high cut scores based on 2018 norms.")
+        } else if (version == "2025") {
+          data <- data %>%
+            dplyr::mutate(Depression62_low_cut = ifelse(round(.data$Depression62, 2) >= 1.23, 1, 0),
+                          Depression62_hi_cut = ifelse(round(.data$Depression62, 2) >= 1.90, 1, 0),
+                          Anxiety62_low_cut = ifelse(round(.data$Anxiety62, 2) >= 1.33, 1, 0),
+                          Anxiety62_hi_cut = ifelse(round(.data$Anxiety62,2) >= 1.86, 1, 0),
+                          Social_Anxiety62_low_cut = ifelse(round(.data$Social_Anxiety62, 2) >= 1.57, 1, 0),
+                          Social_Anxiety62_hi_cut = ifelse(round(.data$Social_Anxiety62,2) >= 2.57, 1, 0),
+                          Academics62_low_cut = ifelse(round(.data$Academics62,2) >= 1.40, 1, 0),
+                          Academics62_hi_cut = ifelse(round(.data$Academics62,2) >= 2.40, 1, 0),
+                          Eating62_low_cut = ifelse(round(.data$Eating62,2) >= 1.10, 1, 0),
+                          Eating62_hi_cut = ifelse(round(.data$Eating62,2) >= 1.62, 1, 0),
+                          Hostility62_low_cut = ifelse(round(.data$Hostility62,2) >= 0.97, 1, 0),
+                          Hostility62_hi_cut = ifelse(round(.data$Hostility62,2) >= 1.29, 1, 0),
+                          Substance62_low_cut = ifelse(round(.data$Substance62,2) >= 0.54, 1, 0),
+                          Substance62_hi_cut = ifelse(round(.data$Substance62,2) >= 0.83, 1, 0),
+                          Family62_low_cut = ifelse(round(.data$Family62,2) >= 1.42, 1, 0),
+                          Family62_hi_cut = ifelse(round(.data$Family62,2) >= 2.00, 1, 0)
+            )
+          return(data)
+          message("CCAPS-62 low and high cut scores are based on 2025 norms.")
         }
 
       } else if (first == T) {
@@ -106,6 +127,27 @@ ccaps62_cuts <- function(data, version = 2019, first = F){
             )
           return(data)
           message("CCAPS-62 low cut scores based on 2019 norms and high cut scores based on 2018 norms.")
+        } else if (version == "2025") {
+          data <- data %>%
+            dplyr::mutate(Depression62_low_cut = ifelse(round(.data$Depression62_first, 2) >= 1.23, 1, 0),
+                          Depression62_hi_cut = ifelse(round(.data$Depression62_first, 2) >= 1.90, 1, 0),
+                          Anxiety62_low_cut = ifelse(round(.data$Anxiety62_first, 2) >= 1.33, 1, 0),
+                          Anxiety62_hi_cut = ifelse(round(.data$Anxiety62_first,2) >= 1.86, 1, 0),
+                          Social_Anxiety62_low_cut = ifelse(round(.data$Social_Anxiety62_first, 2) >= 1.57, 1, 0),
+                          Social_Anxiety62_hi_cut = ifelse(round(.data$Social_Anxiety62_first,2) >= 2.57, 1, 0),
+                          Academics62_low_cut = ifelse(round(.data$Academics62_first,2) >= 1.40, 1, 0),
+                          Academics62_hi_cut = ifelse(round(.data$Academics62_first,2) >= 2.40, 1, 0),
+                          Eating62_low_cut = ifelse(round(.data$Eating62_first,2) >= 1.10, 1, 0),
+                          Eating62_hi_cut = ifelse(round(.data$Eating62_first,2) >= 1.62, 1, 0),
+                          Hostility62_low_cut = ifelse(round(.data$Hostility62_first,2) >= 0.97, 1, 0),
+                          Hostility62_hi_cut = ifelse(round(.data$Hostility62_first,2) >= 1.29, 1, 0),
+                          Substance62_low_cut = ifelse(round(.data$Substance62_first,2) >= 0.54, 1, 0),
+                          Substance62_hi_cut = ifelse(round(.data$Substance62_first,2) >= 0.83, 1, 0),
+                          Family62_low_cut = ifelse(round(.data$Family62_first,2) >= 1.42, 1, 0),
+                          Family62_hi_cut = ifelse(round(.data$Family62_first,2) >= 2.00, 1, 0)
+            )
+          return(data)
+          message("CCAPS-62 low and high cut scores are based on 2025 norms.")
         }
       }
     }
