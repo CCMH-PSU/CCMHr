@@ -6,7 +6,7 @@
 #' @param version A numeric value to indicate the version of CCAPS cut point scores to use. Options include 2018, 2019, and 2025. By default, `2025`.
 #' @param first A logical argument that indicates if the cut points should be based on variables ending with "\_first" (e.g., Depression62_first; variables created by the CCAPS_change function). If `TRUE`, the cut points should be based on variable names ending with "\_first". By default, `FALSE`.
 #'
-#' @note If the data frame does not contain the proper CCAPS subscale names, it will return an error. Two different variables are created. Variables that end "\_low_cut" (e.g., "Depression62_low_cut") indicate whether or not the client's score was below (0) or above (1) the low cut. Variables that end "\_hi_cut" (e.g., "Depression62_hi_cut") indicate whether or not the client's score was below (0) or above (1) the high cut.
+#' @note If the data frame does not contain the proper CCAPS subscale names, it will return an error. Two different variables are created. Variables that end "\_low_cut" (e.g., "Depression62_low_cut") indicate whether or not the client's score was below (0) or above (1) the low cut. Variables that end "\_hi_cut" (e.g., "Depression62_hi_cut") indicate whether or not the client's score was below (0) or above (1) the high cut. The Distress Index (DI) cut scores are not included. To add DI cut scores, a programmer must create a data frame with CCAPS34 cut scores using the ccaps34_cuts function and merge that data frame with a data frame that contains CCAPS62 subscale cut scores.
 #'
 #' @return A data frame with all the original data and several additional columns of cut scores.
 #'
