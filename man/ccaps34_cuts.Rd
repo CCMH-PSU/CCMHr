@@ -4,26 +4,21 @@
 \alias{ccaps34_cuts}
 \title{Create CCAPS-34 cut points}
 \usage{
-ccaps34_cuts(data, version = 2025, first = F)
+ccaps34_cuts(data, version = 2025, first = FALSE)
 }
 \arguments{
-\item{data}{A data file containing CCAPS-34 subscales}
+\item{data}{A data file containing CCAPS-34 subscales scores.}
 
-\item{version}{The version of CCAPS cut points to use. Currently, 2018, 2019, and 2025 are available.}
+\item{version}{A numeric value to indicate the version of CCAPS cut point scores to use. Options include 2018, 2019, and 2025. By default, \code{2025}.}
 
-\item{first}{True indicates the cut points should be based on variables with _first.}
+\item{first}{A logical argument that indicates if the cut points should be based on variables ending with "\_first" (e.g., Depression34_first; variables created by the CCAPS_change function). If \code{TRUE}, the cut points should be based on variable names ending with "\_first". By default, \code{FALSE}.}
 }
 \value{
-A data frame with all the original data in \code{data}, and several additional columns of cut scores coded 1 for above cut score and 0 for below cut score.
+A data frame with all the original data and several additional columns of cut scores.
 }
 \description{
-Creates binary variables for CCAPS-34 subscales indicating whether the score is equal to or above (1) or below (0) the low and high cut respectively.
+Creates binary variables for CCAPS-34 subscales indicating whether each subscale score is equal to, below (0), or above (1) the low and high cut scores, respectively.
 }
 \note{
-If \code{data} does not contain the proper CCAPS subscale names, it will return an error.
-}
-\examples{
-\dontrun{
-TI1718 <- ccaps34_cuts(TI1718)
-}
+If the data frame does not contain the proper CCAPS subscale names, it will return an error. Two different variables are created. Variables that end "\_low_cut" (e.g., "Depression34_low_cut") indicate whether or not the client's score was below (0) or above (1) the low cut. Variables that end "\_hi_cut" (e.g., "Depression34_hi_cut") indicate whether or not the client's score was below (0) or above (1) the high cut.
 }

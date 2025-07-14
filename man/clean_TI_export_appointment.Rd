@@ -2,7 +2,7 @@
 % Please edit documentation in R/TI_CCMH_export_support_functions.r
 \name{clean_TI_export_appointment}
 \alias{clean_TI_export_appointment}
-\title{Clean TI appointment export file}
+\title{Cleans a Titanium (TI) appointment CCMH export file.}
 \usage{
 clean_TI_export_appointment(
   data,
@@ -11,12 +11,18 @@ clean_TI_export_appointment(
   path = "TI_appointment_clean.csv"
 )
 }
+\arguments{
+\item{data}{A data frame of a Titanium (TI) appointment CCMH export file.}
+
+\item{key}{A data frame with two columns (i.e., orginal_name, new_name) to rename the columns of the raw data. By default, \code{CCMHr::TI_CCMH_export_appointment_key}.}
+
+\item{save}{A logical argument to indicate whether the data frame should be saved as a file under a local folder. If \code{TRUE}, the data frame would be saved as specified in the path argument. If \code{FALSE}, the data will be returned as an object. By default, \code{FALSE}.}
+
+\item{path}{A quoted string to indicate the file type (e.g., CSV, RDA), file name, and the path within the local directory where the appointment data should be saved. By default, \code{"TI_appointment_clean.csv"}.}
+}
 \value{
 A data frame with cleaned TI exported appointment data.
 }
 \description{
-@param data A data frame.
-@param key A data frame with two columns, orginal_name and new_name, to rename the columns in the appointment data. Default is \code{CCMHr::TI_CCMH_export_appointment_key}
-@param save A logical statement indicates whether the data frame should be saved as a file under a local folder. If false, the data will be returned as an object. By default, \code{FALSE}
-@param path A quoted string to indicate the path where the appointment data should be saved. By default, \code{TI_appointment_clean.csv}
+This function cleans a TI appointment CCMH export file. The following cleaning procedures are conducted: a) rename variables (based on the key) to allow the data to be used with other CCMHr functions, b) format date, c) delete duplicate appointments, and d) return/save data set.
 }

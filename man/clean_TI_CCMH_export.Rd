@@ -2,7 +2,7 @@
 % Please edit documentation in R/TI_CCMH_export_support_functions.r
 \name{clean_TI_CCMH_export}
 \alias{clean_TI_CCMH_export}
-\title{Clean TI appointment export file}
+\title{Cleans a Titanium (TI) CCMH forms export file.}
 \usage{
 clean_TI_CCMH_export(
   data,
@@ -15,16 +15,26 @@ clean_TI_CCMH_export(
   path = "TI_CCMH_export_clean.csv"
 )
 }
+\arguments{
+\item{data}{A data frame from a Titanium (TI) CCMH forms export file.}
+
+\item{id_var}{A quoted string or list of quoted strings to indicate the name of the ID variable(s) outside of "ClientID" if it/they exist. If \code{NULL}, there are no other ID variables. By default, \code{NULL}.}
+
+\item{key}{A key to rename the columns in the data file. By default, \code{CCMHr::TI_CCMH_export_forms_key}.}
+
+\item{included_forms}{A quoted string or list of quoted strings that indicates which forms should be cleaned and included in the data. Options include: "CCAPS", "SDS", "CLICC", "Closure", and "AUDIT". By default, \code{c("CCAPS", "SDS", "CLICC", "Closure", "AUDIT")}.}
+
+\item{save_individual_form}{A logical argument to indicate whether the individual forms (e.g., "CCAPS", "SDS") should be saved in separate files under a local folder. If \code{TRUE}, each form is saved in a separate file under a local folder. If \code{FALSE}, the forms will be merged and saved under a single data frame. By default, \code{FALSE}.}
+
+\item{path_individual_form}{A quoted string to indicate the path where the individual forms should be saved. If \code{NULL}, each form is saved under the current working directory. By default, \code{NULL}.}
+
+\item{save}{A logical argument to indicate whether the data frame should be saved as a file under a local folder. If \code{TRUE}, the data frame would be saved as specified in the path argument. If \code{FALSE}, the data will be returned as an object. By default, \code{FALSE}.}
+
+\item{path}{A quoted string to indicate the file type (e.g., CSV, RDA), file name, and the path within the local directory where data from the forms should be saved. By default, \code{"TI_CCMH_export_clean.csv"}.}
+}
 \value{
-A data frame with cleaned TI exported data forms.
+A data frame with cleaned TI CCMH exported forms data.
 }
 \description{
-@param data A data frame.
-@param id_var A quoted string to indicate the name of the ID variable if it exist. By default, \code{NULL}.
-@param key A key to rename the columns in the form data file. Default is \code{CCMHr::TI_CCMH_export_forms_key}
-@param included_forms A string or list of strings to indicate the forms that should be included in the data. Options include: "CCAPS", "SDS", "CLICC", "Closure", and "AUDIT". By default, \code{c("CCAPS", "SDS", "CLICC", "Closure", "AUDIT")}
-@param save_individual_form A logical statement indicates whether the individual forms should be saved seperate under a local folder. By default, \code{FALSE}
-@param path_individual_form A quoted string to indicate the path where the individual forms should be saved. By default, "NULL" or saved under the current working directory
-@param save A logical statement indicates whether the overall data frame should be saved as a file under a local folder. If false, the data will be returned as an object. By default, \code{FALSE}
-@param path A quoted string to indicate the path where the appointment data should be saved. By default, \code{TI_appointment_clean.csv}
+This function cleans a TI CCMH forms export file. The following cleaning procedures are conducted: a) rename variables (based on the key) to allow the data to be used with other CCMHr functions, b) format date, c) recode TI-specific responses "\if{html}{\out{<No Response>}}", d) clean/score CCAPS, e) clean SDS, f) clean CLICC, g) clean Case Closure, h) clean AUDIT, and i) return/save data set.
 }
