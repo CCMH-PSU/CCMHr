@@ -2,33 +2,33 @@
 % Please edit documentation in R/CCAPS_change.r
 \name{CCAPS_change}
 \alias{CCAPS_change}
-\title{Create a data frame with CCAPS change scores between first and last administration}
+\title{Create change variables on CCAPS subscale scores between a client's first and last CCAPS administration.}
 \usage{
 CCAPS_change(
   data,
   client_identifier = "UniqueClientID",
   center_identifier = "CcmhID",
   add_items = NA,
-  include_first = F,
-  include_last = F
+  include_first = FALSE,
+  include_last = FALSE
 )
 }
 \arguments{
-\item{data}{A data frame with CCAPS data.}
+\item{data}{A data file containing CCAPS subscales scores.}
 
-\item{client_identifier}{The column uniquely identifying each client. By default, \code{UniqueClientID}.}
+\item{client_identifier}{The column that uniquely identifies each client. By default, \code{UniqueClientID}.}
 
-\item{center_identifier}{The column uniquely identifying each center. By default \code{CcmhID}.}
+\item{center_identifier}{The column that uniquely identifies each center. By default, \code{CcmhID}.}
 
-\item{add_items}{Specify the columns or CCAPS variables outside of CCAPS subscales to be included in the returned data frame. Default is \code{NA}, resulting in no additional CCAPS items being added to the returned data frame. Multiple items should be listed in the following manner: c("Variable1", "Variable2"). Option \code{"all"} selects all CCAPS 34 items to be in the returned data frame.}
+\item{add_items}{Specify the columns outside CCAPS subscales to be included in the returned data frame. Options include \code{NA} for no additional variables, a single quoted string (e.g., \code{"Variable1"}) for a single variable, a list of quoted strings (e.g., \code{c("Variable1", "Variable2")}) for a list of variables, or \code{"all"} for selecting all CCAPS-34 items. By default, \code{NA}.}
 
-\item{include_first}{A logical argument that specifies if subscale or item scores from the first completion of the CCAPS should be included in the returned data frame. By default \code{FALSE} resulting in CCAPS subscale or specified variable scores of the first administration not being included in the returned data frame. Option \code{"TRUE"} adds first administration scores of CCAPS subscales and specified items to the returned data frame.}
+\item{include_first}{A logical argument that specifies if scores and/or responses from the first completion of the CCAPS should be included in the returned data frame. If \code{TRUE}, responses of the first administration is included in the returned data frame. By default, \code{FALSE}.}
 
-\item{include_last}{A logical argument that specifies if subscale or item scores from the last completion of the CCAPS should be included in the returned data frame. By default \code{FALSE} resulting in CCAPS subscale or specified variable scores of the last administration not being included in the returned data frame. Option \code{"TRUE"} adds last administration scores of CCAPS subscales and specified items to the returned data frame.}
+\item{include_last}{A logical argument that specifies if scores and/or responses from the last completion of the CCAPS should be included in the returned data frame. If \code{TRUE}, responses of the last administration is included in the returned data frame. By default, \code{FALSE}.}
 }
 \value{
-A data frame with CCAPS change scores of subscales and specified CCAPS items. Based on additional arguments, scores from first and last administration will be included as well.
+A data frame with CCAPS change score of subscales and specified columns. Depending on the include_first and include_last endorsement, scores and/or responses from the first and last CCAPS administration could also be included.
 }
 \description{
-Create a data frame with CCAPS change scores between first and last administration
+This function could create three different types of variables. The function will always return variables that end with "\_change" (e.g., Depression34_change). These variables depict the change in CCAPs subscale scores between the first and last administration (i.e., first admin - last admin). Here, a positive score indicates symptom improvement, a zero score indicates no change, and a negative score indicates symptom degradation. When include_first = TRUE, the CCAPs subscale scores from the first administration will be included in the returned data set (e.g., the variable names will end with "\_first"). When include_last = TRUE, the CCAPs subscale scores from the last administration will be included in the returned data set (e.g., the variable names will end with "\_last").
 }
