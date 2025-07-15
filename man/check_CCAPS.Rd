@@ -2,29 +2,19 @@
 % Please edit documentation in R/check_CCAPS.R
 \name{check_CCAPS}
 \alias{check_CCAPS}
-\title{Check CCAPS item values}
+\title{Check the response validity of the CCAPS items.}
 \usage{
 check_CCAPS(dat)
 }
 \arguments{
-\item{dat}{The data frame containing the new year of (combined) data.}
+\item{dat}{A data file containing CCAPS items.}
 }
 \value{
-A vector of strings containing the names of the CCAPS variables that have
-at least one value out of bounds. If no variables have values out of bounds, the
-returned value will be \code{NULL}.
+If CCAPS item responses are valid, the function returns the message, "CCAPS looks good!" If CCAPS item responses are invalid, the function returns a vector of the CCAPS item(s) that violated the constraints.
 }
 \description{
-A function used to check the validity of the CCAPS items. All CCAPS
-items should have values between 0 and 4, and possibly NA for missing values. This
-function checks whether these constraints are satisfied, and if not, returns a vector
-containing the CCAPS item(s) which violated these rules.
+Check a data frame to ensure all CCAPS items have 0, 1, 2, 3, 4, or NA values. If these constraints are not satisfied, the function returns a vector of the CCAPS item(s) that violated the constraints. To run this function, CCAPS variable names must be correctly named.
 }
 \note{
-\code{CCAPSvalue_check} calls on first and last CCAPS items--CCAPS_01 and CCAPS_70
---by name, so they must be named properly in \code{dat}. Variable naming convention is
-\code{CCAPS_01}, \code{CCAPS_70}. If \code{dat} does not contain the proper CCAPS
-variable names (or the naming convention was changed in the new year's data), the
-function will return an error. In addition, it is assumed that all CCAPS variables
-exist between \code{CCAPS_01} and \code{CCAPS_70}.
+\code{CCAPSvalue_check} calls on first and last CCAPS items--CCAPS_01 and CCAPS_70 --by name, so they must be named properly in \code{dat}. Variable naming convention is \code{CCAPS_01}, \code{CCAPS_70}. If \code{dat} does not contain the proper CCAPS variable names (or the naming convention was changed in the new year's data), the function will return an error. In addition, it is assumed that all CCAPS variables exist between \code{CCAPS_01} and \code{CCAPS_70}.
 }
