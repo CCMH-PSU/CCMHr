@@ -2,16 +2,16 @@
 % Please edit documentation in R/Data_year.r
 \name{create_Data_year}
 \alias{create_Data_year}
-\title{Create Data_year variable}
+\title{Create Data_year variable.}
 \usage{
 create_Data_year(data)
 }
 \arguments{
-\item{data}{A data file.}
+\item{data}{A data frame with a valid Date variable.}
 }
 \value{
-A data frame with a new variable Data_year.
+A data frame with a new variable, Data_year.
 }
 \description{
-Create Data_year variable
+Creates the "Data_year" variable within a data set. The "Data_year" variable refers to the academic year in which the data was collected. To run this function, the following must be true: a) the "Data_year" variable must be absent from the data frame, b) the "Date" variable must exist in the data frame, c) the "Date" variable must be classed as a date, and d) the "Date" variable must be in the following format "\%Y/\%m/\%d" (ex. "2025-01-20"). To date, the function creates the "Data_year" variable for a date frame with dates between "2010-07-01" and "2035-07-01".
 }

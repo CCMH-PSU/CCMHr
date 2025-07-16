@@ -2,16 +2,16 @@
 % Please edit documentation in R/Data_year.r
 \name{format_Data_year}
 \alias{format_Data_year}
-\title{Format Data_year variable}
+\title{Format Data_year variable.}
 \usage{
 format_Data_year(data)
 }
 \arguments{
-\item{data}{A data file.}
+\item{data}{A data frame with a valid Data_year variable.}
 }
 \value{
-A data frame with new variables: Data_year_long, Data_year_formal, and Data_year_formalshort.
+A data frame with new variables Data_year_long, Data_year_formal, and Data_year_formalshort.
 }
 \description{
-Format Data_year variable
+Creates different formats of the "Data_year" variable within a data frame. This function will create three new variables within a data frame. The variables include Data_year_long (ex. "2020-2021"), Data_year_formal (ex. "2020-21"), and Data_year_formalshort (ex. "20-21"). These formatted variables are often used at CCMH for axis labels within trend plots. To run this function, a valid "Data_year" variable must exist within the data frame.
 }
