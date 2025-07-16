@@ -24,5 +24,5 @@ clean_TI_export_appointment(
 A data frame with cleaned TI exported appointment data.
 }
 \description{
-This function cleans a TI appointment CCMH export file. The following cleaning procedures are conducted: a) rename variables (based on the key) to allow the data to be used with other CCMHr functions, b) format date, c) delete duplicate appointments, and d) return/save data set.
+This function cleans a TI appointment CCMH export file. The following cleaning procedures are conducted: a) rename variables (based on the key) to allow the data to be used with other CCMHr functions, b) format date, c) delete duplicate appointments, and d) return/save data frame.
 }

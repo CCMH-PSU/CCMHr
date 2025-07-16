@@ -1,6 +1,6 @@
 #' Create Data_year variable.
 #'
-#' @description Creates the "Data_year" variable within a data set. The "Data_year" variable refers to the academic year in which the data was collected. To run this function, the following must be true: a) the "Data_year" variable must be absent from the data frame, b) the "Date" variable must exist in the data frame, c) the "Date" variable must be classed as a date, and d) the "Date" variable must be in the following format "%Y/%m/%d" (ex. "2025-01-20"). To date, the function creates the "Data_year" variable for a date frame with dates between "2010-07-01" and "2035-07-01".
+#' @description Creates the "Data_year" variable within a data frame. The "Data_year" variable refers to the academic year in which the data was collected. To run this function, the following must be true: a) the "Data_year" variable must be absent from the data frame, b) the "Date" variable must exist in the data frame, c) the "Date" variable must be classed as a date, and d) the "Date" variable must be in the following format "%Y/%m/%d" (ex. "2025-01-20"). To date, the function creates the "Data_year" variable for a date frame with dates between "2010-07-01" and "2035-07-01".
 #'
 #' @param data  A data frame with a valid Date variable.
 #'

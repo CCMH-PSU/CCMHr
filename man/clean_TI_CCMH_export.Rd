@@ -36,5 +36,5 @@ clean_TI_CCMH_export(
 A data frame with cleaned TI CCMH exported forms data.
 }
 \description{
-This function cleans a TI CCMH forms export file. The following cleaning procedures are conducted: a) rename variables (based on the key) to allow the data to be used with other CCMHr functions, b) format date, c) recode TI-specific responses "\if{html}{\out{<No Response>}}", d) clean/score CCAPS, e) clean SDS, f) clean CLICC, g) clean Case Closure, h) clean AUDIT, and i) return/save data set.
+This function cleans a TI CCMH forms export file. The following cleaning procedures are conducted: a) rename variables (based on the key) to allow the data to be used with other CCMHr functions, b) format date, c) recode TI-specific responses "\if{html}{\out{<No Response>}}", d) clean/score CCAPS, e) clean SDS, f) clean CLICC, g) clean Case Closure, h) clean AUDIT, and i) return/save data frame.
 }

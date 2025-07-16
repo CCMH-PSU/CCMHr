@@ -1,6 +1,6 @@
 #' Cleans a Titanium (TI) appointment CCMH export file.
 #'
-#' @description This function cleans a TI appointment CCMH export file. The following cleaning procedures are conducted: a) rename variables (based on the key) to allow the data to be used with other CCMHr functions, b) format date, c) delete duplicate appointments, and d) return/save data set.
+#' @description This function cleans a TI appointment CCMH export file. The following cleaning procedures are conducted: a) rename variables (based on the key) to allow the data to be used with other CCMHr functions, b) format date, c) delete duplicate appointments, and d) return/save data frame.
 #'
 #' @param data A data frame of a Titanium (TI) appointment CCMH export file.
 #' @param key A data frame with two columns (i.e., orginal_name, new_name) to rename the columns of the raw data. By default, `CCMHr::TI_CCMH_export_appointment_key`.
@@ -49,7 +49,7 @@ clean_TI_export_appointment <- function(data,
 
 #' Cleans a Titanium (TI) CCMH forms export file.
 #'
-#' @description This function cleans a TI CCMH forms export file. The following cleaning procedures are conducted: a) rename variables (based on the key) to allow the data to be used with other CCMHr functions, b) format date, c) recode TI-specific responses "<No Response>", d) clean/score CCAPS, e) clean SDS, f) clean CLICC, g) clean Case Closure, h) clean AUDIT, and i) return/save data set.
+#' @description This function cleans a TI CCMH forms export file. The following cleaning procedures are conducted: a) rename variables (based on the key) to allow the data to be used with other CCMHr functions, b) format date, c) recode TI-specific responses "<No Response>", d) clean/score CCAPS, e) clean SDS, f) clean CLICC, g) clean Case Closure, h) clean AUDIT, and i) return/save data frame.
 #'
 #' @param data A data frame from a Titanium (TI) CCMH forms export file.
 #' @param id_var A quoted string or list of quoted strings to indicate the name of the ID variable(s) outside of "ClientID" if it/they exist. If `NULL`, there are no other ID variables. By default, `NULL`.

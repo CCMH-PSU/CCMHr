@@ -9,7 +9,7 @@ check_varnames(data, old_names = NULL)
 \arguments{
 \item{data}{A regular data frame or a data frame that contains a new year of CCMH data.}
 
-\item{old_names}{A vector of strings indicating the old (or expected) variable names in the data set. If \code{NULL}, a vector of variable names coming from the 2016-2017 combined data, stored as an Rdata file in the package, called "CCMHvars". By default, \code{NULL}.}
+\item{old_names}{A vector of strings indicating the old (or expected) variable names in the data frame. If \code{NULL}, a vector of variable names coming from the 2016-2017 combined data, stored as an Rdata file in the package, called "CCMHvars". By default, \code{NULL}.}
 }
 \value{
 A list containing "Is_same", "Omitted", and "Extra". "Is_same" is a logical value, indicating whether or not the new variable names were consistent with the expected variable names. If "Is_same" equals FALSE, some variable names of the data frame do not match the vector of names specified in old_names. "Omitted" is a vector of quoted strings corresponding to the variables from the vector of names specified in old_names that do not appear in the data frame. "Extra" is a vector of quoted strings corresponding to the variables in the data frame not appearing in the vector of names specified in old_names.
