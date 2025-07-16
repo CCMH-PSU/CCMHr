@@ -2,29 +2,20 @@
 % Please edit documentation in R/create_courses.R
 \name{create_courses}
 \alias{create_courses}
-\title{Create courses of therapy within data}
+\title{Detect courses of therapy.}
 \usage{
 create_courses(data, firstOnly = FALSE, daysbetween = 90)
 }
 \arguments{
-\item{data}{CCMH data files with UniqueClientID and Date variables}
+\item{data}{A data frame that includes UniqueClientID and Date variables.}
 
-\item{firstOnly}{If FALSE, will return the whole data set. If TRUE, will return only each client's first course.}
+\item{firstOnly}{A logical argument to indicate whether the returned data frame should include only data from a client's first administration. If \code{TRUE}, the returned data frame will only include data about a client's first administration, and no new variables are created. If \code{FALSE}, the original data frame is returned, and three new variables are created. By default, \code{FALSE}.}
 
-\item{daysbetween}{The number of days between records that triggers an additional course. By default, 90.}
+\item{daysbetween}{A numeric value that indicates the threshold regarding the number of days between records that distinguish a separate treatment course. By default, \code{90}.}
 }
 \value{
-A data frame with added variables indicating courses.
-
-If \code{firstOnly} = \code{FALSE}, all courses are retained, with the following variables added:
-\itemize{
-\item \code{UniqueClientID_byCourse}: an ID unique to each course of therapy. This is created by adding .1 to UniqueClientID for their first course (e.g. 100.1), .2 for their second course (100.2), etc.
-\item \code{RankCourse}: The course number that the line of data belongs to, numbered 1 through N of courses.
-\item \code{FirstCourse}: A dichotomous variable indicating whether the lines of data belong to a client's first course or not.
-}
-
-If \code{firstOnly} = \code{TRUE}, only the first course is selected, and no variables are added.
+A data frame will be returned. If the "firstOnly" argument is \code{TRUE}, the data frame will only contain data about a client's first treatment course, and no new variables will be created. If the "firstOnly" argument is \code{FALSE}, the entire data frame is returned, and three new variables are created. The new variables include: \code{UniqueClientID_byCourse} is an ID unique to each client and course of therapy (i.e., .1 is added to UniqueClientID for their first course (e.g. 100.1), .2 for their second course (100.2), etc); \code{RankCourse} is the course number that the row pertains to (i.e., 1 to N of courses); and \code{FirstCourse} is a dichotomous variable indicating whether the rows of data belong to a client's first course or not (i.e., 1 = First course, 0 = Not the first course).
 }
 \description{
-Create courses of therapy in CCMH data.
+Detect courses of therapy based on the number of days between records in CCMH data. The function can also extract data rows about a client's first treatment course or adjust the number of days between records required to indicate a new treatment course. The "UniqueClientID" and "Date" variables must be in the data frame to run this function.
 }
