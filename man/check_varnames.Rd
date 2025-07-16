@@ -2,31 +2,18 @@
 % Please edit documentation in R/check_varnames.R
 \name{check_varnames}
 \alias{check_varnames}
-\title{Check variable Names}
+\title{Check variable names.}
 \usage{
 check_varnames(data, old_names = NULL)
 }
 \arguments{
-\item{data}{The data frame containing the new year of (combined) data, with the variable names stored in \code{colnames(data)}.}
+\item{data}{A regular data frame or a data frame that contains a new year of CCMH data.}
 
-\item{old_names}{A vector of strings indicating the old (or expected) variable names in the data set.
-The default is a vector of variable names coming from the 2016-2017 combined data, stored as an
-Rdata file in the package, called \code{CCMHvars}.}
+\item{old_names}{A vector of strings indicating the old (or expected) variable names in the data set. If \code{NULL}, a vector of variable names coming from the 2016-2017 combined data, stored as an Rdata file in the package, called "CCMHvars". By default, \code{NULL}.}
 }
 \value{
-A list containing \code{Is_same}, \code{Omitted}, and \code{Extra}. \code{Is_same} is boolean-valued,
-indicating whether or not the new variable names were consistent with the expected variable names. \code{Omitted}
-is a vector of strings corresponding to the variables from \code{old_names} not appearing in \code{data}.
-\code{Extra} is a vector of strings corresponding to the variables in \code{data} not appearing in \code{old_names}.
+A list containing "Is_same", "Omitted", and "Extra". "Is_same" is a logical value, indicating whether or not the new variable names were consistent with the expected variable names. If "Is_same" equals FALSE, some variable names of the data frame do not match the vector of names specified in old_names. "Omitted" is a vector of quoted strings corresponding to the variables from the vector of names specified in old_names that do not appear in the data frame. "Extra" is a vector of quoted strings corresponding to the variables in the data frame not appearing in the vector of names specified in old_names.
 }
 \description{
-This function is used to check the consistency of variable names for the new yearly data. Checks will be run against
-the expected variable names (e.g. based on the previous year's variable names), and any inconsistencies
-will be returned.
-}
-\examples{
-old_names <- letters[1:3]
-data <- as.data.frame(matrix(rnorm(12),3,4))
-colnames(data) <- c("a","B","c","x")
-check_varnames(old_names, data)
+This function is used to check the consistency of variable names for the new yearly data. Checks will be run against the expected variable names (e.g., based on the variable names from the previous year), and any inconsistencies will be identified and returned.
 }
