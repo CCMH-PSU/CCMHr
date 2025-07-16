@@ -2,16 +2,16 @@
 % Please edit documentation in R/create_CCAPS_bins.R
 \name{create_CCAPS_bins}
 \alias{create_CCAPS_bins}
-\title{Create CCAPS bins for profile curves based on starting CCAPS scores}
+\title{Create CCAPS bins based on the first CCAPS scores.}
 \usage{
 create_CCAPS_bins(data)
 }
 \arguments{
-\item{data}{A data file with variables for first CCAPS administration named subscale_first}
+\item{data}{A data file with CCAPS subscale variables for the first CCAPS administration and named "subscale_first".}
 }
 \value{
-A data frame with variables for each subscale indicating which bin the client falls in.
+A data frame with variables for each CCAPS subscale, categorizing the client into the corresponding bins.
 }
 \description{
-Create CCAPS bins for profile curves based on starting CCAPS scores
+The function is used for profile curves. To run this function, the data frame must contain details regarding the client's first CCAPS administration (e.g., use the CCAPS_change function and set the include_first argument to \code{TRUE}).
 }
