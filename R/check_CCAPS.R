@@ -20,7 +20,7 @@ check_CCAPS <- function(dat){
   # Sum violations
   sum_violate <- violate |>
     dplyr::select(.data$CCAPS_01_viol:.data$CCAPS_70_viol) |>
-    dplyr::summarise_all(list(sum = function(x) sum(x, na.rm = T)))
+    dplyr::summarise_all(list(sum = function(x) sum(x, na.rm = TRUE)))
 
   # Total violations
   total <- sum(sum_violate)
