@@ -2,16 +2,16 @@
 % Please edit documentation in R/center_data_each_year.R
 \name{center_data_each_year}
 \alias{center_data_each_year}
-\title{Selecting only centers who contributed data for all years.}
+\title{Filter for centers that contributed data for all years within a data frame.}
 \usage{
 center_data_each_year(data)
 }
 \arguments{
-\item{data}{A data frame with multiple years of CCMH data.}
+\item{data}{A data frame with multiple years of data.}
 }
 \value{
-A data frame with only centers contributing data for all data years included in the original data set.
+A data frame with only centers contributing data for all years included in the original data frame.
 }
 \description{
-Selecting only centers who contributed data for all years.
+A center may contribute data for research each year, some years, or a single year. For some analyses, it could be critical to include only centers that contribute data annually within a data frame. This function excludes centers that did not contribute research data every year. A valid "Data_year" and "CcmhID" variables must exist in the data frame to run the function.
 }
