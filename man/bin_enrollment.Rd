@@ -2,25 +2,16 @@
 % Please edit documentation in R/bin_CLI.R
 \name{bin_enrollment}
 \alias{bin_enrollment}
-\alias{bin_utilization}
-\alias{bin_capacity}
-\alias{bin_inst_utilization}
-\title{Bin CLI variables (enrollment, utilization, clinical capacity)}
+\title{Create a vector that bins enrollment.}
 \usage{
 bin_enrollment(x)
-
-bin_utilization(x)
-
-bin_capacity(x)
-
-bin_inst_utilization(x)
 }
 \arguments{
-\item{x}{Variable to be binned}
+\item{x}{A variable within a data frame that pertains to enrollment at institutions.}
 }
 \value{
-Binned variable
+A vector with enrollment bins.
 }
 \description{
-Create categorical versions of CLI variables (enrollment, utilization, clinical capacity)
+Enrollment is the number of students that are enrolled at an institution. This function is often used in relation to data frames that contain variables related to the Clinical Load Index (CLI). Enrollment bins include "under 1,501", "1,501-2,500", "2,501-5,000", "5,001-7,500", "7,501-10,000", "10,001-15,000", "15,001-20,000", "20,001-25,000", "25,001-30,000", "30,001-35,000", "35,001-45,000", and "45,001+".
 }
