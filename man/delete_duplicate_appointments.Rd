@@ -2,7 +2,7 @@
 % Please edit documentation in R/delete_duplicate_appointments.R
 \name{delete_duplicate_appointments}
 \alias{delete_duplicate_appointments}
-\title{Delete Duplicate Appointments}
+\title{Delete duplicate appointments.}
 \usage{
 delete_duplicate_appointments(
   data,
@@ -11,15 +11,15 @@ delete_duplicate_appointments(
 )
 }
 \arguments{
-\item{data}{A data frame with surveys and appointments.}
+\item{data}{A data frame containing rows related to appointments.}
 
-\item{client_identifier}{The column uniquely identifying each client. By default, \code{UniqueClientID}.}
+\item{client_identifier}{A quoted string to indicate the column uniquely identifying each client. By default, \code{"UniqueClientID"}.}
 
-\item{appointment_identifier}{The column uniquely identifying each appointment. By default \code{AppointID}, but if this is not available, use \code{Date} instead.}
+\item{appointment_identifier}{A quoted string to indicate the column uniquely identifying each appointment. By default, \code{AppointID}. If \code{"AppointID"} is not available, use \code{"Date"} instead.}
 }
 \value{
-A data frame with only the first instance of each duplicated appointment.
+A data frame with only the first instance of each appointment.
 }
 \description{
-Delete Duplicate Appointments
+For reasons not discussed here, data on appointments may have duplicates (e.g., multiple rows with the same type of data). This function removes duplicate data from appointments.
 }
