@@ -2,7 +2,7 @@
 % Please edit documentation in R/check_colum_classes.R
 \name{check_column_classes}
 \alias{check_column_classes}
-\title{Check column class equality across two data frames}
+\title{Check column class equality across two data frames.}
 \usage{
 check_column_classes(dataframe1 = survey, dataframe2 = appts)
 }
@@ -12,10 +12,8 @@ check_column_classes(dataframe1 = survey, dataframe2 = appts)
 \item{dataframe2}{Another data frame.}
 }
 \value{
-A data frame with columns for each data frame and rows for each column in the data frames that has unequal column classes.
-The observations indicate the column classes in each data frame.
+If column classes are equal across two data frames, this message is returned: "No class mismatches detected." If column classes are not equal across two data frames, then a message is returned (i.e., "Class mismatches detected.") along with a printed data frame that details the column, column class for the first data frame, and column class for the second data frame.
 }
 \description{
-A function to check that columns named the same across two data frames have the same classes.
-To be used before merging two data frames to ensure that the columns with the same names will merge cleanly.
+A function to check that columns named the same across two data frames have the same classes. To be used before merging two data frames to ensure that the columns with the same names will merge cleanly.
 }
