@@ -2,18 +2,18 @@
 % Please edit documentation in R/find_cutpoint_boundaries.R
 \name{find_cutpoint_boundaries}
 \alias{find_cutpoint_boundaries}
-\title{Find CCAPS scores on the boundaries of the cut points}
+\title{Find CCAPS scores on the boundaries of the cut points.}
 \usage{
 find_cutpoint_boundaries(items, cutpoint)
 }
 \arguments{
-\item{items}{The number of items in the scale}
+\item{items}{The number of items in the scale.}
 
-\item{cutpoint}{The scale's cut point}
+\item{cutpoint}{The scale's cut point.}
 }
 \value{
-CCAPS scores just above and below the cut point, as well as the item responses necessary to produce that score
+CCAPS scores just above and below the cut point, as well as the item responses necessary to produce that score.
 }
 \description{
-Find CCAPS scores on the boundaries of the cut points
+This function finds and returns CCAPS scores just above and below the cut point, as well as the item responses required to produce those scores.
 }
