@@ -1,78 +1,69 @@
-#' Detects and identifies centers with specific patterns of missing data
+#' Identifies centers with monthly missing data across forms.
 #'
-#' @description Detects and identifies centers with missing data for at least one entire month on specified variables
-#' @param data A data file
-#' @note Checks for missing data in variables: Is_appointment, Has_CCAPS, Has_SDS, Has_CLICC, Has_Closure,
-#' and all above variables at during one month
-#' @return A data frame with centers that could have problematic missing data
+#' @description Centers may not contribute data on forms for each month within a data year. This function identifies centers that had missing data for at least one entire month on specified forms.
+#'
+#' @param data A data frame that contains the following variables: "UniqueClientID", "Date", "Is_appointment", "Has_CCAPS", "Has_SDS", "Has_CLICC", and "Has_Closure".
+#'
+#' @return A data frame with the following variables: "CcmhID", "Is_appointment_sum", "Has_CCAPS_sum", "Has_SDS_sum", "Has_CLICC_sum", "Has_Closure_sum". Variables that end with "_sum" output the month(s) that had completely missing data on a specified form. Months are specified numerically (e.g., January is 1).
+#'
 #' @export
 
 detect_missing_months <- function(data){
 
-  #Check to see if variables are named correctly
-    #List of variables required to run function
-      var_names <- c("UniqueClientID", "Date", "Is_appointment", "Has_CCAPS",
-                     "Has_SDS", "Has_CLICC", "Has_Closure")
+  # Check to see if variables are named correctly
+  var_names <- c("UniqueClientID", "Date",
+                 "Is_appointment", "Has_CCAPS",
+                 "Has_SDS", "Has_CLICC",
+                 "Has_Closure")
 
-    #Running Function to check for missing variables
-      required_items(data,
-                     var_names)
+  CCMHr::required_items(data, var_names)
 
-  #Checking to makes sure date is formatted correctly
-    correct.date <- !is.na(lubridate::parse_date_time(data$date,
-                                           orders = "ymd"))
+  # Checking if date is formatted correctly
+  correct.date <- !is.na(lubridate::parse_date_time(data$date, orders = "ymd"))
 
-  #Error message if data is not formatted correctly
-    if(all(correct.date) == F) {
-      stop('Date is not formatted correctly. Data needs to be formmated year/month/day.')
-    } else {
+  if(all(correct.date) == FALSE){
 
-    }
+      stop('Date is not formatted correctly. Date needs to be formated year/month/day.')
 
-  #Recode date into a number
-    data$month <- lubridate::month(data$Date)
-    data$month <- as.numeric(data$month)
+  } else {
 
-  #Grouping and summarizing missing data
-    data <- data %>%
-      dplyr::group_by(.data$CcmhID, .data$month) %>%
-      dplyr::summarize(Is_appointment_sum = sum(.data$Is_appointment,
-                                         na.rm = TRUE),
-                Has_CCAPS_sum = sum(.data$Has_CCAPS,
-                                    na.rm = TRUE),
-                Has_SDS_sum = sum(.data$Has_SDS,
-                                  na.rm = TRUE),
-                Has_CLICC_sum = sum(.data$Has_CLICC,
-                                    na.rm = TRUE),
-                Has_Closure_sum = sum(.data$Has_Closure,
-                                      na.rm = TRUE),
-                .groups = "drop") %>%
+  }
+
+  # Recode date into a number
+  data$month <- lubridate::month(data$Date)
+  data$month <- as.numeric(data$month)
+
+  # Summarizing missing data
+  data <- data |>
+    dplyr::group_by(CcmhID, month) |>
+    dplyr::summarize(Is_appointment_sum = sum(Is_appointment, na.rm = TRUE),
+                     Has_CCAPS_sum = sum(Has_CCAPS, na.rm = TRUE),
+                     Has_SDS_sum = sum(Has_SDS, na.rm = TRUE),
+                     Has_CLICC_sum = sum(Has_CLICC, na.rm = TRUE),
+                     Has_Closure_sum = sum(Has_Closure, na.rm = TRUE),
+                     .groups = "drop") |>
       dplyr::ungroup()
 
-  #Filling missing months back in with 0s
-    data <- tidyr::expand(data, .data$CcmhID, .data$month) %>%
-      dplyr::left_join(data) %>%
-      dplyr::mutate(dplyr::across(.data$Is_appointment_sum:.data$Has_Closure_sum,
-                    ~ifelse(is.na(.x),
-                            0,
-                            .x)))
+  # Filling missing months back in with 0s
+  data <- tidyr::expand(data, .data$CcmhID, .data$month) |>
+    dplyr::left_join(data) |>
+    dplyr::mutate(dplyr::across(.data$Is_appointment_sum:.data$Has_Closure_sum, ~ifelse(is.na(.x), 0, .x)))
 
-  #Determing if data is problematic
-    data <- dplyr::group_by(data, .data$CcmhID) %>%
-      dplyr::summarize(dplyr::across(.data$Is_appointment_sum:.data$Has_Closure_sum,
-                       ~ifelse(max(.x) != 0 & min(.x) == 0,
-                               paste0(month[which(.x == 0)],
-                                      collapse = ","),
-                               NA)))
+  # Determining if data is problematic
+  data <- data |>
+    dplyr::group_by(CcmhID) |>
+    dplyr::summarize(dplyr::across(Is_appointment_sum:Has_Closure_sum, ~ifelse(max(.x) != 0 & min(.x) == 0, paste0(month[which(.x == 0)], collapse = ","), NA)))
 
-  #Diplaying only problematic cases in the output
-    df.final<- data[c(!is.na(data$Is_appointment_sum) |
-                       !is.na(data$Has_CCAPS_sum) |
-                       !is.na(data$Has_SDS_sum) |
-                       !is.na(data$Has_CLICC_sum)|
-                       !is.na(data$Has_Closure_sum)),]
+  # Displaying only problematic cases in the output
+  df.final <- data[c(!is.na(data$Is_appointment_sum) |
+                     !is.na(data$Has_CCAPS_sum) |
+                     !is.na(data$Has_SDS_sum) |
+                     !is.na(data$Has_CLICC_sum)|
+                     !is.na(data$Has_Closure_sum)),]
 
-  #return final data frame
-    return(df.final)
+  # Return final data frame
+  df.final <- as.data.frame(df.final)
+
+  return(df.final)
 
 }

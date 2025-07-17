@@ -2,20 +2,16 @@
 % Please edit documentation in R/detect_missing_months.R
 \name{detect_missing_months}
 \alias{detect_missing_months}
-\title{Detects and identifies centers with specific patterns of missing data}
+\title{Identifies centers with monthly missing data across forms.}
 \usage{
 detect_missing_months(data)
 }
 \arguments{
-\item{data}{A data file}
+\item{data}{A data frame that contains the following variables: "UniqueClientID", "Date", "Is_appointment", "Has_CCAPS", "Has_SDS", "Has_CLICC", and "Has_Closure".}
 }
 \value{
-A data frame with centers that could have problematic missing data
+A data frame with the following variables: "CcmhID", "Is_appointment_sum", "Has_CCAPS_sum", "Has_SDS_sum", "Has_CLICC_sum", "Has_Closure_sum". Variables that end with "_sum" output the month(s) that had completely missing data on a specified form. Months are specified numerically (e.g., January is 1).
 }
 \description{
-Detects and identifies centers with missing data for at least one entire month on specified variables
-}
-\note{
-Checks for missing data in variables: Is_appointment, Has_CCAPS, Has_SDS, Has_CLICC, Has_Closure,
-and all above variables at during one month
+Centers may not contribute data on forms for each month within a data year. This function identifies centers that had missing data for at least one entire month on specified forms.
 }
