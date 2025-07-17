@@ -2,15 +2,18 @@
 % Please edit documentation in R/rename_CCAPS_critical_items.r
 \name{rename_CCAPS_critical_items}
 \alias{rename_CCAPS_critical_items}
-\title{Rename CCAPS critical items}
+\title{Rename the CCAPS critical items.}
 \usage{
 rename_CCAPS_critical_items(data, keep_all = TRUE)
 }
 \arguments{
-\item{data}{A data file.}
+\item{data}{A data frame that contains the following variables: UniqueClientID, CcmhID, Date, Data_year, CCAPS_51, and CCAPS_68.}
 
-\item{keep_all}{A logical statement to indicate if all columns should be keeped. If \code{TRUE} will keep all columns of the orginal data frame and add CCAPS_SI and CCAPS_THO. If S\code{FALSE} will keep columns UniqueClientID, CcmhID, Date, Data_year, CCAPS_SI, and CCAPS_THO critical. Default is \code{TRUE}.}
+\item{keep_all}{A logical argument to indicate if all columns of the original data frame should be kept. If \code{TRUE}, all columns of the original data frame are kept, and the new variables are added (i.e., CCAPS_SI, CCAPS_THO). If \code{FALSE}, the following columns are kept: UniqueClientID, CcmhID, Date, Data_year, CCAPS_SI, and CCAPS_THO. By default, \code{TRUE}.}
+}
+\value{
+A data frame with new variables CCAPS_SI and CCAPS_THO. If keep_all is \code{TRUE}, all columns of the original data frame are kept. If keep_all is \code{FALSE}, UniqueClientID, CcmhID, Date, and Data_year are kept along with the new variables.
 }
 \description{
-Rename CCAPS critical items
+The CCAPS critical items include CCAPS_51 (Suicide Ideation) and CCAPS_68 (Threat-to-others). To make these variables easier to identify, this function creates duplicates of the variables and makes the names of the duplicates more salient. Specifically, the duplicate of CCAPS_51 was named "CCAPS_SI", while "CCAPS_68" was named CCAPS_THO. The keep_all argument allows the programmer to specify if all variables in the original data frame should be returned (keep_all = \code{TRUE}) or if UniqueClientID, CcmhID, Date, Data_year, CCAPS_SI, and CCAPS_THO are returned (keep_all = \code{FALSE}).
 }
