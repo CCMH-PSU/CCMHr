@@ -2,21 +2,24 @@
 % Please edit documentation in R/identity_primary_therapist.r
 \name{identity_primary_therapist}
 \alias{identity_primary_therapist}
-\title{Identity primary therapist}
+\title{Identity the primary therapist.}
 \usage{
 identity_primary_therapist(
   data,
-  percent.threshold = 0.5,
+  percent.threshold = 0.51,
   primary.therapist.only = FALSE
 )
 }
 \arguments{
-\item{data}{A data file.}
+\item{data}{A data frame that contains these variables: UniqueClientID, CcmhID, Date, Data_year, AppointID, TherID, and ClientAttendance.}
 
-\item{percent.threshold}{A numeric value ranging between .50 (50\%) to 1 (\%100) to indicate the percentage of appointments across the UniqueClientID, CcmhID, and Data_year required to classify a therapist as the primary therapist. For example, 0.75 would contend that atleast 75\% of appointments should be conducted by a therapist to classify them as the primary therapist. Default is \code{0.50}.}
+\item{percent.threshold}{A numeric value ranging from 0.50 (50\%) to 1 (100\%) indicates the percentage of appointments across UniqueClientID, CcmhID, and Data_year required to classify a therapist as the primary therapist. By default, \code{0.51}.}
 
-\item{primary.therapist.only}{A logical statement to indicate if only the primary therapist should be returned. Default is \code{FALSE}.}
+\item{primary.therapist.only}{A logical argument to indicate whether only the primary therapist should be included in the returned data frame. If \code{TRUE}, only details about the primary therapist are returned. By default, \code{FALSE}.}
+}
+\value{
+A data frame that contains some CCMH variables (i.e., UniqueClientID, CcmhID, Data_year, TherID) and new variables related to the primary therapist. The new variables include primary.therapist (indicates if the therapist is the primary therapist; 1 = Primary therapist, 0 = Not the primary therapist), ther.n (number of unique therapists), ther.percent (the percent of a client's total appointments conducted by a therapist), single.therapist (indicates if the client had only one therapist; 1 = One therapist, 0 = Multiple therapists), and app.n.attended (number of attended appointments).
 }
 \description{
-Identity primary therapist
+Clients may have multiple therapists. This function identifies the primary therapist based on a specified threshold of attended appointments. To run the function, "UniqueClientID", "CcmhID", "Date", "Data_year", "AppointID", "TherID", or "ClientAttendance" must be present in the data frame. The function returns a data frame with new variables. The returned data frame would include four CCMH variables (i.e., UniqueClientID, CcmhID, Data_year, TherID) and five new variables related to the primary therapist (i.e., primary.therapist, ther.n, ther.percent, single.therapist, and app.n.attended). If primary.therapist.only equals \code{TRUE}, only the rows pertaining to the primary therapist are returned.
 }
