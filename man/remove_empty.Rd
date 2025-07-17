@@ -2,16 +2,16 @@
 % Please edit documentation in R/remove_empty.R
 \name{remove_empty}
 \alias{remove_empty}
-\title{Remove empty variables}
+\title{Exclude columns that have complete missing data.}
 \usage{
 remove_empty(data)
 }
 \arguments{
-\item{data}{A data object}
+\item{data}{A data frame.}
 }
 \value{
-The data object without any variables that were completely empty
+A data frame without variables/columns that are completely missing.
 }
 \description{
-Used in data request cleaning to remove variables that don't contain any data
+Some variables/columns could have complete missing data. This function excludes variables/columns that are completely missing.
 }

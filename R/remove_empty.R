@@ -1,12 +1,20 @@
-#' Remove empty variables
-#' @description Used in data request cleaning to remove variables that don't contain any data
+#' Exclude columns that have complete missing data.
 #'
-#' @param data A data object
+#' @description Some variables/columns could have complete missing data. This function excludes variables/columns that are completely missing.
 #'
-#' @return The data object without any variables that were completely empty
+#' @param data A data frame.
+#'
+#' @return A data frame without variables/columns that are completely missing.
+#'
 #' @export
-#'
 
-remove_empty <- function(data) {
-  dplyr::select_if(data, ~!all(is.na(.)))
+remove_empty <- function(data){
+
+  # Exclude columns that have complete missing data
+  data <- data |>
+    dplyr::select_if(~!all(is.na(.)))
+
+  # Return
+  return(data)
+
 }
