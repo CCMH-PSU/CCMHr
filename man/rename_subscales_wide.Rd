@@ -2,32 +2,18 @@
 % Please edit documentation in R/rename_subscales.R
 \name{rename_subscales_wide}
 \alias{rename_subscales_wide}
-\alias{rename_subscales_long}
-\title{Rename CCAPS subscales}
+\title{Rename CCAPS subscales within a wide format.}
 \usage{
-rename_subscales_wide(data, CCAPS62 = F)
-
-rename_subscales_long(data, column, formal = F)
+rename_subscales_wide(data, CCAPS62 = FALSE)
 }
 \arguments{
-\item{data}{Data frame}
+\item{data}{A data frame that contains columns pertaining to CCAPS subscale variables. If CCAPS62 equals \code{FALSE}, the data frame must have the following variable names: "Depression34", "Anxiety34", "Social_Anxiety34", "Academics34", "Eating34", "Hostility34", "Alcohol34", and "DI". If CCAPS62 equals \code{TRUE}, the data frame must have the following variable names: "Depression62", "Anxiety62", "Social_Anxiety62", "Academics62", "Eating62", "Hostility62", "Substance62", "Family62", and "DI".}
 
-\item{CCAPS62}{If FALSE (default), CCAPS-34 subscale columns are renamed.}
-
-\item{column}{Column with subscale names}
-
-\item{formal}{If FALSE (default), returns informal versions of names (e.g. Anxiety, Eating). If TRUE, returns formal versions of names (e.g. Generalized Anxiety, Eating Concerns).}
+\item{CCAPS62}{A logical argument to indicate if the CCAPS34 or CCAPS62 subscale names should be renamed. If \code{FALSE}, the CCAPS34 subscale names are renamed. If \code{TRUE}, the CCAPS62 subscale names are renamed. By default, \code{FALSE}.}
 }
 \value{
-A data frame with renamed subscale column names or single column of subscale names.
+A data frame with the CCAPS subscale column names recoded to the formal names.
 }
 \description{
-The \code{rename_subscales} family of functions renames the CCAPS subscales for better presentation (e.g. removing underscores, removing 34 or 62 from subscale names)
-\code{rename_subscales_wide} takes a wide data set where each subscale is its own column.
-\code{rename_subscales_long} takes a long data set where with a single column of CCAPS subscale names
-}
-\examples{
-\dontrun{
-format_subscales(data, subscale, formal = F)
-}
+The CCAPS subscale variable names are "Depression34", "Anxiety34", "Social_Anxiety34", "Academics34", "Eating34", "Hostility34", "Alcohol34", "DI", "Depression62", "Anxiety62", "Social_Anxiety62", "Academics62", "Eating62", "Hostility62", "Substance62", and "Family62". When creating visualizations, we often rename the subscales to make them more salient (e.g., "DI" corresponds to "Distress Index"). This function renames the subscales when CCAPS subscale variable names are stored in a data frame in a wide format (i.e., the subscale variables are stored across multiple columns).
 }
