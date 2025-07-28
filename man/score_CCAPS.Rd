@@ -2,30 +2,18 @@
 % Please edit documentation in R/score_CCAPS.R
 \name{score_CCAPS}
 \alias{score_CCAPS}
-\title{Score the CCAPS subscales from CCAPS items}
+\title{Scores the CCAPS subscales for valid CCAPS administrations.}
 \usage{
-score_CCAPS(data, CCAPS62 = T)
+score_CCAPS(data, CCAPS62 = TRUE)
 }
 \arguments{
-\item{data}{A data file containing CCAPS item data}
+\item{data}{A data file containing CCAPS items.}
 
-\item{CCAPS62}{A logical value indicating whether the CCAPS62 should be scored. If FALSE, only the CCAPS34 will be scored.}
+\item{CCAPS62}{A logical argument to indicate if the CCAPS62 subscales should be scored. If \code{TRUE}, the CCAPS62 & CCAPS34 subscales are scored. If \code{FALSE}, only the CCAPS34 subscales are scored. By default, \code{TRUE}.}
 }
 \value{
-A data frame with all the original data in \code{data}, and several additional columns: \code{Has_CCAPS}, \code{Is_CCAPS62}, \code{Is_ValidCCAPS}, \code{Is_ValidCCAPS62}, \code{Is_CCAPS34}, \code{Is_ValidCCAPS34}, \code{Depression34}, \code{Anxiety34}, \code{Social_Anxiety34}, \code{Academics34}, \code{Eating34}, \code{Hostility34}, \code{Alcohol34}, \code{DI}, \code{Depression62}, \code{Eating62}, \code{Substance62}, \code{Anxiety62}, \code{Hostility62}, \code{Social_Anxiety62}, \code{Family62}, \code{Academics62}
+A data frame with all the original variables and several additional columns, including Has_CCAPS, Is_CCAPS62, Is_ValidCCAPS, Is_ValidCCAPS62, Is_CCAPS34, Is_ValidCCAPS34, Depression34, Anxiety34, Social_Anxiety34, Academics34, Eating34, Hostility34, Alcohol34, DI, Depression62, Eating62, Substance62, Anxiety62, Hostility62, Social_Anxiety62, Family62, and Academics62.
 }
 \description{
-Scores the CCAPS subscales for valid CCAPS administrations.
-}
-\note{
-\code{score_CCAPS} calls on CCAPS items by name, so they must be named properly in
-\code{data}. Variable naming convention is \code{CCAPS_01}... \code{CCAPS_70}.
-If 'data does not contain the proper CCAPS variable names
-(or the naming convention was changed in the new year's data), the
-function will return an error.
-Administrations are considered valid and will be scored if 1/3 or less of the items on any subscale are missing, and if less than
-1/2 of the data overall is missing, and if the variance of the items is > 0, indicating that the items were not all marked
-as the same number.
-Function does not overwrite CCAPS items to reverse score them. It creates new reverse scored version, which it then deletes.
-Note that this takes several minutes to run.
+For most CCMH data frames, CCAPS subscales should be scored. However, if this is not the case, this function will score the CCAPS subscales for a valid CCAPS administration. The CCAPS items must be appropriately named (e.g., "CCAPS_01") to use this function. Administrations are considered valid and will be scored if 1/3 or less of the items on any subscale are missing, if less than 1/2 of the data overall is missing, and if the variance of the items is \> 0, indicating that the items were not all marked as the same number. Note that the function does not overwrite CCAPS items to reverse-score them. Instead, it creates a new reverse-scored version, which it then deletes.
 }
