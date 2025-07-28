@@ -2,20 +2,16 @@
 % Please edit documentation in R/sds_to_factor.R
 \name{sds_to_factor}
 \alias{sds_to_factor}
-\title{Convert SDS numeric labels to answer option factors}
+\title{Convert SDS numeric labels into factors.}
 \usage{
 sds_to_factor(data)
 }
 \arguments{
-\item{data}{A CCMH data file with SDS variables}
+\item{data}{A data file containing SDS items.}
 }
 \value{
-data with all present SDS variables converted to factors
+A data frame with all the original variables. Most SDS items will be converted to factors.
 }
 \description{
-Convert SDS numeric labels to answer option factors
-}
-\examples{
-sds_to_factor(data.frame(SDS_01 = c(3, 2, 4, 1), SDS_02 = c(4, 3, 2, 1)))
-
+When conducting analyses or creating visuals, the SDS items' factor labels are often used instead of the numeric labels to make the results more salient and comprehensible. This function converts the numeric labels of most SDS items into factors.
 }
