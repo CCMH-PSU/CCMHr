@@ -2,28 +2,16 @@
 % Please edit documentation in R/score_CCAPS_screen.R
 \name{score_CCAPS_screen}
 \alias{score_CCAPS_screen}
-\title{Score the CCAPS subscales from CCAPS screen items}
+\title{Scores the CCAPS subscales for a valid CCAPS screen administration.}
 \usage{
 score_CCAPS_screen(data)
 }
 \arguments{
-\item{data}{A data file containing CCAPS screen items}
+\item{data}{A data file containing CCAPS screen items.}
 }
 \value{
-A data frame with all the original data in \code{data}, and several additional columns: \code{Has_CCAPS}, \code{Is_ValidCCAPS}, \code{Depression}, \code{Anxiety}, \code{Social_Anxiety}, \code{Academics}, \code{Eating}, \code{Frustration}, \code{Alcohol}
+A data frame with all the original variables and several additional columns, including Has_CCAPS, Is_ValidCCAPS, Depression, Anxiety, Social_Anxiety, Academics, Eating, Frustration, and Alcohol.
 }
 \description{
-Scores the CCAPS screen subscales for valid CCAPS administrations.
-}
-\note{
-\code{score_CCAPS_screen} calls on CCAPS items by name, so they must be named properly in
-\code{data}. Variable naming convention is \code{CCAPS_01}... \code{CCAPS_70}.
-If 'data does not contain the proper CCAPS variable names
-(or the naming convention was changed in the new year's data), the
-function will return an error.
-Administrations are considered valid and will be scored if 1/3 or less of the items on any subscale are missing, and if less than
-1/2 of the data overall is missing, and if the variance of the items is > 0, indicating that the items were not all marked
-as the same number.
-Function does not overwrite CCAPS items to reverse score them. It creates new reverse scored version, which it then deletes.
-Note that this takes several minutes to run.
+This function scores the CCAPS screen. The CCAPS items must be appropriately named (e.g., "CCAPS_01") to use this function. Administrations are considered valid and will be scored if 1/3 or less of the items on any subscale are missing, if less than 1/2 of the data overall is missing, and if the variance of the items is \> 0, indicating that the items were not all marked as the same number. Note that the function does not overwrite CCAPS items to reverse-score them. Instead, it creates a new reverse-scored version, which it then deletes.
 }
