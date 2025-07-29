@@ -2,10 +2,7 @@
 % Please edit documentation in R/select_first_CCAPS.R
 \name{select_first_CCAPS}
 \alias{select_first_CCAPS}
-\alias{select_first_SDS}
-\alias{select_first_CLICC}
-\alias{select_first_Closure}
-\title{Select each client's first administration of a specified survey}
+\title{Extract the client's first CCAPS administration.}
 \usage{
 select_first_CCAPS(
   data,
@@ -17,46 +14,21 @@ select_first_CCAPS(
     "Social_Anxiety62", "Family62", "Academics62"),
   by_year = FALSE
 )
-
-select_first_SDS(
-  data,
-  order_by = "Date",
-  keep_all = FALSE,
-  keep_columns = "SDS",
-  by_year = FALSE
-)
-
-select_first_CLICC(
-  data,
-  order_by = "Date",
-  keep_all = FALSE,
-  keep_columns = "CLICC",
-  by_year = FALSE,
-  recode_NA = FALSE
-)
-
-select_first_Closure(
-  data,
-  order_by = "Date",
-  keep_all = FALSE,
-  keep_columns = "Closure",
-  by_year = FALSE,
-  recode_NA = FALSE
-)
 }
 \arguments{
-\item{data}{data frame}
+\item{data}{A data frame that contains CCAPS data.}
 
-\item{order_by}{variable to order by when selecting the first administration.}
+\item{order_by}{A quoted string to indicate the variable used to determine the order of rows when selecting the first CCAPS administration (row). By default, \code{"Date"}.}
 
-\item{keep_all}{Columns to keep. \code{TRUE} will keep all columns, while \code{FALSE} will keep only IDs and CCAPS subscales, SDS items, or CLICC items.}
+\item{keep_all}{A logical statement to indicate whether all columns should be kept. If \code{TRUE}, all columns are kept. If \code{FALSE}, variable names listed in keep_columns are kept. By default, \code{FALSE}.}
 
-\item{keep_columns}{A string list of column names to retain. If not specified, and keep_all = FALSE, defaults to the relevent columns for that data form.}
+\item{keep_columns}{A quoted string or list of quoted strings of column CCAPS names to retain in the output data frame. By default, \verb{c("UniqueClientID", "CcmhID", "Data_year", "Depression34", "Anxiety34", "Social_Anxiety34", "Academics34", "Eating34", "Hostility34", "Alcohol34", "DI", "Depression62", "Eating62", "Substance62", "Anxiety62", "Hostility62", "Social_Anxiety62", "Family62", "Academics62"}.}
 
-\item{by_year}{A logical statement to indicate if first administration by year instead of overall. If \code{TRUE}, the first administration of each client will be selected by year. If \code{FALSE}, the first administration of each client will be selected regardless of year. Default = \code{FALSE}.}
-
-\item{recode_NA}{A logical statement to indicate if NA should be recoded to 0. If \code{TRUE}, NA will be recoded to 0. Default = \code{FALSE}.}
+\item{by_year}{A logical argument to indicate if the first CCAPS administration is by year instead of overall. If \verb{TRUE,} the first CCAPS administration for each client will be extracted across each data year (e.g., multiple rows may correspond to a unique client across multiple years). If \code{FALSE}, the first CCAPS administration of each client will be selected regardless of year (e.g., each row should correspond to a single unique client). By default, \code{FALSE}.}
+}
+\value{
+A data frame with the client's first CCAPS administration.
 }
 \description{
-Select each client's first administration of a specified survey
+The function extracts the client's first CCAPS administration. It also allows the programmer to pick specific items within CCAPS (e.g., DI, CCAPS_01).
 }
