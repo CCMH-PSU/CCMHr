@@ -2,16 +2,16 @@
 % Please edit documentation in R/sds_to_numeric.r
 \name{sds_to_numeric}
 \alias{sds_to_numeric}
-\title{Convert SDS answer option labels to numeric}
+\title{Convert SDS factor labels into numeric.}
 \usage{
 sds_to_numeric(data)
 }
 \arguments{
-\item{data}{A CCMH data file with SDS variables}
+\item{data}{A data file containing SDS items.}
 }
 \value{
-data with all present SDS variables converted to numeric
+A data frame with all the original variables. Most SDS items will be converted to numeric.
 }
 \description{
-Convert SDS answer option labels to numeric
+When conducting analyses, the SDS items' factor labels may need to be converted into a numeric label to conduct the analysis. This function converts the factor labels of most SDS items into numeric values.
 }
