@@ -43,7 +43,7 @@ CCAPS_change <- function(data,
   data <- data.table::setDT(data)
 
   # Excluding data with no CCAPS data
-  data <- data[Is_ValidCCAPS == 1,]
+  data <- data[data$Is_ValidCCAPS == 1,]
 
   # Convert to lazy data table
   data <- dtplyr::lazy_dt(data)
