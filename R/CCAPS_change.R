@@ -53,7 +53,7 @@ CCAPS_change <- function(data,
     dplyr::group_by(UniqueClientID2, CcmhID2) |>
     dplyr::filter(dplyr::n() >= 2) |>
     dplyr::ungroup() |>
-    as.data.table()
+    data.table::as.data.table()
 
   # Convert to lazy data table
   data <- dtplyr::lazy_dt(data)
@@ -64,7 +64,7 @@ CCAPS_change <- function(data,
     dplyr::arrange(Date) |>
     dplyr::slice(1, dplyr::n()) |>
     dplyr::ungroup() |>
-    as.data.table()
+    data.table::as.data.table()
 
   # Variable that will detect if "all" is being specified in the add_items argument
   add_items_all <- add_items == "all"[1]
@@ -234,7 +234,7 @@ CCAPS_change <- function(data,
                                        ~dplyr::first(.x)-dplyr::last(.x),
                                        .names = "{col}_change"),
                                        .groups = "keep") |>
-        as.data.table()
+        data.table::as.data.table()
 
     } else if(include_first == TRUE &
               include_last == FALSE){
@@ -248,7 +248,7 @@ CCAPS_change <- function(data,
         dplyr::summarize(dplyr::across(.data$Depression34:dplyr::all_of(last.var), dplyr::first, .names = "{.col}_first"),
                          dplyr::across(.data$Depression34:dplyr::all_of(last.var), ~dplyr::first(.x)-dplyr::last(.x), .names = "{col}_change"),
                          .groups = "keep") |>
-        as.data.table()
+        data.table::as.data.table()
 
     } else if(include_first == FALSE &
               include_last == TRUE){
@@ -262,7 +262,7 @@ CCAPS_change <- function(data,
         dplyr::summarize(dplyr::across(.data$Depression34:dplyr::all_of(last.var), dplyr::last, .names = "{.col}_last"),
                          dplyr::across(.data$Depression34:dplyr::all_of(last.var), ~dplyr::first(.x)-dplyr::last(.x), .names = "{col}_change"),
                          .groups = "keep") |>
-        as.data.table()
+        data.table::as.data.table()
 
     } else {
 
@@ -276,7 +276,7 @@ CCAPS_change <- function(data,
                          dplyr::across(.data$Depression34:dplyr::all_of(last.var), dplyr::last, .names = "{.col}_last"),
                          dplyr::across(.data$Depression34:dplyr::all_of(last.var), ~dplyr::first(.x)-dplyr::last(.x), .names = "{col}_change"),
                          .groups = "keep") |>
-        as.data.table()
+        data.table::as.data.table()
     }
 
   # Convert to data frame
