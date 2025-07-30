@@ -230,7 +230,7 @@ CCAPS_change <- function(data,
       data <- CCAPS_data2 |>
         dplyr::group_by(UniqueClientID2, CcmhID2) |>
         dplyr::select(names(CCAPS_data)) |>
-        dplyr::summarize(dplyr::across(.data$Depression34:dplyr::all_of(last.var),
+        dplyr::summarize(dplyr::across(Depression34:dplyr::all_of(last.var),
                                        ~dplyr::first(.x)-dplyr::last(.x),
                                        .names = "{col}_change"),
                                        .groups = "keep") |>
@@ -245,8 +245,8 @@ CCAPS_change <- function(data,
       data <- CCAPS_data2 |>
         dplyr::group_by(UniqueClientID2, CcmhID2) |>
         dplyr::select(names(CCAPS_data)) |>
-        dplyr::summarize(dplyr::across(.data$Depression34:dplyr::all_of(last.var), dplyr::first, .names = "{.col}_first"),
-                         dplyr::across(.data$Depression34:dplyr::all_of(last.var), ~dplyr::first(.x)-dplyr::last(.x), .names = "{col}_change"),
+        dplyr::summarize(dplyr::across(Depression34:dplyr::all_of(last.var), dplyr::first, .names = "{.col}_first"),
+                         dplyr::across(Depression34:dplyr::all_of(last.var), ~dplyr::first(.x)-dplyr::last(.x), .names = "{col}_change"),
                          .groups = "keep") |>
         data.table::as.data.table()
 
@@ -259,8 +259,8 @@ CCAPS_change <- function(data,
       data <- CCAPS_data2 |>
         dplyr::group_by(UniqueClientID2, CcmhID2) |>
         dplyr::select(names(CCAPS_data)) |>
-        dplyr::summarize(dplyr::across(.data$Depression34:dplyr::all_of(last.var), dplyr::last, .names = "{.col}_last"),
-                         dplyr::across(.data$Depression34:dplyr::all_of(last.var), ~dplyr::first(.x)-dplyr::last(.x), .names = "{col}_change"),
+        dplyr::summarize(dplyr::across(Depression34:dplyr::all_of(last.var), dplyr::last, .names = "{.col}_last"),
+                         dplyr::across(Depression34:dplyr::all_of(last.var), ~dplyr::first(.x)-dplyr::last(.x), .names = "{col}_change"),
                          .groups = "keep") |>
         data.table::as.data.table()
 
@@ -272,9 +272,9 @@ CCAPS_change <- function(data,
       data <- CCAPS_data2 |>
         dplyr::group_by(UniqueClientID2, CcmhID2) |>
         dplyr::select(names(CCAPS_data)) |>
-        dplyr::summarize(dplyr::across(.data$Depression34:dplyr::all_of(last.var), dplyr::first, .names = "{.col}_first"),
-                         dplyr::across(.data$Depression34:dplyr::all_of(last.var), dplyr::last, .names = "{.col}_last"),
-                         dplyr::across(.data$Depression34:dplyr::all_of(last.var), ~dplyr::first(.x)-dplyr::last(.x), .names = "{col}_change"),
+        dplyr::summarize(dplyr::across(Depression34:dplyr::all_of(last.var), dplyr::first, .names = "{.col}_first"),
+                         dplyr::across(Depression34:dplyr::all_of(last.var), dplyr::last, .names = "{.col}_last"),
+                         dplyr::across(Depression34:dplyr::all_of(last.var), ~dplyr::first(.x)-dplyr::last(.x), .names = "{col}_change"),
                          .groups = "keep") |>
         data.table::as.data.table()
     }
