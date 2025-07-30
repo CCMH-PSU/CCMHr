@@ -31,6 +31,7 @@ identity_primary_therapist <- function(data,
 
   # Process the data to extract therapist information
   data <- data |>
+    CCMHr::delete_duplicate_appointments() |>
     dplyr::filter(!is.na(AppointID) &
                   !is.na(TherID) &
                   ClientAttendance == "Attended") |>
