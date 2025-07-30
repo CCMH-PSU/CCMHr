@@ -282,6 +282,8 @@ CCAPS_change <- function(data,
   # Convert to data frame
   data <- data.table::setDF(data)
   data <- as.data.frame(data)
+  data <- data.table::setDT(data)
+  data <- dtplyr::lazy_dt(data)
 
   # Rename ids
   data <- data |>
