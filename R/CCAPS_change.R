@@ -217,7 +217,7 @@ print("Work 1")
     last.var <- rev(names(CCAPS_data))[1]
     print("Work 37")
     # CCAPS_data is a data table
-    CCAPS_data <- data.table::setDT(CCAPS_data)
+    CCAPS_data <- as.data.frame(CCAPS_data)
     print("Work 38")
     # Specify the different outcomes depending on arguments include_first and include_last
     if(include_first == FALSE &
