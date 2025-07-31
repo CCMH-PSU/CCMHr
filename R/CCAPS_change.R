@@ -17,278 +17,243 @@ CCAPS_change <- function(data,
                          client_identifier = "UniqueClientID",
                          center_identifier = "CcmhID",
                          add_items = NA,
-                         include_first = FALSE,
-                         include_last = FALSE){
+                         include_first = F,
+                         include_last = F) {
+  t1.st.01 <- Sys.time()
 
-  # Checking for required variables
-    # List of variables
-    var_names <- c("Is_ValidCCAPS", "Date",
-                   "Depression34", "Anxiety34",
-                   "Social_Anxiety34", "Academics34",
-                   "Eating34", "Hostility34",
-                   "Alcohol34", "DI")
-print("Work 1")
-    # Check for missing variables
-    CCMHr::required_items(data, var_names)
-    print("Work 2")
-  # Convert data into data frame
+  #Check to see if variables are named correctly
+  #List of variables required to run function
+  var_names <- c("Is_ValidCCAPS",
+                 "Date",
+                 "Depression34",
+                 "Anxiety34",
+                 "Social_Anxiety34",
+                 "Academics34",
+                 "Eating34",
+                 "Hostility34",
+                 "Alcohol34",
+                 "DI")
+
+  #Running Function to check for missing variables
+  CCMHr::required_items(data,
+                        var_names)
+
+  # Convert to data frame
   data <- as.data.frame(data)
-  print("Work 3")
+
   # Rename ids
-  data <- data |>
+  data <- data %>%
     dplyr::rename(UniqueClientID2 = {{client_identifier}},
                   CcmhID2 = {{center_identifier}})
-  print("Work 4")
+
   # Convert to data table
   data <- data.table::setDT(data)
-  print("Work 5")
   # Excluding data with no CCAPS data
-  data <- data[data$Is_ValidCCAPS == 1,]
-  print("Work 6")
-  # Convert to data frame
-  data <- as.data.frame(data)
-  print("Work 7")
-  # Excluding participants that didn't complete the CCAPS at least two times.
-  data <- data |>
-    dplyr::group_by(UniqueClientID2, CcmhID2) |>
-    dplyr::filter(dplyr::n() >= 2) |>
-    dplyr::ungroup()
-  print("Work 8")
-  print("Work 9")
-  # Excluding all rows outside of first and last CCAPS administrations.
-  print(names(data))
-  data <- data |>
-    dplyr::group_by(UniqueClientID2, CcmhID2) |>
-    dplyr::arrange(Date) |>
-    dplyr::slice(1, dplyr::n()) |>
-    dplyr::ungroup()
+  data <- data[Is_ValidCCAPS == 1,]
 
-  # Convert to data frame
-  data <- data.table::as.data.table(data)
-  print("Work 9a")
-  # Variable that will detect if "all" is being specified in the add_items argument
+  # Excluding participants that didn't complete the CCAPS at least two times
+  data <- dtplyr::lazy_dt(data)
+  data <- data %>%
+    dplyr::group_by(UniqueClientID2, CcmhID2) %>%
+    dplyr::filter(dplyr::n() >= 2) %>%
+    dplyr::ungroup() %>%
+    as.data.table()
+
+  # Excluding all data rows outside of first and last responses of the CCAPS
+  data <- dtplyr::lazy_dt(data)
+  data <- data %>%
+    dplyr::group_by(UniqueClientID2, CcmhID2) %>%
+    dplyr::arrange(Date) %>%
+    dplyr::slice(1, dplyr::n()) %>%
+    dplyr::ungroup() %>%
+    as.data.table()
+
+  #Variable that will detect if "all" is being specified in argument add_items
   add_items_all <- add_items == "all"[1]
-  print("Work 10")
-  # Creating an empty data frame
+
+  #Making CCAPS_data exist before running if else statements
   CCAPS_data <- NULL
-  print("Work 11")
-  # Adding additional CCAPS items based on add_items
-  if(is.na(add_items)[1] == TRUE){ #If no items are added to add_items or NA
-    print("Work 12")
-    # Returned data frame with specified columns
-    cols <- c("UniqueClientID2", "CcmhID2",
-              "Depression34", "Anxiety34",
-              "Social_Anxiety34", "Academics34",
-              "Eating34", "Hostility34",
-              "Alcohol34", "DI")
-    print("Work 13")
+
+  #Adding additional CCAPS items based on response to options in add_items
+  if(is.na(add_items)[1]==T){ #If no items are added to add_items or NA
+    #Returned data frame
+    cols <- c("UniqueClientID2", "CcmhID2", "Depression34", "Anxiety34", "Social_Anxiety34",
+              "Academics34", "Eating34", "Hostility34", "Alcohol34", "DI")
+
     CCAPS_data <- data[, .SD, .SDcols = cols]
-    print("Work 14")
-  } else if(add_items_all[1] == TRUE){ # If all CCAPS items are to be added or "all" is specified in add_items
-    print("Work 15")
-    # Check to see if variables are named correctly to use this argument
-      # List of variables required to run function
-      var_names <- c("CCAPS_03", "CCAPS_05",
-                     "CCAPS_06", "CCAPS_11",
-                     "CCAPS_13", "CCAPS_16",
-                     "CCAPS_17", "CCAPS_18",
-                     "CCAPS_21", "CCAPS_22",
-                     "CCAPS_24", "CCAPS_27",
-                     "CCAPS_29", "CCAPS_30",
-                     "CCAPS_31", "CCAPS_33",
-                     "CCAPS_34", "CCAPS_36",
-                     "CCAPS_39", "CCAPS_40",
-                     "CCAPS_45", "CCAPS_46",
-                     "CCAPS_48", "CCAPS_49",
-                     "CCAPS_51", "CCAPS_52",
-                     "CCAPS_54", "CCAPS_57",
-                     "CCAPS_58", "CCAPS_59",
-                     "CCAPS_63", "CCAPS_64",
-                     "CCAPS_66", "CCAPS_68")
-      print("Work 16")
-      # For loops to detect for missing variables
-        # Parameters
-          # Number of loops
-          loop.num <- dim(data.frame(var_names))[1]
-          print("Work 16")
-          # Data frame for missing variables
-          df.detect.miss <- NULL
-          df.detect.miss$var_names <- var_names
-          df.detect.miss <- data.frame(df.detect.miss)
-          df.detect.miss$missing <- NA
-          print("Work 17")
-          # Loops
-          for(i in 1:loop.num){
-            print("Work 18")
-            df.detect.miss$missing[i] <- data.frame(var_names[[i]]) %in% names(data)
 
-          }
-          print("Work 19")
-      # Error Message
-        # Removing present variables
-        df.detect.miss <- dplyr::filter(df.detect.miss, df.detect.miss$missing == FALSE)
-        print("Work 20")
-        # Listing out missing variables
-        missing.vars <- toString(df.detect.miss$var_names)
-        print("Work 21")
-        # Release error message
-        if(nrow(df.detect.miss) > 0){
+  } else if(add_items_all[1] == T) { #If all CCAPS items are to be added or "all" is specified in add_items
+    #Check to see if variables are named correctly to use this argument
+    #List of variables required to run function
+    var_names <- c("CCAPS_03", "CCAPS_05", "CCAPS_06", "CCAPS_11",
+                   "CCAPS_13", "CCAPS_16", "CCAPS_17", "CCAPS_18",
+                   "CCAPS_21", "CCAPS_22", "CCAPS_24", "CCAPS_27",
+                   "CCAPS_29", "CCAPS_30", "CCAPS_31", "CCAPS_33",
+                   "CCAPS_34", "CCAPS_36", "CCAPS_39", "CCAPS_40",
+                   "CCAPS_45", "CCAPS_46", "CCAPS_48", "CCAPS_49",
+                   "CCAPS_51", "CCAPS_52", "CCAPS_54", "CCAPS_57",
+                   "CCAPS_58", "CCAPS_59", "CCAPS_63", "CCAPS_64",
+                   "CCAPS_66", "CCAPS_68")
 
-          stop(paste0("The following variables are not present or named adequately in the data: ", missing.vars,". To use 'all' in the argument 'add_items', variable names listed in this error message need to be present in the data."))
+    #For loops to detect for missing variables
+    #Parameters
+    #Number of loops
+    loop.num <- dim(data.frame(var_names))[1]
+    #Data frame for missing variables
+    df.detect.miss <- NULL
+    df.detect.miss$var_names <- var_names
+    df.detect.miss <- data.frame(df.detect.miss)
+    df.detect.miss$missing <- NA
 
-        } else{
-
-        }
-        print("Work 22")
-    # Returned data frame
-      # Specify variables
-      var_names_all <- c("UniqueClientID2", "CcmhID2",
-                         "Depression34", "Anxiety34",
-                         "Social_Anxiety34", "Academics34",
-                         "Eating34", "Hostility34",
-                         "Alcohol34", "DI",
-                         "CCAPS_03", "CCAPS_05",
-                         "CCAPS_06", "CCAPS_11",
-                         "CCAPS_13", "CCAPS_16",
-                         "CCAPS_17", "CCAPS_18",
-                         "CCAPS_21", "CCAPS_22",
-                         "CCAPS_24", "CCAPS_27",
-                         "CCAPS_29", "CCAPS_30",
-                         "CCAPS_31", "CCAPS_33",
-                         "CCAPS_34", "CCAPS_36",
-                         "CCAPS_39", "CCAPS_40",
-                         "CCAPS_45", "CCAPS_46",
-                         "CCAPS_48", "CCAPS_49",
-                         "CCAPS_51", "CCAPS_52",
-                         "CCAPS_54", "CCAPS_57",
-                         "CCAPS_58", "CCAPS_59",
-                         "CCAPS_63", "CCAPS_64",
-                         "CCAPS_66", "CCAPS_68")
-      print("Work 23")
-      # Creating data set
-      CCAPS_data <- data[, .SD, .SDcols = var_names_all]
-      print("Work 24")
-  } else{ # If specific items are added to add_items by listing out variable names
-    print("Work 25")
-    # Set as data frame
-    data <- as.data.frame(data)
-    print("Work 26")
-    # Specify R loop parameters
-      # Add items is a data frame
-      df_add_items <- data.frame(add_items)
-      print("Work 27")
-      # Extract the loop Number
-      loop.num <- dim(df_add_items)[1]
-      print("Work 28")
-      # Creating a blank df to insert data added by loops and making sure data.tmp is a data frame
-      data.tmp <- matrix(nrow = dim(data)[1], ncol = dim(df_add_items)[1])
-      data.tmp <- data.frame(data.tmp)
-      print("Work 29")
-    # For loop that will insert each variable specified in add_items into data.tmp
+    #Loops
     for(i in 1:loop.num){
-      print("Work 30")
-      data.tmp[,i] <- data[,df_add_items[i,1]]
-
+      df.detect.miss$missing[i] <- data.frame(var_names[[i]]) %in% names(data)
     }
-      print("Work 31")
-    # Rename columns of data.tmp to match add_items
+
+    #Warning Message
+    #Removing present variables
+    df.detect.miss <- dplyr::filter(df.detect.miss,
+                                    df.detect.miss$missing == F)
+    #Listing out missing variables
+    missing.vars <- toString(df.detect.miss$var_names)
+
+    #Warning
+    if(nrow(df.detect.miss) > 0){
+      stop(paste0("The following variables are not present or properly named in data: ", missing.vars,". To use 'all' in the argument 'add_items', variable names listed in this error message need to be present in data."))
+    } else{
+    }
+
+    #Returned data frame
+    var_names_all <- c("UniqueClientID2", "CcmhID2", "Depression34", "Anxiety34", "Social_Anxiety34",
+                       "Academics34", "Eating34", "Hostility34", "Alcohol34", "DI",
+                       "CCAPS_03", "CCAPS_05", "CCAPS_06", "CCAPS_11",
+                       "CCAPS_13", "CCAPS_16", "CCAPS_17", "CCAPS_18",
+                       "CCAPS_21", "CCAPS_22", "CCAPS_24", "CCAPS_27",
+                       "CCAPS_29", "CCAPS_30", "CCAPS_31", "CCAPS_33",
+                       "CCAPS_34", "CCAPS_36", "CCAPS_39", "CCAPS_40",
+                       "CCAPS_45", "CCAPS_46", "CCAPS_48", "CCAPS_49",
+                       "CCAPS_51", "CCAPS_52", "CCAPS_54", "CCAPS_57",
+                       "CCAPS_58", "CCAPS_59", "CCAPS_63", "CCAPS_64",
+                       "CCAPS_66", "CCAPS_68")
+
+    CCAPS_data <- data[, .SD, .SDcols = var_names_all]
+
+  } else { #If specific items are added to add_items by listing out variable names
+    #Specify R loop parameters
+    data <- as.data.frame(data)
+    #add items is a dataframe
+    df_add_items <- data.frame(add_items)
+    #Extract loop Number
+    loop.num <- dim(df_add_items)[1]
+    #Creating a blank df to insert data added by loops and making sure data.tmp is a data frame
+    data.tmp<- matrix(nrow=dim(data)[1], ncol=dim(df_add_items)[1])
+    data.tmp <- data.frame(data.tmp)
+
+    #For loop that will insert each variable specified in add_items into data.tmp
+    for(i in 1:loop.num){
+      data.tmp[,i] <- data[,df_add_items[i,1]]
+    }
+
+    #Rename columns of data.tmp to match add_items
     colnames(data.tmp) <- add_items
-    print("Work 32")
-    # Adding client_identifier and center_identifier to data.tmp
+
+    #Adding client_identifier and center_identifier data.tmp
     p1 <- dim(data.tmp)[2]+1
     p2 <- dim(data.tmp)[2]+2
-    print("Work 33")
-    data.tmp[,p1:p2] <- data |>
+
+    data.tmp[,p1:p2] <- data %>%
       dplyr::select(UniqueClientID2, CcmhID2)
-    print("Work 33")
-    # Selecting CCAPS variables
-    CCAPS_data <- data |>
+
+
+    #Creating basic CCAPS_data and ensure it is a dataframe
+    CCAPS_data <- data %>%
       dplyr::select(UniqueClientID2, CcmhID2,
                     Depression34:DI)
-    print("Work 34")
     CCAPS_data <- as.data.frame(CCAPS_data)
-    print("Work 35")
-    # Merging data frames
+
+    #Merging data frames
     CCAPS_data <-  merge(CCAPS_data, data.tmp)
   }
-  print("Work 36")
-  # Adding first and last completion of CCAPS scores
-    # Specify the last variable in CCAPS_data
-    last.var <- rev(names(CCAPS_data))[1]
-    print("Work 37")
-    # CCAPS_data is a data table
-    CCAPS_data <- as.data.frame(CCAPS_data)
-    print("Work 38")
-    # Specify the different outcomes depending on arguments include_first and include_last
-    if(include_first == FALSE &
-       include_last == FALSE){
-      print("Work 39")
-      # Creating overall data frame
-      CCAPS_data <- as.data.frame(CCAPS_data)
-      CCAPS_data2 <- as.data.frame(CCAPS_data)
-      print(names(CCAPS_data2))
-      print("Work 40")
-      data <- CCAPS_data2 |>
-        dplyr::group_by(UniqueClientID2, CcmhID2) |>
-        dplyr::select(names(CCAPS_data)) |>
-        dplyr::summarize(dplyr::across(Depression34:dplyr::all_of(last.var),
-                                       ~dplyr::first(.x)-dplyr::last(.x),
-                                       .names = "{col}_change"),
-                                       .groups = "keep")
-      print("Work 41")
-    } else if(include_first == TRUE &
-              include_last == FALSE){
-      print("Work 42")
-      # Creating an overall data frame
-      CCAPS_data2 <- as.data.frame(CCAPS_data)
-      print("Work 43")
-      data <- CCAPS_data2 |>
-        dplyr::group_by(UniqueClientID2, CcmhID2) |>
-        dplyr::select(names(CCAPS_data)) |>
-        dplyr::summarize(dplyr::across(Depression34:dplyr::all_of(last.var), dplyr::first, .names = "{.col}_first"),
-                         dplyr::across(Depression34:dplyr::all_of(last.var), ~dplyr::first(.x)-dplyr::last(.x), .names = "{col}_change"),
-                         .groups = "keep")
-      print("Work 44")
-    } else if(include_first == FALSE &
-              include_last == TRUE){
-      print("Work 45")
-      # Creating overall data frame
-      CCAPS_data <- as.data.frame(CCAPS_data)
-      CCAPS_data2 <- as.data.frame(CCAPS_data)
-      print("Work 46")
-      data <- CCAPS_data2 |>
-        dplyr::group_by(UniqueClientID2, CcmhID2) |>
-        dplyr::select(names(CCAPS_data)) |>
-        dplyr::summarize(dplyr::across(Depression34:dplyr::all_of(last.var), dplyr::last, .names = "{.col}_last"),
-                         dplyr::across(Depression34:dplyr::all_of(last.var), ~dplyr::first(.x)-dplyr::last(.x), .names = "{col}_change"),
-                         .groups = "keep")
-      print("Work 47")
-    } else {
-      print("Work 48")
-      # Creating overall data frame
-      CCAPS_data <- as.data.frame(CCAPS_data)
-      CCAPS_data2 <- as.data.frame(CCAPS_data)
-      print("Work 49")
-      data <- CCAPS_data2 |>
-        dplyr::group_by(UniqueClientID2, CcmhID2) |>
-        dplyr::select(names(CCAPS_data)) |>
-        dplyr::summarize(dplyr::across(Depression34:dplyr::all_of(last.var), dplyr::first, .names = "{.col}_first"),
-                         dplyr::across(Depression34:dplyr::all_of(last.var), dplyr::last, .names = "{.col}_last"),
-                         dplyr::across(Depression34:dplyr::all_of(last.var), ~dplyr::first(.x)-dplyr::last(.x), .names = "{col}_change"),
-                         .groups = "keep")
-    }
-    print("Work 50")
+
+  #Adding first and last completion of CCAPS scores
+  #Specify the last variable in CCAPS_data
+  last.var <- rev(names(CCAPS_data))[1]
+  #CCAPS_data is a data table
+  CCAPS_data <- data.table::setDT(CCAPS_data)
+
+  #Different outcome depending on arguments include_first and include_last
+  if(include_first == F & include_last == F){
+    #Creating overall data frame
+    CCAPS_data2 <- dtplyr::lazy_dt(CCAPS_data)
+    data <- CCAPS_data2 %>%
+      dplyr::group_by(UniqueClientID2, CcmhID2) %>%
+      dplyr::select(names(CCAPS_data)) %>%
+      dplyr::summarize(dplyr::across(.data$Depression34:dplyr::all_of(last.var),
+                                     ~first(.x)-last(.x),
+                                     .names = "{col}_change"),
+                       .groups = "keep") %>%
+      as.data.table()
+
+  } else if(include_first == T & include_last == F){
+    #Creating overall data frame
+    CCAPS_data2 <- dtplyr::lazy_dt(CCAPS_data)
+    data <- CCAPS_data2 %>%
+      dplyr::group_by(UniqueClientID2, CcmhID2) %>%
+      dplyr::select(names(CCAPS_data)) %>%
+      dplyr::summarize(dplyr::across(.data$Depression34:dplyr::all_of(last.var),
+                                     first,
+                                     .names = "{.col}_first"),
+                       dplyr::across(.data$Depression34:dplyr::all_of(last.var),
+                                     ~first(.x)-last(.x),
+                                     .names = "{col}_change"),
+                       .groups = "keep")%>%
+      as.data.table()
+
+  } else if(include_first == F & include_last == T){
+    #Creating overall data frame
+    CCAPS_data2 <- dtplyr::lazy_dt(CCAPS_data)
+    data <- CCAPS_data2 %>%
+      dplyr::group_by(UniqueClientID2, CcmhID2) %>%
+      dplyr::select(names(CCAPS_data)) %>%
+      dplyr::summarize(dplyr::across(.data$Depression34:dplyr::all_of(last.var),
+                                     last,
+                                     .names = "{.col}_last"),
+                       dplyr::across(.data$Depression34:dplyr::all_of(last.var),
+                                     ~first(.x)-last(.x),
+                                     .names = "{col}_change"),
+                       .groups = "keep")%>%
+      as.data.table()
+
+  } else {
+    #Creating overall data frame
+    CCAPS_data2 <- dtplyr::lazy_dt(CCAPS_data)
+    data <- CCAPS_data2 %>%
+      dplyr::group_by(UniqueClientID2, CcmhID2) %>%
+      dplyr::select(names(CCAPS_data)) %>%
+      dplyr::summarize(dplyr::across(.data$Depression34:dplyr::all_of(last.var),
+                                     first,
+                                     .names = "{.col}_first"),
+                       dplyr::across(.data$Depression34:dplyr::all_of(last.var),
+                                     last,
+                                     .names = "{.col}_last"),
+                       dplyr::across(.data$Depression34:dplyr::all_of(last.var),
+                                     ~first(.x)-last(.x),
+                                     .names = "{col}_change"),
+                       .groups = "keep")%>%
+      as.data.table()
+  }
+
   # Convert to data frame
+  data <- data.table::setDF(data)
   data <- as.data.frame(data)
-  print("Work 51")
+
   # Rename ids
-  data <- data |>
+  data <- data %>%
     dplyr::rename(!!client_identifier := UniqueClientID2,
-                  !!center_identifier := CcmhID2)
-  print("Work 52")
-  # Returns as data frame
+                  !!center_identifier:= CcmhID2)
+
+  # #Returns as data frame with CCAPS change scores of subscales and specified variables. Based on additional arguments, scores from first and last completion could be added to the data frame.
   data <- as.data.frame(data)
-  print("Work 53")
   return(data)
-  print("Work 54")
+
 }
