@@ -225,6 +225,7 @@ print("Work 1")
       print("Work 39")
       # Creating overall data frame
       CCAPS_data2 <- as.data.frame(CCAPS_data)
+      print(names(CCAPS_data2))
       print("Work 40")
       data <- CCAPS_data2 |>
         dplyr::group_by(UniqueClientID2, CcmhID2) |>
