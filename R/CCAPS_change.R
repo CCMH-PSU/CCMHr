@@ -53,10 +53,8 @@ print("Work 1")
     dplyr::group_by(UniqueClientID2, CcmhID2) |>
     dplyr::filter(dplyr::n() >= 2) |>
     dplyr::ungroup() |>
-    data.table::as.data.table(as.data.frame())
+    data.table::as.data.table()
   print("Work 8")
-  # Convert to lazy data table
-  data <- dtplyr::lazy_dt(data)
   print("Work 9")
   # Excluding all rows outside of first and last CCAPS administrations.
   data <- data |>
@@ -64,7 +62,7 @@ print("Work 1")
     dplyr::arrange(Date) |>
     dplyr::slice(1, dplyr::n()) |>
     dplyr::ungroup() |>
-    data.table::as.data.table(as.data.frame())
+    data.table::as.data.table()
   print("Work 9")
   # Variable that will detect if "all" is being specified in the add_items argument
   add_items_all <- add_items == "all"[1]
@@ -233,7 +231,7 @@ print("Work 1")
                                        ~dplyr::first(.x)-dplyr::last(.x),
                                        .names = "{col}_change"),
                                        .groups = "keep") |>
-        data.table::as.data.table(as.data.frame())
+        data.table::as.data.table()
       print("Work 41")
     } else if(include_first == TRUE &
               include_last == FALSE){
@@ -247,7 +245,7 @@ print("Work 1")
         dplyr::summarize(dplyr::across(Depression34:dplyr::all_of(last.var), dplyr::first, .names = "{.col}_first"),
                          dplyr::across(Depression34:dplyr::all_of(last.var), ~dplyr::first(.x)-dplyr::last(.x), .names = "{col}_change"),
                          .groups = "keep") |>
-        data.table::as.data.table(as.data.frame())
+        data.table::as.data.table()
       print("Work 44")
     } else if(include_first == FALSE &
               include_last == TRUE){
@@ -261,7 +259,7 @@ print("Work 1")
         dplyr::summarize(dplyr::across(Depression34:dplyr::all_of(last.var), dplyr::last, .names = "{.col}_last"),
                          dplyr::across(Depression34:dplyr::all_of(last.var), ~dplyr::first(.x)-dplyr::last(.x), .names = "{col}_change"),
                          .groups = "keep") |>
-        data.table::as.data.table(as.data.frame())
+        data.table::as.data.table()
       print("Work 47")
     } else {
       print("Work 48")
@@ -275,7 +273,7 @@ print("Work 1")
                          dplyr::across(Depression34:dplyr::all_of(last.var), dplyr::last, .names = "{.col}_last"),
                          dplyr::across(Depression34:dplyr::all_of(last.var), ~dplyr::first(.x)-dplyr::last(.x), .names = "{col}_change"),
                          .groups = "keep") |>
-        data.table::as.data.table(as.data.frame())
+        data.table::as.data.table()
     }
     print("Work 50")
   # Convert to data frame
@@ -288,7 +286,7 @@ print("Work 1")
   data <- data |>
     dplyr::rename(!!client_identifier := UniqueClientID2,
                   !!center_identifier := CcmhID2) |>
-    data.table::as.data.table(as.data.frame())
+    data.table::as.data.table()
   print("Work 52")
   # Returns as data frame
   data <- as.data.frame(data)
