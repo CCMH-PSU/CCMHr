@@ -45,19 +45,16 @@ print("Work 1")
   # Excluding data with no CCAPS data
   data <- data[data$Is_ValidCCAPS == 1,]
   print("Work 6")
-  # Convert to lazy data table
-  data <- dtplyr::lazy_dt(data)
+  # Convert to data frame
+  data <- as.data.frame(data)
   print("Work 7")
   # Excluding participants that didn't complete the CCAPS at least two times.
   data <- data |>
     dplyr::group_by(UniqueClientID2, CcmhID2) |>
     dplyr::filter(dplyr::n() >= 2) |>
-    dplyr::ungroup() |>
-    data.table::as.data.table()
+    dplyr::ungroup()
   print("Work 8")
   print("Work 9")
-  # Convert to data frame
-  data <- as.data.frame(data)
   # Excluding all rows outside of first and last CCAPS administrations.
   print(names(data))
   data <- data |>
