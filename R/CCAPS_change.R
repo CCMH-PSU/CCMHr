@@ -59,7 +59,7 @@ print("Work 1")
   # Excluding all rows outside of first and last CCAPS administrations.
   data <- data |>
     as.data.frame() |>
-    dplyr::group_by(UniqueClientID2, CcmhID2) |>
+    dplyr::group_by(.data$UniqueClientID2, .data$CcmhID2) |>
     dplyr::arrange(Date) |>
     dplyr::slice(1, dplyr::n()) |>
     dplyr::ungroup() |>
