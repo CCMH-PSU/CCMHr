@@ -53,7 +53,7 @@ CCAPS_change <- function(data,
     dplyr::group_by(UniqueClientID2, CcmhID2) |>
     dplyr::filter(dplyr::n() >= 2) |>
     dplyr::ungroup() |>
-    data.table::as.data.table()
+    data.table::as.data.table(as.data.frame())
 
   # Convert to lazy data table
   data <- dtplyr::lazy_dt(data)
@@ -64,7 +64,7 @@ CCAPS_change <- function(data,
     dplyr::arrange(Date) |>
     dplyr::slice(1, dplyr::n()) |>
     dplyr::ungroup() |>
-    data.table::as.data.table()
+    data.table::as.data.table(as.data.frame())
 
   # Variable that will detect if "all" is being specified in the add_items argument
   add_items_all <- add_items == "all"[1]
@@ -233,7 +233,7 @@ CCAPS_change <- function(data,
                                        ~dplyr::first(.x)-dplyr::last(.x),
                                        .names = "{col}_change"),
                                        .groups = "keep") |>
-        data.table::as.data.table()
+        data.table::as.data.table(as.data.frame())
 
     } else if(include_first == TRUE &
               include_last == FALSE){
@@ -247,7 +247,7 @@ CCAPS_change <- function(data,
         dplyr::summarize(dplyr::across(Depression34:dplyr::all_of(last.var), dplyr::first, .names = "{.col}_first"),
                          dplyr::across(Depression34:dplyr::all_of(last.var), ~dplyr::first(.x)-dplyr::last(.x), .names = "{col}_change"),
                          .groups = "keep") |>
-        data.table::as.data.table()
+        data.table::as.data.table(as.data.frame())
 
     } else if(include_first == FALSE &
               include_last == TRUE){
@@ -261,7 +261,7 @@ CCAPS_change <- function(data,
         dplyr::summarize(dplyr::across(Depression34:dplyr::all_of(last.var), dplyr::last, .names = "{.col}_last"),
                          dplyr::across(Depression34:dplyr::all_of(last.var), ~dplyr::first(.x)-dplyr::last(.x), .names = "{col}_change"),
                          .groups = "keep") |>
-        data.table::as.data.table()
+        data.table::as.data.table(as.data.frame())
 
     } else {
 
@@ -275,7 +275,7 @@ CCAPS_change <- function(data,
                          dplyr::across(Depression34:dplyr::all_of(last.var), dplyr::last, .names = "{.col}_last"),
                          dplyr::across(Depression34:dplyr::all_of(last.var), ~dplyr::first(.x)-dplyr::last(.x), .names = "{col}_change"),
                          .groups = "keep") |>
-        data.table::as.data.table()
+        data.table::as.data.table(as.data.frame())
     }
 
   # Convert to data frame
@@ -288,7 +288,7 @@ CCAPS_change <- function(data,
   data <- data |>
     dplyr::rename(!!client_identifier := UniqueClientID2,
                   !!center_identifier := CcmhID2) |>
-    data.table::as.data.table()
+    data.table::as.data.table(as.data.frame())
 
   # Returns as data frame
   data <- as.data.frame(data)
