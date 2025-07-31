@@ -281,11 +281,14 @@ CCAPS_change <- function(data,
   # Convert to data frame
   data <- data.table::setDF(data)
   data <- as.data.frame(data)
+  data <- data.table::setDT(data)
+  data <- dtplyr::lazy_dt(data)
 
   # Rename ids
   data <- data |>
     dplyr::rename(!!client_identifier := UniqueClientID2,
-                  !!center_identifier:= CcmhID2)
+                  !!center_identifier := CcmhID2) |>
+    data.table::as.data.table()
 
   # Returns as data frame
   data <- as.data.frame(data)
