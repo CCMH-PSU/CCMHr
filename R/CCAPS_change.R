@@ -56,15 +56,16 @@ print("Work 1")
     data.table::as.data.table()
   print("Work 8")
   print("Work 9")
+  # Convert to data frame
+  data <- as.data.frame(data)
   # Excluding all rows outside of first and last CCAPS administrations.
   data <- data |>
-    as.data.frame() |>
     dplyr::group_by(.data$UniqueClientID2, .data$CcmhID2) |>
     dplyr::arrange(Date) |>
     dplyr::slice(1, dplyr::n()) |>
     dplyr::ungroup() |>
     data.table::as.data.table()
-  print("Work 9")
+  print("Work 9a")
   # Variable that will detect if "all" is being specified in the add_items argument
   add_items_all <- add_items == "all"[1]
   print("Work 10")
