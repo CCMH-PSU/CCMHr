@@ -224,6 +224,7 @@ print("Work 1")
        include_last == FALSE){
       print("Work 39")
       # Creating overall data frame
+      CCAPS_data <- as.data.frame(CCAPS_data)
       CCAPS_data2 <- as.data.frame(CCAPS_data)
       print(names(CCAPS_data2))
       print("Work 40")
@@ -252,6 +253,7 @@ print("Work 1")
               include_last == TRUE){
       print("Work 45")
       # Creating overall data frame
+      CCAPS_data <- as.data.frame(CCAPS_data)
       CCAPS_data2 <- as.data.frame(CCAPS_data)
       print("Work 46")
       data <- CCAPS_data2 |>
@@ -264,6 +266,7 @@ print("Work 1")
     } else {
       print("Work 48")
       # Creating overall data frame
+      CCAPS_data <- as.data.frame(CCAPS_data)
       CCAPS_data2 <- as.data.frame(CCAPS_data)
       print("Work 49")
       data <- CCAPS_data2 |>
