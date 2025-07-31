@@ -246,8 +246,7 @@ print("Work 1")
         dplyr::select(names(CCAPS_data)) |>
         dplyr::summarize(dplyr::across(Depression34:dplyr::all_of(last.var), dplyr::first, .names = "{.col}_first"),
                          dplyr::across(Depression34:dplyr::all_of(last.var), ~dplyr::first(.x)-dplyr::last(.x), .names = "{col}_change"),
-                         .groups = "keep") |>
-        data.table::as.data.table()
+                         .groups = "keep")
       print("Work 44")
     } else if(include_first == FALSE &
               include_last == TRUE){
@@ -260,8 +259,7 @@ print("Work 1")
         dplyr::select(names(CCAPS_data)) |>
         dplyr::summarize(dplyr::across(Depression34:dplyr::all_of(last.var), dplyr::last, .names = "{.col}_last"),
                          dplyr::across(Depression34:dplyr::all_of(last.var), ~dplyr::first(.x)-dplyr::last(.x), .names = "{col}_change"),
-                         .groups = "keep") |>
-        data.table::as.data.table()
+                         .groups = "keep")
       print("Work 47")
     } else {
       print("Work 48")
@@ -274,21 +272,16 @@ print("Work 1")
         dplyr::summarize(dplyr::across(Depression34:dplyr::all_of(last.var), dplyr::first, .names = "{.col}_first"),
                          dplyr::across(Depression34:dplyr::all_of(last.var), dplyr::last, .names = "{.col}_last"),
                          dplyr::across(Depression34:dplyr::all_of(last.var), ~dplyr::first(.x)-dplyr::last(.x), .names = "{col}_change"),
-                         .groups = "keep") |>
-        data.table::as.data.table()
+                         .groups = "keep")
     }
     print("Work 50")
   # Convert to data frame
-  data <- data.table::setDF(data)
   data <- as.data.frame(data)
-  data <- data.table::setDT(data)
-  data <- dtplyr::lazy_dt(data)
   print("Work 51")
   # Rename ids
   data <- data |>
     dplyr::rename(!!client_identifier := UniqueClientID2,
-                  !!center_identifier := CcmhID2) |>
-    data.table::as.data.table()
+                  !!center_identifier := CcmhID2)
   print("Work 52")
   # Returns as data frame
   data <- as.data.frame(data)
