@@ -232,8 +232,7 @@ print("Work 1")
         dplyr::summarize(dplyr::across(Depression34:dplyr::all_of(last.var),
                                        ~dplyr::first(.x)-dplyr::last(.x),
                                        .names = "{col}_change"),
-                                       .groups = "keep") |>
-        data.table::as.data.table()
+                                       .groups = "keep")
       print("Work 41")
     } else if(include_first == TRUE &
               include_last == FALSE){
