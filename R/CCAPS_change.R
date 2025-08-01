@@ -111,66 +111,66 @@ CCAPS_change <- function(data,
                    "CCAPS_66", "CCAPS_68")
 
     # For loops to detect for missing variables
-    # Parameters
-    # Number of loops
-    loop.num <- dim(data.frame(var_names))[1]
+      # Parameters
+        # Number of loops
+        loop.num <- dim(data.frame(var_names))[1]
 
-    # Data frame for missing variables
-    df.detect.miss <- NULL
-    df.detect.miss$var_names <- var_names
-    df.detect.miss <- data.frame(df.detect.miss)
-    df.detect.miss$missing <- NA
+        # Data frame for missing variables
+        df.detect.miss <- NULL
+        df.detect.miss$var_names <- var_names
+        df.detect.miss <- data.frame(df.detect.miss)
+        df.detect.miss$missing <- NA
 
-    # Loops
-    for(i in 1:loop.num){
+      # Loops
+      for(i in 1:loop.num){
 
-      df.detect.miss$missing[i] <- data.frame(var_names[[i]]) %in% names(data)
+        df.detect.miss$missing[i] <- data.frame(var_names[[i]]) %in% names(data)
 
-    }
+      }
 
     # Error Message
-    # Removing present variables
-    df.detect.miss <- dplyr::filter(df.detect.miss, df.detect.miss$missing == FALSE)
+      # Removing present variables
+      df.detect.miss <- dplyr::filter(df.detect.miss, df.detect.miss$missing == FALSE)
 
-    # Listing out missing variables
-    missing.vars <- toString(df.detect.miss$var_names)
+      # Listing out missing variables
+      missing.vars <- toString(df.detect.miss$var_names)
 
-    # Release error message
-    if(nrow(df.detect.miss) > 0){
+      # Release error message
+      if(nrow(df.detect.miss) > 0){
 
-      stop(paste0("The following variables are not present or named adequately in the data: ", missing.vars,". To use 'all' in the argument 'add_items', variable names listed in this error message need to be present in the data."))
+        stop(paste0("The following variables are not present or named adequately in the data: ", missing.vars,". To use 'all' in the argument 'add_items', variable names listed in this error message need to be present in the data."))
 
-    } else{
+      } else{
 
-    }
+      }
 
     # Returned data frame
-    # Specify variables
-    var_names_all <- c("UniqueClientID2", "CcmhID2",
-                       "Depression34", "Anxiety34",
-                       "Social_Anxiety34", "Academics34",
-                       "Eating34", "Hostility34",
-                       "Alcohol34", "DI",
-                       "CCAPS_03", "CCAPS_05",
-                       "CCAPS_06", "CCAPS_11",
-                       "CCAPS_13", "CCAPS_16",
-                       "CCAPS_17", "CCAPS_18",
-                       "CCAPS_21", "CCAPS_22",
-                       "CCAPS_24", "CCAPS_27",
-                       "CCAPS_29", "CCAPS_30",
-                       "CCAPS_31", "CCAPS_33",
-                       "CCAPS_34", "CCAPS_36",
-                       "CCAPS_39", "CCAPS_40",
-                       "CCAPS_45", "CCAPS_46",
-                       "CCAPS_48", "CCAPS_49",
-                       "CCAPS_51", "CCAPS_52",
-                       "CCAPS_54", "CCAPS_57",
-                       "CCAPS_58", "CCAPS_59",
-                       "CCAPS_63", "CCAPS_64",
-                       "CCAPS_66", "CCAPS_68")
+      # Specify variables
+      var_names_all <- c("UniqueClientID2", "CcmhID2",
+                         "Depression34", "Anxiety34",
+                         "Social_Anxiety34", "Academics34",
+                         "Eating34", "Hostility34",
+                         "Alcohol34", "DI",
+                         "CCAPS_03", "CCAPS_05",
+                         "CCAPS_06", "CCAPS_11",
+                         "CCAPS_13", "CCAPS_16",
+                         "CCAPS_17", "CCAPS_18",
+                         "CCAPS_21", "CCAPS_22",
+                         "CCAPS_24", "CCAPS_27",
+                         "CCAPS_29", "CCAPS_30",
+                         "CCAPS_31", "CCAPS_33",
+                         "CCAPS_34", "CCAPS_36",
+                         "CCAPS_39", "CCAPS_40",
+                         "CCAPS_45", "CCAPS_46",
+                         "CCAPS_48", "CCAPS_49",
+                         "CCAPS_51", "CCAPS_52",
+                         "CCAPS_54", "CCAPS_57",
+                         "CCAPS_58", "CCAPS_59",
+                         "CCAPS_63", "CCAPS_64",
+                         "CCAPS_66", "CCAPS_68")
 
-    # Creating data set
-    CCAPS_data <- data[, .SD, .SDcols = var_names_all]
+      # Creating data set
+      CCAPS_data <- data[, .SD, .SDcols = var_names_all]
 
   } else{ # If specific items are added to add_items by listing out variable names
 
@@ -178,15 +178,15 @@ CCAPS_change <- function(data,
     data <- as.data.frame(data)
 
     # Specify R loop parameters
-    # Add items is a data frame
-    df_add_items <- data.frame(add_items)
+      # Add items is a data frame
+      df_add_items <- data.frame(add_items)
 
-    # Extract the loop Number
-    loop.num <- dim(df_add_items)[1]
+      # Extract the loop Number
+      loop.num <- dim(df_add_items)[1]
 
-    # Creating a blank df to insert data added by loops and making sure data.tmp is a data frame
-    data.tmp <- matrix(nrow = dim(data)[1], ncol = dim(df_add_items)[1])
-    data.tmp <- data.frame(data.tmp)
+      # Creating a blank df to insert data added by loops and making sure data.tmp is a data frame
+      data.tmp <- matrix(nrow = dim(data)[1], ncol = dim(df_add_items)[1])
+      data.tmp <- data.frame(data.tmp)
 
     # For loop that will insert each variable specified in add_items into data.tmp
     for(i in 1:loop.num){
@@ -218,8 +218,8 @@ CCAPS_change <- function(data,
   }
 
   # Adding first and last completion of CCAPS scores
-  # Specify the last variable in CCAPS_data
-  last.var <- rev(names(CCAPS_data))[1]
+    # Specify the last variable in CCAPS_data
+    last.var <- rev(names(CCAPS_data))[1]
 
   # CCAPS_data is a data table
   CCAPS_data <- data.table::setDT(CCAPS_data)
@@ -234,9 +234,7 @@ CCAPS_change <- function(data,
     data <- CCAPS_data2 |>
       dplyr::group_by(UniqueClientID2, CcmhID2) |>
       dplyr::select(names(CCAPS_data)) |>
-      dplyr::summarize(dplyr::across(.data$Depression34:dplyr::all_of(last.var),
-                                     ~dplyr::first(.x)-dplyr::last(.x),
-                                     .names = "{col}_change"),
+      dplyr::summarize(dplyr::across(Depression34:dplyr::all_of(last.var), ~dplyr::first(.x)-dplyr::last(.x), .names = "{col}_change"),
                        .groups = "keep") |>
       data.table::as.data.table()
 
@@ -249,8 +247,8 @@ CCAPS_change <- function(data,
     data <- CCAPS_data2 |>
       dplyr::group_by(UniqueClientID2, CcmhID2) |>
       dplyr::select(names(CCAPS_data)) |>
-      dplyr::summarize(dplyr::across(.data$Depression34:dplyr::all_of(last.var), dplyr::first, .names = "{.col}_first"),
-                       dplyr::across(.data$Depression34:dplyr::all_of(last.var), ~dplyr::first(.x)-dplyr::last(.x), .names = "{col}_change"),
+      dplyr::summarize(dplyr::across(Depression34:dplyr::all_of(last.var), first, .names = "{.col}_first"),
+                       dplyr::across(Depression34:dplyr::all_of(last.var), ~dplyr::first(.x)-dplyr::last(.x), .names = "{col}_change"),
                        .groups = "keep") |>
       data.table::as.data.table()
 
@@ -263,8 +261,8 @@ CCAPS_change <- function(data,
     data <- CCAPS_data2 |>
       dplyr::group_by(UniqueClientID2, CcmhID2) |>
       dplyr::select(names(CCAPS_data)) |>
-      dplyr::summarize(dplyr::across(.data$Depression34:dplyr::all_of(last.var), dplyr::last, .names = "{.col}_last"),
-                       dplyr::across(.data$Depression34:dplyr::all_of(last.var), ~dplyr::first(.x)-dplyr::last(.x), .names = "{col}_change"),
+      dplyr::summarize(dplyr::across(Depression34:dplyr::all_of(last.var), last, .names = "{.col}_last"),
+                       dplyr::across(Depression34:dplyr::all_of(last.var), ~dplyr::first(.x)-dplyr::last(.x), .names = "{col}_change"),
                        .groups = "keep") |>
       data.table::as.data.table()
 
@@ -276,11 +274,12 @@ CCAPS_change <- function(data,
     data <- CCAPS_data2 |>
       dplyr::group_by(UniqueClientID2, CcmhID2) |>
       dplyr::select(names(CCAPS_data)) |>
-      dplyr::summarize(dplyr::across(.data$Depression34:dplyr::all_of(last.var), dplyr::first, .names = "{.col}_first"),
-                       dplyr::across(.data$Depression34:dplyr::all_of(last.var), dplyr::last, .names = "{.col}_last"),
-                       dplyr::across(.data$Depression34:dplyr::all_of(last.var), ~dplyr::first(.x)-dplyr::last(.x), .names = "{col}_change"),
+      dplyr::summarize(dplyr::across(Depression34:dplyr::all_of(last.var), first, .names = "{.col}_first"),
+                       dplyr::across(Depression34:dplyr::all_of(last.var), last, .names = "{.col}_last"),
+                       dplyr::across(Depression34:dplyr::all_of(last.var), ~dplyr::first(.x)-dplyr::last(.x), .names = "{col}_change"),
                        .groups = "keep") |>
       data.table::as.data.table()
+
   }
 
   # Convert to data frame
