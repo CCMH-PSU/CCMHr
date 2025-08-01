@@ -168,7 +168,7 @@ rename_subscales_long <- function(data,
                          "Eating Concerns", "Frustration/Anger",
                          "Alcohol Use", "Substance Use",
                          "Family Distress", "Distress Index"),
-                       dplyr::pull(data[, column_str]))
+                       unique(dplyr::pull(data, {{column}})))
 
     # Rename the subscales and arrange the data
     data <- data |>
