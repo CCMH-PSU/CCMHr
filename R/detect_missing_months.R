@@ -6,6 +6,10 @@
 #'
 #' @return A data frame with the following variables: "CcmhID", "Is_appointment_sum", "Has_CCAPS_sum", "Has_SDS_sum", "Has_CLICC_sum", "Has_Closure_sum". Variables that end with "_sum" output the month(s) that had completely missing data on a specified form. Months are specified numerically (e.g., January is 1).
 #'
+#' @import lubridate
+#' @import dplyr
+#' @import tidyr
+#'
 #' @export
 
 detect_missing_months <- function(data){
@@ -45,9 +49,9 @@ detect_missing_months <- function(data){
       dplyr::ungroup()
 
   # Filling missing months back in with 0s
-  data <- tidyr::expand(data, .data$CcmhID, .data$month) |>
+  data <- tidyr::expand(data, CcmhID, month) |>
     dplyr::left_join(data) |>
-    dplyr::mutate(dplyr::across(.data$Is_appointment_sum:.data$Has_Closure_sum, ~ifelse(is.na(.x), 0, .x)))
+    dplyr::mutate(dplyr::across(Is_appointment_sum:Has_Closure_sum, ~ifelse(is.na(.x), 0, .x)))
 
   # Determining if data is problematic
   data <- data |>

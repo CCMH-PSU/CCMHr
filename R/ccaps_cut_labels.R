@@ -8,6 +8,8 @@
 #'
 #' @return A data frame with all the original data and additional columns of cut score labels.
 #'
+#' @import dplyr
+#'
 #' @export
 
 ccaps_cut_labels <- function(data){

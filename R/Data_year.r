@@ -6,6 +6,9 @@
 #'
 #' @return A data frame with a new variable, Data_year.
 #'
+#' @import dplyr
+#' @import lubridate
+#'
 #' @export
 #'
 
@@ -30,7 +33,7 @@ create_Data_year <- function(data){
   }
 
   # Stop if Date is not classified as a date
-  if(!is.Date(data$Date)){
+  if(!lubridate::is.Date(data$Date)){
 
     stop("Variable Date is not classified as a date")
 
@@ -76,6 +79,9 @@ create_Data_year <- function(data){
 #' @param data  A data frame with a valid Data_year variable.
 #'
 #' @return A data frame with new variables Data_year_long, Data_year_formal, and Data_year_formalshort.
+#'
+#' @import dplyr
+#' @import stringr
 #'
 #' @export
 #'

@@ -10,6 +10,9 @@
 #'
 #' @return A data frame with the client's first CCAPS administration.
 #'
+#' @import usethis
+#' @import data.table
+#'
 #' @export
 
 select_first_CCAPS <- function(data,
@@ -107,6 +110,9 @@ select_first_CCAPS <- function(data,
 #' @param by_year A logical argument to indicate if the first SDS administration is by year instead of overall. If `TRUE,` the first SDS administration for each client will be extracted across each data year (e.g., multiple rows may correspond to a unique client across multiple years). If `FALSE`, the first SDS administration of each client will be selected regardless of year (e.g., each row should correspond to a single unique client). By default, `FALSE`.
 #'
 #' @return A data frame with the client's first SDS administration.
+#'
+#' @import usethis
+#' @import data.table
 #'
 #' @export
 
@@ -219,6 +225,9 @@ select_first_SDS <- function(data,
 #' @param recode_NA A logical argument to indicate if NA on CLICC should be recoded as 0. If `TRUE`, NA will be recoded as 0. By default, `FALSE`.
 #'
 #' @return A data frame with the client's first CLICC administration.
+#'
+#' @import usethis
+#' @import data.table
 #'
 #' @export
 
@@ -339,6 +348,9 @@ select_first_CLICC <- function(data,
 #' @param recode_NA A logical argument to indicate if NA on Case Closure should be recoded as 0. If `TRUE`, NA will be recoded as 0. By default, `FALSE`.
 #'
 #' @return A data frame with the client's first Case Closure administration.
+#'
+#' @import usethis
+#' @import data.table
 #'
 #' @export
 

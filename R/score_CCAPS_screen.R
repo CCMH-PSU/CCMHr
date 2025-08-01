@@ -6,6 +6,9 @@
 #'
 #' @return A data frame with all the original variables and several additional columns, including Has_CCAPS, Is_ValidCCAPS, Depression, Anxiety, Social_Anxiety, Academics, Eating, Frustration, and Alcohol.
 #'
+#' @import dplyr
+#' @import stats
+#'
 #' @export
 
 score_CCAPS_screen <- function(data){
@@ -183,8 +186,9 @@ score_CCAPS_screen <- function(data){
   data <- merge(data, df_subscale)
 
   # Delete created variables after creating subscales
-  data <- dplyr::select(data, -c(.data$CCAPS_18r:.data$CCAPS_60r,
-                                 .data$Depression_MISS:.data$variance))
+  data <- data |>
+    dplyr::select(-c(CCAPS_18r:CCAPS_60r,
+                     Depression_MISS:variance))
 
   # Return data
   return(data)

@@ -7,6 +7,11 @@
 #'
 #' @return CCAPS scores just above and below the cut point, as well as the item responses necessary to produce that score.
 #'
+#' @import gtools
+#' @import dplyr
+#' @import purrr
+#' @import plyr
+#'
 #' @export
 
 find_cutpoint_boundaries <- function(items,

@@ -8,6 +8,10 @@
 #'
 #' @return A data frame will be returned. If the "firstOnly" argument is `TRUE`, the data frame will only contain data about a client's first treatment course, and no new variables will be created. If the "firstOnly" argument is `FALSE`, the entire data frame is returned, and three new variables are created. The new variables include: `UniqueClientID_byCourse` is an ID unique to each client and course of therapy (i.e., .1 is added to UniqueClientID for their first course (e.g. 100.1), .2 for their second course (100.2), etc); `RankCourse` is the course number that the row pertains to (i.e., 1 to N of courses); and `FirstCourse` is a dichotomous variable indicating whether the rows of data belong to a client's first course or not (i.e., 1 = First course, 0 = Not the first course).
 #'
+#' @import data.table
+#' @import stats
+#' @import zoo
+#'
 #' @export
 #'
 

@@ -6,6 +6,8 @@
 #'
 #' @return A data frame with only centers contributing data for all years included in the original data frame.
 #'
+#' @import dplyr
+#'
 #' @export
 #'
 
@@ -28,10 +30,13 @@ center_data_each_year <- function(data){
 
     } else{
 
+      # Detect max number of years
+      max_years <- length(unique(data$Data_year))
+
       # Filter for centers with data for all years
       data <- data |>
         dplyr::group_by(CcmhID) |>
-        dplyr::filter(dplyr::n_distinct(Data_year) == length(unique(Data_year))) |>
+        dplyr::filter(dplyr::n_distinct(Data_year) == max_years) |>
         dplyr::ungroup()
 
       # Return data frame

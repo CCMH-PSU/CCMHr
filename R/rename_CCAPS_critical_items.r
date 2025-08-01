@@ -7,6 +7,8 @@
 #'
 #' @return A data frame with new variables CCAPS_SI and CCAPS_THO. If keep_all is `TRUE`, all columns of the original data frame are kept. If keep_all is `FALSE`, UniqueClientID, CcmhID, Date, and Data_year are kept along with the new variables.
 #'
+#' @import dplyr
+#'
 #' @export
 
 rename_CCAPS_critical_items <- function(data,

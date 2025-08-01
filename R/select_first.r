@@ -16,6 +16,8 @@
 #'
 #' @return A data frame with the first administration of multiple forms (based on inner_join_list and left_join_list arguments) and items within forms (based on keep_columns_CCAPS, keep_columns_SDS, keep_columns_CLICC, and keep_columns_Closure arguments).
 #'
+#' @import dplyr
+#'
 #' @export
 
 select_first <- function(data,

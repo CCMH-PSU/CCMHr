@@ -8,18 +8,20 @@
 #'
 #' @return If CCAPS item responses are valid, the function returns the message, "CCAPS looks good!" If CCAPS item responses are invalid, the function returns a vector of the CCAPS item(s) that violated the constraints.
 #'
+#' @import dplyr
+#'
 #' @export
 
 check_CCAPS <- function(dat){
 
   # Detect violations
   violate <- dat |>
-    dplyr::select(.data$CCAPS_01:.data$CCAPS_70) |>
+    dplyr::select(CCAPS_01:CCAPS_70) |>
     dplyr::mutate_all(list(viol = function(x) !dplyr::between(x, left = 0, right = 4)))
 
   # Sum violations
   sum_violate <- violate |>
-    dplyr::select(.data$CCAPS_01_viol:.data$CCAPS_70_viol) |>
+    dplyr::select(CCAPS_01_viol:CCAPS_70_viol) |>
     dplyr::summarise_all(list(sum = function(x) sum(x, na.rm = TRUE)))
 
   # Total violations
@@ -32,7 +34,7 @@ check_CCAPS <- function(dat){
 
   } else{
 
-    violations <- colnames(dplyr::select(dat,.data$CCAPS_01:.data$CCAPS_70))[which(sum_violate>0)]
+    violations <- colnames(dplyr::select(dat,CCAPS_01:CCAPS_70))[which(sum_violate>0)]
 
     return(violations)
 

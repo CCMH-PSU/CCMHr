@@ -7,6 +7,8 @@
 #'
 #' @return A data frame with the CCAPS subscale column names recoded to the formal names.
 #'
+#' @import dplyr
+#'
 #' @export
 
 rename_subscales_wide <- function(data,
@@ -31,14 +33,14 @@ rename_subscales_wide <- function(data,
 
     # Rename the CCAPS62 subscales
     data <- data |>
-    dplyr::rename("Depression" = "Depression34",
-                  "Generalized Anxiety" = "Anxiety34",
-                  "Social Anxiety" = "Social_Anxiety34",
-                  "Academic Distress" = "Academics34",
-                  "Eating Concerns" = "Eating34",
-                  "Frustration/Anger" = "Hostility34",
-                  "Alcohol Use" = "Alcohol34",
-                  "Distress Index" = "DI")
+      dplyr::rename("Depression" = "Depression34",
+                    "Generalized Anxiety" = "Anxiety34",
+                    "Social Anxiety" = "Social_Anxiety34",
+                    "Academic Distress" = "Academics34",
+                    "Eating Concerns" = "Eating34",
+                    "Frustration/Anger" = "Hostility34",
+                    "Alcohol Use" = "Alcohol34",
+                    "Distress Index" = "DI")
 
   }
 
@@ -56,6 +58,11 @@ rename_subscales_wide <- function(data,
 #' @param formal A logical argument to determine whether CCAPS subscale names should be in a formal or informal format. If `FALSE`, the CCAPS subscale names are renamed in an informal format (i.e., "Depression", "Anxiety", "Social Anxiety", "Academics", "Eating", "Frustration/Anger", "Alcohol Use", "Substance Use", "Family Distress", "Distress Index"). If `TRUE`, the CCAPS subscale names are renamed in an informal format (i.e., "Depression", "Generalized Anxiety", "Social Anxiety", "Academic Distress", "Eating Concerns", "Frustration/Anger", "Alcohol Use", "Substance Use", "Family Distress", "Distress Index"). By default, `FALSE`.
 #'
 #' @return A data frame with the column containing CCAPS subscale names is recoded to the formal or informal names.
+#'
+#' @import glue
+#' @import dplyr
+#' @import stringr
+#' @import forcats
 #'
 #' @export
 

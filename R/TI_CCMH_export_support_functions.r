@@ -9,6 +9,8 @@
 #'
 #' @return A data frame with cleaned TI exported appointment data.
 #'
+#' @import dplyr
+#'
 #' @export
 
 clean_TI_export_appointment <- function(data,
@@ -61,6 +63,9 @@ clean_TI_export_appointment <- function(data,
 #' @param path A quoted string to indicate the file type (e.g., CSV, RDA), file name, and the path within the local directory where data from the forms should be saved. By default, `"TI_CCMH_export_clean.csv"`.
 #'
 #' @return A data frame with cleaned TI CCMH exported forms data.
+#'
+#' @import dplyr
+#' @import plyr
 #'
 #' @export
 

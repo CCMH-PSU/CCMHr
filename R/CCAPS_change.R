@@ -2,10 +2,6 @@
 #'
 #' @description This function could create three different types of variables. The function will always return variables that end with "\_change" (e.g., Depression34_change). These variables depict the change in CCAPs subscale scores between the first and last administration (i.e., first admin - last admin). Here, a positive score indicates symptom improvement, a zero score indicates no change, and a negative score indicates symptom degradation. When include_first = TRUE, the CCAPs subscale scores from the first administration will be included in the returned data frame (e.g., the variable names will end with "\_first"). When include_last = TRUE, the CCAPs subscale scores from the last administration will be included in the returned data frame (e.g., the variable names will end with "\_last").
 #'
-#' @import data.table
-#' @import dtplyr
-#' @import dplyr
-#'
 #' @param data A data file containing CCAPS subscales scores.
 #' @param client_identifier The column that uniquely identifies each client. By default, `UniqueClientID`.
 #' @param center_identifier The column that uniquely identifies each center. By default, `CcmhID`.
@@ -14,6 +10,10 @@
 #' @param include_last A logical argument that specifies if scores and/or responses from the last completion of the CCAPS should be included in the returned data frame. If `TRUE`, responses of the last administration is included in the returned data frame. By default, `FALSE`.
 #'
 #' @return A data frame with CCAPS change score of subscales and specified columns. Depending on the include_first and include_last endorsement, scores and/or responses from the first and last CCAPS administration could also be included.
+#'
+#' @import data.table
+#' @import dtplyr
+#' @import dplyr
 #'
 #' @export
 

@@ -7,6 +7,9 @@
 #'
 #' @return A data frame with all the original variables and several additional columns, including Has_CCAPS, Is_CCAPS62, Is_ValidCCAPS, Is_ValidCCAPS62, Is_CCAPS34, Is_ValidCCAPS34, Depression34, Anxiety34, Social_Anxiety34, Academics34, Eating34, Hostility34, Alcohol34, DI, Depression62, Eating62, Substance62, Anxiety62, Hostility62, Social_Anxiety62, Family62, and Academics62.
 #'
+#' @import dplyr
+#' @import matrixStats
+#'
 #' @export
 
 score_CCAPS <- function(data,

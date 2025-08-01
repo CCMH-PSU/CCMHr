@@ -8,6 +8,10 @@
 #'
 #' @return A data frame with only the first instance of each appointment.
 #'
+#' @import glue
+#' @import rlang
+#' @import dplyr
+#'
 #' @export
 
 delete_duplicate_appointments <- function(data,
@@ -45,19 +49,20 @@ delete_duplicate_appointments <- function(data,
   appt$duplicate <- duplicated(appt[c(client_identifier,appointment_identifier)])
 
   # Remove duplicates
-  appt <- dplyr::filter(appt, .data$duplicate == FALSE) |>
-    dplyr::select(-.data$duplicate)
+  appt <- appt |>
+    dplyr::filter(duplicate == FALSE) |>
+    dplyr::select(-duplicate)
 
   # Recombine the data frames and arrange by client, date, or appointment
   if ("Date" %in% names(data)) {
 
     data <- rbind(appt, survey) |>
-      dplyr::arrange(.data$UniqueClientID, .data$Date)
+      dplyr::arrange(UniqueClientID, Date)
 
   } else {
 
     data <- rbind(appt, survey) |>
-      dplyr::arrange(.data$UniqueClientID, !!appointment_identifier_temp)
+      dplyr::arrange(UniqueClientID, !!appointment_identifier_temp)
 
   }
 

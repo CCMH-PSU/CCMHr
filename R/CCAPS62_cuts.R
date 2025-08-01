@@ -10,6 +10,8 @@
 #'
 #' @return A data frame with all the original data and several additional columns of cut scores.
 #'
+#' @import dplyr
+#'
 #' @export
 
 ccaps62_cuts <- function(data,
@@ -37,22 +39,22 @@ ccaps62_cuts <- function(data,
         if(version == "2018") {
 
           data <- data |>
-            dplyr::mutate(Depression62_low_cut     = ifelse(round(.data$Depression62, 2) >= 1.09, 1, 0),
-                          Depression62_hi_cut      = ifelse(round(.data$Depression62, 2) >= 1.92, 1, 0),
-                          Anxiety62_low_cut        = ifelse(round(.data$Anxiety62, 2) >= 1.25, 1, 0),
-                          Anxiety62_hi_cut         = ifelse(round(.data$Anxiety62, 2) >= 1.89, 1, 0),
-                          Social_Anxiety62_low_cut = ifelse(round(.data$Social_Anxiety62, 2) >= 1.72, 1, 0),
-                          Social_Anxiety62_hi_cut  = ifelse(round(.data$Social_Anxiety62, 2) >= 2.57, 1, 0),
-                          Academics62_low_cut      = ifelse(round(.data$Academics62, 2) >= 1.42, 1, 0),
-                          Academics62_hi_cut       = ifelse(round(.data$Academics62, 2) >= 2.40, 1, 0),
-                          Eating62_low_cut         = ifelse(round(.data$Eating62, 2) >= 1.09, 1, 0),
-                          Eating62_hi_cut          = ifelse(round(.data$Eating62, 2) >= 1.80, 1, 0),
-                          Hostility62_low_cut      = ifelse(round(.data$Hostility62, 2) >= 0.82, 1, 0),
-                          Hostility62_hi_cut       = ifelse(round(.data$Hostility62, 2) >= 1.43, 1, 0),
-                          Substance62_low_cut      = ifelse(round(.data$Substance62, 2) >= 0.70, 1, 0),
-                          Substance62_hi_cut       = ifelse(round(.data$Substance62, 2) >= 1.00, 1, 0),
-                          Family62_low_cut         = ifelse(round(.data$Family62, 2) >= 0.98, 1, 0),
-                          Family62_hi_cut          = ifelse(round(.data$Family62, 2) >= 1.83, 1, 0))
+            dplyr::mutate(Depression62_low_cut     = ifelse(round(Depression62, 2) >= 1.09, 1, 0),
+                          Depression62_hi_cut      = ifelse(round(Depression62, 2) >= 1.92, 1, 0),
+                          Anxiety62_low_cut        = ifelse(round(Anxiety62, 2) >= 1.25, 1, 0),
+                          Anxiety62_hi_cut         = ifelse(round(Anxiety62, 2) >= 1.89, 1, 0),
+                          Social_Anxiety62_low_cut = ifelse(round(Social_Anxiety62, 2) >= 1.72, 1, 0),
+                          Social_Anxiety62_hi_cut  = ifelse(round(Social_Anxiety62, 2) >= 2.57, 1, 0),
+                          Academics62_low_cut      = ifelse(round(Academics62, 2) >= 1.42, 1, 0),
+                          Academics62_hi_cut       = ifelse(round(Academics62, 2) >= 2.40, 1, 0),
+                          Eating62_low_cut         = ifelse(round(Eating62, 2) >= 1.09, 1, 0),
+                          Eating62_hi_cut          = ifelse(round(Eating62, 2) >= 1.80, 1, 0),
+                          Hostility62_low_cut      = ifelse(round(Hostility62, 2) >= 0.82, 1, 0),
+                          Hostility62_hi_cut       = ifelse(round(Hostility62, 2) >= 1.43, 1, 0),
+                          Substance62_low_cut      = ifelse(round(Substance62, 2) >= 0.70, 1, 0),
+                          Substance62_hi_cut       = ifelse(round(Substance62, 2) >= 1.00, 1, 0),
+                          Family62_low_cut         = ifelse(round(Family62, 2) >= 0.98, 1, 0),
+                          Family62_hi_cut          = ifelse(round(Family62, 2) >= 1.83, 1, 0))
 
           return(data)
 
@@ -62,22 +64,22 @@ ccaps62_cuts <- function(data,
         } else if (version == "2019") {
 
           data <- data |>
-            dplyr::mutate(Depression62_low_cut     = ifelse(round(.data$Depression62, 2) >= 1.23, 1, 0),
-                          Depression62_hi_cut      = ifelse(round(.data$Depression62, 2) >= 1.92, 1, 0),
-                          Anxiety62_low_cut        = ifelse(round(.data$Anxiety62, 2) >= 1.22, 1, 0),
-                          Anxiety62_hi_cut         = ifelse(round(.data$Anxiety62, 2) >= 1.89, 1, 0),
-                          Social_Anxiety62_low_cut = ifelse(round(.data$Social_Anxiety62, 2) >= 1.43, 1, 0),
-                          Social_Anxiety62_hi_cut  = ifelse(round(.data$Social_Anxiety62, 2) >= 2.57, 1, 0),
-                          Academics62_low_cut      = ifelse(round(.data$Academics62, 2) >= 1.20, 1, 0),
-                          Academics62_hi_cut       = ifelse(round(.data$Academics62, 2) >= 2.40, 1, 0),
-                          Eating62_low_cut         = ifelse(round(.data$Eating62, 2) >= 1.02, 1, 0),
-                          Eating62_hi_cut          = ifelse(round(.data$Eating62, 2) >= 1.80, 1, 0),
-                          Hostility62_low_cut      = ifelse(round(.data$Hostility62, 2) >= 1.00, 1, 0),
-                          Hostility62_hi_cut       = ifelse(round(.data$Hostility62, 2) >= 1.43, 1, 0),
-                          Substance62_low_cut      = ifelse(round(.data$Substance62, 2) >= 0.69, 1, 0),
-                          Substance62_hi_cut       = ifelse(round(.data$Substance62, 2) >= 1.00, 1, 0),
-                          Family62_low_cut         = ifelse(round(.data$Family62, 2) >= 1.31, 1, 0),
-                          Family62_hi_cut          = ifelse(round(.data$Family62, 2) >= 1.83, 1, 0))
+            dplyr::mutate(Depression62_low_cut     = ifelse(round(Depression62, 2) >= 1.23, 1, 0),
+                          Depression62_hi_cut      = ifelse(round(Depression62, 2) >= 1.92, 1, 0),
+                          Anxiety62_low_cut        = ifelse(round(Anxiety62, 2) >= 1.22, 1, 0),
+                          Anxiety62_hi_cut         = ifelse(round(Anxiety62, 2) >= 1.89, 1, 0),
+                          Social_Anxiety62_low_cut = ifelse(round(Social_Anxiety62, 2) >= 1.43, 1, 0),
+                          Social_Anxiety62_hi_cut  = ifelse(round(Social_Anxiety62, 2) >= 2.57, 1, 0),
+                          Academics62_low_cut      = ifelse(round(Academics62, 2) >= 1.20, 1, 0),
+                          Academics62_hi_cut       = ifelse(round(Academics62, 2) >= 2.40, 1, 0),
+                          Eating62_low_cut         = ifelse(round(Eating62, 2) >= 1.02, 1, 0),
+                          Eating62_hi_cut          = ifelse(round(Eating62, 2) >= 1.80, 1, 0),
+                          Hostility62_low_cut      = ifelse(round(Hostility62, 2) >= 1.00, 1, 0),
+                          Hostility62_hi_cut       = ifelse(round(Hostility62, 2) >= 1.43, 1, 0),
+                          Substance62_low_cut      = ifelse(round(Substance62, 2) >= 0.69, 1, 0),
+                          Substance62_hi_cut       = ifelse(round(Substance62, 2) >= 1.00, 1, 0),
+                          Family62_low_cut         = ifelse(round(Family62, 2) >= 1.31, 1, 0),
+                          Family62_hi_cut          = ifelse(round(Family62, 2) >= 1.83, 1, 0))
 
             return(data)
 
@@ -87,22 +89,22 @@ ccaps62_cuts <- function(data,
         } else if (version == "2025") {
 
           data <- data |>
-            dplyr::mutate(Depression62_low_cut     = ifelse(round(.data$Depression62, 2) >= 1.23, 1, 0),
-                          Depression62_hi_cut      = ifelse(round(.data$Depression62, 2) >= 1.90, 1, 0),
-                          Anxiety62_low_cut        = ifelse(round(.data$Anxiety62, 2) >= 1.33, 1, 0),
-                          Anxiety62_hi_cut         = ifelse(round(.data$Anxiety62, 2) >= 1.86, 1, 0),
-                          Social_Anxiety62_low_cut = ifelse(round(.data$Social_Anxiety62, 2) >= 1.57, 1, 0),
-                          Social_Anxiety62_hi_cut  = ifelse(round(.data$Social_Anxiety62, 2) >= 2.57, 1, 0),
-                          Academics62_low_cut      = ifelse(round(.data$Academics62, 2) >= 1.40, 1, 0),
-                          Academics62_hi_cut       = ifelse(round(.data$Academics62, 2) >= 2.40, 1, 0),
-                          Eating62_low_cut         = ifelse(round(.data$Eating62, 2) >= 1.10, 1, 0),
-                          Eating62_hi_cut          = ifelse(round(.data$Eating62, 2) >= 1.62, 1, 0),
-                          Hostility62_low_cut      = ifelse(round(.data$Hostility62, 2) >= 0.97, 1, 0),
-                          Hostility62_hi_cut       = ifelse(round(.data$Hostility62, 2) >= 1.29, 1, 0),
-                          Substance62_low_cut      = ifelse(round(.data$Substance62, 2) >= 0.54, 1, 0),
-                          Substance62_hi_cut       = ifelse(round(.data$Substance62, 2) >= 0.83, 1, 0),
-                          Family62_low_cut         = ifelse(round(.data$Family62, 2) >= 1.42, 1, 0),
-                          Family62_hi_cut          = ifelse(round(.data$Family62, 2) >= 2.00, 1, 0))
+            dplyr::mutate(Depression62_low_cut     = ifelse(round(Depression62, 2) >= 1.23, 1, 0),
+                          Depression62_hi_cut      = ifelse(round(Depression62, 2) >= 1.90, 1, 0),
+                          Anxiety62_low_cut        = ifelse(round(Anxiety62, 2) >= 1.33, 1, 0),
+                          Anxiety62_hi_cut         = ifelse(round(Anxiety62, 2) >= 1.86, 1, 0),
+                          Social_Anxiety62_low_cut = ifelse(round(Social_Anxiety62, 2) >= 1.57, 1, 0),
+                          Social_Anxiety62_hi_cut  = ifelse(round(Social_Anxiety62, 2) >= 2.57, 1, 0),
+                          Academics62_low_cut      = ifelse(round(Academics62, 2) >= 1.40, 1, 0),
+                          Academics62_hi_cut       = ifelse(round(Academics62, 2) >= 2.40, 1, 0),
+                          Eating62_low_cut         = ifelse(round(Eating62, 2) >= 1.10, 1, 0),
+                          Eating62_hi_cut          = ifelse(round(Eating62, 2) >= 1.62, 1, 0),
+                          Hostility62_low_cut      = ifelse(round(Hostility62, 2) >= 0.97, 1, 0),
+                          Hostility62_hi_cut       = ifelse(round(Hostility62, 2) >= 1.29, 1, 0),
+                          Substance62_low_cut      = ifelse(round(Substance62, 2) >= 0.54, 1, 0),
+                          Substance62_hi_cut       = ifelse(round(Substance62, 2) >= 0.83, 1, 0),
+                          Family62_low_cut         = ifelse(round(Family62, 2) >= 1.42, 1, 0),
+                          Family62_hi_cut          = ifelse(round(Family62, 2) >= 2.00, 1, 0))
 
           return(data)
 
@@ -117,22 +119,22 @@ ccaps62_cuts <- function(data,
         if(version == "2018") {
 
           data <- data |>
-            dplyr::mutate(Depression62_low_cut     = ifelse(round(.data$Depression62_first, 2) >= 1.09, 1, 0),
-                          Depression62_hi_cut      = ifelse(round(.data$Depression62_first, 2) >= 1.92, 1, 0),
-                          Anxiety62_low_cut        = ifelse(round(.data$Anxiety62_first, 2) >= 1.25, 1, 0),
-                          Anxiety62_hi_cut         = ifelse(round(.data$Anxiety62_first, 2) >= 1.89, 1, 0),
-                          Social_Anxiety62_low_cut = ifelse(round(.data$Social_Anxiety62_first, 2) >= 1.72, 1, 0),
-                          Social_Anxiety62_hi_cut  = ifelse(round(.data$Social_Anxiety62_first, 2) >= 2.57, 1, 0),
-                          Academics62_low_cut      = ifelse(round(.data$Academics62_first, 2) >= 1.42, 1, 0),
-                          Academics62_hi_cut       = ifelse(round(.data$Academics62_first, 2) >= 2.40, 1, 0),
-                          Eating62_low_cut         = ifelse(round(.data$Eating62_first, 2) >= 1.09, 1, 0),
-                          Eating62_hi_cut          = ifelse(round(.data$Eating62_first, 2) >= 1.80, 1, 0),
-                          Hostility62_low_cut      = ifelse(round(.data$Hostility62_first, 2) >= 0.82, 1, 0),
-                          Hostility62_hi_cut       = ifelse(round(.data$Hostility62_first, 2) >= 1.43, 1, 0),
-                          Substance62_low_cut      = ifelse(round(.data$Substance62_first, 2) >= 0.70, 1, 0),
-                          Substance62_hi_cut       = ifelse(round(.data$Substance62_first, 2) >= 1.00, 1, 0),
-                          Family62_low_cut         = ifelse(round(.data$Family62_first, 2) >= 0.98, 1, 0),
-                          Family62_hi_cut          = ifelse(round(.data$Family62_first, 2) >= 1.83, 1, 0))
+            dplyr::mutate(Depression62_low_cut     = ifelse(round(Depression62_first, 2) >= 1.09, 1, 0),
+                          Depression62_hi_cut      = ifelse(round(Depression62_first, 2) >= 1.92, 1, 0),
+                          Anxiety62_low_cut        = ifelse(round(Anxiety62_first, 2) >= 1.25, 1, 0),
+                          Anxiety62_hi_cut         = ifelse(round(Anxiety62_first, 2) >= 1.89, 1, 0),
+                          Social_Anxiety62_low_cut = ifelse(round(Social_Anxiety62_first, 2) >= 1.72, 1, 0),
+                          Social_Anxiety62_hi_cut  = ifelse(round(Social_Anxiety62_first, 2) >= 2.57, 1, 0),
+                          Academics62_low_cut      = ifelse(round(Academics62_first, 2) >= 1.42, 1, 0),
+                          Academics62_hi_cut       = ifelse(round(Academics62_first, 2) >= 2.40, 1, 0),
+                          Eating62_low_cut         = ifelse(round(Eating62_first, 2) >= 1.09, 1, 0),
+                          Eating62_hi_cut          = ifelse(round(Eating62_first, 2) >= 1.80, 1, 0),
+                          Hostility62_low_cut      = ifelse(round(Hostility62_first, 2) >= 0.82, 1, 0),
+                          Hostility62_hi_cut       = ifelse(round(Hostility62_first, 2) >= 1.43, 1, 0),
+                          Substance62_low_cut      = ifelse(round(Substance62_first, 2) >= 0.70, 1, 0),
+                          Substance62_hi_cut       = ifelse(round(Substance62_first, 2) >= 1.00, 1, 0),
+                          Family62_low_cut         = ifelse(round(Family62_first, 2) >= 0.98, 1, 0),
+                          Family62_hi_cut          = ifelse(round(Family62_first, 2) >= 1.83, 1, 0))
 
           return(data)
 
@@ -142,22 +144,22 @@ ccaps62_cuts <- function(data,
         } else if (version == "2019") {
 
           data <- data |>
-            dplyr::mutate(Depression62_low_cut     = ifelse(round(.data$Depression62_first, 2) >= 1.23, 1, 0),
-                          Depression62_hi_cut      = ifelse(round(.data$Depression62_first, 2) >= 1.92, 1, 0),
-                          Anxiety62_low_cut        = ifelse(round(.data$Anxiety62_first, 2) >= 1.22, 1, 0),
-                          Anxiety62_hi_cut         = ifelse(round(.data$Anxiety62_first, 2) >= 1.89, 1, 0),
-                          Social_Anxiety62_low_cut = ifelse(round(.data$Social_Anxiety62_first, 2) >= 1.43, 1, 0),
-                          Social_Anxiety62_hi_cut  = ifelse(round(.data$Social_Anxiety62_first, 2) >= 2.57, 1, 0),
-                          Academics62_low_cut      = ifelse(round(.data$Academics62_first, 2) >= 1.20, 1, 0),
-                          Academics62_hi_cut       = ifelse(round(.data$Academics62_first, 2) >= 2.40, 1, 0),
-                          Eating62_low_cut         = ifelse(round(.data$Eating62_first, 2) >= 1.02, 1, 0),
-                          Eating62_hi_cut          = ifelse(round(.data$Eating62_first, 2) >= 1.80, 1, 0),
-                          Hostility62_low_cut      = ifelse(round(.data$Hostility62_first, 2) >= 1.00, 1, 0),
-                          Hostility62_hi_cut       = ifelse(round(.data$Hostility62_first, 2) >= 1.43, 1, 0),
-                          Substance62_low_cut      = ifelse(round(.data$Substance62_first, 2) >= 0.69, 1, 0),
-                          Substance62_hi_cut       = ifelse(round(.data$Substance62_first, 2) >= 1.00, 1, 0),
-                          Family62_low_cut         = ifelse(round(.data$Family62_first, 2) >= 1.31, 1, 0),
-                          Family62_hi_cut          = ifelse(round(.data$Family62_first, 2) >= 1.83, 1, 0))
+            dplyr::mutate(Depression62_low_cut     = ifelse(round(Depression62_first, 2) >= 1.23, 1, 0),
+                          Depression62_hi_cut      = ifelse(round(Depression62_first, 2) >= 1.92, 1, 0),
+                          Anxiety62_low_cut        = ifelse(round(Anxiety62_first, 2) >= 1.22, 1, 0),
+                          Anxiety62_hi_cut         = ifelse(round(Anxiety62_first, 2) >= 1.89, 1, 0),
+                          Social_Anxiety62_low_cut = ifelse(round(Social_Anxiety62_first, 2) >= 1.43, 1, 0),
+                          Social_Anxiety62_hi_cut  = ifelse(round(Social_Anxiety62_first, 2) >= 2.57, 1, 0),
+                          Academics62_low_cut      = ifelse(round(Academics62_first, 2) >= 1.20, 1, 0),
+                          Academics62_hi_cut       = ifelse(round(Academics62_first, 2) >= 2.40, 1, 0),
+                          Eating62_low_cut         = ifelse(round(Eating62_first, 2) >= 1.02, 1, 0),
+                          Eating62_hi_cut          = ifelse(round(Eating62_first, 2) >= 1.80, 1, 0),
+                          Hostility62_low_cut      = ifelse(round(Hostility62_first, 2) >= 1.00, 1, 0),
+                          Hostility62_hi_cut       = ifelse(round(Hostility62_first, 2) >= 1.43, 1, 0),
+                          Substance62_low_cut      = ifelse(round(Substance62_first, 2) >= 0.69, 1, 0),
+                          Substance62_hi_cut       = ifelse(round(Substance62_first, 2) >= 1.00, 1, 0),
+                          Family62_low_cut         = ifelse(round(Family62_first, 2) >= 1.31, 1, 0),
+                          Family62_hi_cut          = ifelse(round(Family62_first, 2) >= 1.83, 1, 0))
 
           return(data)
 
@@ -167,22 +169,22 @@ ccaps62_cuts <- function(data,
         } else if (version == "2025") {
 
           data <- data |>
-            dplyr::mutate(Depression62_low_cut     = ifelse(round(.data$Depression62_first, 2) >= 1.23, 1, 0),
-                          Depression62_hi_cut      = ifelse(round(.data$Depression62_first, 2) >= 1.90, 1, 0),
-                          Anxiety62_low_cut        = ifelse(round(.data$Anxiety62_first, 2) >= 1.33, 1, 0),
-                          Anxiety62_hi_cut         = ifelse(round(.data$Anxiety62_first, 2) >= 1.86, 1, 0),
-                          Social_Anxiety62_low_cut = ifelse(round(.data$Social_Anxiety62_first, 2) >= 1.57, 1, 0),
-                          Social_Anxiety62_hi_cut  = ifelse(round(.data$Social_Anxiety62_first, 2) >= 2.57, 1, 0),
-                          Academics62_low_cut      = ifelse(round(.data$Academics62_first, 2) >= 1.40, 1, 0),
-                          Academics62_hi_cut       = ifelse(round(.data$Academics62_first, 2) >= 2.40, 1, 0),
-                          Eating62_low_cut         = ifelse(round(.data$Eating62_first, 2) >= 1.10, 1, 0),
-                          Eating62_hi_cut          = ifelse(round(.data$Eating62_first, 2) >= 1.62, 1, 0),
-                          Hostility62_low_cut      = ifelse(round(.data$Hostility62_first, 2) >= 0.97, 1, 0),
-                          Hostility62_hi_cut       = ifelse(round(.data$Hostility62_first, 2) >= 1.29, 1, 0),
-                          Substance62_low_cut      = ifelse(round(.data$Substance62_first, 2) >= 0.54, 1, 0),
-                          Substance62_hi_cut       = ifelse(round(.data$Substance62_first, 2) >= 0.83, 1, 0),
-                          Family62_low_cut         = ifelse(round(.data$Family62_first, 2) >= 1.42, 1, 0),
-                          Family62_hi_cut          = ifelse(round(.data$Family62_first, 2) >= 2.00, 1, 0))
+            dplyr::mutate(Depression62_low_cut     = ifelse(round(Depression62_first, 2) >= 1.23, 1, 0),
+                          Depression62_hi_cut      = ifelse(round(Depression62_first, 2) >= 1.90, 1, 0),
+                          Anxiety62_low_cut        = ifelse(round(Anxiety62_first, 2) >= 1.33, 1, 0),
+                          Anxiety62_hi_cut         = ifelse(round(Anxiety62_first, 2) >= 1.86, 1, 0),
+                          Social_Anxiety62_low_cut = ifelse(round(Social_Anxiety62_first, 2) >= 1.57, 1, 0),
+                          Social_Anxiety62_hi_cut  = ifelse(round(Social_Anxiety62_first, 2) >= 2.57, 1, 0),
+                          Academics62_low_cut      = ifelse(round(Academics62_first, 2) >= 1.40, 1, 0),
+                          Academics62_hi_cut       = ifelse(round(Academics62_first, 2) >= 2.40, 1, 0),
+                          Eating62_low_cut         = ifelse(round(Eating62_first, 2) >= 1.10, 1, 0),
+                          Eating62_hi_cut          = ifelse(round(Eating62_first, 2) >= 1.62, 1, 0),
+                          Hostility62_low_cut      = ifelse(round(Hostility62_first, 2) >= 0.97, 1, 0),
+                          Hostility62_hi_cut       = ifelse(round(Hostility62_first, 2) >= 1.29, 1, 0),
+                          Substance62_low_cut      = ifelse(round(Substance62_first, 2) >= 0.54, 1, 0),
+                          Substance62_hi_cut       = ifelse(round(Substance62_first, 2) >= 0.83, 1, 0),
+                          Family62_low_cut         = ifelse(round(Family62_first, 2) >= 1.42, 1, 0),
+                          Family62_hi_cut          = ifelse(round(Family62_first, 2) >= 2.00, 1, 0))
 
           return(data)
 

@@ -6,6 +6,8 @@
 #'
 #' @return A data frame without variables/columns that are completely missing.
 #'
+#' @import dplyr
+#'
 #' @export
 
 remove_empty <- function(data){
