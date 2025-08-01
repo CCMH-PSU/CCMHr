@@ -9,8 +9,8 @@ CCAPS_change(
   client_identifier = "UniqueClientID",
   center_identifier = "CcmhID",
   add_items = NA,
-  include_first = FALSE,
-  include_last = FALSE
+  include_first = F,
+  include_last = F
 )
 }
 \arguments{

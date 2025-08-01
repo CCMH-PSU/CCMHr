@@ -33,6 +33,8 @@ Imports:
     data.table,
     lubridate,
     tidyr,
-    palettes
+    palettes, 
+    data.table,
+    dtplyr
 Suggests: 
     testthat (>= 2.1.0)
