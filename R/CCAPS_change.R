@@ -11,9 +11,23 @@
 #'
 #' @return A data frame with CCAPS change score of subscales and specified columns. Depending on the include_first and include_last endorsement, scores and/or responses from the first and last CCAPS administration could also be included.
 #'
-#' @import data.table
-#' @import dtplyr
-#' @import dplyr
+#' @importFrom data.table setDT
+#' @importFrom data.table as.data.table
+#' @importFrom data.table setDF
+#' @importFrom dtplyr lazy_dt
+#' @importFrom dplyr rename
+#' @importFrom dplyr group_by
+#' @importFrom dplyr filter
+#' @importFrom dplyr n
+#' @importFrom dplyr ungroup
+#' @importFrom dplyr arrange
+#' @importFrom dplyr slice
+#' @importFrom dplyr select
+#' @importFrom dplyr across
+#' @importFrom dplyr first
+#' @importFrom dplyr last
+#' @importFrom dplyr all_of
+#' @importFrom dplyr summarize
 #'
 #' @export
 

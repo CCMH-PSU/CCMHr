@@ -6,7 +6,7 @@
 #'
 #' @return A data frame with variables for each CCAPS subscale, categorizing the client into the corresponding bins.
 #'
-#' @import dplyr
+#' @importFrom dplyr mutate
 #'
 #' @export
 

@@ -7,10 +7,18 @@
 #'
 #' @return CCAPS scores just above and below the cut point, as well as the item responses necessary to produce that score.
 #'
-#' @import gtools
-#' @import dplyr
-#' @import purrr
-#' @import plyr
+#' @importFrom gtools combinations
+#' @importFrom dplyr arrange
+#' @importFrom dplyr group_by
+#' @importFrom dplyr slice
+#' @importFrom dplyr mutate
+#' @importFrom dplyr summarize_all
+#' @importFrom dplyr filter
+#' @importFrom dplyr case_when
+#' @importFrom dplyr select
+#' @importFrom dplyr first
+#' @importFrom purrr map_df
+#' @importFrom plyr desc
 #'
 #' @export
 

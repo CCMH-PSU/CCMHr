@@ -10,7 +10,7 @@
 #'
 #' @return A data frame with all the original data and several additional columns of cut scores.
 #'
-#' @import dplyr
+#' @importFrom dplyr mutate
 #'
 #' @export
 

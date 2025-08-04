@@ -6,9 +6,15 @@
 #'
 #' @return A data frame with the following variables: "CcmhID", "Is_appointment_sum", "Has_CCAPS_sum", "Has_SDS_sum", "Has_CLICC_sum", "Has_Closure_sum". Variables that end with "_sum" output the month(s) that had completely missing data on a specified form. Months are specified numerically (e.g., January is 1).
 #'
-#' @import lubridate
-#' @import dplyr
-#' @import tidyr
+#' @importFrom lubridate parse_date_time
+#' @importFrom lubridate month
+#' @importFrom dplyr group_by
+#' @importFrom dplyr summarize
+#' @importFrom dplyr mutate
+#' @importFrom dplyr left_join
+#' @importFrom dplyr across
+#' @importFrom dplyr ungroup
+#' @importFrom tidyr expand
 #'
 #' @export
 

@@ -6,8 +6,9 @@
 #'
 #' @return A data frame with all the original variables and several additional columns, including Has_CCAPS, Is_ValidCCAPS, Depression, Anxiety, Social_Anxiety, Academics, Eating, Frustration, and Alcohol.
 #'
-#' @import dplyr
-#' @import stats
+#' @importFrom dplyr select
+#' @importFrom dplyr starts_with
+#' @importFrom stats var
 #'
 #' @export
 

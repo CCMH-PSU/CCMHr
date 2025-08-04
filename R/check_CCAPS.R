@@ -8,7 +8,11 @@
 #'
 #' @return If CCAPS item responses are valid, the function returns the message, "CCAPS looks good!" If CCAPS item responses are invalid, the function returns a vector of the CCAPS item(s) that violated the constraints.
 #'
-#' @import dplyr
+#' @importFrom dplyr select
+#' @importFrom dplyr mutate_all
+#' @importFrom dplyr between
+#' @importFrom dplyr select
+#' @importFrom dplyr summarise_all
 #'
 #' @export
 

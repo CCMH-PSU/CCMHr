@@ -8,9 +8,11 @@
 #'
 #' @return A data frame with only the first instance of each appointment.
 #'
-#' @import glue
-#' @import rlang
-#' @import dplyr
+#' @importFrom glue glue
+#' @importFrom rlang sym
+#' @importFrom dplyr filter
+#' @importFrom dplyr arrange
+#' @importFrom dplyr select
 #'
 #' @export
 

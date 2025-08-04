@@ -7,7 +7,7 @@
 #'
 #' @return A data frame with the CCAPS subscale column names recoded to the formal names.
 #'
-#' @import dplyr
+#' @importFrom dplyr rename
 #'
 #' @export
 
@@ -59,10 +59,16 @@ rename_subscales_wide <- function(data,
 #'
 #' @return A data frame with the column containing CCAPS subscale names is recoded to the formal or informal names.
 #'
-#' @import glue
-#' @import dplyr
-#' @import stringr
-#' @import forcats
+#' @importFrom glue glue
+#' @importFrom dplyr ungroup
+#' @importFrom dplyr pull
+#' @importFrom dplyr across
+#' @importFrom dplyr mutate
+#' @importFrom dplyr arrange
+#' @importFrom dplyr recode
+#' @importFrom stringr str_remove
+#' @importFrom stringr str_replace
+#' @importFrom forcats fct_relevel
 #'
 #' @export
 

@@ -6,8 +6,8 @@
 #'
 #' @return A data frame with all the original variables. Most SDS items will be converted to factors.
 #'
-#' @import forcats
-#' @import dplyr
+#' @importFrom forcats fct_inseq
+#' @importFrom dplyr recode
 #'
 #' @export
 

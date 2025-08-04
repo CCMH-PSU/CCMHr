@@ -6,7 +6,7 @@
 #'
 #' @return A data frame without variables/columns that are completely missing.
 #'
-#' @import dplyr
+#' @importFrom dplyr select_if
 #'
 #' @export
 

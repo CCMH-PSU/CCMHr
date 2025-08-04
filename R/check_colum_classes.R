@@ -5,9 +5,11 @@
 #' @param dataframe1 A data frame.
 #' @param dataframe2 Another data frame.
 #'
-#' @import tibble
-#' @import purrr
-#' @import dplyr
+#' @importFrom tibble tibble
+#' @importFrom purrr map_chr
+#' @importFrom dplyr full_join
+#' @importFrom dplyr filter
+#' @importFrom dplyr select
 #'
 #' @return If column classes are equal across two data frames, this message is returned: "No class mismatches detected." If column classes are not equal across two data frames, then a message is returned (i.e., "Class mismatches detected.") along with a printed data frame that details the column, column class for the first data frame, and column class for the second data frame.
 #'

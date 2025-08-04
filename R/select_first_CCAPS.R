@@ -10,8 +10,9 @@
 #'
 #' @return A data frame with the client's first CCAPS administration.
 #'
-#' @import usethis
-#' @import data.table
+#' @importFrom usethis ui_stop
+#' @importFrom data.table as.data.table
+#' @importFrom data.table setorderv
 #'
 #' @export
 
@@ -111,8 +112,10 @@ select_first_CCAPS <- function(data,
 #'
 #' @return A data frame with the client's first SDS administration.
 #'
-#' @import usethis
-#' @import data.table
+#' @importFrom usethis ui_stop
+#' @importFrom usethis ui_warn
+#' @importFrom data.table as.data.table
+#' @importFrom data.table setorderv
 #'
 #' @export
 
@@ -227,8 +230,10 @@ select_first_SDS <- function(data,
 #'
 #' @return A data frame with the client's first CLICC administration.
 #'
-#' @import usethis
-#' @import data.table
+#' @importFrom usethis ui_stop
+#' @importFrom usethis ui_warn
+#' @importFrom data.table as.data.table
+#' @importFrom data.table setorderv
 #'
 #' @export
 
@@ -351,8 +356,10 @@ select_first_CLICC <- function(data,
 #'
 #' @return A data frame with the client's first Case Closure administration.
 #'
-#' @import usethis
-#' @import data.table
+#' @importFrom usethis ui_stop
+#' @importFrom usethis ui_warn
+#' @importFrom data.table as.data.table
+#' @importFrom data.table setorderv
 #'
 #' @export
 

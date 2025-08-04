@@ -6,8 +6,12 @@
 #'
 #' @return If CLICC_01 and CLICC_03 item responses are valid, the function returns the message, "CLICC looks good!" If CLICC_01 and CLICC_03 item responses are invalid, the function returns a message indicating which CLICC_01 variables had invalid responses and/or the CLICC_03 invalid responses.
 #'
-#' @import dplyr
-#' @import tidyr
+#' @importFrom dplyr select
+#' @importFrom dplyr mutate
+#' @importFrom dplyr across
+#' @importFrom dplyr summarise
+#' @importFrom dplyr ends_with
+#' @importFrom tidyr drop_na
 #'
 #' @export
 

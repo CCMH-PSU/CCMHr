@@ -6,7 +6,7 @@
 #'
 #' @return A data frame with all the original variables. Most SDS items will be converted to numeric.
 #'
-#' @import dplyr
+#' @importFrom dplyr recode
 #'
 #' @export
 

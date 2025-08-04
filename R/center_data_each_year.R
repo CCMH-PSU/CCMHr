@@ -6,7 +6,10 @@
 #'
 #' @return A data frame with only centers contributing data for all years included in the original data frame.
 #'
-#' @import dplyr
+#' @importFrom dplyr group_by
+#' @importFrom dplyr filter
+#' @importFrom dplyr n_distinct
+#' @importFrom dplyr ungroup
 #'
 #' @export
 #'

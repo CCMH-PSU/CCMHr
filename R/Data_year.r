@@ -6,8 +6,9 @@
 #'
 #' @return A data frame with a new variable, Data_year.
 #'
-#' @import dplyr
-#' @import lubridate
+#' @importFrom dplyr mutate
+#' @importFrom dplyr if_else
+#' @importFrom lubridate is.Date
 #'
 #' @export
 #'
@@ -80,8 +81,8 @@ create_Data_year <- function(data){
 #'
 #' @return A data frame with new variables Data_year_long, Data_year_formal, and Data_year_formalshort.
 #'
-#' @import dplyr
-#' @import stringr
+#' @importFrom dplyr mutate
+#' @importFrom stringr str_sub
 #'
 #' @export
 #'

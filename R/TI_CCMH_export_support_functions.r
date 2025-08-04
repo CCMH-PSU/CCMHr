@@ -9,7 +9,9 @@
 #'
 #' @return A data frame with cleaned TI exported appointment data.
 #'
-#' @import dplyr
+#' @importFrom dplyr rename_with
+#' @importFrom dplyr mutate
+#' @importFrom dplyr select
 #'
 #' @export
 
@@ -64,8 +66,23 @@ clean_TI_export_appointment <- function(data,
 #'
 #' @return A data frame with cleaned TI CCMH exported forms data.
 #'
-#' @import dplyr
-#' @import plyr
+#' @importFrom dplyr rename_with
+#' @importFrom dplyr rename
+#' @importFrom dplyr filter
+#' @importFrom dplyr all_of
+#' @importFrom dplyr select
+#' @importFrom dplyr starts_with
+#' @importFrom dplyr mutate
+#' @importFrom dplyr across
+#' @importFrom dplyr arrange
+#' @importFrom dplyr distinct
+#' @importFrom dplyr left_join
+#' @importFrom dplyr everything
+#' @importFrom dplyr contains
+#' @importFrom dplyr vars
+#' @importFrom dplyr mutate_at
+#' @importFrom dplyr if_any
+#' @importFrom plyr rbind.fill
 #'
 #' @export
 

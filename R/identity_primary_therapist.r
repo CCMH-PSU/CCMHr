@@ -8,7 +8,10 @@
 #'
 #' @return A data frame that contains some CCMH variables (i.e., UniqueClientID, CcmhID, Data_year, TherID) and new variables related to the primary therapist. The new variables include primary.therapist (indicates if the therapist is the primary therapist; 1 = Primary therapist, 0 = Not the primary therapist), ther.n (number of unique therapists), ther.percent (the percent of a client's total appointments conducted by a therapist), single.therapist (indicates if the client had only one therapist; 1 = One therapist, 0 = Multiple therapists), and app.n.attended (number of attended appointments).
 #'
-#' @import dplyr
+#' @importFrom dplyr filter
+#' @importFrom dplyr select
+#' @importFrom dplyr mutate
+#' @importFrom dplyr n_distinct
 #'
 #' @export
 

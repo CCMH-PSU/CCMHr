@@ -8,7 +8,9 @@
 #'
 #' @return A data frame with all the original data and additional columns of cut score labels.
 #'
-#' @import dplyr
+#' @importFrom dplyr across
+#' @importFrom dplyr mutate
+#' @importFrom dplyr recode
 #'
 #' @export
 
