@@ -2,7 +2,7 @@
 % Please edit documentation in R/demographic_tables.r
 \name{demographic_tables}
 \alias{demographic_tables}
-\title{Create demographic tables}
+\title{Create CCMH demographic tables.}
 \usage{
 demographic_tables(
   data,
@@ -14,21 +14,21 @@ demographic_tables(
 )
 }
 \arguments{
-\item{data}{A data file containing demographic information.}
+\item{data}{A data frame that contains demographic-related variables.}
 
-\item{decimal_place}{The number of decimal places to round to. Default is \code{2}.}
+\item{decimal_place}{A numeric value to indicate the number of decimal places to round numbers within the tables. By default, \code{2}.}
 
-\item{text.font}{The font type of the text in the table. Default is \code{Avenir}.}
+\item{text.font}{A quoted string to specify the text font type used in the table. By default, \code{"Avenir"}.}
 
-\item{print.tables}{A logical statement indicates whether the table should be printed in the console. By default, \code{TRUE}.}
+\item{print.tables}{A logical argument that indicates whether the table should be printed in the console. If \code{TRUE}, the tables will be printed in the console. By default, \code{TRUE}.}
 
-\item{save}{A logical statement indicates whether the table should be saved as a file under a local folder. If false, the table will be returned as an object. By default, \code{FALSE}.}
+\item{save}{A logical argument that indicates whether the table should be saved as a file under a local folder. If \code{FALSE}, the table will be returned as an object. By default, \code{FALSE}.}
 
-\item{path}{A quoted string to indicate the file's pathway and name if \code{save = TRUE}. By default, \code{"table.html"}. File must be an html file.}
+\item{path}{A quoted string to indicate the file's pathway and name if save = \code{TRUE}. The file must be an HTML file. By default, \code{"table.html"}.}
 }
 \value{
-Prints demographic tables in concole and/or saves them in under the working directory.
+Print demographic tables in the console and/or save the tables within the working directory or a local folder.
 }
 \description{
-Create CCMH demographic tables.
+CCMH collected various types of demographic variables within the SDS. This function creates tables that summarize various demographic variables. Demographic variables include: Prior Counseling (SDS_01), Prior Medication (SDS_02), Prior Hospitalization (SDS_64), Gender Identity (SDS_88), Sexual Orientation (SDS_91), Race/Ethnicity (SDS_95), Academic Year/Status (SDS_37), Academic Year/Status (SDS_1037), International Student Status (SDS_32), and First Generation Student Status (SDS_56).
 }
