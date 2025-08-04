@@ -1,47 +1,117 @@
-#' CLICC Variable Check
+#' Check the response validity of the CLICC items.
 #'
-#' @description A function used to check the validity of the CLICC items. For CLICC_01_01
-#' through CLICC_01_44, all values should be either 1 or NA. For CLICC_03, values between
-#' 0 and 44, as well as NA for missing values, are tolerated. This function checks
-#' whether these constraints are satisfied, and if not, returns a vector
-#' containing the names of the CLICC item(s) which violated these rules.
+#' @description Check a data frame to ensure all CLICC_01 items have 1 or NA values or CLICC_03 responses corresponding to possible CLICC numbers (See SDS codebook for possible CLICC_03 values). If these constraints are not satisfied, the function returns a message indicating which CLICC_01 variables had invalid responses and/or the CLICC_03 invalid responses. To run this function, CLICC variable names must be correctly named.
 #'
-#' @param dat The data frame containing the new year of (combined) data.
-#' @note \code{CLICCvalue_check} calls on CLICC_01_01, CLICC_01_44, and CLICC_03
-#' by name, so they must be named properly in \code{dat}. All other CLICC items
-#' follow the same naming convention as \code{CLICC_01_01}
-#' (e.g. \code{CLICC_01_02}, ...). If \code{dat} does not contain the proper CLICC
-#' variable names (or the naming convention was changed in the new year's data), the
-#' function will return an error. In addition, it is assumed that all CLICC variables
-#' exist between \code{CLICC_01_01} and \code{CLICC_01_44}, with the exception of
-#' \code{CLICC_03}.
+#' @param dat A data file containing CLICC items.
+#'
+#' @return If CLICC_01 and CLICC_03 item responses are valid, the function returns the message, "CLICC looks good!" If CLICC_01 and CLICC_03 item responses are invalid, the function returns a message indicating which CLICC_01 variables had invalid responses and/or the CLICC_03 invalid responses.
+#'
+#' @import dplyr
+#' @import tidyr
+#'
 #' @export
-
 
 check_CLICC <- function(dat){
 
+  # Function to specify that only valid values are 1 or NA
   one_or_na <- function(x){
-    ifelse(is.na(x),T,ifelse(x==1,T,F))
+
+    ifelse(is.na(x), TRUE, ifelse(x == 1, TRUE, FALSE))
+
   }
 
-  sum_violate_01 <- dat %>%
-    dplyr::select(.data$CLICC_01_01:.data$CLICC_01_44) %>%
-    dplyr::mutate_all(dplyr::funs(viol = !one_or_na(.))) %>%
-    dplyr::select(.data$CLICC_01_01_viol:.data$CLICC_01_44_viol) %>%
-    dplyr::summarise_all(dplyr::funs(sum = sum(.,na.rm = T)))
+  # Sum violations for CLICC_01_01 to CLICC_01_1106
+  sum_violate_01 <- dat |>
+    dplyr::select(CLICC_01_01:CLICC_01_1106) |>
+    dplyr::mutate(dplyr::across(CLICC_01_01:CLICC_01_1106, ~ !one_or_na(.), .names = "{.col}_viol")) |>
+    dplyr::summarise(dplyr::across(dplyr::ends_with("_viol"), ~ sum(., na.rm = TRUE), .names = "{.col}_sum"))
 
-  sum_violate_03 <- dat %>%
-    dplyr::select(.data$CLICC_03) %>%
-    dplyr::mutate_all(dplyr::funs(CLICC_03_viol = !dplyr::between(.,left = 0,right = 44))) %>%
-    dplyr::select(.data$CLICC_03_viol) %>%
-    dplyr::summarise_all(dplyr::funs(sum = sum(.,na.rm = T)))
+  # Sum violations for CLICC_03
+    # Specify valid responses
+    CLICC_03_levels <- c(1, 1101,
+                         1102, 1103,
+                         1104, 1105,
+                         1106, 2,
+                         3, 4,
+                         5, 1006,
+                         46, 7,
+                         6, 8,
+                         9, 10,
+                         11, 12,
+                         13, 14,
+                         15, 16,
+                         17, 18,
+                         19, 20,
+                         21, 22,
+                         23, 24,
+                         25, 50,
+                         26, 27,
+                         1028, 47,
+                         48, 28,
+                         29, 30,
+                         31, 32,
+                         33, 34,
+                         35, 49,
+                         36, 37,
+                         38, 39,
+                         40, 41,
+                         42, 43,
+                         44)
 
-  total <- sum(sum_violate_01) + sum(sum_violate_03)
+    # Summarize violations
+    sum_violate_03 <- dat |>
+      dplyr::select(CLICC_03) |>
+      tidyr::drop_na() |>
+      dplyr::mutate(CLICC_03 = ifelse(CLICC_03 %in% CLICC_03_levels, 1, CLICC_03)) |>
+      unique()
 
+    # Set up violations
+    violate_03 <- length(unique(sum_violate_03$CLICC_03)) - 1
+
+  # Total violations
+  total <- sum(sum_violate_01) + violate_03
+
+  # Messaging
   if(total==0){
-    violations <- NULL
+
+    message("CLICC looks good!")
+
   } else{
-    violations <- colnames(dplyr::select(dat,.data$CLICC_01_01:.data$CLICC_01_44,.data$CLICC_03))[which(c(.data$sum_violate_01,.data$sum_violate_03)>0)]
+
+    if(sum(sum_violate_01) > 0 &
+       violate_03 == 0){
+
+      # Extract CLICC_01 variable names with violations
+      violations.CLICC.01 <- colnames(dplyr::select(dat, CLICC_01_01:CLICC_01_1106))[sum_violate_01 > 0]
+
+      # Return message
+      return(paste0("Invalid response options for CLICC_01: ", list(as.character(violations.CLICC.01)), "."))
+
+    } else if(sum(sum_violate_01) == 0 &
+              violate_03 > 0){
+
+      # Extract CLICC_03 response options with violations
+      violations.CLICC.03 <- unique(sum_violate_03$CLICC_03)
+      violations.CLICC.03 <- violations.CLICC.03[violations.CLICC.03 != 1]
+
+      # Return message
+      return(paste0("Invalid response options for CLICC_03: ", list(violations.CLICC.03), "."))
+
+    } else{
+
+      # Extract CLICC_01 variable names with violations
+      violations.CLICC.01 <- colnames(dplyr::select(dat, CLICC_01_01:CLICC_01_1106))[sum_violate_01 > 0]
+      violations.CLICC.01 <- as.vector(unique(violations.CLICC.01))
+
+      # Extract CLICC_03 response options with violations
+      violations.CLICC.03 <- unique(sum_violate_03$CLICC_03)
+      violations.CLICC.03 <- violations.CLICC.03[violations.CLICC.03 != 1]
+
+      # Return message
+      return(paste0("Invalid response options for CLICC_01: ", list(as.character(violations.CLICC.01)), ". Invalid response options for CLICC_03: ", list(violations.CLICC.03), "."))
+
+    }
+
   }
-  return(violations)
+
 }

@@ -2,27 +2,16 @@
 % Please edit documentation in R/check_CLICC.R
 \name{check_CLICC}
 \alias{check_CLICC}
-\title{CLICC Variable Check}
+\title{Check the response validity of the CLICC items.}
 \usage{
 check_CLICC(dat)
 }
 \arguments{
-\item{dat}{The data frame containing the new year of (combined) data.}
+\item{dat}{A data file containing CLICC items.}
+}
+\value{
+If CLICC_01 and CLICC_03 item responses are valid, the function returns the message, "CLICC looks good!" If CLICC_01 and CLICC_03 item responses are invalid, the function returns a message indicating which CLICC_01 variables had invalid responses and/or the CLICC_03 invalid responses.
 }
 \description{
-A function used to check the validity of the CLICC items. For CLICC_01_01
-through CLICC_01_44, all values should be either 1 or NA. For CLICC_03, values between
-0 and 44, as well as NA for missing values, are tolerated. This function checks
-whether these constraints are satisfied, and if not, returns a vector
-containing the names of the CLICC item(s) which violated these rules.
-}
-\note{
-\code{CLICCvalue_check} calls on CLICC_01_01, CLICC_01_44, and CLICC_03
-by name, so they must be named properly in \code{dat}. All other CLICC items
-follow the same naming convention as \code{CLICC_01_01}
-(e.g. \code{CLICC_01_02}, ...). If \code{dat} does not contain the proper CLICC
-variable names (or the naming convention was changed in the new year's data), the
-function will return an error. In addition, it is assumed that all CLICC variables
-exist between \code{CLICC_01_01} and \code{CLICC_01_44}, with the exception of
-\code{CLICC_03}.
+Check a data frame to ensure all CLICC_01 items have 1 or NA values or CLICC_03 responses corresponding to possible CLICC numbers (See SDS codebook for possible CLICC_03 values). If these constraints are not satisfied, the function returns a message indicating which CLICC_01 variables had invalid responses and/or the CLICC_03 invalid responses. To run this function, CLICC variable names must be correctly named.
 }
