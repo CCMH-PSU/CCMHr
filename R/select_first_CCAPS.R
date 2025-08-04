@@ -171,7 +171,7 @@ select_first_SDS <- function(data,
 
     if(keep_columns[1] != "SDS"){
 
-      usethis::ui_warn("Vector of column names to keep not applicable when keep_all = TRUE. All columns were retained.")
+      usethis::ui_warn("Variables listed in the keep_columns argument will not be the only variables returned when keep_all = TRUE. All columns were retained.")
 
     } else{
 
@@ -193,17 +193,18 @@ select_first_SDS <- function(data,
 
     } else{
 
+      # Check if all keep_columns are present in the data
+      if(!all(keep_columns %in% names(data))){
+
+        usethis::ui_stop("At least one variable name specified in keep_columns were not present in the data.")
+
+      } else{
+
+      }
+
+      datatable <- datatable[, keep_columns, with = FALSE]
+
     }
-
-    if(!all(keep_columns %in% names(datatable))){
-
-      usethis::ui_warn("All columns specified in keep_columns were not present in the data. Only present columns were retained.")
-
-    } else{
-
-    }
-
-    datatable <- datatable[, keep_columns, with = FALSE]
 
   }
 
@@ -287,7 +288,7 @@ select_first_CLICC <- function(data,
 
     if(keep_columns[1] != "CLICC"){
 
-      usethis::ui_warn("Vector of column names to keep not applicable when keep_all = TRUE. All columns were retained.")
+      usethis::ui_warn("Variables listed in the keep_columns argument will not be the only variables returned when keep_all = TRUE. All columns were retained.")
 
     } else{
 
@@ -308,17 +309,18 @@ select_first_CLICC <- function(data,
 
     } else{
 
+      # Check if all keep_columns are present in the data
+      if(!all(keep_columns %in% names(data))){
+
+        usethis::ui_stop("At least one variable name specified in keep_columns were not present in the data.")
+
+      } else{
+
+      }
+
+      datatable <- datatable[, keep_columns, with = FALSE]
+
     }
-
-    if(!all(keep_columns %in% names(datatable))){
-
-      usethis::ui_warn("All columns specified in keep_columns were not present in the data. Only present columns were retained.")
-
-    } else{
-
-    }
-
-    datatable <- datatable[, keep_columns, with = FALSE]
 
   }
 
@@ -410,7 +412,7 @@ select_first_Closure <- function(data,
 
     if(keep_columns[1] != "Closure"){
 
-      usethis::ui_warn("Vector of column names to keep not applicable when keep_all = TRUE. All columns were retained.")
+      usethis::ui_warn("Variables listed in the keep_columns argument will not be the only variables returned when keep_all = TRUE. All columns were retained.")
 
     } else{
 
@@ -431,17 +433,18 @@ select_first_Closure <- function(data,
 
     } else{
 
+      # Check if all keep_columns are present in the data
+      if(!all(keep_columns %in% names(data))){
+
+        usethis::ui_stop("At least one variable name specified in keep_columns were not present in the data.")
+
+      } else{
+
+      }
+
+      datatable <- datatable[, keep_columns, with = FALSE]
+
     }
-
-    if(!all(keep_columns %in% names(datatable))){
-
-      usethis::ui_warn("All columns specified in keep_columns were not present in the data. Only present columns were retained.")
-
-    } else{
-
-    }
-
-    datatable <- datatable[, keep_columns, with = FALSE]
 
   }
 
