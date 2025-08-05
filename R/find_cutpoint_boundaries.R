@@ -17,8 +17,8 @@
 #' @importFrom dplyr case_when
 #' @importFrom dplyr select
 #' @importFrom dplyr first
+#' @importFrom dplyr desc
 #' @importFrom purrr map_df
-#' @importFrom plyr desc
 #'
 #' @export
 
@@ -47,7 +47,7 @@ find_cutpoint_boundaries <- function(items,
   admins <- Filter(function(x) round(1-(x/items),2) < .33, seq(1, items, by = 1))
 
   purrr::map_df(admins, unique_scores) |>
-    dplyr::arrange(plyr::desc(.data$Items)) |>
+    dplyr::arrange(dplyr::desc(.data$Items)) |>
     dplyr::group_by(.data$Score) |>
     dplyr::summarize_all(dplyr::first) |>
     # dplyr::filter(Score == max(Score < cutpoint)|Score == max(Score > cutpoint))
