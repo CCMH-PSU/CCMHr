@@ -1,18 +1,23 @@
-#' Frequency table
+#' Create frequency table.
 #'
-#' @param x A vector
+#' @description The function creates a frequency table based on the values within a vector. The frequency table outputs the percentage and cumulative percentage based on the vector values.
 #'
-#' @return A frequency table with percentages and cumulative percentages.
+#' @param x A vector.
+#'
+#' @return A data frame or table containing details from the frequency table.
+#'
+#' @importFrom descr freq
+#' @importFrom tibble rownames_to_column
+#'
 #' @export
-#'
-#' @examples
-#' df <- data.frame(y = c(1,1,1,2,2,3))
-#' freqtab(df$y)
-#'
-freqtab <- function(x) {
+
+freqtab <- function(x){
+
   sym <- deparse(substitute(x))
-  descr::freq(ordered(x), plot = F) %>%
-    as.data.frame() %>%
+
+  descr::freq(ordered(x), plot = F) |>
+    as.data.frame() |>
     tibble::rownames_to_column(var = sym)
+
 }
 

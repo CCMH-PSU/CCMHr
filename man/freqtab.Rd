@@ -2,21 +2,16 @@
 % Please edit documentation in R/freqtab.R
 \name{freqtab}
 \alias{freqtab}
-\title{Frequency table}
+\title{Create frequency table.}
 \usage{
 freqtab(x)
 }
 \arguments{
-\item{x}{A vector}
+\item{x}{A vector.}
 }
 \value{
-A frequency table with percentages and cumulative percentages.
+A data frame or table containing details from the frequency table.
 }
 \description{
-Frequency table
-}
-\examples{
-df <- data.frame(y = c(1,1,1,2,2,3))
-freqtab(df$y)
-
+The function creates a frequency table based on the values within a vector. The frequency table outputs the percentage and cumulative percentage based on the vector values.
 }

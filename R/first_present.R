@@ -1,30 +1,50 @@
-#' Extract first or last non-NA value from a vector
+#' Extract the first value from a vector.
 #'
-#' @description Returns the first or last non-NA value of `x` when sorted by `order_by`.
+#' @description The function extracts the first non-NA value from a vector.
 #'
-#' @param x A vector
+#' @param x A vector.
 #' @param order_by Another vector to sort `x` by.
-#' @param default A default value to use if the position does not exist in the input.
+#' @param default A numeric value to use if the `x` position does not exist in the input.
 #'
-#' @return The first or last non-NA value in `x`.
-#' @note If there are no non-NA values, NA is returned.
+#' @return The first non-NA value in a vector.
+#'
+#' @importFrom dplyr nth
+#'
 #' @export
-#'
-#' @examples
-#'first_present(x = c(NA, 1, 2, NA), order_by = c(4, 3, 2, 1))
-#'last_present(x = c(NA, 1, 2, NA), order_by = c(4, 3, 2, 1))
-#'
-#'first_present(x = c(NA, 1, 2, NA), order_by = c(1, 2, 3, 4))
-#'last_present(x = c(NA, 1, 2, NA), order_by = c(1, 2, 3, 4))
 
-first_present <- function(x, order_by = NULL, default = NA) {
-  nth(x, 1L, order_by = order_by, default = default)
+first_present <- function(x,
+                          order_by = NULL,
+                          default = NA){
+
+  dplyr::nth(x,
+             1L,
+             order_by = order_by,
+             default = default)
+
 }
 
+#' Extract the last value from a vector.
+#'
+#' @description The function extracts the last non-NA value from a vector.
+#'
+#' @param x A vector.
+#' @param order_by Another vector to sort `x` by.
+#' @param default A numeric value to use if the `x` position does not exist in the input.
+#'
+#' @return The last non-NA value in a vector.
+#'
+#' @importFrom dplyr nth
+#'
 #' @export
-#' @rdname first_present
 
-last_present <- function(x, order_by = NULL, default = NA) {
-  nth(x, -1L, order_by = order_by, default = default)
+last_present <- function(x,
+                         order_by = NULL,
+                         default = NA){
+
+  dplyr::nth(x,
+             -1L,
+             order_by = order_by,
+             default = default)
+
 }
 
