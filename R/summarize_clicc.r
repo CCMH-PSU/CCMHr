@@ -147,14 +147,13 @@ summarize_clicc <- function(data,
   if("topconcern" == clicc_type){
 
     # Data processing
-    data$CLICC_03 <- data |>
-      dplyr::recode(CLICC_03,
-                    `1101` = 1L,
-                    `1102` = 1L,
-                    `1103` = 1L,
-                    `1104` = 1L,
-                    `1105` = 1L,
-                    `1106` = 1L)
+    data$CLICC_03 <- dplyr::recode(data$CLICC_03,
+                                   `1101` = 1L,
+                                   `1102` = 1L,
+                                   `1103` = 1L,
+                                   `1104` = 1L,
+                                   `1105` = 1L,
+                                   `1106` = 1L)
 
     data$CLICC_03[which(data$CLICC_03 == 6)] <- 1006
     data$CLICC_03[which(data$CLICC_03 == 28)] <- 1028
