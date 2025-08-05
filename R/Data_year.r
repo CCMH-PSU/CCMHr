@@ -9,6 +9,7 @@
 #' @importFrom dplyr mutate
 #' @importFrom dplyr if_else
 #' @importFrom lubridate is.Date
+#' @importFrom lubridate year
 #'
 #' @export
 #'
@@ -66,7 +67,7 @@ create_Data_year <- function(data){
 
   # Create Data_year
   data <- data |>
-    dplyr::mutate(Data_year = dplyr::if_else(month(Date) >= 7, year(Date), year(Date) - 1))
+    dplyr::mutate(Data_year = dplyr::if_else(month(Date) >= 7, lubridate::year(Date), lubridate::year(Date) - 1))
 
   # Return data
   return(data)
