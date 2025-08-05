@@ -2,7 +2,7 @@
 % Please edit documentation in R/summarize_clicc.r
 \name{summarize_clicc}
 \alias{summarize_clicc}
-\title{Summarize CLICC data}
+\title{Summarize CLICC data.}
 \usage{
 summarize_clicc(
   data,
@@ -13,19 +13,19 @@ summarize_clicc(
 )
 }
 \arguments{
-\item{data}{A data file containing clicc.}
+\item{data}{A data frame containing CLICC.}
 
-\item{clicc_type}{A vector containing the CLICC type. Options include: "checkall" or "topconcern". By default, \code{"checkall"}.}
+\item{clicc_type}{A quoted string to indicate whether the summary should be based on checking all that apply (CLICC_01\_##) or the top concern (CLICC_03). Options include: \code{"checkall"} or \code{"topconcern"}. By default, \code{"checkall"}.}
 
-\item{group_vars}{A vector of grouping variables. By default, \code{NULL}.}
+\item{group_vars}{A quoted string or list of quoted strings to specify if grouping variables should influence the summary. By default, \code{NULL}.}
 
-\item{save}{A logical statement indicates whether the table should be saved as a file under a local folder. If false, the table will be returned as an object. By default, \code{FALSE}.}
+\item{save}{A logical argument that indicates whether the summarized data should be saved as a file under a local folder. If \code{FALSE}, the summarized data will be returned as an object. By default, \code{FALSE}.}
 
-\item{path}{A quoted string to indicate the file's pathway and name if \code{save = TRUE}. By default, \code{"clicc_summary.csv"}.}
+\item{path}{A quoted string to indicate the file's type, pathway, and name if save = \code{TRUE}. By default, \code{"clicc_summary.csv"}.}
 }
 \value{
-Prints demographic tables in concole and/or saves them in under the working directory.
+A data frame containing details on checking all that apply or top CLICC concerns. Variables returned in the dataset include variables in the CLICC key (Item, Concern, and Number), sample.n, and percent.
 }
 \description{
-Summarize CLICC data
+This function cleans and summarizes data from the CLICC. The function returns a dataset containing summarized CLICC data. The summarization process creates the following new variables: sample.n (The number of each CLICC concern being endorsed) and percent (The percentage that a CLICC item is endorsed). The clicc_type argument allows the researcher to specify whether the summary should be based on checking all that apply (CLICC_01\_##) or the top concern (CLICC_03). The summary could also be in relation to specific grouping variables using the group_vars argument.
 }

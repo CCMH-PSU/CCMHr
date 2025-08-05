@@ -2,20 +2,20 @@
 % Please edit documentation in R/summarize_appointment_utilization.r
 \name{summarize_appointment_utilization}
 \alias{summarize_appointment_utilization}
-\title{Summarize appointment utilization}
+\title{Summarize appointment utilization.}
 \usage{
 summarize_appointment_utilization(data, by_year = FALSE, recode_NA = FALSE)
 }
 \arguments{
-\item{data}{A data file containing information on individual and group therapy appointments.}
+\item{data}{A data frame containing information on appointment data.}
 
-\item{by_year}{A logical statement to indicate if appointment utilization should be summarized by year instead of overall. If \code{TRUE}, the appointment utilization of each client will be summarized by year. If \code{FALSE}, the appointment utilization of each client will be summarized across years. Default = \code{FALSE}.}
+\item{by_year}{A logical argument to indicate whether individual/group therapy appointment utilization should be summarized by year instead of overall. If \code{TRUE}, the appointment utilization of each client will be summarized by year. If \code{FALSE}, the appointment utilization of each client will be summarized across all years. By default, \code{FALSE}.}
 
-\item{recode_NA}{A logical statement to indicate if NA should be recoded to 0. If \code{TRUE}, NA will be recoded to 0. Default = \code{FALSE}.}
+\item{recode_NA}{A logical argument to indicate if NA should be recoded to 0. If \code{TRUE}, NA will be recoded to 0. By default, \code{FALSE}.}
 }
 \value{
-A data frame with cleaning appointment utilization data.
+A dataset containing details on clients' individual and group therapy appointment utilization. Variables in the data frame include UniqueClientID, CcmhID, Data_year, total.scheduled.appts, total.scheduled.ind.appts, total.scheduled.group.appts, total.attended.appts, total.attended.ind.appts, and total.attended.group.appts.
 }
 \description{
-Clean and summarize individual and group therapy appointment utilization
+This function cleans and summarizes data concerning individual and group therapy appointment utilization. The function returns a dataset containing summarized appointment utilization data of each client. The summarization process creates the following new variables: total.scheduled.appts (Total number of scheduled appointments), total.scheduled.ind.appts (Total number of scheduled individual appointments), total.scheduled.group.appts (Total number of scheduled group appointments), total.attended.appts (Total number of attended appointments), total.attended.ind.appts (Total number of attended individual appointments), and total.attended.group.appts (Total number of attended group appointments).
 }
