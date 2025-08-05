@@ -2,16 +2,16 @@
 % Please edit documentation in R/get_mode.R
 \name{get_mode}
 \alias{get_mode}
-\title{Get the mode of a vector}
+\title{Extract the mode value from a vector.}
 \usage{
 get_mode(x)
 }
 \arguments{
-\item{x}{a vector}
+\item{x}{A vector.}
 }
 \value{
-Mode of x
+The mode value(s) within a vector.
 }
 \description{
-Get the mode of a vector
+The function extracts the mode value(s) from a vector. \code{NA} responses are omitted.
 }
