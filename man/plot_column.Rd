@@ -3,7 +3,7 @@
 \name{plot_column}
 \alias{plot_column}
 \alias{column_plot}
-\title{A function to create standardized CCMH column plot's}
+\title{Creates a column graph.}
 \usage{
 plot_column(
   data,
@@ -17,10 +17,10 @@ plot_column(
   col.position = "dodge",
   save = FALSE,
   path = "plot.png",
-  plot.width = 1200,
-  plot.height = 900,
-  plot.units = "px",
-  plot.dpi = 96,
+  plot.width = 12,
+  plot.height = 9,
+  plot.units = "in",
+  plot.dpi = 360,
   plot.device = NULL,
   plot.scale = 1,
   hide.x.items = NULL,
@@ -41,7 +41,7 @@ plot_column(
   x.remove = FALSE,
   caption = FALSE,
   caption.size = 12,
-  caption.vjust = 0,
+  caption.vjust = -3,
   legend.position = "none",
   legend.order.manual = NULL,
   legend.title = NULL,
@@ -83,10 +83,10 @@ column_plot(
   col.position = "dodge",
   save = FALSE,
   path = "plot.png",
-  plot.width = 1200,
-  plot.height = 900,
-  plot.units = "px",
-  plot.dpi = 96,
+  plot.width = 12,
+  plot.height = 9,
+  plot.units = "in",
+  plot.dpi = 360,
   plot.device = NULL,
   plot.scale = 1,
   hide.x.items = NULL,
@@ -107,7 +107,7 @@ column_plot(
   x.remove = FALSE,
   caption = FALSE,
   caption.size = 12,
-  caption.vjust = 0,
+  caption.vjust = -3,
   legend.position = "none",
   legend.order.manual = NULL,
   legend.title = NULL,
@@ -138,49 +138,49 @@ column_plot(
 )
 }
 \arguments{
-\item{data}{A data file containing all variables that will be used in the plot}
+\item{data}{A data file containing variables that will be used in the plot.}
 
-\item{x.var}{A quoted string or unquoted characters to indicate the variable that will be plotted on the x-axis. The variable class must be a character or factor.}
+\item{x.var}{A quoted or unquoted string indicates the variable that will be plotted on the x-axis. The variable class must be a character or factor.}
 
-\item{y.var}{A quoted string or unquoted characters to indicate the variable that will be plotted on the y axis. The variable class must be numeric.}
+\item{y.var}{A quoted or unquoted string indicates the variable that will be plotted on the y-axis. The variable class must be numeric.}
 
-\item{group.var}{A quoted string to indicate the variable that will group the columns on the x-axis and specify the color of the columns. The x-axis variable could used to specify colors of each individual column. By default, \code{""}.}
+\item{group.var}{A quoted string to indicate the variable that will group data/columns on the x-axis. By default, \code{""}.}
 
-\item{color}{A hex code or list of hex codes that indicates the color of the grouped columns. See Note 1 for more details. By default, the 10 colors from \code{CCMHr::CCMH_categorical_palettes$tolmuted_category10} palette.}
+\item{color}{A hex code or list of hex codes that indicates the color(s) of the columns. If a variable groups the data, the argument specifies the color of the columns or items within the grouped variable. For example, the group variable items could be the names of automobile companies (i.e., Ford, Dodge, BMW). You can specify a random color for each company using this list: \code{c("#21501b", "#c51329", "#074e67")}. Alternatively, you can specify the color directly for each company using this list: \code{c("Ford" = "#21501b", "Dodge" = "#c51329", "BMW" = "#074e67")}. The number of hex codes must be equal to or greater than the number of responses in the grouped data. If data is not grouped, all the bars will have the same color. The default colors are color-blind safe. By default, \code{CCMHr::CCMH_categorical_palettes$tolmuted_category10}.}
 
-\item{x.ascend}{A logical statement to indicate if the columns should be arranged in ascending order on the x axis. By default, \code{FALSE}.}
+\item{x.ascend}{A logical argument to indicate whether the items should be arranged in ascending order on the x-axis. If \code{TRUE}, the x-axis is ordered ascending. By default, \code{FALSE}.}
 
-\item{x.descend}{A logical statement to indicate if the columns should be arrange descending on the x axis. By default, \code{FALSE}.}
+\item{x.descend}{A logical argument to indicate if the items should be arranged in descending order on the x-axis. If \code{TRUE}, the x-axis is ordered descending. By default, \code{FALSE}.}
 
-\item{x.order.manual}{A list of quoted strings to indicate the order of the x axis. By default, \code{NULL}.}
+\item{x.order.manual}{A list of quoted strings to indicate the order of the x-axis items. By default, \code{NULL}.}
 
-\item{col.position}{A quoted string to indicate the column position adjustment based on geom_col. By default, \code{dodge}.}
+\item{col.position}{A quoted string to indicate the column position adjustment. By default, \code{"dodge"}.}
 
-\item{save}{A logical statement indicates whether the plot should be saved as a file under a local folder. If false, the plot will be returned as an object. By default, \code{FALSE}.}
+\item{save}{A logical argument that indicates whether the plot should be saved as a file under a local folder. If \code{FALSE}, the plot will be returned as an object. By default, \code{FALSE}.}
 
-\item{path}{A quoted string to indicate the file's pathway and name if \code{save = TRUE}. By default, \code{"plot.png"}.}
+\item{path}{A quoted string to indicate the file's pathway, name, and type if \code{save = TRUE}. By default, \code{"plot.png"}.}
 
-\item{plot.width}{A numeric value to indicate the plot's width. By default, \code{1200}.}
+\item{plot.width}{A numeric value to indicate the plot's width. By default, \code{12}.}
 
-\item{plot.height}{A numeric value to indicate the plot's height. By default, \code{900}.}
+\item{plot.height}{A numeric value to indicate the plot's height. By default, \code{9}.}
 
-\item{plot.units}{A quoted string to indicate the plot's width and height size units. Options include \verb{in}, \code{cm}, \code{mm}, and \code{px}. By default, \code{px}.}
+\item{plot.units}{A quoted string to indicate the plot's width and height in size units. Options include \verb{in}, \code{cm}, \code{mm}, and \code{px}. By default, \verb{in}.}
 
-\item{plot.dpi}{A numeric value to indicate the plot's image resolution. By default, \code{96}.}
+\item{plot.dpi}{A numeric value to indicate the plot's image resolution. By default, \code{360}.}
 
-\item{plot.device}{A quoted string or function to indicate the plot's device. By default, \code{NULL}.}
+\item{plot.device}{A quoted string or function to indicate the plot's device. If saving the plot as a PDF, use \code{cairo_pdf}. By default, \code{NULL}.}
 
 \item{plot.scale}{A numeric value to indicate the plot's scale. By default, \code{1}.}
 
-\item{hide.x.items}{A quoted string or list to indicate the x-axis variable items to be hidden in the plot. See Note 2. By default, \code{NULL}.}
+\item{hide.x.items}{A quoted string or list to indicate the x-axis variable items to be hidden in the plot. The argument hides the listed x-axis item bars in the plot while maintaining the position of the hidden bars. This argument is intended for use when preparing plots for presentation, where the presenter wants to present data in a specified order instead of displaying all the data at once. By default, \code{NULL}.}
 
-\item{hide.group.items}{A quoted string or list to indicate the group variable items to be hidden in the plot. See Note 2. By default, \code{NULL}.}
+\item{hide.group.items}{A quoted string or list to indicate the group variable items to be hidden in the plot. The argument hides the listed grouped item bars in the plot while maintaining the position of the hidden bars. This argument is intended for use when preparing plots for presentation, where the presenter wants to present data in a specified order instead of displaying all the data at once. By default, \code{NULL}.}
 
 \item{plot.title}{A quoted string to indicate the title of the plot. By default, \code{NULL}.}
 
-\item{x.title}{A quoted string to indicate the x axis title. By default, \code{NULL}.}
+\item{x.title}{A quoted string to indicate the x-axis title. By default, \code{NULL}.}
 
-\item{y.title}{A quoted string to indicate the y axis title. By default, \code{NULL}.}
+\item{y.title}{A quoted string to indicate the y-axis title. By default, \code{NULL}.}
 
 \item{plot.title.size}{A numeric value to indicate the plot title text size. By default, \code{20}.}
 
@@ -188,27 +188,27 @@ column_plot(
 
 \item{axis.label.size}{A numeric value to indicate the axis labels text size. By default, \code{14}.}
 
-\item{text.font}{A quoted string to indicate the plot's text font. By default, \code{Avenir}.}
+\item{text.font}{A quoted string to indicate the plot's text font. By default, \code{"Avenir"}.}
 
-\item{y.label.type}{A quoted string or list to customize the y axis labels. Options include \code{"numeric"}, \code{"percent"}, \code{"comma"}, \verb{"sci}, or \code{"dollar"} . By default, \code{numeric}.}
+\item{y.label.type}{A quoted string or list of quoted strings to specify the format of the y-axis labels. Options include \code{"numeric"}, \code{"percent"}, \code{"comma"}, \code{"sci"}, or \code{"dollar"}. By default, \code{"numeric"}.}
 
-\item{y.min}{A numeric value to indicate the minimum number presented on the y axis. By default, \code{NULL}.}
+\item{y.min}{A numeric value to indicate the minimum number presented on the y-axis. By default, \code{NULL}.}
 
-\item{y.max}{A numeric value to indicate the maximum number presented on the y axis. By default, \code{NULL}.}
+\item{y.max}{A numeric value to indicate the maximum number presented on the y-axis. By default, \code{NULL}.}
 
-\item{y.breaks}{Numeric values or a sequence that indicates breaks on the y axis. By default, \code{NULL}.}
+\item{y.breaks}{Numeric values or a sequence of numeric values that indicate breaks on the y-axis. By default, \code{NULL}.}
 
-\item{y.expand}{A list of two numeric values to indicate the expansion of the y axis. By default, \code{ggplot2::waiver()}.}
+\item{y.expand}{A list of two numeric values to indicate the expansion of the y-axis. By default, \code{ggplot2::waiver()}.}
 
-\item{x.wrap}{A numeric value to indicate the number of characters to wrap the x axis text. By default, \code{15}.}
+\item{x.wrap}{A numeric value to indicate the number of characters to wrap the x-axis text. By default, \code{15}.}
 
-\item{x.remove}{A logical statement to indicate whether x-axis title, labels, and ticks should be removed. By default, \code{FALSE}.}
+\item{x.remove}{A logical argument to indicate whether y-axis information should be removed. If \code{TRUE}, the y-axis title, labels, and ticks will be removed. By default, \code{FALSE}.}
 
-\item{caption}{A logical statement to indicate whether the CCMH caption should be included in the plot. By default, \code{FALSE}.}
+\item{caption}{A logical argument to indicate whether the CCMH caption should be displayed on the bottom right of the plot. If \code{TRUE}, the caption "Source: The Center for Collegiate Mental Health" is displayed on the bottom right of the plot. By default, \code{FALSE}.}
 
 \item{caption.size}{A numeric value to indicate the caption text size. By default, \code{12}.}
 
-\item{caption.vjust}{A numeric value to indicate the caption vertical adjustment. By default, \code{0}.}
+\item{caption.vjust}{A numeric value to indicate the caption vertical adjustment. By default, \code{-3}.}
 
 \item{legend.position}{A quoted string or numeric vector to indicate the location of the legend. Options include \code{"left"},\code{"top"}, \code{"right"}, \code{"bottom"}, \code{"none"}, or numeric vector c(x,y). By default, \code{"none"}.}
 
@@ -220,60 +220,53 @@ column_plot(
 
 \item{legend.label.size}{A numeric value to indicate the legend label text size. By default, \code{14}.}
 
-\item{column.width}{A numeric value to indicate the columns width. By default, \code{NULL}.}
+\item{column.width}{A numeric value to indicate the column's width. By default, \code{NULL}.}
 
-\item{coord.flip}{A logical statement to indicate if the plot's x and y axis should be flipped. By default, \code{FALSE}.}
+\item{coord.flip}{A logical argument to indicate if the plot's x and y-axis should be flipped. If \code{TRUE}, the x and y axis is flipped. By default, \code{FALSE}.}
 
-\item{y.grid.major}{A logical statement to indicate if the y axis major grid lines should be added to the plot. By default, \code{FALSE},}
+\item{y.grid.major}{A logical argument to indicate whether the y-axis major grid lines should be added to the plot. If \code{TRUE}, the y-axis major grid lines are displayed on the plot. By default, \code{FALSE}.}
 
-\item{y.grid.major.color}{A hex code that indicates the color of the y axis major grid lines. By default, \code{"#d3d3d3"} or a shade of light grey.}
+\item{y.grid.major.color}{A hex code that indicates the color of the y-axis major grid lines. By default, \code{"#d3d3d3"} or a shade of light grey.}
 
-\item{y.grid.major.size}{A numeric value to indicate the thickness of the y axis major grid lines. By default, \code{0.5}.}
+\item{y.grid.major.size}{A numeric value to indicate the thickness of the y-axis major grid lines. By default, \code{0.5}.}
 
-\item{y.grid.major.linetype}{A numeric value to indicate the line type of the y axis major grid. By default, \code{1}.}
+\item{y.grid.major.linetype}{A numeric value to indicate the line type of the y-axis major grid. By default, \code{1}.}
 
-\item{y.grid.minor}{A logical statement to indicate if the y axis minor grid lines should be added to the plot. By default, \code{FALSE},}
+\item{y.grid.minor}{A logical argument to indicate whether the y-axis minor grid lines should be added to the plot. If \code{TRUE}, the y-axis minor grid lines are displayed on the plot. By default, \code{FALSE}.}
 
-\item{y.grid.minor.color}{A hex code that indicates the color of the y axis minor grid lines. By default, \code{"#d3d3d3"} or a shade of light grey.}
+\item{y.grid.minor.color}{A hex code that indicates the color of the y-axis minor grid lines. By default, \code{"#d3d3d3"} or a shade of light grey.}
 
-\item{y.grid.minor.size}{A numeric value to indicate the thickness of the y axis minor grid lines. By default, \code{0.25}.}
+\item{y.grid.minor.size}{A numeric value to indicate the thickness of the y-axis minor grid lines. By default, \code{0.25}.}
 
-\item{y.grid.minor.linetype}{A numeric value to indicate the line type of the y axis minor grid. By default, \code{1}.}
+\item{y.grid.minor.linetype}{A numeric value to indicate the line type of the y-axis minor grid. By default, \code{1}.}
 
-\item{y.axis.line}{A logical statement to indicate if the y axis line should be included. By default, \code{TRUE}.}
+\item{y.axis.line}{A logical argument to indicate whether the y-axis line should be included. If \code{FALSE}, the y-axis line will not be displayed. By default, \code{TRUE}.}
 
-\item{x.axis.line}{A logical statement to indicate if the x axis line should be included. By default, \code{TRUE}.}
+\item{x.axis.line}{A logical argument to indicate whether the x-axis line should be included. If \code{FALSE}, the x-axis line will not be displayed. By default, \code{TRUE}.}
 
-\item{remove.axis.ticks}{A logical statement to indicate if the axis ticks should be excluded. By default, \code{FALSE}.}
+\item{remove.axis.ticks}{A logical argument to indicate whether the axis ticks should be excluded. If \code{TRUE}, the axis ticks will not be displayed on the plot. By default, \code{FALSE}.}
 
-\item{plot.element1}{A ggplot plot function and arguments needed for the plot and specified as an object. By default, \code{NULL}.}
+\item{plot.element1}{A ggplot2 plot function and arguments needed to add graphical element(s) needed to complete a specific task, but are not specified as an argument in the function. For example, the axis label text color will always be black unless specified in one of the plot.element arguments (i.e., plot.element1 to plot.element9). To change the axis label text color, one of the plot.element arguments should be specified as follows: \code{plot.element1 = ggplot2::theme(axis.text = ggplot2::element_text(color = "green"))}. By default, \code{NULL}.}
 
-\item{plot.element2}{A ggplot plot function and arguments needed for the plot and specified as an object. By default, \code{NULL}.}
+\item{plot.element2}{A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. By default, \code{NULL}.}
 
-\item{plot.element3}{A ggplot plot function and arguments needed for the plot and specified as an object. By default, \code{NULL}.}
+\item{plot.element3}{A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. By default, \code{NULL}.}
 
-\item{plot.element4}{A ggplot plot function and arguments needed for the plot and specified as an object. By default, \code{NULL}.}
+\item{plot.element4}{A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. By default, \code{NULL}.}
 
-\item{plot.element5}{A ggplot plot function and arguments needed for the plot and specified as an object. By default, \code{NULL}.}
+\item{plot.element5}{A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. By default, \code{NULL}.}
 
-\item{plot.element6}{A ggplot plot function and arguments needed for the plot and specified as an object. By default, \code{NULL}.}
+\item{plot.element6}{A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. By default, \code{NULL}.}
 
-\item{plot.element7}{A ggplot plot function and arguments needed for the plot and specified as an object. By default, \code{NULL}.}
+\item{plot.element7}{A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. By default, \code{NULL}.}
 
-\item{plot.element8}{A ggplot plot function and arguments needed for the plot and specified as an object. By default, \code{NULL}.}
+\item{plot.element8}{A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. By default, \code{NULL}.}
 
-\item{plot.element9}{A ggplot plot function and arguments needed for the plot and specified as an object. By default, \code{NULL}.}
+\item{plot.element9}{A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. By default, \code{NULL}.}
 }
 \value{
-A column plot returned as a object or saved under a local file.
+A column plot is returned as an object or saved as a file in a local directory.
 }
 \description{
-Creates standardized CCMH column plot's using ggplot2.
-}
-\note{
-Note 1. The argument \code{color} specifies the color of items within the grouped variable. For example, the group variable items could be the name of automobile companies (i.e., Ford, Dodge, BMV). You can specify color randomly for each company using this list: \code{c("#21501b", "#c51329", "#074e67")}. Or you can specify color directly to each specific company using this list: \code{c("Ford" = "#21501b", "Dodge" = "#c51329", "BMV" = "#074e67")}. Default colors are color blind safe.
-
-Note 2. The \code{hide.x.items} and \code{hide.group.items} function hides columns in the plot while keeping the hidden columns position. This argument was intended to be used when preparing plots for presentation, where the presenter wants to present data in a specified order instead of displaying all the data at once.
-
-The \code{plot.element} arguments specify additional ggplot2 graphical element(s) needed to complete a specific task, but are not specified as an argument in the \code{column_plot} function. For example, the axis label text will always be black unless specified in one of the \code{plot.element} arguments. To change the axis label text color in one of the \code{plot.element} arguments, you would first create an object to represent graphing element (e.g., green.axis.text <- ggplot2::theme(axis.text = ggplot2::element_text(color = "green"))). Then the object would be added to one of the \code{plot.element} arguments (e.g., \code{plot.element01 = green.axis.text}).
+This function creates a column graph. Column graphs visually resemble bar graphs; however, there are critical differences (see plot_bar for details).
 }
