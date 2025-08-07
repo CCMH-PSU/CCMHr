@@ -4,7 +4,7 @@
 \alias{last_present}
 \title{Extract the last value from a vector.}
 \usage{
-last_present(x, order_by = NULL, default = NA)
+last_present(x, order_by = NULL, default = NULL)
 }
 \arguments{
 \item{x}{A vector.}

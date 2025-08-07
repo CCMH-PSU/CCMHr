@@ -2,7 +2,7 @@
 % Please edit documentation in R/required_items.R
 \name{required_items}
 \alias{required_items}
-\title{Displays a error message when specified variables are not present in data}
+\title{Detects whether specified variables are present in the dataset.}
 \usage{
 required_items(
   data,
@@ -13,13 +13,13 @@ required_items(
 \arguments{
 \item{data}{A data frame.}
 
-\item{items}{Specify the variables that must be present in a data frame to use a function or run an R script. Variables should be listed using the c() function, and each variable name should be quoted. For example, "items = c("Var1", "Var2").}
+\item{items}{A quoted string or list of quoted strings that specifies variable names required in a data frame.}
 
-\item{message}{The message that returns when specified variable(s) are missing. By default, "The following variable(s) need to be present in data:"}
+\item{message}{A quoted string of the returned error message when the specified variable(s) are missing from a data frame. By default, \code{"The following variable(s) need to be present in the data frame:"} and a list of the missing variables.}
 }
 \value{
-A error message if specified variable is missing.
+When all the required variables are present, nothing is returned. When at least one required variable is not present, an error message is returned. The default error message is \code{"The following variable(s) need to be present in the data frame:"} and a list of the missing variables.
 }
 \description{
-Displays a error message when specified variables are not present in data
+The function checks if specified variables are present in the dataset and presents an error message when specified variables are not present. This function is often used within other CCMHr functions when a specific variable is required to be present.
 }

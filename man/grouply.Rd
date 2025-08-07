@@ -2,19 +2,18 @@
 % Please edit documentation in R/grouply.R
 \name{grouply}
 \alias{grouply}
-\title{grouply}
+\title{A function that combines grouping and a function.}
 \usage{
 grouply(f, ...)
 }
 \arguments{
-\item{f}{A function}
+\item{f}{A function.}
 
-\item{...}{A grouping variable}
+\item{...}{A unquoted string to specify a grouping variable.}
+}
+\value{
+A data object.
 }
 \description{
-grouply
-}
-\examples{
-mtcars \%>\% grouply(dplyr::mutate, cyl)(M = mean(wt))
-
+A function that combines grouping of a data frame by a variable and conducting analysis of the data frame by a function.
 }

@@ -4,7 +4,7 @@
 \alias{first_present}
 \title{Extract the first value from a vector.}
 \usage{
-first_present(x, order_by = NULL, default = NA)
+first_present(x, order_by = NULL, default = NULL)
 }
 \arguments{
 \item{x}{A vector.}

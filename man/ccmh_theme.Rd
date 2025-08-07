@@ -2,8 +2,7 @@
 % Please edit documentation in R/plot_theme.R
 \name{ccmh_theme}
 \alias{ccmh_theme}
-\alias{ccmh_caption}
-\title{CCMH Plot Theme and Attribution Caption}
+\title{Format a ggplot2 object with the CCMH theme.}
 \usage{
 ccmh_theme(
   plot_title = 20,
@@ -13,21 +12,23 @@ ccmh_theme(
   strip_text = 14,
   text_font = "Avenir"
 )
-
-ccmh_caption()
 }
 \arguments{
-\item{plot_title}{The font size of the plot title}
+\item{plot_title}{A numeric value to indicate the plot title text size. By default, \code{20}.}
 
-\item{axis_title}{The font size of the axis title}
+\item{axis_title}{A numeric value to indicate the axis title text size. By default, \code{16}.}
 
-\item{axis_text}{The font size of the axis labels}
+\item{axis_text}{A numeric value to indicate the axis labels text size. By default, \code{14}.}
 
-\item{caption_text}{The font size for the caption}
+\item{caption_text}{A numeric value to indicate the caption text size. By default, \code{12}.}
 
-\item{text_font}{The font type of the text. By default, Avenir.}
+\item{strip_text}{A numeric value to indicate the facet strip text size. By default, \code{14}.}
+
+\item{text_font}{A quoted string to indicate the plot's text font. By default, \code{"Avenir"}.}
+}
+\value{
+A ggplot2 object.
 }
 \description{
-\code{ccmh_theme} Sets the font to Avenir and adds space between the axis titles and the plot. \cr
-\code{ccmh_caption} adds at attribution caption to the plot ("Source: The Center for Collegiate Mental Health")
+This function will reformat a plot created by ggplot2 with basic CCMH theming. The theming relates to formatting text (i.e., font type, size) and background.
 }

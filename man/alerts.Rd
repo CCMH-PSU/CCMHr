@@ -17,6 +17,6 @@ A data frame with columns:
 alerts
 }
 \description{
-Provides a lookup table for each subscale, starting CCAPS bin, and session indicating the score above which a CCAPS alert is produced.
+Provides a lookup table for each CCAPS subscale, starting CCAPS bin, and session, indicating the score above which a CCAPS alert is produced. The variables include subscale (CCAPS subscale), bin (Bin for the baseline CCAPS), session (Session number), and score (Score above which a CCAPS alert is produced).
 }
 \keyword{datasets}

@@ -16,6 +16,6 @@ A data frame with columns:
 clicc_key
 }
 \description{
-Contains a key for the CLICC items and numbers.
+A key for the CLICC form items and numbers. Variables include Item (the column name of each CLICC item in the CCMH research data frame), Name (the name/label of each concern), and Number (the CLICC number corresponding to the top concern in the CLICC_03 item).
 }
 \keyword{datasets}

@@ -1,24 +1,32 @@
-#' CCMH Plot Theme and Attribution Caption
+#' Format a ggplot2 object with the CCMH theme.
 #'
-#' @description
-#'   `ccmh_theme` Sets the font to Avenir and adds space between the axis titles and the plot. \cr
-#'   `ccmh_caption` adds at attribution caption to the plot ("Source: The Center for Collegiate Mental Health")
+#' @description This function will reformat a plot created by ggplot2 with basic CCMH theming. The theming relates to formatting text (i.e., font type, size) and background.
 #'
-#' @param plot_title The font size of the plot title
-#' @param axis_title The font size of the axis title
-#' @param axis_text The font size of the axis labels
-#' @param caption_text The font size for the caption
-#' @param text_font The font type of the text. By default, Avenir.
+#' @param plot_title A numeric value to indicate the plot title text size. By default, `20`.
+#' @param axis_title A numeric value to indicate the axis title text size. By default, `16`.
+#' @param axis_text A numeric value to indicate the axis labels text size. By default, `14`.
+#' @param caption_text A numeric value to indicate the caption text size. By default, `12`.
+#' @param strip_text A numeric value to indicate the facet strip text size. By default, `14`.
+#' @param text_font A quoted string to indicate the plot's text font. By default, `"Avenir"`.
+#'
+#' @return A ggplot2 object.
+#'
+#' @importFrom ggplot2 theme_minimal
+#' @importFrom ggplot2 theme
+#' @importFrom ggplot2 element_text
+#' @importFrom ggplot2 margin
+#' @importFrom ggplot2 element_rect
 #'
 #' @export
-#'
+
 ccmh_theme <- function(plot_title = 20,
                        axis_title = 16,
                        axis_text = 14,
                        caption_text = 12,
                        strip_text = 14,
-                       text_font = "Avenir") {
+                       text_font = "Avenir"){
 
+  # Setting the theme
   ggplot2::theme_minimal() +
   ggplot2::theme(text = ggplot2::element_text(family = text_font),
                  axis.title.y = ggplot2::element_text(margin = ggplot2::margin(t = 0,
@@ -35,12 +43,22 @@ ccmh_theme <- function(plot_title = 20,
                  strip.text = ggplot2::element_text(size = strip_text),
                  plot.caption = ggplot2::element_text(size = caption_text),
                  plot.background = ggplot2::element_rect(fill = 'white',
-                                                color = NA))
+                                                         color = NA))
+
 }
 
+#' Format a ggplot2 object to add CCMH caption.
+#'
+#' @description This function will add CCMH's caption to a ggplot2 object.
+#'
+#' @return A ggplot2 object.
+#'
+#' @importFrom ggplot2 labs
+#'
 #' @export
-#' @rdname ccmh_theme
 
-ccmh_caption <- function() {
+ccmh_caption <- function(){
+
   ggplot2::labs(caption = "Source: The Center for Collegiate Mental Health")
+
 }

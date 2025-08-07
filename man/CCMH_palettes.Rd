@@ -55,13 +55,6 @@ CCMH_gradient_palettes
 CCMH_diverging_palettes
 }
 \description{
-Palettes for CCMH.
-}
-\examples{
-# Get all palettes by name.
-names(sunset_palettes)
-
-# Plot all palettes.
-plot(CCMH_palettes)
+CCMH palettes
 }
 \keyword{datasets}

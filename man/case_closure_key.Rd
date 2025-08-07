@@ -16,6 +16,6 @@ A data frame with columns:
 case_closure_key
 }
 \description{
-Contains a key for the Case Closure form items and numbers.
+A key for the Case Closure form items and numbers. Variables include Item (the column name of each Case Closure item in the CCMH research data frame), Name (the name/label of each item), and Number (the Case Closure number corresponding to the item for the top reason for ending treatment).
 }
 \keyword{datasets}

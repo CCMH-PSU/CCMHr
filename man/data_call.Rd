@@ -2,8 +2,8 @@
 % Please edit documentation in R/data_call.R
 \name{.data}
 \alias{.data}
-\title{.data}
+\title{Allow the use of .data in CCMHr functions}
 \description{
-.data
+Some code in CCMHr uses ".data" to specify a data frame. The ".data" is a pronoun from the rlang package. This function imports the pronoun ".data" from the rlang package to allow the use of ".data" in CCMHr functions.
 }
 \keyword{internal}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/apa_table.r
 \name{apa_table}
 \alias{apa_table}
-\title{Create APA formatted tables}
+\title{Format tables into APA.}
 \usage{
 apa_table(
   data,
@@ -11,30 +11,30 @@ apa_table(
   subtitle = "Add subtitle",
   save = FALSE,
   path = "table.png",
-  width = NULL,
+  width = 1,
   note = NULL
 )
 }
 \arguments{
-\item{data}{A data file.}
+\item{data}{A data file that contains details of the table.}
 
-\item{header.names}{A vector of header names to change columns names. Default is \code{NULL}.}
+\item{header.names}{A list of quoted strings that specifies column or header names. By default, \code{NULL}.}
 
-\item{title}{The title of the table. Default is \code{Table #}.}
+\item{title}{A quoted string to indicate the title of the table. By default, \code{"Table #"}.}
 
-\item{subtitle}{The subtitle of the table. Default is \verb{Add subtitle}.}
+\item{subtitle}{A quoted string to indicate the subtitle of the table. By default, \code{"Add subtitle"}.}
 
-\item{save}{A logical statement indicates whether the table should be saved as a file under a local folder. If false, the table will be returned as an object. By default, \code{FALSE}.}
+\item{save}{A logical argument that indicates whether the table should be saved as a file under a local folder. If \code{FALSE}, the table will be returned as an object. By default, \code{FALSE}.}
 
-\item{path}{A quoted string to indicate the file's pathway and name if \code{save = TRUE}. By default, \code{"table.png"}.}
+\item{path}{A quoted string to indicate the file's pathway, name, and type if \code{save = TRUE}. By default, \code{"table.png"}.}
 
-\item{width}{A numeric value between 0 to 1 to indicate the width of the table. By default, \code{NULL}.}
+\item{width}{A numeric value to indicate the width of the table. By default, \code{1}.}
 
-\item{note}{A quoted string to add a note at the bottom of the table. By default, \code{NULL}.}
+\item{note}{A quoted string to specify a note at the bottom of the table. By default, \code{NULL}.}
 }
 \value{
 Print and saves APA formatted tables.
 }
 \description{
-Create create APA formatted tables.
+This function takes in a table and reformats the table into APA.
 }

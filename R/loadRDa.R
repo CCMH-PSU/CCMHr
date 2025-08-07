@@ -1,16 +1,19 @@
-#' load .RDa file into new object name
+#' Load an RDA file into a new object name.
 #'
-#' @description Loads .rda and .rdata files with the ability to assign them to a new object name instead of the one they were originally saved with.
+#' @description A function to load .rda and .rdata files with the ability to assign them a new object name instead of the original name.
 #'
-#' @param fileName The file path to a .rda or .rdata file to be loaded into a new object name
+#' @param fileName The file path to a .rda or .rdata file to be loaded into a new object name.
+#'
+#' @return A data object.
+#'
 #' @export
-#'
-#' @examples \dontrun{
-#' new_name <- loadRDa("filepath/file.rda")
-#' }
-#'
+
 loadRDa <- function(fileName){
-  #loads an RData file, and returns it
+
+  # loads an RData file, and returns it
   load(fileName)
+
+  # Change name of the data object
   get(ls()[ls() != "fileName"])
+
 }

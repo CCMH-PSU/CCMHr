@@ -2,19 +2,16 @@
 % Please edit documentation in R/loadRDa.R
 \name{loadRDa}
 \alias{loadRDa}
-\title{load .RDa file into new object name}
+\title{Load an RDA file into a new object name.}
 \usage{
 loadRDa(fileName)
 }
 \arguments{
-\item{fileName}{The file path to a .rda or .rdata file to be loaded into a new object name}
+\item{fileName}{The file path to a .rda or .rdata file to be loaded into a new object name.}
+}
+\value{
+A data object.
 }
 \description{
-Loads .rda and .rdata files with the ability to assign them to a new object name instead of the one they were originally saved with.
-}
-\examples{
-\dontrun{
-new_name <- loadRDa("filepath/file.rda")
-}
-
+A function to load .rda and .rdata files with the ability to assign them a new object name instead of the original name.
 }
