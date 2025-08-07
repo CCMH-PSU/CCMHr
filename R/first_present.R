@@ -14,12 +14,13 @@
 
 first_present <- function(x,
                           order_by = NULL,
-                          default = NA){
+                          default = NULL){
 
   dplyr::nth(x,
              1L,
              order_by = order_by,
-             default = default)
+             default = default,
+             na_rm = TRUE)
 
 }
 
@@ -39,12 +40,13 @@ first_present <- function(x,
 
 last_present <- function(x,
                          order_by = NULL,
-                         default = NA){
+                         default = NULL){
 
   dplyr::nth(x,
              -1L,
              order_by = order_by,
-             default = default)
+             default = default,
+             na_rm = TRUE)
 
 }
 
