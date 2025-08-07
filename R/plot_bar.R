@@ -98,6 +98,7 @@
 #' @importFrom ggplot2 scale_x_discrete
 #' @importFrom ggplot2 coord_flip
 #' @importFrom ggplot2 ggsave
+#' @importFrom ggplot2 after_stat
 #'
 #' @export
 
@@ -423,7 +424,7 @@ plot_bar <- function(data,
         y.type == "count"){
 
       ggplot2::aes(x = {{x.var1}},
-                   ill = {{group.var1}})
+                   fill = {{group.var1}})
 
     } else if(group.var == "" &
               y.type == "count"){
@@ -435,13 +436,13 @@ plot_bar <- function(data,
               y.type == "percent"){
 
       ggplot2::aes(x = {{x.var1}},
-                   y = (..count..)/sum(..count..),
+                   y = ggplot2::after_stat(count)/sum(ggplot2::after_stat(count)),
                    fill = {{group.var1}})
 
     } else{
 
       ggplot2::aes(x = {{x.var1}},
-                   y = (..count..)/sum(..count..),
+                   y = ggplot2::after_stat(count)/sum(ggplot2::after_stat(count)),
                    fill = color)
 
     }}) +
@@ -469,14 +470,14 @@ plot_bar <- function(data,
             y.type == "percent"){
 
     ggplot2::geom_bar(position = col.position,
-                      ggplot2::aes(y = (..count..)/sum(..count..)),
+                      ggplot2::aes(y = (ggplot2::after_stat(count))/sum(ggplot2::after_stat(count))),
                       width = bar.width)
 
   } else{
 
     ggplot2::geom_bar(position = col.position,
                       ggplot2::aes(alpha = alpha,
-                                   y = (..count..)/sum(..count..)),
+                                   y = (ggplot2::after_stat(count))/sum(ggplot2::after_stat(count))),
                       width = bar.width)
 
     }
