@@ -1,5 +1,7 @@
 #' Setup data cleaning file for data request
 #'
+#' @name setup_data_request
+#'
 #' @description The function creates folders and R files associated with a data request. Primarily, this function is used to create a data request folder, its corresponding subfolders, and an R file. To run the function and create a new data request folder, the programmer must first set their working directory to a specified folder where the data request folder will be saved. Typically, the working directory is located under the following path: "CCMH - Documents/Data Requests/####/Author Last Name-Author First Name", where #### represents the data year and Author Last Name-Author First Name is formatted similarly to "Janis-Rebecca". The R file ("Author Last Name-data-cleaning.R") is also added to standardize some of the cleaning processes.
 #'
 #' @param requester_last_name A quoted string to indicate the last name of the data requester.

@@ -2,9 +2,12 @@
 % Please edit documentation in R/score_CCAPS.R
 \name{score_CCAPS}
 \alias{score_CCAPS}
+\alias{score_ccaps}
 \title{Scores the CCAPS subscales for valid CCAPS administrations.}
 \usage{
 score_CCAPS(data, CCAPS62 = TRUE)
+
+score_ccaps(data, CCAPS62 = TRUE)
 }
 \arguments{
 \item{data}{A data file containing CCAPS items.}

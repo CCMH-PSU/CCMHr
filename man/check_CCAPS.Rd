@@ -2,9 +2,12 @@
 % Please edit documentation in R/check_CCAPS.R
 \name{check_CCAPS}
 \alias{check_CCAPS}
+\alias{check_ccaps}
 \title{Check the response validity of the CCAPS items.}
 \usage{
 check_CCAPS(dat)
+
+check_ccaps(dat)
 }
 \arguments{
 \item{dat}{A data file containing CCAPS items.}

@@ -1,5 +1,7 @@
 #' Sets up a folder to house a set of analyses.
 #'
+#' @name setup_analysis
+#'
 #' @description The function creates folders associated with a specific set of analyses. Primarily, this function is used to create an ad hoc data analysis folder and its corresponding subfolders. To run the function and create a new analysis folder, the programmer must first set their working directory to a specified folder where the analysis folder will be saved. Typically, the working directory is located under the following path: "CCMH - Documents/Data Repository/Ad hoc projects/####", where #### represents the data year. The newly created folder will be saved under this working directory. The main folder name must not contain the symbols "-" or "/" (hyphens or forward slashes). Most subfolder names are standardized (e.g., data, visuals); however, the programmer may add custom subfolders using the add.folder argument.
 #'
 #' @param name A quoted string to indicate the name of the main folder.

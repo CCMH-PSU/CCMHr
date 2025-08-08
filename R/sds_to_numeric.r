@@ -1,5 +1,7 @@
 #' Convert SDS factor labels into numeric.
 #'
+#' @name sds_to_numeric
+#'
 #' @description When conducting analyses, the SDS items' factor labels may need to be converted into a numeric label to conduct the analysis. This function converts the factor labels of most SDS items into numeric values.
 #'
 #' @param data A data file containing SDS items.
@@ -1413,3 +1415,7 @@ sds_to_numeric <- function(data){
   })
 
 }
+
+#' @rdname sds_to_numeric
+#' @export
+SDS_to_numeric <- sds_to_numeric

@@ -2,9 +2,12 @@
 % Please edit documentation in R/check_CLICC.R
 \name{check_CLICC}
 \alias{check_CLICC}
+\alias{check_clicc}
 \title{Check the response validity of the CLICC items.}
 \usage{
 check_CLICC(dat)
+
+check_clicc(dat)
 }
 \arguments{
 \item{dat}{A data file containing CLICC items.}

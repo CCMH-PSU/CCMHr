@@ -1,5 +1,7 @@
 #' Identity the primary therapist.
 #'
+#' @name identity_primary_therapist
+#'
 #' @description Clients may have multiple therapists. This function identifies the primary therapist based on a specified threshold of attended appointments. To run the function, "UniqueClientID", "CcmhID", "Date", "Data_year", "AppointID", "TherID", or "ClientAttendance" must be present in the data frame. The function returns a data frame with new variables. The returned data frame would include four CCMH variables (i.e., UniqueClientID, CcmhID, Data_year, TherID) and five new variables related to the primary therapist (i.e., primary.therapist, ther.n, ther.percent, single.therapist, and app.n.attended). If primary.therapist.only equals `TRUE`, only the rows pertaining to the primary therapist are returned.
 #'
 #' @param data A data frame that contains these variables: UniqueClientID, CcmhID, Date, Data_year, AppointID, TherID, and ClientAttendance.

@@ -2,9 +2,19 @@
 % Please edit documentation in R/CCAPS_change.r
 \name{CCAPS_change}
 \alias{CCAPS_change}
+\alias{ccaps_change}
 \title{Create change variables on CCAPS subscale scores between a client's first and last CCAPS administration.}
 \usage{
 CCAPS_change(
+  data,
+  client_identifier = "UniqueClientID",
+  center_identifier = "CcmhID",
+  add_items = NA,
+  include_first = F,
+  include_last = F
+)
+
+ccaps_change(
   data,
   client_identifier = "UniqueClientID",
   center_identifier = "CcmhID",

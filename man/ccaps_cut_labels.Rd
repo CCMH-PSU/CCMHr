@@ -2,9 +2,12 @@
 % Please edit documentation in R/ccaps_cut_labels.R
 \name{ccaps_cut_labels}
 \alias{ccaps_cut_labels}
+\alias{CCAPS_cut_labels}
 \title{Creates label variables for CCAPS-62 and/or CCAPS-34 subscales cut scores.}
 \usage{
 ccaps_cut_labels(data)
+
+CCAPS_cut_labels(data)
 }
 \arguments{
 \item{data}{A data file containing CCAPS-62 and/or CCAPS-34 subscales cut scores.}

@@ -2,9 +2,12 @@
 % Please edit documentation in R/rename_CCAPS_critical_items.r
 \name{rename_CCAPS_critical_items}
 \alias{rename_CCAPS_critical_items}
+\alias{rename_ccaps_critical_items}
 \title{Rename the CCAPS critical items.}
 \usage{
 rename_CCAPS_critical_items(data, keep_all = TRUE)
+
+rename_ccaps_critical_items(data, keep_all = TRUE)
 }
 \arguments{
 \item{data}{A data frame that contains the following variables: UniqueClientID, CcmhID, Date, Data_year, CCAPS_51, and CCAPS_68.}

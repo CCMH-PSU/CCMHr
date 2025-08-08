@@ -1,5 +1,7 @@
 #' Scores the CCAPS subscales for valid CCAPS administrations.
 #'
+#' @name score_CCAPS
+#'
 #' @description For most CCMH data frames, CCAPS subscales should be scored. However, if this is not the case, this function will score the CCAPS subscales for a valid CCAPS administration. The CCAPS items must be appropriately named (e.g., "CCAPS_01") to use this function. Administrations are considered valid and will be scored if 1/3 or less of the items on any subscale are missing, if less than 1/2 of the data overall is missing, and if the variance of the items is \> 0, indicating that the items were not all marked as the same number. Note that the function does not overwrite CCAPS items to reverse-score them. Instead, it creates a new reverse-scored version, which it then deletes.
 #'
 #' @param data A data file containing CCAPS items.
@@ -586,3 +588,7 @@ score_CCAPS <- function(data,
   return(data)
 
 }
+
+#' @rdname score_CCAPS
+#' @export
+score_ccaps <- score_CCAPS

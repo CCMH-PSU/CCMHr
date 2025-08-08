@@ -1,5 +1,7 @@
 #' Detect courses of therapy.
 #'
+#' @name create_courses
+#'
 #' @description Detect courses of therapy based on the number of days between records in CCMH data. The function can also extract data rows about a client's first treatment course or adjust the number of days between records required to indicate a new treatment course. The "UniqueClientID" and "Date" variables must be in the data frame to run this function.
 #'
 #' @param data A data frame that includes UniqueClientID and Date variables.

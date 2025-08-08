@@ -2,9 +2,12 @@
 % Please edit documentation in R/create_CCAPS_bins.R
 \name{create_CCAPS_bins}
 \alias{create_CCAPS_bins}
+\alias{create_ccaps_bins}
 \title{Create CCAPS bins based on the first CCAPS scores.}
 \usage{
 create_CCAPS_bins(data)
+
+create_ccaps_bins(data)
 }
 \arguments{
 \item{data}{A data file with CCAPS subscale variables for the first CCAPS administration and named "subscale_first".}

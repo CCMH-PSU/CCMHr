@@ -1,5 +1,7 @@
 #' Extract the first value from a vector.
 #'
+#' @name first_present
+#'
 #' @description The function extracts the first non-NA value from a vector.
 #'
 #' @param x A vector.
@@ -25,6 +27,8 @@ first_present <- function(x,
 }
 
 #' Extract the last value from a vector.
+#'
+#' @name last_present
 #'
 #' @description The function extracts the last non-NA value from a vector.
 #'

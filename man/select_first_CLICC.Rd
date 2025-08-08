@@ -2,9 +2,19 @@
 % Please edit documentation in R/select_first_CCAPS.R
 \name{select_first_CLICC}
 \alias{select_first_CLICC}
+\alias{select_first_clicc}
 \title{Extract the client's first CLICC administration.}
 \usage{
 select_first_CLICC(
+  data,
+  order_by = "Date",
+  keep_all = FALSE,
+  keep_columns = "CLICC",
+  by_year = FALSE,
+  recode_NA = FALSE
+)
+
+select_first_clicc(
   data,
   order_by = "Date",
   keep_all = FALSE,

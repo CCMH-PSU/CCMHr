@@ -1,5 +1,7 @@
 #' Format a ggplot2 object with the CCMH theme.
 #'
+#' @name ccmh_theme
+#'
 #' @description This function will reformat a plot created by ggplot2 with basic CCMH theming. The theming relates to formatting text (i.e., font type, size) and background.
 #'
 #' @param plot_title A numeric value to indicate the plot title text size. By default, `20`.
@@ -47,7 +49,13 @@ ccmh_theme <- function(plot_title = 20,
 
 }
 
+#' @rdname ccmh_theme
+#' @export
+CCMH_theme <- ccmh_theme
+
 #' Format a ggplot2 object to add CCMH caption.
+#'
+#' @name ccmh_caption
 #'
 #' @description This function will add CCMH's caption to a ggplot2 object.
 #'
@@ -62,3 +70,7 @@ ccmh_caption <- function(){
   ggplot2::labs(caption = "Source: The Center for Collegiate Mental Health")
 
 }
+
+#' @rdname ccmh_caption
+#' @export
+CCMH_caption <- ccmh_caption

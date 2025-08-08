@@ -1,5 +1,7 @@
 #' Create change variables on CCAPS subscale scores between a client's first and last CCAPS administration.
 #'
+#' @name CCAPS_change
+#'
 #' @description This function could create three different types of variables. The function will always return variables that end with "\_change" (e.g., Depression34_change). These variables depict the change in CCAPs subscale scores between the first and last administration (i.e., first admin - last admin). Here, a positive score indicates symptom improvement, a zero score indicates no change, and a negative score indicates symptom degradation. When include_first = TRUE, the CCAPs subscale scores from the first administration will be included in the returned data frame (e.g., the variable names will end with "\_first"). When include_last = TRUE, the CCAPs subscale scores from the last administration will be included in the returned data frame (e.g., the variable names will end with "\_last").
 #'
 #' @param data A data file containing CCAPS subscales scores.
@@ -311,3 +313,7 @@ CCAPS_change <- function(data,
   return(data)
 
 }
+
+#' @rdname CCAPS_change
+#' @export
+ccaps_change <- CCAPS_change

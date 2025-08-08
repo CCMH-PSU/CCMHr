@@ -1,5 +1,7 @@
 #' Create CCAPS-62 cut points
 #'
+#' @name ccaps62_cuts
+#'
 #' @description Creates binary variables for CCAPS-62 subscales indicating whether each subscale score is equal to or below (0) or above (1) the low and high cut scores, respectively.
 #'
 #' @param data A data file containing CCAPS-62 subscales scores.
@@ -194,3 +196,7 @@ ccaps62_cuts <- function(data,
       }
     }
   }
+
+#' @rdname ccaps62_cuts
+#' @export
+CCAPS62_cuts <- ccaps62_cuts

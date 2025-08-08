@@ -1,5 +1,7 @@
 #' Create CCMH demographic tables.
 #'
+#' @name demographic_tables
+#'
 #' @description CCMH collected various types of demographic variables within the SDS. This function creates tables that summarize various demographic variables. Demographic variables include: Prior Counseling (SDS_01), Prior Medication (SDS_02), Prior Hospitalization (SDS_64), Gender Identity (SDS_88), Sexual Orientation (SDS_91), Race/Ethnicity (SDS_95), Academic Year/Status (SDS_37), Academic Year/Status (SDS_1037), International Student Status (SDS_32), and First Generation Student Status (SDS_56).
 #'
 #' @param data A data frame that contains demographic-related variables.

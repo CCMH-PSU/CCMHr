@@ -2,9 +2,12 @@
 % Please edit documentation in R/CCAPS62_cuts.R
 \name{ccaps62_cuts}
 \alias{ccaps62_cuts}
+\alias{CCAPS62_cuts}
 \title{Create CCAPS-62 cut points}
 \usage{
 ccaps62_cuts(data, version = 2025, first = FALSE)
+
+CCAPS62_cuts(data, version = 2025, first = FALSE)
 }
 \arguments{
 \item{data}{A data file containing CCAPS-62 subscales scores.}

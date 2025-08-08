@@ -1,5 +1,7 @@
 #' Check the response validity of the CLICC items.
 #'
+#' @name check_CLICC
+#'
 #' @description Check a data frame to ensure all CLICC_01 items have 1 or NA values or CLICC_03 responses corresponding to possible CLICC numbers (See SDS codebook for possible CLICC_03 values). If these constraints are not satisfied, the function returns a message indicating which CLICC_01 variables had invalid responses and/or the CLICC_03 invalid responses. To run this function, CLICC variable names must be correctly named.
 #'
 #' @param dat A data file containing CLICC items.
@@ -119,3 +121,7 @@ check_CLICC <- function(dat){
   }
 
 }
+
+#' @rdname check_CLICC
+#' @export
+check_clicc <- check_CLICC

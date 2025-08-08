@@ -1,5 +1,7 @@
 #' Check the response validity of the CCAPS items.
 #'
+#' @name check_CCAPS
+#'
 #' @description Check a data frame to ensure all CCAPS items have 0, 1, 2, 3, 4, or NA values. If these constraints are not satisfied, the function returns a vector of the CCAPS item(s) that violated the constraints. To run this function, CCAPS variable names must be correctly named.
 #'
 #' @param dat A data file containing CCAPS items.
@@ -44,3 +46,7 @@ check_CCAPS <- function(dat){
 
   }
 }
+
+#' @rdname check_CCAPS
+#' @export
+check_ccaps <- check_CCAPS

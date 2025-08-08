@@ -1,5 +1,7 @@
 #' Extract the client's first CCAPS administration.
 #'
+#' @name select_first_CCAPS
+#'
 #' @description The function extracts the client's first CCAPS administration. It also allows the programmer to pick specific items within CCAPS (e.g., DI, CCAPS_01).
 #'
 #' @param data A data frame that contains CCAPS data.
@@ -99,8 +101,13 @@ select_first_CCAPS <- function(data,
 
 }
 
+#' @rdname select_first_CCAPS
+#' @export
+select_first_ccaps <- select_first_CCAPS
 
 #' Extract the client's first SDS administration.
+#'
+#' @name select_first_SDS
 #'
 #' @description The function extracts the client's first SDS administration. It also allows the programmer to pick specific items within SDS (e.g., SDS_01, SDS_02).
 #'
@@ -216,8 +223,13 @@ select_first_SDS <- function(data,
 
 }
 
+#' @rdname select_first_SDS
+#' @export
+select_first_sds <- select_first_SDS
 
 #' Extract the client's first CLICC administration.
+#'
+#' @name select_first_CLICC
 #'
 #' @description The function extracts the client's first CLICC administration. It also allows the programmer to pick specific items within CLICC (e.g., CLICC_01_01, CLICC_01_02).
 #'
@@ -343,7 +355,13 @@ select_first_CLICC <- function(data,
 
 }
 
+#' @rdname select_first_CLICC
+#' @export
+select_first_clicc <- select_first_CLICC
+
 #' Extract the client's first Case Closure administration.
+#'
+#' @name select_first_Closure
 #'
 #' @description The function extracts the client's first Case Closure administration. It also allows the programmer to pick specific items within Case Closure (e.g., CLOSURE_01_101, CLOSURE_01_102).
 #'
@@ -468,3 +486,7 @@ select_first_Closure <- function(data,
   return(as.data.frame(datatable))
 
 }
+
+#' @rdname select_first_Closure
+#' @export
+select_first_closure <- select_first_Closure

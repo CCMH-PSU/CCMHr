@@ -644,5 +644,4 @@ plot_bar <- function(data,
 
 #' @rdname plot_bar
 #' @export
-
 bar_plot <- plot_bar

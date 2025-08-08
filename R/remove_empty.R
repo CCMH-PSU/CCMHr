@@ -1,5 +1,7 @@
 #' Exclude columns that have complete missing data.
 #'
+#' @name remove_empty
+#'
 #' @description Some variables/columns could have complete missing data. This function excludes variables/columns that are completely missing.
 #'
 #' @param data A data frame.

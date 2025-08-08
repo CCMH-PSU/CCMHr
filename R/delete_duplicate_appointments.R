@@ -1,5 +1,7 @@
 #' Delete duplicate appointments.
 #'
+#' @name delete_duplicate_appointments
+#'
 #' @description For reasons not discussed here, data on appointments may have duplicates (e.g., multiple rows with the same type of data). This function removes duplicate data from appointments.
 #'
 #' @param data A data frame containing rows related to appointments.

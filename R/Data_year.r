@@ -1,5 +1,7 @@
 #' Create Data_year variable.
 #'
+#' @name create_Data_year
+#'
 #' @description Creates the "Data_year" variable within a data frame. The "Data_year" variable refers to the academic year in which the data was collected. To run this function, the following must be true: a) the "Data_year" variable must be absent from the data frame, b) the "Date" variable must exist in the data frame, c) the "Date" variable must be classed as a date, and d) the "Date" variable must be in the following format "%Y/%m/%d" (ex. "2025-01-20"). To date, the function creates the "Data_year" variable for a date frame with dates between "2010-07-01" and "2035-07-01".
 #'
 #' @param data  A data frame with a valid Date variable.
@@ -74,7 +76,13 @@ create_Data_year <- function(data){
 
 }
 
+#' @rdname create_Data_year
+#' @export
+create_data_year <- create_Data_year
+
 #' Format Data_year variable.
+#'
+#' @name format_Data_year
 #'
 #' @description Creates different formats of the "Data_year" variable within a data frame. This function will create three new variables within a data frame. The variables include Data_year_long (ex. "2020-2021"), Data_year_formal (ex. "2020-21"), and Data_year_formalshort (ex. "20-21"). These formatted variables are often used at CCMH for axis labels within trend plots. To run this function, a valid "Data_year" variable must exist within the data frame.
 #'
@@ -121,3 +129,7 @@ format_Data_year <- function(data){
   return(data)
 
 }
+
+#' @rdname format_Data_year
+#' @export
+format_data_year <- format_Data_year

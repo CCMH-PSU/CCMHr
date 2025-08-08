@@ -2,9 +2,19 @@
 % Please edit documentation in R/plot_theme.R
 \name{ccmh_theme}
 \alias{ccmh_theme}
+\alias{CCMH_theme}
 \title{Format a ggplot2 object with the CCMH theme.}
 \usage{
 ccmh_theme(
+  plot_title = 20,
+  axis_title = 16,
+  axis_text = 14,
+  caption_text = 12,
+  strip_text = 14,
+  text_font = "Avenir"
+)
+
+CCMH_theme(
   plot_title = 20,
   axis_title = 16,
   axis_text = 14,

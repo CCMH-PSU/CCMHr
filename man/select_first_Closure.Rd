@@ -2,9 +2,19 @@
 % Please edit documentation in R/select_first_CCAPS.R
 \name{select_first_Closure}
 \alias{select_first_Closure}
+\alias{select_first_closure}
 \title{Extract the client's first Case Closure administration.}
 \usage{
 select_first_Closure(
+  data,
+  order_by = "Date",
+  keep_all = FALSE,
+  keep_columns = "Closure",
+  by_year = FALSE,
+  recode_NA = FALSE
+)
+
+select_first_closure(
   data,
   order_by = "Date",
   keep_all = FALSE,

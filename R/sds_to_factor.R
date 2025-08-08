@@ -1,5 +1,7 @@
 #' Convert SDS numeric labels into factors.
 #'
+#' @name sds_to_factor
+#'
 #' @description When conducting analyses or creating visuals, the SDS items' factor labels are often used instead of the numeric labels to make the results more salient and comprehensible. This function converts the numeric labels of most SDS items into factors.
 #'
 #' @param data A data file containing SDS items.
@@ -1225,3 +1227,7 @@ sds_to_factor <- function(data){
   })
 
 }
+
+#' @rdname sds_to_factor
+#' @export
+SDS_to_factor <- sds_to_factor

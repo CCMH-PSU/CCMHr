@@ -2,9 +2,18 @@
 % Please edit documentation in R/select_first_CCAPS.R
 \name{select_first_SDS}
 \alias{select_first_SDS}
+\alias{select_first_sds}
 \title{Extract the client's first SDS administration.}
 \usage{
 select_first_SDS(
+  data,
+  order_by = "Date",
+  keep_all = FALSE,
+  keep_columns = "SDS",
+  by_year = FALSE
+)
+
+select_first_sds(
   data,
   order_by = "Date",
   keep_all = FALSE,

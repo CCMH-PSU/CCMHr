@@ -1,5 +1,7 @@
 #' Scores the CCAPS subscales for a valid CCAPS screen administration.
 #'
+#' @name score_CCAPS_screen
+#'
 #' @description This function scores the CCAPS screen. The CCAPS items must be appropriately named (e.g., "CCAPS_01") to use this function. Administrations are considered valid and will be scored if 1/3 or less of the items on any subscale are missing, if less than 1/2 of the data overall is missing, and if the variance of the items is \> 0, indicating that the items were not all marked as the same number. Note that the function does not overwrite CCAPS items to reverse-score them. Instead, it creates a new reverse-scored version, which it then deletes.
 #'
 #' @param data A data file containing CCAPS screen items.
@@ -195,3 +197,7 @@ score_CCAPS_screen <- function(data){
   return(data)
 
 }
+
+#' @rdname score_CCAPS_screen
+#' @export
+score_ccaps_screen <- score_CCAPS_screen

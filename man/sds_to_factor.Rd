@@ -2,9 +2,12 @@
 % Please edit documentation in R/sds_to_factor.R
 \name{sds_to_factor}
 \alias{sds_to_factor}
+\alias{SDS_to_factor}
 \title{Convert SDS numeric labels into factors.}
 \usage{
 sds_to_factor(data)
+
+SDS_to_factor(data)
 }
 \arguments{
 \item{data}{A data file containing SDS items.}

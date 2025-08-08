@@ -1,5 +1,7 @@
 #' A function that combines grouping and a function.
 #'
+#' @name grouply
+#'
 #' @description A function that combines grouping of a data frame by a variable and conducting analysis of the data frame by a function.
 #'
 #' @param f A function.

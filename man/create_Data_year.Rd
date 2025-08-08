@@ -2,9 +2,12 @@
 % Please edit documentation in R/Data_year.r
 \name{create_Data_year}
 \alias{create_Data_year}
+\alias{create_data_year}
 \title{Create Data_year variable.}
 \usage{
 create_Data_year(data)
+
+create_data_year(data)
 }
 \arguments{
 \item{data}{A data frame with a valid Date variable.}

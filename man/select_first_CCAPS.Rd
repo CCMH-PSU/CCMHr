@@ -2,9 +2,21 @@
 % Please edit documentation in R/select_first_CCAPS.R
 \name{select_first_CCAPS}
 \alias{select_first_CCAPS}
+\alias{select_first_ccaps}
 \title{Extract the client's first CCAPS administration.}
 \usage{
 select_first_CCAPS(
+  data,
+  order_by = "Date",
+  keep_all = FALSE,
+  keep_columns = c("UniqueClientID", "CcmhID", "Data_year", "Depression34", "Anxiety34",
+    "Social_Anxiety34", "Academics34", "Eating34", "Hostility34", "Alcohol34", "DI",
+    "Depression62", "Eating62", "Substance62", "Anxiety62", "Hostility62",
+    "Social_Anxiety62", "Family62", "Academics62"),
+  by_year = FALSE
+)
+
+select_first_ccaps(
   data,
   order_by = "Date",
   keep_all = FALSE,

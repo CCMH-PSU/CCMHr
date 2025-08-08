@@ -1,5 +1,7 @@
 #' Rename CCAPS subscales within a wide format.
 #'
+#' @name rename_subscales_wide
+#'
 #' @description The CCAPS subscale variable names are "Depression34", "Anxiety34", "Social_Anxiety34", "Academics34", "Eating34", "Hostility34", "Alcohol34", "DI", "Depression62", "Anxiety62", "Social_Anxiety62", "Academics62", "Eating62", "Hostility62", "Substance62", and "Family62". When creating visualizations, we often rename the subscales to make them more salient (e.g., "DI" corresponds to "Distress Index"). This function renames the subscales when CCAPS subscale variable names are stored in a data frame in a wide format (i.e., the subscale variables are stored across multiple columns).
 #'
 #' @param data A data frame that contains columns pertaining to CCAPS subscale variables. If CCAPS62 equals `FALSE`, the data frame must have the following variable names: "Depression34", "Anxiety34", "Social_Anxiety34", "Academics34", "Eating34", "Hostility34", "Alcohol34", and "DI". If CCAPS62 equals `TRUE`, the data frame must have the following variable names: "Depression62", "Anxiety62", "Social_Anxiety62", "Academics62", "Eating62", "Hostility62", "Substance62", "Family62", and "DI".
@@ -50,6 +52,8 @@ rename_subscales_wide <- function(data,
 }
 
 #' Rename CCAPS subscales within a long format.
+#'
+#' @name rename_subscales_long
 #'
 #' @description The CCAPS subscale variable names are "Depression34", "Anxiety34", "Social_Anxiety34", "Academics34", "Eating34", "Hostility34", "Alcohol34", "DI", "Depression62", "Eating62", "Substance62", "Anxiety62", "Hostility62", "Social_Anxiety62", "Family62", and "Academics62". When creating visualizations, we often rename the subscales to make them more salient (e.g., "DI" corresponds to "Distress Index"). This function renames the subscales when CCAPS subscale variable names are stored in a data frame in a long format (i.e., the subscale variables are stored in a single column, and multiple rows correspond to a single client, date, and subscale). CCAPS34 and CCAPS62 subscales variable names can be in the same column.
 #'

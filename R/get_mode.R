@@ -1,5 +1,7 @@
 #' Extract the mode value from a vector.
 #'
+#' @name get_mode
+#'
 #' @description The function extracts the mode value(s) from a vector. `NA` responses are omitted.
 #'
 #' @param x A vector.

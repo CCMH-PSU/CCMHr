@@ -1,5 +1,7 @@
 #' Rename the CCAPS critical items.
 #'
+#' @name rename_CCAPS_critical_items
+#'
 #' @description The CCAPS critical items include CCAPS_51 (Suicide Ideation) and CCAPS_68 (Threat-to-others). To make these variables easier to identify, this function creates duplicates of the variables and makes the names of the duplicates more salient. Specifically, the duplicate of CCAPS_51 was named "CCAPS_SI", while "CCAPS_68" was named CCAPS_THO. The keep_all argument allows the programmer to specify if all variables in the original data frame should be returned (keep_all = `TRUE`) or if UniqueClientID, CcmhID, Date, Data_year, CCAPS_SI, and CCAPS_THO are returned (keep_all = `FALSE`).
 #'
 #' @param data  A data frame that contains the following variables: UniqueClientID, CcmhID, Date, Data_year, CCAPS_51, and CCAPS_68.
@@ -58,3 +60,7 @@ rename_CCAPS_critical_items <- function(data,
   return(data)
 
 }
+
+#' @rdname rename_CCAPS_critical_items
+#' @export
+rename_ccaps_critical_items <- rename_CCAPS_critical_items

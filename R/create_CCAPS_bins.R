@@ -1,5 +1,7 @@
 #' Create CCAPS bins based on the first CCAPS scores.
 #'
+#' @name create_CCAPS_bins
+#'
 #' @description The function is used for profile curves. To run this function, the data frame must contain details regarding the client's first CCAPS administration (e.g., use the CCAPS_change function and set the include_first argument to `TRUE`).
 #'
 #' @param data A data file with CCAPS subscale variables for the first CCAPS administration and named "subscale_first".
@@ -145,3 +147,7 @@ create_CCAPS_bins <- function(data){
   return(data)
 
 }
+
+#' @rdname create_CCAPS_bins
+#' @export
+create_ccaps_bins <- create_CCAPS_bins

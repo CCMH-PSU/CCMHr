@@ -1,5 +1,7 @@
 #' Check variable names.
 #'
+#' @name check_varnames
+#'
 #' @description This function is used to check the consistency of variable names for the new yearly data. Checks will be run against the expected variable names (e.g., based on the variable names from the previous year), and any inconsistencies will be identified and returned.
 #'
 #' @param data A regular data frame or a data frame that contains a new year of CCMH data.

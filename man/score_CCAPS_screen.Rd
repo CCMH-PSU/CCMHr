@@ -2,9 +2,12 @@
 % Please edit documentation in R/score_CCAPS_screen.R
 \name{score_CCAPS_screen}
 \alias{score_CCAPS_screen}
+\alias{score_ccaps_screen}
 \title{Scores the CCAPS subscales for a valid CCAPS screen administration.}
 \usage{
 score_CCAPS_screen(data)
+
+score_ccaps_screen(data)
 }
 \arguments{
 \item{data}{A data file containing CCAPS screen items.}

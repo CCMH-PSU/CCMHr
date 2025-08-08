@@ -2,9 +2,12 @@
 % Please edit documentation in R/plot_theme.R
 \name{ccmh_caption}
 \alias{ccmh_caption}
+\alias{CCMH_caption}
 \title{Format a ggplot2 object to add CCMH caption.}
 \usage{
 ccmh_caption()
+
+CCMH_caption()
 }
 \value{
 A ggplot2 object.

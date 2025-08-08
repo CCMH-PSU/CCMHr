@@ -1,5 +1,7 @@
 #' Summarize appointment utilization.
 #'
+#' @name summarize_appointment_utilization
+#'
 #' @description This function cleans and summarizes data concerning individual and group therapy appointment utilization. The function returns a dataset containing summarized appointment utilization data of each client. The summarization process creates the following new variables: total.scheduled.appts (Total number of scheduled appointments), total.scheduled.ind.appts (Total number of scheduled individual appointments), total.scheduled.group.appts (Total number of scheduled group appointments), total.attended.appts (Total number of attended appointments), total.attended.ind.appts (Total number of attended individual appointments), and total.attended.group.appts (Total number of attended group appointments).
 #'
 #' @param data A data frame containing information on appointment data.

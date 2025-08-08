@@ -2,9 +2,17 @@
 % Please edit documentation in R/TI_CCMH_export_support_functions.r
 \name{clean_TI_export_appointment}
 \alias{clean_TI_export_appointment}
+\alias{clean_ti_export_appointment}
 \title{Cleans a Titanium (TI) appointment CCMH export file.}
 \usage{
 clean_TI_export_appointment(
+  data,
+  key = CCMHr::TI_CCMH_export_appointment_key,
+  save = FALSE,
+  path = "TI_appointment_clean.csv"
+)
+
+clean_ti_export_appointment(
   data,
   key = CCMHr::TI_CCMH_export_appointment_key,
   save = FALSE,

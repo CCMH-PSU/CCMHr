@@ -1,5 +1,7 @@
 #' Summarize CLICC data.
 #'
+#' @name summarize_clicc
+#'
 #' @description This function cleans and summarizes data from the CLICC. The function returns a dataset containing summarized CLICC data. The summarization process creates the following new variables: sample.n (The number of each CLICC concern being endorsed) and percent (The percentage that a CLICC item is endorsed). The clicc_type argument allows the researcher to specify whether the summary should be based on checking all that apply (CLICC_01\_##) or the top concern (CLICC_03). The summary could also be in relation to specific grouping variables using the group_vars argument.
 #'
 #' @param data A data frame containing CLICC.
@@ -216,3 +218,7 @@ summarize_clicc <- function(data,
   }
 
 }
+
+#' @rdname summarize_clicc
+#' @export
+summarize_CLICC <- summarize_clicc

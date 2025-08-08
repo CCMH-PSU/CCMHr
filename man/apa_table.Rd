@@ -2,9 +2,21 @@
 % Please edit documentation in R/apa_table.r
 \name{apa_table}
 \alias{apa_table}
+\alias{APA_table}
 \title{Format tables into APA.}
 \usage{
 apa_table(
+  data,
+  header.names = NULL,
+  title = "Table #",
+  subtitle = "Add subtitle",
+  save = FALSE,
+  path = "table.png",
+  width = 1,
+  note = NULL
+)
+
+APA_table(
   data,
   header.names = NULL,
   title = "Table #",

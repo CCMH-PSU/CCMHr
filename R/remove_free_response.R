@@ -1,5 +1,7 @@
 #' Remove free-response CCMH variables.
 #'
+#' @name remove_free_response
+#'
 #' @description This function removes variables that are free responses.
 #'
 #' @param data A CCMH data frame.

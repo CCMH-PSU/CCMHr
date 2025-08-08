@@ -1,5 +1,7 @@
 #' Filter for centers that contributed data for all years within a data frame.
 #'
+#' @name center_data_each_year
+#'
 #' @description A center may contribute data for research each year, some years, or a single year. For some analyses, it could be critical to include only centers that contribute data annually within a data frame. This function excludes centers that did not contribute research data every year. A valid "Data_year" and "CcmhID" variables must exist in the data frame to run the function.
 #'
 #' @param data A data frame with multiple years of data.

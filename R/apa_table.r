@@ -1,5 +1,7 @@
 #' Format tables into APA.
 #'
+#' @name apa_table
+#'
 #' @description This function takes in a table and reformats the table into APA.
 #'
 #' @param data A data file that contains details of the table.
@@ -167,3 +169,7 @@ apa_table <- function(data,
   }
 
 }
+
+#' @rdname apa_table
+#' @export
+APA_table <- apa_table

@@ -2,9 +2,18 @@
 % Please edit documentation in R/summarize_clicc.r
 \name{summarize_clicc}
 \alias{summarize_clicc}
+\alias{summarize_CLICC}
 \title{Summarize CLICC data.}
 \usage{
 summarize_clicc(
+  data,
+  clicc_type = "checkall",
+  group_vars = NULL,
+  save = FALSE,
+  path = "clicc_summary.csv"
+)
+
+summarize_CLICC(
   data,
   clicc_type = "checkall",
   group_vars = NULL,

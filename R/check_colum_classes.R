@@ -1,5 +1,7 @@
 #' Check column class equality across two data frames.
 #'
+#' @name check_column_classes
+#'
 #' @description A function to check that columns named the same across two data frames have the same classes. To be used before merging two data frames to ensure that the columns with the same names will merge cleanly.
 #'
 #' @param dataframe1 A data frame.

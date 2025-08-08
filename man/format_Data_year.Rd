@@ -2,9 +2,12 @@
 % Please edit documentation in R/Data_year.r
 \name{format_Data_year}
 \alias{format_Data_year}
+\alias{format_data_year}
 \title{Format Data_year variable.}
 \usage{
 format_Data_year(data)
+
+format_data_year(data)
 }
 \arguments{
 \item{data}{A data frame with a valid Data_year variable.}

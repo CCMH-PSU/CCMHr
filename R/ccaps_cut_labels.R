@@ -1,5 +1,7 @@
 #' Creates label variables for CCAPS-62 and/or CCAPS-34 subscales cut scores.
 #'
+#' @name ccaps_cut_labels
+#'
 #' @description The functions create label variables for each CCAPS-62 and/or CCAPS-34 subscale cut score.
 #'
 #' @param data A data file containing CCAPS-62 and/or CCAPS-34 subscales cut scores.
@@ -137,3 +139,6 @@ ccaps_cut_labels <- function(data){
 
 }
 
+#' @rdname ccaps_cut_labels
+#' @export
+CCAPS_cut_labels <- ccaps_cut_labels

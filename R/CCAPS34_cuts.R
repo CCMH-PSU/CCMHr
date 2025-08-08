@@ -1,5 +1,7 @@
 #' Create CCAPS-34 cut points
 #'
+#' @name ccaps34_cuts
+#'
 #' @description Creates binary variables for CCAPS-34 subscales indicating whether each subscale score is equal to, below (0), or above (1) the low and high cut scores, respectively.
 #'
 #' @param data A data file containing CCAPS-34 subscales scores.
@@ -194,3 +196,7 @@ ccaps34_cuts <- function(data,
       }
     }
   }
+
+#' @rdname ccaps34_cuts
+#' @export
+CCAPS34_cuts <- ccaps34_cuts

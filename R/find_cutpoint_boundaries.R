@@ -1,5 +1,7 @@
 #' Find CCAPS scores on the boundaries of the cut points.
 #'
+#' @name find_cutpoint_boundaries
+#'
 #' @description This function finds and returns CCAPS scores just above and below the cut point, as well as the item responses required to produce those scores.
 #'
 #' @param items The number of items in the scale.

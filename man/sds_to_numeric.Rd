@@ -2,9 +2,12 @@
 % Please edit documentation in R/sds_to_numeric.r
 \name{sds_to_numeric}
 \alias{sds_to_numeric}
+\alias{SDS_to_numeric}
 \title{Convert SDS factor labels into numeric.}
 \usage{
 sds_to_numeric(data)
+
+SDS_to_numeric(data)
 }
 \arguments{
 \item{data}{A data file containing SDS items.}

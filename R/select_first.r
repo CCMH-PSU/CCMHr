@@ -1,5 +1,7 @@
 #' Extract the client's first administration and merge multiple CCMH forms.
 #'
+#' @name select_first
+#'
 #' @description Many analyses regard a client's first administration on specified forms. For example, analyses may require extracting data from a client's first CCAPS and SDS administration. This function encompasses four processes within a single framework. First, the function allows extracting the first administration on the following forms: CCAPS, SDS, CLICC, and Closure. The extracted forms are determined by the forms listed in the inner_join_list and left_join_list. Second, the function allows the programmer to choose how the forms are merged. Forms listed under inner_join_list are forms required (e.g., if inner_join_list = `c("CCAPS", "SDS")`, the client must have both a CCAPS and SDS to be included in the output data frame). Forms listed under left_join_list are forms included but not required (e.g., if `left_join_list = "CLICC"`, data on the first administration of the CLICC will be merged, but clients do not need the data on the CLICC to be included in the output data frame). Third, the function allows the programmer to pick specific items within different forms (e.g., the programmer could only extract SDS_01 instead of every SDS item). Lastly, the function allows the recording of NA for the CLICC and Case Closure forms to streamline analyses.
 #'
 #' @param data A data frame that contains CCMH forms.

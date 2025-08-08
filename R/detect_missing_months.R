@@ -1,5 +1,7 @@
 #' Identifies centers with monthly missing data across forms.
 #'
+#' @name detect_missing_months
+#'
 #' @description Centers may not contribute data on forms for each month within a data year. This function identifies centers that had missing data for at least one entire month on specified forms.
 #'
 #' @param data A data frame that contains the following variables: "UniqueClientID", "Date", "Is_appointment", "Has_CCAPS", "Has_SDS", "Has_CLICC", and "Has_Closure".

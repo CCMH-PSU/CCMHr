@@ -1,5 +1,7 @@
 #' Cleans a Titanium (TI) appointment CCMH export file.
 #'
+#' @name clean_TI_export_appointment
+#'
 #' @description This function cleans a TI appointment CCMH export file. The following cleaning procedures are conducted: a) rename variables (based on the key) to allow the data to be used with other CCMHr functions, b) format date, c) delete duplicate appointments, and d) return/save data frame.
 #'
 #' @param data A data frame of a Titanium (TI) appointment CCMH export file.
@@ -50,8 +52,14 @@ clean_TI_export_appointment <- function(data,
 
 }
 
+#' @rdname clean_TI_export_appointment
+#' @export
+clean_ti_export_appointment <- clean_TI_export_appointment
+
 
 #' Cleans a Titanium (TI) CCMH forms export file.
+#'
+#' @name clean_TI_CCMH_export
 #'
 #' @description This function cleans a TI CCMH forms export file. The following cleaning procedures are conducted: a) rename variables (based on the key) to allow the data to be used with other CCMHr functions, b) format date, c) recode TI-specific responses "<No Response>", d) clean/score CCAPS, e) clean SDS, f) clean CLICC, g) clean Case Closure, h) clean AUDIT, and i) return/save data frame.
 #'
@@ -508,3 +516,7 @@ clean_TI_CCMH_export <- function(data,
 
   }
 }
+
+#' @rdname clean_TI_CCMH_export
+#' @export
+clean_ti_CCMH_export <- clean_TI_CCMH_export

@@ -1,5 +1,7 @@
 #' Detects whether specified variables are present in the dataset.
 #'
+#' @name required_items
+#'
 #' @description The function checks if specified variables are present in the dataset and presents an error message when specified variables are not present. This function is often used within other CCMHr functions when a specific variable is required to be present.
 #'
 #' @param data A data frame.

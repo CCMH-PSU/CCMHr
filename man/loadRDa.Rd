@@ -2,9 +2,12 @@
 % Please edit documentation in R/loadRDa.R
 \name{loadRDa}
 \alias{loadRDa}
+\alias{loadrda}
 \title{Load an RDA file into a new object name.}
 \usage{
 loadRDa(fileName)
+
+loadrda(fileName)
 }
 \arguments{
 \item{fileName}{The file path to a .rda or .rdata file to be loaded into a new object name.}

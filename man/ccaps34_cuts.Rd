@@ -2,9 +2,12 @@
 % Please edit documentation in R/CCAPS34_cuts.R
 \name{ccaps34_cuts}
 \alias{ccaps34_cuts}
+\alias{CCAPS34_cuts}
 \title{Create CCAPS-34 cut points}
 \usage{
 ccaps34_cuts(data, version = 2025, first = FALSE)
+
+CCAPS34_cuts(data, version = 2025, first = FALSE)
 }
 \arguments{
 \item{data}{A data file containing CCAPS-34 subscales scores.}

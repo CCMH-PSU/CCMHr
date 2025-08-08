@@ -2,9 +2,21 @@
 % Please edit documentation in R/TI_CCMH_export_support_functions.r
 \name{clean_TI_CCMH_export}
 \alias{clean_TI_CCMH_export}
+\alias{clean_ti_CCMH_export}
 \title{Cleans a Titanium (TI) CCMH forms export file.}
 \usage{
 clean_TI_CCMH_export(
+  data,
+  id_var = NULL,
+  key = CCMHr::TI_CCMH_export_forms_key,
+  included_forms = c("CCAPS", "SDS", "CLICC", "Closure", "AUDIT"),
+  save_individual_form = FALSE,
+  path_individual_form = NULL,
+  save = FALSE,
+  path = "TI_CCMH_export_clean.csv"
+)
+
+clean_ti_CCMH_export(
   data,
   id_var = NULL,
   key = CCMHr::TI_CCMH_export_forms_key,

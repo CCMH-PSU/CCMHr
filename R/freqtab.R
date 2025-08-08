@@ -1,5 +1,7 @@
 #' Create frequency table.
 #'
+#' @name freqtab
+#'
 #' @description The function creates a frequency table based on the values within a vector. The frequency table outputs the percentage and cumulative percentage based on the vector values.
 #'
 #' @param x A vector.
