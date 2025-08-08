@@ -6,10 +6,15 @@
 \alias{CCMHr-package}
 \title{CCMHr: CCMH Data Cleaning}
 \description{
-Functions used when performing regular data cleaning tasks for CCMH data.
+Functions to standardize routine data cleaning/processing procedures and the creation of visualizations.
 }
 \author{
 \strong{Maintainer}: Rebecca Janis \email{ruj134@psu.edu}
+
+Authors:
+\itemize{
+  \item Tyler White \email{tdw5466@psu.edu}
+}
 
 }
 \keyword{internal}

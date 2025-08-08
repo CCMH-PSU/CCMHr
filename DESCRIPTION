@@ -1,11 +1,13 @@
 Package: CCMHr
 Type: Package
 Title: CCMH Data Cleaning
-Version: 0.1.0
-Authors@R: person("Rebecca", "Janis", email = "ruj134@psu.edu",
-  role = c("aut", "cre"))
-Description: Functions used when performing regular data cleaning
-    tasks for CCMH data.
+Version: 1.0.0
+Authors@R: 
+  c(person("Rebecca", "Janis", email = "ruj134@psu.edu",
+  role = c("aut", "cre")),
+  person("Tyler", "White", email = "tdw5466@psu.edu",
+  role = c("aut")))
+Description: Functions to standardize routine data cleaning/processing procedures and the creation of visualizations.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
