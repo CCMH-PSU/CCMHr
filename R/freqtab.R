@@ -33,5 +33,7 @@ freqtab <- function(x){
 
   }
 
+  return(data)
+
 }
 
