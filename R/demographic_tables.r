@@ -30,7 +30,7 @@ demographic_tables <- function(data,
                                text.font = "Avenir",
                                print.tables = TRUE,
                                save = FALSE,
-                               path = "demograpics.xlsx") {
+                               path = "table.html") {
 
   # Change SDS into factor
   data <- CCMHr::sds_to_factor(data)
