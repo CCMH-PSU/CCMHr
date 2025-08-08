@@ -10,7 +10,7 @@ demographic_tables(
   text.font = "Avenir",
   print.tables = TRUE,
   save = FALSE,
-  path = "demograpics.xlsx"
+  path = "table.html"
 )
 }
 \arguments{

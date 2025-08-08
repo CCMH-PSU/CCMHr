@@ -45,7 +45,7 @@ demographic_tables <- function(data,
       data <- data |>
         dplyr::rename("Cumulative Percent" = "Cum Percent") |>
         dplyr::mutate(Percent = round(Percent, digits = decimal_place),
-                      `Valid Percent` = round(.data[["Valid Percent"]], digits = decimal_place),
+                      `Valid Percent` = round(`Valid Percent`, digits = decimal_place),
                       `Cumulative Percent` = round(`Cumulative Percent`, digits = decimal_place),
                       `Valid Percent` = ifelse(is.na(`Valid Percent`), "--", `Valid Percent`),
                       `Cumulative Percent` = ifelse(is.na(`Cumulative Percent`), "--", `Cumulative Percent`),
