@@ -71,88 +71,288 @@ demographic_tables <- function(data,
 
   }
 
+  # Set up lists
+  html_file.save <- htmltools::tagList()
+  html_file.print <- list()
+  missing.list <- list()
+
   # create tables for each demographic variable
-  couns <- CCMHr::freqtab(data$SDS_01) |>
-    dplyr::rename(" " = "data$SDS_01") |>
-    func1() |>
-    gt::tab_header(title = 'Prior Counseling (SDS_01)')
+    # couns
+    if(!all(is.na(data$SDS_01))){
 
-  med <- CCMHr::freqtab(data$SDS_02) |>
-    dplyr::rename(" " = "data$SDS_02") |>
-    func1() |>
-    gt::tab_header(title = 'Prior Medication (SDS_02)')
+      # freq table for SDS_01
+      couns <- CCMHr::freqtab(data$SDS_01) |>
+        dplyr::rename(" " = "data$SDS_01") |>
+        func1() |>
+        gt::tab_header(title = 'Prior Counseling (SDS_01)')
 
-  hosp <- CCMHr::freqtab(data$SDS_64) |>
-    dplyr::rename(" " = "data$SDS_64") |>
-    func1() |>
-    gt::tab_header(title = 'Prior Hospitalization (SDS_64)')
+      # Add to save list
+      html_file.save.len <- length(html_file.save)
+      html_file.save[[html_file.save.len+1]] <- htmltools::as.tags(couns)
 
-  gender <- CCMHr::freqtab(data$SDS_88) |>
-    dplyr::rename(" " = "data$SDS_88") |>
-    func1() |>
-    gt::tab_header(title = 'Gender Identity (SDS_88)')
+      # Add to print list
+      html_file.print.len <- length(html_file.print)
+      html_file.print[[html_file.print.len+1]] <- couns
 
-  sexual.orientation <- CCMHr::freqtab(data$SDS_91) |>
-    dplyr::rename(" " = "data$SDS_91") |>
-    func1() |>
-    gt::tab_header(title = 'Sexual Orientation (SDS_91)')
+    } else{
 
-  race <- CCMHr::freqtab(data$SDS_95) |>
-    dplyr::rename(" " = "data$SDS_95") |>
-    func1() |>
-    gt::tab_header(title = 'Race/Ethnicity (SDS_95)')
+      # Add to missing list
+      missing.list.len <- length(missing.list)
+      missing.list[[missing.list.len+1]] <- "SDS_01"
 
-  cohort1 <- CCMHr::freqtab(data$SDS_37) |>
-    dplyr::rename(" " = "data$SDS_37") |>
-    func1() |>
-    gt::tab_header(title = 'Academic Year/Status (SDS_37)')
+    }
 
-  cohort2 <- CCMHr::freqtab(data$SDS_1037) |>
-    dplyr::rename(" " = "data$SDS_1037") |>
-    func1() |>
-    gt::tab_header(title = 'Academic Year/Status (SDS_1037)')
+    # med
+    if(!all(is.na(data$SDS_02))){
 
-  international <- CCMHr::freqtab(data$SDS_32) |>
-    dplyr::rename(" " = "data$SDS_32") |>
-    func1() |>
-    gt::tab_header(title = 'International Student Status (SDS_32)')
+      # freq table for SDS_02
+      med <- CCMHr::freqtab(data$SDS_02) |>
+        dplyr::rename(" " = "data$SDS_02") |>
+        func1() |>
+        gt::tab_header(title = 'Prior Medication (SDS_02)')
 
-  firstgen <- CCMHr::freqtab(data$SDS_56) |>
-    dplyr::rename(" " = "data$SDS_56") |>
-    func1() |>
-    gt::tab_header(title = 'First Generation Student Status (SDS_56)')
+      # Add to save list
+      html_file.save.len <- length(html_file.save)
+      html_file.save[[html_file.save.len+1]] <- htmltools::as.tags(med)
+
+      # Add to print list
+      html_file.print.len <- length(html_file.print)
+      html_file.print[[html_file.print.len+1]] <- med
+
+    } else{
+
+      # Add to missing list
+      missing.list.len <- length(missing.list)
+      missing.list[[missing.list.len+1]] <- "SDS_02"
+
+    }
+
+    # hosp
+    if(!all(is.na(data$SDS_64))){
+
+      # freq table for SDS_64
+      hosp <- CCMHr::freqtab(data$SDS_64) |>
+        dplyr::rename(" " = "data$SDS_64") |>
+        func1() |>
+        gt::tab_header(title = 'Prior Hospitalization (SDS_64)')
+
+      # Add to save list
+      html_file.save.len <- length(html_file.save)
+      html_file.save[[html_file.save.len+1]] <- htmltools::as.tags(hosp)
+
+      # Add to print list
+      html_file.print.len <- length(html_file.print)
+      html_file.print[[html_file.print.len+1]] <- hosp
+
+    } else{
+
+      # Add to missing list
+      missing.list.len <- length(missing.list)
+      missing.list[[missing.list.len+1]] <- "SDS_64"
+
+    }
+
+    # gender
+    if(!all(is.na(data$SDS_88))){
+
+      # freq table for SDS_88
+      gender <- CCMHr::freqtab(data$SDS_88) |>
+        dplyr::rename(" " = "data$SDS_88") |>
+        func1() |>
+        gt::tab_header(title = 'Gender Identity (SDS_88)')
+
+      # Add to save list
+      html_file.save.len <- length(html_file.save)
+      html_file.save[[html_file.save.len+1]] <- htmltools::as.tags(gender)
+
+      # Add to print list
+      html_file.print.len <- length(html_file.print)
+      html_file.print[[html_file.print.len+1]] <- gender
+
+    } else{
+
+      # Add to missing list
+      missing.list.len <- length(missing.list)
+      missing.list[[missing.list.len+1]] <- "SDS_88"
+
+    }
+
+    # sexual.orientation
+    if(!all(is.na(data$SDS_91))){
+
+      # freq table for SDS_91
+      sexual.orientation <- CCMHr::freqtab(data$SDS_91) |>
+        dplyr::rename(" " = "data$SDS_91") |>
+        func1() |>
+        gt::tab_header(title = 'Sexual Orientation (SDS_91)')
+
+      # Add to save list
+      html_file.save.len <- length(html_file.save)
+      html_file.save[[html_file.save.len+1]] <- htmltools::as.tags(sexual.orientation)
+
+      # Add to print list
+      html_file.print.len <- length(html_file.print)
+      html_file.print[[html_file.print.len+1]] <- sexual.orientation
+
+    } else{
+
+      # Add to missing list
+      missing.list.len <- length(missing.list)
+      missing.list[[missing.list.len+1]] <- "SDS_91"
+
+    }
+
+    # race
+    if(!all(is.na(data$SDS_95))){
+
+      # freq table for SDS_95
+      race <- CCMHr::freqtab(data$SDS_95) |>
+        dplyr::rename(" " = "data$SDS_95") |>
+        func1() |>
+        gt::tab_header(title = 'Race/Ethnicity (SDS_95)')
+
+      # Add to save list
+      html_file.save.len <- length(html_file.save)
+      html_file.save[[html_file.save.len+1]] <- htmltools::as.tags(race)
+
+      # Add to print list
+      html_file.print.len <- length(html_file.print)
+      html_file.print[[html_file.print.len+1]] <- race
+
+    } else{
+
+      # Add to missing list
+      missing.list.len <- length(missing.list)
+      missing.list[[missing.list.len+1]] <- "SDS_95"
+
+    }
+
+    # cohort1
+    if(!all(is.na(data$SDS_37))){
+
+      # freq table for SDS_37
+      cohort1 <- CCMHr::freqtab(data$SDS_37) |>
+        dplyr::rename(" " = "data$SDS_37") |>
+        func1() |>
+        gt::tab_header(title = 'Academic Year/Status (SDS_37)')
+
+      # Add to save list
+      html_file.save.len <- length(html_file.save)
+      html_file.save[[html_file.save.len+1]] <- htmltools::as.tags(cohort1)
+
+      # Add to print list
+      html_file.print.len <- length(html_file.print)
+      html_file.print[[html_file.print.len+1]] <- cohort1
+
+    } else{
+
+      # Add to missing list
+      missing.list.len <- length(missing.list)
+      missing.list[[missing.list.len+1]] <- "SDS_37"
+
+    }
+
+    # cohort2
+    if(!all(is.na(data$SDS_1037))){
+
+      # freq table for SDS_1037
+      cohort2 <- CCMHr::freqtab(data$SDS_1037) |>
+        dplyr::rename(" " = "data$SDS_1037") |>
+        func1() |>
+        gt::tab_header(title = 'Academic Year/Status (SDS_1037)')
+
+      # Add to save list
+      html_file.save.len <- length(html_file.save)
+      html_file.save[[html_file.save.len+1]] <- htmltools::as.tags(cohort2)
+
+      # Add to print list
+      html_file.print.len <- length(html_file.print)
+      html_file.print[[html_file.print.len+1]] <- cohort2
+
+    } else{
+
+      # Add to missing list
+      missing.list.len <- length(missing.list)
+      missing.list[[missing.list.len+1]] <- "SDS_1037"
+
+    }
+
+    # international
+    if(!all(is.na(data$SDS_32))){
+
+      # freq table for SDS_32
+      international <- CCMHr::freqtab(data$SDS_32) |>
+        dplyr::rename(" " = "data$SDS_32") |>
+        func1() |>
+        gt::tab_header(title = 'International Student Status (SDS_32)')
+
+      # Add to save list
+      html_file.save.len <- length(html_file.save)
+      html_file.save[[html_file.save.len+1]] <- htmltools::as.tags(international)
+
+      # Add to print list
+      html_file.print.len <- length(html_file.print)
+      html_file.print[[html_file.print.len+1]] <- international
+
+    } else{
+
+      # Add to missing list
+      missing.list.len <- length(missing.list)
+      missing.list[[missing.list.len+1]] <- "SDS_32"
+
+    }
+
+    # firstgen
+    if(!all(is.na(data$SDS_56))){
+
+      # freq table for SDS_56
+      firstgen <- CCMHr::freqtab(data$SDS_56) |>
+        dplyr::rename(" " = "data$SDS_56") |>
+        func1() |>
+        gt::tab_header(title = 'First Generation Student Status (SDS_56)')
+
+      # Add to save list
+      html_file.save.len <- length(html_file.save)
+      html_file.save[[html_file.save.len+1]] <- htmltools::as.tags(firstgen)
+
+      # Add to print list
+      html_file.print.len <- length(html_file.print)
+      html_file.print[[html_file.print.len+1]] <- firstgen
+
+    } else{
+
+      # Add to missing list
+      missing.list.len <- length(missing.list)
+      missing.list[[missing.list.len+1]] <- "SDS_56"
+
+    }
 
   # Print tables
   if(print.tables == TRUE){
-    table.list <- list(couns, med,
-                       hosp, gender,
-                       sexual.orientation, race,
-                       cohort1, cohort2,
-                       international, firstgen)
 
-    print(table.list)
-  } else {
+    print(html_file.print)
+
+  } else{
 
   }
 
   # Save tables
   if(save == TRUE) {
 
-    html_file <- htmltools::tagList(htmltools::as.tags(couns),
-                                    htmltools::as.tags(med),
-                                    htmltools::as.tags(hosp),
-                                    htmltools::as.tags(gender),
-                                    htmltools::as.tags(sexual.orientation),
-                                    htmltools::as.tags(race),
-                                    htmltools::as.tags(cohort1),
-                                    htmltools::as.tags(cohort2),
-                                    htmltools::as.tags(international),
-                                    htmltools::as.tags(firstgen))
-
-    htmltools::save_html(html_file,
+    htmltools::save_html(html_file.save,
                          file = path)
 
   } else {
+
+  }
+
+  # Print missing
+  if(length(missing.list) != 0){
+
+    missing.list <- paste("Missing demographic variables:", paste(missing.list, collapse = ", "))
+    print(missing.list)
+
+  } else{
 
   }
 
