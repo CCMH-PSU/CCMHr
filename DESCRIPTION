@@ -1,7 +1,7 @@
 Package: CCMHr
 Type: Package
 Title: CCMH Data Cleaning
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: 
   c(person("Rebecca", "Janis", email = "ruj134@psu.edu",
   role = c("aut", "cre")),
