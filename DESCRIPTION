@@ -38,6 +38,7 @@ Imports:
     palettes, 
     data.table,
     dtplyr,
-    arrow
+    arrow,
+    gt
 Suggests: 
     testthat (>= 2.1.0)
