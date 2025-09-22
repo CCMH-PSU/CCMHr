@@ -37,6 +37,7 @@ Imports:
     tidyr,
     palettes, 
     data.table,
-    dtplyr
+    dtplyr,
+    arrow
 Suggests: 
     testthat (>= 2.1.0)
