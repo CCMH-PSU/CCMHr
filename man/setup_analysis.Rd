@@ -16,7 +16,7 @@ setup_analysis(
 )
 }
 \arguments{
-\item{name}{A quoted string to indicate the name of the main folder.}
+\item{name}{A quoted string to indicate the name of the main folder. The symbol "/" (forward slashes) is recoded as "_" (underscore).}
 
 \item{data.folder}{A logical argument to add a data subfolder to the main folder. If \code{TRUE}, the subfolder named "data" is added. By default, \code{TRUE}.}
 
@@ -36,5 +36,5 @@ setup_analysis(
 The function will create a new analysis folder that contains various subfolders. Most subfolder names are standardized (e.g., data, visuals); however, custom subfolders could be created using the add.folder argument.
 }
 \description{
-The function creates folders associated with a specific set of analyses. Primarily, this function is used to create an ad hoc data analysis folder and its corresponding subfolders. To run the function and create a new analysis folder, the programmer must first set their working directory to a specified folder where the analysis folder will be saved. Typically, the working directory is located under the following path: "CCMH - Documents/Data Repository/Ad hoc projects/####", where #### represents the data year. The newly created folder will be saved under this working directory. The main folder name must not contain the symbols "-" or "/" (hyphens or forward slashes). Most subfolder names are standardized (e.g., data, visuals); however, the programmer may add custom subfolders using the add.folder argument.
+The function creates folders associated with a specific set of analyses. Primarily, this function is used to create an ad hoc data analysis folder and its corresponding subfolders. To run the function and create a new analysis folder, the programmer must first set their working directory to a specified folder where the analysis folder will be saved. Typically, the working directory is located under the following path: "CCMH - Documents/Data Repository/Ad hoc projects/####", where #### represents the data year. The newly created folder will be saved under this working directory. Most subfolder names are standardized (e.g., data, visuals); however, the programmer may add custom subfolders using the add.folder argument.
 }
