@@ -49,12 +49,40 @@ setup_data_request <- function(requester_last_name = NULL){
   }
 
   # Create the R file
-  usethis::use_template(template = "data_request_cleaning.R",
-                        save_as = paste0(cleaning_folder, "/", requester_last_name, "-data-cleaning.R"),
-                        package = "CCMHr",
-                        data = list(requester_last_name = requester_last_name,
-                                    cleaning_folder = cleaning_folder,
-                                    final_folder = final_folder),
-                        open = TRUE)
+  save_as <- file.path(cleaning_folder, 
+                       paste0(requester_last_name, "-data-cleaning.R"))
+  
+  # Locate template inside installed package
+  template_path <- system.file("templates", 
+                               "data_request_cleaning.R", 
+                               package = "CCMHr")
+
+  # Render from the template
+  if(nzchar(template_path) && 
+     file.exists(template_path)) {
+  
+    tpl <- readLines(template_path, warn = FALSE)
+
+    tpl_text <- paste(tpl, collapse = "\n")
+  
+    rendered <- glue::glue_data(list(requester_last_name = requester_last_name,
+                                     cleaning_folder = cleaning_folder,
+                                     final_folder = final_folder),
+                                tpl_text)
+
+    rendered <- gsub("\\{([^{}]+)\\}", "\\1", rendered, perl = TRUE)
+
+    # Write to file
+    writeLines(as.character(rendered), 
+               con = save_as)
+        
+  } else {
+
+    stop("Template 'data_request_cleaning.R' not found in package 'CCMHr'.")
+  
+  }
+
+  # Open the file for editing
+  if (interactive()) file.edit(save_as)
 
 }
