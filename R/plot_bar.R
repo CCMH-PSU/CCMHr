@@ -43,7 +43,7 @@
 #' @param legend.title A quoted string to indicate the legend title. By default, `NULL`.
 #' @param legend.title.size A numeric value to indicate the legend title text size. By default, `16`.
 #' @param legend.label.size A numeric value to indicate the legend label text size. By default, `14`.
-#' @param bar.width A numeric value to indicate the bar's width. By default, `NULL`.
+#' @param bar.width A numeric value to indicate the bar's width. By default, `0.90`.
 #' @param coord.flip A logical argument to indicate if the plot's x and y-axis should be flipped. If `TRUE`, the x and y axis is flipped. By default, `FALSE`.
 #' @param y.grid.major A logical argument to indicate whether the y-axis major grid lines should be added to the plot. If `TRUE`, the y-axis major grid lines are displayed on the plot. By default, `FALSE`.
 #' @param y.grid.major.color A hex code that indicates the color of the y-axis major grid lines. By default, `"#d3d3d3"` or a shade of light grey.
@@ -145,7 +145,7 @@ plot_bar <- function(data,
                      legend.title = NULL,
                      legend.title.size= 16,
                      legend.label.size= 14,
-                     bar.width = NULL,
+                     bar.width = 0.90,
                      coord.flip = FALSE,
                      y.grid.major = FALSE,
                      y.grid.major.color = "#d3d3d3",

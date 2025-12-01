@@ -45,7 +45,7 @@ plot_bar(
   legend.title = NULL,
   legend.title.size = 16,
   legend.label.size = 14,
-  bar.width = NULL,
+  bar.width = 0.9,
   coord.flip = FALSE,
   y.grid.major = FALSE,
   y.grid.major.color = "#d3d3d3",
@@ -113,7 +113,7 @@ bar_plot(
   legend.title = NULL,
   legend.title.size = 16,
   legend.label.size = 14,
-  bar.width = NULL,
+  bar.width = 0.9,
   coord.flip = FALSE,
   y.grid.major = FALSE,
   y.grid.major.color = "#d3d3d3",
@@ -220,7 +220,7 @@ bar_plot(
 
 \item{legend.label.size}{A numeric value to indicate the legend label text size. By default, \code{14}.}
 
-\item{bar.width}{A numeric value to indicate the bar's width. By default, \code{NULL}.}
+\item{bar.width}{A numeric value to indicate the bar's width. By default, \code{0.90}.}
 
 \item{coord.flip}{A logical argument to indicate if the plot's x and y-axis should be flipped. If \code{TRUE}, the x and y axis is flipped. By default, \code{FALSE}.}
 
