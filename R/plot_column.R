@@ -341,7 +341,7 @@ plot_column <- function(data,
     }
 
     # Remove column based on fill information
-    if(!is.null(hide.group.items)){
+    if(hide.group.items != ""){
 
       data <- data |>
         dplyr::mutate(alpha.fill = ifelse(group77d8214 %in% hide.group.items, "b", "a"))
@@ -353,7 +353,7 @@ plot_column <- function(data,
     }
 
     # Remove column based on x axis information
-    if(!is.null(hide.x.items)){
+    if(hide.x.items != ""){
 
       data <- data |>
         dplyr::mutate(alpha.varx = ifelse({{x.var1}} %in% hide.x.items, "b", "a"))
