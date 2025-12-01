@@ -60,6 +60,10 @@ plot_column(
   y.axis.line = TRUE,
   x.axis.line = TRUE,
   remove.axis.ticks = FALSE,
+  reference.line = NULL,
+  reference.line.color = "#1f2022",
+  reference.line.size = 1,
+  reference.line.linetype = 2,
   plot.element1 = NULL,
   plot.element2 = NULL,
   plot.element3 = NULL,
@@ -126,6 +130,10 @@ column_plot(
   y.axis.line = TRUE,
   x.axis.line = TRUE,
   remove.axis.ticks = FALSE,
+  reference.line = NULL,
+  reference.line.color = "#1f2022",
+  reference.line.size = 1,
+  reference.line.linetype = 2,
   plot.element1 = NULL,
   plot.element2 = NULL,
   plot.element3 = NULL,
@@ -246,7 +254,15 @@ column_plot(
 
 \item{remove.axis.ticks}{A logical argument to indicate whether the axis ticks should be excluded. If \code{TRUE}, the axis ticks will not be displayed on the plot. By default, \code{FALSE}.}
 
-\item{plot.element1}{A ggplot2 plot function and arguments needed to add graphical element(s) needed to complete a specific task, but are not specified as an argument in the function. For example, the axis label text color will always be black unless specified in one of the plot.element arguments (i.e., plot.element1 to plot.element9). To change the axis label text color, one of the plot.element arguments should be specified as follows: \code{plot.element1 = ggplot2::theme(axis.text = ggplot2::element_text(color = "green"))}. By default, \code{NULL}.}
+\item{reference.line}{A numeric value or list of numeric values to indicate where reference line(s) should be placed on the y-axis. If NULL, no reference line(s) are added. By default, \code{NULL}.}
+
+\item{reference.line.color}{A hex code or list of A hex codes to indicate the color(s) of each reference line. By default, \code{"#1f2022"} or a dark grey.}
+
+\item{reference.line.size}{A numeric value or list of numeric values to indicate the thickness of each reference line. By default, \code{1}.}
+
+\item{reference.line.linetype}{A numeric value or list of numeric values to indicate the line type(s) of each reference line. By default, \code{2}.}
+
+\item{plot.element1}{A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. For example, the axis label text color will always be black unless specified in one of the plot.element arguments (i.e., plot.element1 to plot.element9). To change the axis label text color, one of the plot.element arguments should be specified as follows: \code{plot.element1 = ggplot2::theme(axis.text = ggplot2::element_text(color = "green"))}. By default, \code{NULL}.}
 
 \item{plot.element2}{A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. By default, \code{NULL}.}
 

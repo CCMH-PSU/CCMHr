@@ -58,7 +58,11 @@
 #' @param y.axis.line A logical argument to indicate whether the y-axis line should be included. If `FALSE`, the y-axis line will not be displayed. By default, `TRUE`.
 #' @param x.axis.line A logical argument to indicate whether the x-axis line should be included. If `FALSE`, the x-axis line will not be displayed. By default, `TRUE`.
 #' @param remove.axis.ticks A logical argument to indicate whether the axis ticks should be excluded. If `TRUE`, the axis ticks will not be displayed on the plot. By default, `FALSE`.
-#' @param plot.element1 A ggplot2 plot function and arguments needed to add graphical element(s) needed to complete a specific task, but are not specified as an argument in the function. For example, the axis label text color will always be black unless specified in one of the plot.element arguments (i.e., plot.element1 to plot.element9). To change the axis label text color, one of the plot.element arguments should be specified as follows: `plot.element1 = ggplot2::theme(axis.text = ggplot2::element_text(color = "green"))`. By default, `NULL`.
+#' @param reference.line A numeric value or list of numeric values to indicate where reference line(s) should be placed on the y-axis. If NULL, no reference line(s) are added. By default, `NULL`.
+#' @param reference.line.color A hex code or list of A hex codes to indicate the color(s) of each reference line. By default, `"#1f2022"` or a dark grey.
+#' @param reference.line.size A numeric value or list of numeric values to indicate the thickness of each reference line. By default, `1`.
+#' @param reference.line.linetype A numeric value or list of numeric values to indicate the line type(s) of each reference line. By default, `2`.
+#' @param plot.element1 A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. For example, the axis label text color will always be black unless specified in one of the plot.element arguments (i.e., plot.element1 to plot.element9). To change the axis label text color, one of the plot.element arguments should be specified as follows: `plot.element1 = ggplot2::theme(axis.text = ggplot2::element_text(color = "green"))`. By default, `NULL`.
 #' @param plot.element2 A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. By default, `NULL`.
 #' @param plot.element3 A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. By default, `NULL`.
 #' @param plot.element4 A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. By default, `NULL`.
@@ -163,6 +167,10 @@ plot_column <- function(data,
                         y.axis.line = TRUE,
                         x.axis.line = TRUE,
                         remove.axis.ticks = FALSE,
+                        reference.line = NULL,
+                        reference.line.color = "#1f2022",
+                        reference.line.size = 1,
+                        reference.line.linetype = 2,
                         plot.element1 = NULL,
                         plot.element2 = NULL,
                         plot.element3 = NULL,
@@ -704,6 +712,38 @@ plot_column <- function(data,
   } else{
 
     }
+  }
+
+  # Specify reference line information
+  if(!is.null(reference.line)){
+
+    # Determine the length of reference line properties
+    reference.length <- length(reference.line) == length(reference.line.color) &
+                        length(reference.line) == length(reference.line.size) &
+                        length(reference.line) == length(reference.line.linetype)
+
+    # If the lengths are not equal, adjust the lengths
+    if(reference.length == FALSE){
+
+      # Error message
+      stop("The length of reference.line, reference.line.color, reference.line.size, and reference.line.linetype must be equal.")
+
+    } else{
+
+      for(i in 1:length(reference.line)){
+
+      col.graph <- col.graph +
+        ggplot2::geom_hline(yintercept = reference.line[i],
+                            color = reference.line.color[i],
+                            linewidth = reference.line.size[i],
+                            linetype = reference.line.linetype[i])
+
+      }
+
+    }
+
+  } else{
+
   }
 
   # Specify if the graph should be saved as file or returned as an object
