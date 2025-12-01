@@ -242,23 +242,23 @@ box_plot(
 
 \item{remove.axis.ticks}{A logical argument to indicate whether the axis ticks should be excluded. If \code{TRUE}, the axis ticks will not be displayed on the plot. By default, \code{FALSE}.}
 
-\item{plot.element1}{A ggplot2 plot function and arguments are needed to add graphical elements  to complete a specific task, but are not specified as arguments in the function. For example, the axis label text color will always be black unless specified in one of the plot.element arguments (i.e., plot.element1 to plot.element9). To change the axis label text color, one of the plot.element arguments should be specified as follows: \code{plot.element1 = ggplot2::theme(axis.text = ggplot2::element_text(color = "green"))}. By default, \code{NULL}.}
+\item{plot.element1}{A ggplot2 plot function and arguments are needed to add graphical elements to complete a specific task, but are not specified as arguments in the function. For example, the axis label text color will always be black unless specified in one of the plot.element arguments (i.e., plot.element1 to plot.element9). To change the axis label text color, one of the plot.element arguments should be specified as follows: \code{plot.element1 = ggplot2::theme(axis.text = ggplot2::element_text(color = "green"))}. By default, \code{NULL}.}
 
-\item{plot.element2}{A ggplot2 plot function and arguments are needed to add graphical elements  to complete a specific task, but are not specified as arguments in the function. By default, \code{NULL}.}
+\item{plot.element2}{A ggplot2 plot function and arguments are needed to add graphical elements to complete a specific task, but are not specified as arguments in the function. By default, \code{NULL}.}
 
-\item{plot.element3}{A ggplot2 plot function and arguments are needed to add graphical elements  to complete a specific task, but are not specified as arguments in the function. By default, \code{NULL}.}
+\item{plot.element3}{A ggplot2 plot function and arguments are needed to add graphical elements to complete a specific task, but are not specified as arguments in the function. By default, \code{NULL}.}
 
-\item{plot.element4}{A ggplot2 plot function and arguments are needed to add graphical elements  to complete a specific task, but are not specified as arguments in the function. By default, \code{NULL}.}
+\item{plot.element4}{A ggplot2 plot function and arguments are needed to add graphical elements to complete a specific task, but are not specified as arguments in the function. By default, \code{NULL}.}
 
-\item{plot.element5}{A ggplot2 plot function and arguments are needed to add graphical elements  to complete a specific task, but are not specified as arguments in the function. By default, \code{NULL}.}
+\item{plot.element5}{A ggplot2 plot function and arguments are needed to add graphical elements to complete a specific task, but are not specified as arguments in the function. By default, \code{NULL}.}
 
-\item{plot.element6}{A ggplot2 plot function and arguments are needed to add graphical elements  to complete a specific task, but are not specified as arguments in the function. By default, \code{NULL}.}
+\item{plot.element6}{A ggplot2 plot function and arguments are needed to add graphical elements to complete a specific task, but are not specified as arguments in the function. By default, \code{NULL}.}
 
-\item{plot.element7}{A ggplot2 plot function and arguments are needed to add graphical elements  to complete a specific task, but are not specified as arguments in the function. By default, \code{NULL}.}
+\item{plot.element7}{A ggplot2 plot function and arguments are needed to add graphical elements to complete a specific task, but are not specified as arguments in the function. By default, \code{NULL}.}
 
-\item{plot.element8}{A ggplot2 plot function and arguments are needed to add graphical elements  to complete a specific task, but are not specified as arguments in the function. By default, \code{NULL}.}
+\item{plot.element8}{A ggplot2 plot function and arguments are needed to add graphical elements to complete a specific task, but are not specified as arguments in the function. By default, \code{NULL}.}
 
-\item{plot.element9}{A ggplot2 plot function and arguments are needed to add graphical elements  to complete a specific task, but are not specified as arguments in the function. By default, \code{NULL}.}
+\item{plot.element9}{A ggplot2 plot function and arguments are needed to add graphical elements to complete a specific task, but are not specified as arguments in the function. By default, \code{NULL}.}
 }
 \value{
 A box plot is returned as an object or saved as a file in a local directory.

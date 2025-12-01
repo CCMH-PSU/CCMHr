@@ -290,23 +290,23 @@ scatter_plot(
 
 \item{point_shape}{A numeric value to indicate point shape. By default, \code{19}.}
 
-\item{plot.element1}{A ggplot2 plot function and arguments are needed to add graphical elements  to complete a specific task, but are not specified as arguments in the function. For example, the axis label text color will always be black unless specified in one of the plot.element arguments (i.e., plot.element1 to plot.element9). To change the axis label text color, one of the plot.element arguments should be specified as follows: \code{plot.element1 = ggplot2::theme(axis.text = ggplot2::element_text(color = "green"))}. By default, \code{NULL}.}
+\item{plot.element1}{A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. For example, the axis label text color will always be black unless specified in one of the plot.element arguments (i.e., plot.element1 to plot.element9). To change the axis label text color, one of the plot.element arguments should be specified as follows: \code{plot.element1 = ggplot2::theme(axis.text = ggplot2::element_text(color = "green"))}. By default, \code{NULL}.}
 
-\item{plot.element2}{A ggplot2 plot function and arguments are needed to add graphical elements  to complete a specific task, but are not specified as arguments in the function. By default, \code{NULL}.}
+\item{plot.element2}{A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. By default, \code{NULL}.}
 
-\item{plot.element3}{A ggplot2 plot function and arguments are needed to add graphical elements  to complete a specific task, but are not specified as arguments in the function. By default, \code{NULL}.}
+\item{plot.element3}{A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. By default, \code{NULL}.}
 
-\item{plot.element4}{A ggplot2 plot function and arguments are needed to add graphical elements  to complete a specific task, but are not specified as arguments in the function. By default, \code{NULL}.}
+\item{plot.element4}{A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. By default, \code{NULL}.}
 
-\item{plot.element5}{A ggplot2 plot function and arguments are needed to add graphical elements  to complete a specific task, but are not specified as arguments in the function. By default, \code{NULL}.}
+\item{plot.element5}{A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. By default, \code{NULL}.}
 
-\item{plot.element6}{A ggplot2 plot function and arguments are needed to add graphical elements  to complete a specific task, but are not specified as arguments in the function. By default, \code{NULL}.}
+\item{plot.element6}{A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. By default, \code{NULL}.}
 
-\item{plot.element7}{A ggplot2 plot function and arguments are needed to add graphical elements  to complete a specific task, but are not specified as arguments in the function. By default, \code{NULL}.}
+\item{plot.element7}{A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. By default, \code{NULL}.}
 
-\item{plot.element8}{A ggplot2 plot function and arguments are needed to add graphical elements  to complete a specific task, but are not specified as arguments in the function. By default, \code{NULL}.}
+\item{plot.element8}{A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. By default, \code{NULL}.}
 
-\item{plot.element9}{A ggplot2 plot function and arguments are needed to add graphical elements  to complete a specific task, but are not specified as arguments in the function. By default, \code{NULL}.}
+\item{plot.element9}{A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. By default, \code{NULL}.}
 }
 \value{
 A scatter plot is returned as an object or saved as a file in a local directory.
