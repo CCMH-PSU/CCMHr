@@ -61,7 +61,7 @@ plot_bar(
   reference.line = NULL,
   reference.line.color = "#1f2022",
   reference.line.size = 1,
-  reference.line.linetype = 2,
+  reference.line.linetype = 1,
   plot.element1 = NULL,
   plot.element2 = NULL,
   plot.element3 = NULL,
@@ -129,7 +129,7 @@ bar_plot(
   reference.line = NULL,
   reference.line.color = "#1f2022",
   reference.line.size = 1,
-  reference.line.linetype = 2,
+  reference.line.linetype = 1,
   plot.element1 = NULL,
   plot.element2 = NULL,
   plot.element3 = NULL,
@@ -252,7 +252,7 @@ bar_plot(
 
 \item{reference.line.size}{A numeric value or list of numeric values to indicate the thickness of each reference line. By default, \code{1}.}
 
-\item{reference.line.linetype}{A numeric value or list of numeric values to indicate the line type(s) of each reference line. By default, \code{2}.}
+\item{reference.line.linetype}{A numeric value or list of numeric values to indicate the line type(s) of each reference line. By default, \code{1} or a solid line.}
 
 \item{plot.element1}{A ggplot2 plot function and arguments that add graphical element(s) needed to complete a specific task, but are not specified as an argument in the function. For example, the axis label text color will always be black unless specified in one of the plot.element arguments (i.e., plot.element1 to plot.element9). To change the axis label text color, one of the plot.element arguments should be specified as follows: \code{plot.element1 = ggplot2::theme(axis.text = ggplot2::element_text(color = "green"))}. By default, \code{NULL}.}
 
