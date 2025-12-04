@@ -17,7 +17,7 @@
 #' @param plot.dpi A numeric value to indicate the plot's image resolution. By default, `360`.
 #' @param plot.device A quoted string or function to indicate the plot's device. If saving the plot as a PDF, use `cairo_pdf`. By default, `NULL`.
 #' @param plot.scale A numeric value to indicate the plot's scale. By default, `1`.
-#' @param hide.group.items A quoted string or list to indicate the group variable items to be hidden in the plot. The argument hides the listed grouped item bars in the plot while maintaining the position of the hidden bars. This argument is intended for use when preparing plots for presentation, where the presenter wants to present data in a specified order instead of displaying all the data at once. By default, `NULL`.
+#' @param hide.group.items A quoted string, a character vector, or a list to indicate the group variable items to be hidden in the plot. The argument hides the grouped item bars in the plot while maintaining the position of the hidden bars. This argument is intended for use when preparing plots for presentation, where the presenter wants to present data in a specified order instead of displaying all the data at once. When a quoted string or a character vector is used, a single plot is saved/returned. When a list is provided, multiple plots are saved/returned based on its length. See notes and codebook for more details and examples. By default, `NULL`.
 #' @param plot.title A quoted string to indicate the title of the plot. By default, `NULL`.
 #' @param x.title A quoted string to indicate the x-axis title. By default, `NULL`.
 #' @param y.title A quoted string to indicate the y-axis title. By default, `NULL`.
@@ -56,7 +56,7 @@
 #' @param show.point.legend A logical argument to indicate whether the plot should include points on each. If `TRUE`, points will be added to each line. By default, `FALSE`.
 #' @param point.size A numeric value to indicate point size. By default, `2`.
 #' @param point.shape A numeric value to indicate point shape. By default, `19`.
-#' @param plot.element1 A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. For example, the axis label text color will always be black unless specified in one of the plot.element arguments (i.e., plot.element1 to plot.element9). To change the axis label text color, one of the plot.element arguments should be specified as follows: `plot.element1 = ggplot2::theme(axis.text = ggplot2::element_text(color = "green"))`. By default, `NULL`.
+#' @param plot.element1 A ggplot2 plot function and arguments needed to add graphical element(s) needed to complete a specific task, but are not specified as an argument in the function. For example, the axis label text color will always be black unless specified in one of the plot.element arguments (i.e., plot.element1 to plot.element9). To change the axis label text color, one of the plot.element arguments should be specified as follows: `plot.element1 = ggplot2::theme(axis.text = ggplot2::element_text(color = "green"))`. By default, `NULL`.
 #' @param plot.element2 A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. By default, `NULL`.
 #' @param plot.element3 A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. By default, `NULL`.
 #' @param plot.element4 A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. By default, `NULL`.
@@ -66,6 +66,8 @@
 #' @param plot.element8 A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. By default, `NULL`.
 #' @param plot.element9 A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. By default, `NULL`.
 #'
+#' @note When using a list for the `hide.group.items` argument, the order of the list determines what is presented in the graph in each transition and file name. The file name would be the original path, with `_Transition-0n` appended. For example, if the path is `"plot.png"` and the maximum number of the list is 3, the following three files would be saved: `plot_Transition-01.png`, `plot_Transition-02.png`, and `plot_Transition-03.png`. Also, `NULL` could be used in a list to ensure no group items are hidden.
+#' 
 #' @return A line plot is returned as an object or saved as a file in a local directory.
 #'
 #' @importFrom dplyr mutate
@@ -204,393 +206,441 @@ plot_line <- function(data,
 
       }
     }
+  
+  # Ensure hide.group.items are lists
+  if(!is.list(hide.group.items)) {
+    
+    hide.group.items <- list(hide.group.items)
 
-  # Specify to remove legend or x axis information from the plot
-  if(!is.null(hide.group.items) |
-     group.var != ""){
+  } else {
 
-    # Remove column based on fill information
-    if(!is.null(hide.group.items)){
+  }
 
-      data <- data |>
-        dplyr::mutate(alpha = ifelse({{group.var1}} %in% hide.group.items, "b", "a"))
+  # Determine the maximum number of loops needed
+  max.loops <- max(length(hide.group.items), 1L)
+
+  # For loop 
+  for(i in 1:max.loops){
+
+    # Initialize temporary variables
+    hide.group.items.temp <- NULL
+    path.temp <- NULL
+
+    # Specify to remove legend or x axis information from the plot
+    if(is.null(hide.group.items[[i]])){
+
+      hide.group.items[[i]] <- ""
 
     } else{
 
-      data$alpha <- "a"
-
     }
 
-    # Specify if the legend should be reordered
-    if(!is.null(legend.order.manual) &
+    # Unlist hide variables
+    hide.group.items.temp <- unlist(hide.group.items[[i]])
+
+    # Specify to remove legend or x axis information from the plot
+    if(all(hide.group.items.temp != "") |
        group.var != ""){
 
-      data[[{{group.var1}}]] <- factor(data[[{{group.var1}}]],
-                                       levels = legend.order.manual)
+      # Remove column based on fill information
+      if(all(hide.group.items.temp != "")){
 
-      data.temp <- data |>
-        dplyr::arrange({{group.var1}})|>
-        dplyr::filter(alpha == "a") |>
-        dplyr::select({{group.var1}})
+        data <- data |>
+          dplyr::mutate(alpha = ifelse({{group.var1}} %in% hide.group.items.temp, "b", "a"))
 
-      names(data.temp) <- "break1"
-      break1 <- as.character(unique(data.temp$break1))
+      } else{
 
-    } else if(is.null(legend.order.manual) &
-              group.var != ""){
+        data$alpha <- "a"
 
-      data.temp <- data |>
-        dplyr::filter(alpha == "a") |>
-        dplyr::select({{group.var1}})
+      }
 
-      names(data.temp) <- "break1"
+      # Specify if the legend should be reordered
+      if(!is.null(legend.order.manual) &
+        group.var != ""){
 
-      break1 <- as.character(unique(data.temp$break1))
+        data[[{{group.var1}}]] <- factor(data[[{{group.var1}}]],
+                                        levels = legend.order.manual)
+
+        data.temp <- data |>
+          dplyr::arrange({{group.var1}})|>
+          dplyr::filter(alpha == "a") |>
+          dplyr::select({{group.var1}})
+
+        names(data.temp) <- "break1"
+        break1 <- as.character(unique(data.temp$break1))
+
+      } else if(is.null(legend.order.manual) &
+                group.var != ""){
+
+        data.temp <- data |>
+          dplyr::filter(alpha == "a") |>
+          dplyr::select({{group.var1}})
+
+        names(data.temp) <- "break1"
+
+        break1 <- as.character(unique(data.temp$break1))
+
+      } else{
+
+      }
 
     } else{
 
     }
 
-  } else{
+    # Specify Y Major Grid
+    if(y.grid.major == TRUE){
 
-  }
-
-  # Specify Y Major Grid
-  if(y.grid.major == TRUE){
-
-    grid.maj <- ggplot2::element_line(color = y.grid.major.color,
-                                      linewidth = y.grid.major.size,
-                                      linetype = y.grid.major.linetype)
-
-  } else {
-
-    grid.maj <- ggplot2::element_blank()
-
-  }
-
-  # Specify Y breaks
-  if(is.null(y.breaks)){
-
-    y.breaks.c <- ggplot2::waiver()
-
-  } else {
-
-    y.breaks.c <- y.breaks
-
-  }
-
-  # Specify Y Minor Grid
-  if(y.grid.minor == TRUE){
-
-    grid.min <- ggplot2::element_line(color = y.grid.minor.color,
-                                      linewidth = y.grid.minor.size,
-                                      linetype = y.grid.minor.linetype)
-
-  } else {
-
-    grid.min <- ggplot2::element_blank()
-
-  }
-
-  # Specify y axis labels
-  if(y.label.type == "percent"){
-
-    y.label.typea <- scales::percent
-
-  } else if(y.label.type == "comma"){
-
-    y.label.typea <- scales::comma
-
-  } else if(y.label.type == "numeric"){
-
-    y.label.typea <- ggplot2::waiver()
-
-  } else if(y.label.type == "sci"){
-
-    y.label.typea <- scales::scientific
-
-  } else if(y.label.type == "dollar"){
-
-    y.label.typea <- scales::dollar
-
-  } else {
-
-    y.label.typea <- NULL
-
-  }
-
-  # Specify y axis line
-  if(y.axis.line == TRUE){
-
-    y.axis.line.c <- ggplot2::element_line(colour = 'black',
-                                           linewidth = 0.5,
-                                           linetype = 'solid')
-
-  } else{
-
-    y.axis.line.c <- ggplot2::element_blank()
-
-  }
-
-  # Specify x axis line
-  if(x.axis.line == TRUE){
-
-    x.axis.line.c <- ggplot2::element_line(colour = 'black',
-                                           linewidth = 0.5,
-                                           linetype = 'solid')
-
-  } else{
-
-    x.axis.line.c <- ggplot2::element_blank()
-
-  }
-
-  # Specify color
-  if(group.var == ""){
-
-    color <- color[1]
-
-  } else{
-
-  }
-
-  # Specify the primary graph properties and x axis order
-  sca.graph <- ggplot2::ggplot(data,
-    {if(group.var == ""){
-
-      ggplot2::aes(x = {{x.var1}},
-                   y = {{y.var1}},
-                   group = 1)
+      grid.maj <- ggplot2::element_line(color = y.grid.major.color,
+                                        linewidth = y.grid.major.size,
+                                        linetype = y.grid.major.linetype)
 
     } else {
 
-      ggplot2::aes(x = {{x.var1}},
-                   y = {{y.var1}},
-                   group = {{group.var1}})
+      grid.maj <- ggplot2::element_blank()
+
+    }
+
+    # Specify Y breaks
+    if(is.null(y.breaks)){
+
+      y.breaks.c <- ggplot2::waiver()
+
+    } else {
+
+      y.breaks.c <- y.breaks
+
+    }
+
+    # Specify Y Minor Grid
+    if(y.grid.minor == TRUE){
+
+      grid.min <- ggplot2::element_line(color = y.grid.minor.color,
+                                        linewidth = y.grid.minor.size,
+                                        linetype = y.grid.minor.linetype)
+
+    } else {
+
+      grid.min <- ggplot2::element_blank()
+
+    }
+
+    # Specify y axis labels
+    if(y.label.type == "percent"){
+
+      y.label.typea <- scales::percent
+
+    } else if(y.label.type == "comma"){
+
+      y.label.typea <- scales::comma
+
+    } else if(y.label.type == "numeric"){
+
+      y.label.typea <- ggplot2::waiver()
+
+    } else if(y.label.type == "sci"){
+
+      y.label.typea <- scales::scientific
+
+    } else if(y.label.type == "dollar"){
+
+      y.label.typea <- scales::dollar
+
+    } else {
+
+      y.label.typea <- NULL
+
+    }
+
+    # Specify y axis line
+    if(y.axis.line == TRUE){
+
+      y.axis.line.c <- ggplot2::element_line(colour = 'black',
+                                            linewidth = 0.5,
+                                            linetype = 'solid')
+
+    } else{
+
+      y.axis.line.c <- ggplot2::element_blank()
+
+    }
+
+    # Specify x axis line
+    if(x.axis.line == TRUE){
+
+      x.axis.line.c <- ggplot2::element_line(colour = 'black',
+                                            linewidth = 0.5,
+                                            linetype = 'solid')
+
+    } else{
+
+      x.axis.line.c <- ggplot2::element_blank()
+
+    }
+
+    # Specify color
+    if(group.var == ""){
+
+      color <- color[1]
+
+    } else{
+
+    }
+
+    # Specify the primary graph properties and x axis order
+    sca.graph <- ggplot2::ggplot(data,
+      {if(group.var == ""){
+
+        ggplot2::aes(x = {{x.var1}},
+                    y = {{y.var1}},
+                    group = 1)
+
+      } else {
+
+        ggplot2::aes(x = {{x.var1}},
+                    y = {{y.var1}},
+                    group = {{group.var1}})
+
+        }
+      }) +
+
+    # Specify plot as geom_line and alpha
+    {if(!is.null(hide.group.items.temp) &
+        group.var == ""){
+
+      ggplot2::geom_line(ggplot2::aes(alpha = alpha),
+                        linewidth = line.size,
+                        linetype = line.type,
+                        color = color)
+
+    } else if (!is.null(hide.group.items.temp) &
+              group.var != ""){
+
+      ggplot2::geom_line(ggplot2::aes(alpha = alpha,
+                                      color = {{group.var1}}),
+                        linewidth = line.size,
+                        linetype = line.type)
+
+    } else if (is.null(hide.group.items.temp) &
+              group.var != ""){
+
+      ggplot2::geom_line(ggplot2::aes(color = {{group.var1}}),
+                        linewidth = line.size,
+                        linetype = line.type)
+
+    } else{
+
+      ggplot2::geom_line(linewidth = line.size,
+                        linetype = line.type,
+                        color = color)
 
       }
-    }) +
+    } +
 
-  # Specify plot as geom_line and alpha
-  {if(!is.null(hide.group.items) &
-      group.var == ""){
+    # Specify plot as geom_point and alpha
+    {if(point == TRUE){
 
-    ggplot2::geom_line(ggplot2::aes(alpha = alpha),
-                       linewidth = line.size,
-                       linetype = line.type,
-                       color = color)
+      if(!is.null(hide.group.items.temp) &
+        group.var == ""){
 
-  } else if (!is.null(hide.group.items) &
-             group.var != ""){
+        ggplot2::geom_point(ggplot2::aes(alpha = alpha),
+                            size = point.size,
+                            shape = point.shape,
+                            color = color,
+                            show.legend = show.point.legend)
 
-    ggplot2::geom_line(ggplot2::aes(alpha = alpha,
-                                    color = {{group.var1}}),
-                       linewidth = line.size,
-                       linetype = line.type)
+      } else if (!is.null(hide.group.items.temp) &
+                group.var != ""){
 
-  } else if (is.null(hide.group.items) &
-             group.var != ""){
+        ggplot2::geom_point(ggplot2::aes(alpha = alpha,
+                                        color = {{group.var1}}),
+                            size = point.size,
+                            shape = point.shape,
+                            show.legend = show.point.legend)
 
-    ggplot2::geom_line(ggplot2::aes(color = {{group.var1}}),
-                       linewidth = line.size,
-                       linetype = line.type)
+      } else if (is.null(hide.group.items.temp) &
+                group.var != ""){
 
-  } else{
+        ggplot2::geom_point(ggplot2::aes(color = {{group.var1}}),
+                            size = point.size,
+                            shape = point.shape,
+                            show.legend = show.point.legend)
 
-    ggplot2::geom_line(linewidth = line.size,
-                       linetype = line.type,
-                       color = color)
+      } else{
 
-    }
-  } +
+        ggplot2::geom_point(size = point.size,
+                            shape = point.shape,
+                            color = color,
+                            show.legend = show.point.legend)
 
-  # Specify plot as geom_point and alpha
-  {if(point == TRUE){
+        }
 
-    if(!is.null(hide.group.items) &
-       group.var == ""){
-
-      ggplot2::geom_point(ggplot2::aes(alpha = alpha),
-                          size = point.size,
-                          shape = point.shape,
-                          color = color,
-                          show.legend = show.point.legend)
-
-    } else if (!is.null(hide.group.items) &
-               group.var != ""){
-
-      ggplot2::geom_point(ggplot2::aes(alpha = alpha,
-                                       color = {{group.var1}}),
-                          size = point.size,
-                          shape = point.shape,
-                          show.legend = show.point.legend)
-
-    } else if (is.null(hide.group.items) &
-               group.var != ""){
-
-      ggplot2::geom_point(ggplot2::aes(color = {{group.var1}}),
-                          size = point.size,
-                          shape = point.shape,
-                          show.legend = show.point.legend)
-
-    } else{
-
-      ggplot2::geom_point(size = point.size,
-                          shape = point.shape,
-                          color = color,
-                          show.legend = show.point.legend)
+      } else{
 
       }
 
+    } +
+
+    # Remove points based on alpha
+    {if(!is.null(hide.group.items.temp)){
+
+      ggplot2::scale_alpha_manual(values = c("a" = 1, "b" = 0),
+                                  guide = 'none')
+
+      } else{
+
+      }
+    } +
+
+    # Remove legend information based on alpha and specify fill color
+    {if(group.var != ""){
+
+      ggplot2::scale_color_manual(values = color,
+                                  breaks = break1)
+
+      } else{
+
+        ggplot2::scale_color_manual(values = color)
+
+      }
+    } +
+
+    # Specify legend information
+    ggplot2::guides(color = ggplot2::guide_legend(byrow = TRUE,
+                                                  override.aes = ggplot2::aes(label = "")),
+                    alpha = "none") +
+
+    # Specify title information
+    ggplot2::labs(title = plot.title,
+                  y = y.title,
+                  x = x.title,
+                  color = legend.title) +
+
+    # Specify y-axis scale
+    ggplot2::scale_y_continuous(labels = y.label.typea,
+                                limits = c(y.min,
+                                          y.max),
+                                expand = y.expand,
+                                breaks = y.breaks.c)+
+
+    # Specify the plots theme information
+    ggplot2::theme(panel.grid = ggplot2::element_blank(),
+                   panel.grid.major.y = grid.maj,
+                   panel.grid.minor.y = grid.min,
+                   panel.background = ggplot2::element_rect(fill = 'white',
+                                                            color = NA),
+                   plot.margin = ggplot2::margin(t = 0.5,  # Top margin
+                                                 r = 0.5,  # Right margin
+                                                 b = 0.5,  # Bottom margin
+                                                 l = 0.5,  # Left margin
+                                                 unit = "cm"),
+                   text = ggplot2::element_text(family = text.font),
+                   plot.title = ggplot2::element_text(size = plot.title.size,
+                                                      hjust = 0.5),
+                   axis.title = ggplot2::element_text(size = axis.title.size),
+                   axis.text = ggplot2::element_text(size = axis.label.size),
+                   axis.title.y = ggplot2::element_text(margin = ggplot2::margin(t = 0,
+                                                                                 r = 7,
+                                                                                 b = 0,
+                                                                                 l = 0),
+                                                        angle = 0,
+                                                        vjust = 0.5),
+                   axis.title.x = ggplot2::element_text(margin = ggplot2::margin(t = 7,
+                                                                                 r = 0,
+                                                                                 b = 0,
+                                                                                 l = 0)),
+                   axis.line.x = x.axis.line.c,
+                   axis.line.y = y.axis.line.c,
+                   plot.caption = ggplot2::element_text(size = caption.size,
+                                                        vjust = caption.vjust),
+                   legend.position = legend.position,
+                   legend.background = ggplot2::element_rect(fill = "white",
+                                                             colour = "white",
+                                                             inherit.blank = TRUE,
+                                                             color = "white"),
+                   legend.title = ggplot2::element_text(size= legend.title.size),
+                   legend.key = ggplot2::element_blank(),
+                   legend.text = ggplot2::element_text(size = legend.label.size)) +
+
+    # Specify if the coords should be flipped
+    {if(coord.flip == TRUE){
+
+      ggplot2::coord_flip()
+
     } else{
 
-    }
+      }
+    } +
 
-  } +
+    # Specify to remove axis ticks
+    {if(remove.axis.ticks == TRUE){
 
-  # Remove points based on alpha
-  {if(!is.null(hide.group.items)){
+      ggplot2::theme(axis.ticks = ggplot2::element_blank())
 
-    ggplot2::scale_alpha_manual(values = c("a" = 1, "b" = 0),
-                                guide = 'none')
+    } else {
+
+      }
+    } +
+
+    # Specify plot elements
+    plot.element1 +
+    plot.element2 +
+    plot.element3 +
+    plot.element4 +
+    plot.element5 +
+    plot.element6 +
+    plot.element7 +
+    plot.element8 +
+    plot.element9
+
+    # Specify caption information
+    {if(caption == TRUE){
+
+      sca.graph <- sca.graph +
+        CCMHr::ccmh_caption()
 
     } else{
 
+      }
     }
-  } +
 
-  # Remove legend information based on alpha and specify fill color
-  {if(group.var != ""){
+    # Specify if the graph should be saved as file or returned as an object
+    if(save == TRUE){
 
-    ggplot2::scale_color_manual(values = color,
-                                breaks = break1)
+      # Specify path for each transition if multiple loops
+      if(max.loops > 1){
+
+        path.temp <- substr(path, 1, nchar(path) - 4)
+        path.end <- substr(path, pmax(nchar(path) - 3, 1), nchar(path))
+        path.temp <- paste0(path.temp, "_Transition-", sprintf("%02d", as.integer(i)), path.end)
+
+      } else{
+
+        path.temp <- path
+
+      }
+
+      ggplot2::ggsave(paste0(path.temp),
+                      plot = sca.graph,
+                      width = plot.width,
+                      height = plot.height,
+                      units = plot.units,
+                      dpi = plot.dpi,
+                      device = plot.device,
+                      scale = plot.scale)
 
     } else{
 
-      ggplot2::scale_color_manual(values = color)
+      # Render the plot to the active device while the function runs
+      if (interactive()) print(sca.graph)
 
     }
-  } +
 
-  # Specify legend information
-  ggplot2::guides(color = ggplot2::guide_legend(byrow = TRUE,
-                                                override.aes = ggplot2::aes(label = "")),
-                  alpha = "none") +
-
-  # Specify title information
-  ggplot2::labs(title = plot.title,
-                y = y.title,
-                x = x.title,
-                color = legend.title) +
-
-  # Specify y-axis scale
-  ggplot2::scale_y_continuous(labels = y.label.typea,
-                              limits = c(y.min,
-                                         y.max),
-                              expand = y.expand,
-                              breaks = y.breaks.c)+
-
-  # Specify the plots theme information
-  ggplot2::theme(panel.grid = ggplot2::element_blank(),
-                 panel.grid.major.y = grid.maj,
-                 panel.grid.minor.y = grid.min,
-                 panel.background = ggplot2::element_rect(fill = 'white',
-                                                          color = NA),
-                 plot.margin = ggplot2::margin(t = 0.5,  # Top margin
-                                               r = 0.5,  # Right margin
-                                               b = 0.5,  # Bottom margin
-                                               l = 0.5,  # Left margin
-                                               unit = "cm"),
-                 text = ggplot2::element_text(family = text.font),
-                 plot.title = ggplot2::element_text(size = plot.title.size,
-                                                    hjust = 0.5),
-                 axis.title = ggplot2::element_text(size = axis.title.size),
-                 axis.text = ggplot2::element_text(size = axis.label.size),
-                 axis.title.y = ggplot2::element_text(margin = ggplot2::margin(t = 0,
-                                                                               r = 7,
-                                                                               b = 0,
-                                                                               l = 0),
-                                                      angle = 0,
-                                                      vjust = 0.5),
-                 axis.title.x = ggplot2::element_text(margin = ggplot2::margin(t = 7,
-                                                                               r = 0,
-                                                                               b = 0,
-                                                                               l = 0)),
-                 axis.line.x = x.axis.line.c,
-                 axis.line.y = y.axis.line.c,
-                 plot.caption = ggplot2::element_text(size = caption.size,
-                                                      vjust = caption.vjust),
-                 legend.position = legend.position,
-                 legend.background = ggplot2::element_rect(fill = "white",
-                                                           colour = "white",
-                                                           inherit.blank = TRUE,
-                                                           color = "white"),
-                 legend.title = ggplot2::element_text(size= legend.title.size),
-                 legend.key = ggplot2::element_blank(),
-                 legend.text = ggplot2::element_text(size = legend.label.size)) +
-
-  # Specify if the coords should be flipped
-  {if(coord.flip == TRUE){
-
-    ggplot2::coord_flip()
-
-  } else{
-
-    }
-  } +
-
-  # Specify to remove axis ticks
-  {if(remove.axis.ticks == TRUE){
-
-    ggplot2::theme(axis.ticks = ggplot2::element_blank())
-
-  } else {
-
-    }
-  } +
-
-  # Specify plot elements
-  plot.element1 +
-  plot.element2 +
-  plot.element3 +
-  plot.element4 +
-  plot.element5 +
-  plot.element6 +
-  plot.element7 +
-  plot.element8 +
-  plot.element9
-
-  # Specify caption information
-  {if(caption == TRUE){
-
-    sca.graph <- sca.graph +
-      CCMHr::ccmh_caption()
-
-  } else{
-
-    }
   }
-
-  # Specify if the graph should be saved as file or returned as an object
-  if(save == TRUE){
-
-    ggplot2::ggsave(paste0(path),
-                    plot = sca.graph,
-                    width = plot.width,
-                    height = plot.height,
-                    units = plot.units,
-                    dpi = plot.dpi,
-                    device = plot.device,
-                    scale = plot.scale)
-
-  } else{
-
-    return(sca.graph)
-
-  }
-
+  
 }
 
 #' @rdname plot_line
 #' @export
 line_plot <- plot_line
+  

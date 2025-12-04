@@ -58,10 +58,6 @@ plot_bar(
   y.axis.line = TRUE,
   x.axis.line = TRUE,
   remove.axis.ticks = FALSE,
-  reference.line = NULL,
-  reference.line.color = "#1f2022",
-  reference.line.size = 1,
-  reference.line.linetype = 2,
   plot.element1 = NULL,
   plot.element2 = NULL,
   plot.element3 = NULL,
@@ -126,10 +122,6 @@ bar_plot(
   y.axis.line = TRUE,
   x.axis.line = TRUE,
   remove.axis.ticks = FALSE,
-  reference.line = NULL,
-  reference.line.color = "#1f2022",
-  reference.line.size = 1,
-  reference.line.linetype = 2,
   plot.element1 = NULL,
   plot.element2 = NULL,
   plot.element3 = NULL,
@@ -172,9 +164,9 @@ bar_plot(
 
 \item{plot.scale}{A numeric value to indicate the plot's scale. By default, \code{1}.}
 
-\item{hide.x.items}{A quoted string or list to indicate the x-axis variable items to be hidden in the plot. The argument hides the listed x-axis item bars in the plot while maintaining the position of the hidden bars. This argument is intended for use when preparing plots for presentation, where the presenter wants to present data in a specified order instead of displaying all the data at once. By default, \code{NULL}.}
+\item{hide.x.items}{A quoted string, a character vector, or a list to indicate the x-axis variable items to be hidden in the plot. The argument hides the x-axis item bars in the plot while maintaining the position of the hidden bars. This argument is intended for use when preparing plots for presentation, where the presenter wants to present data in a specified order instead of displaying all the data at once. When a quoted string or a character vector is used, a single plot is saved/returned. When a list is provided, multiple plots are saved/returned based on its length. See notes and codebook for more details and examples. By default, \code{NULL}.}
 
-\item{hide.group.items}{A quoted string or list to indicate the group variable items to be hidden in the plot. The argument hides the listed grouped item bars in the plot while maintaining the position of the hidden bars. This argument is intended for use when preparing plots for presentation, where the presenter wants to present data in a specified order instead of displaying all the data at once. By default, \code{NULL}.}
+\item{hide.group.items}{A quoted string, a character vector, or a list to indicate the group variable items to be hidden in the plot. The argument hides the grouped item bars in the plot while maintaining the position of the hidden bars. This argument is intended for use when preparing plots for presentation, where the presenter wants to present data in a specified order instead of displaying all the data at once. When a quoted string or a character vector is used, a single plot is saved/returned. When a list is provided, multiple plots are saved/returned based on its length. See notes and codebook for more details and examples. By default, \code{NULL}.}
 
 \item{plot.title}{A quoted string to indicate the title of the plot. By default, \code{NULL}.}
 
@@ -246,15 +238,7 @@ bar_plot(
 
 \item{remove.axis.ticks}{A logical argument to indicate whether the axis ticks should be excluded. If \code{TRUE}, the axis ticks will not be displayed on the plot. By default, \code{FALSE}.}
 
-\item{reference.line}{A numeric value or list of numeric values to indicate where reference line(s) should be placed on the y-axis. If NULL, no reference line(s) are added. By default, \code{NULL}.}
-
-\item{reference.line.color}{A hex code or list of A hex codes to indicate the color(s) of each reference line. By default, \code{"#1f2022"} or a dark grey.}
-
-\item{reference.line.size}{A numeric value or list of numeric values to indicate the thickness of each reference line. By default, \code{1}.}
-
-\item{reference.line.linetype}{A numeric value or list of numeric values to indicate the line type(s) of each reference line. By default, \code{2}.}
-
-\item{plot.element1}{A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. For example, the axis label text color will always be black unless specified in one of the plot.element arguments (i.e., plot.element1 to plot.element9). To change the axis label text color, one of the plot.element arguments should be specified as follows: \code{plot.element1 = ggplot2::theme(axis.text = ggplot2::element_text(color = "green"))}. By default, \code{NULL}.}
+\item{plot.element1}{A ggplot2 plot function and arguments that add graphical element(s) needed to complete a specific task, but are not specified as an argument in the function. For example, the axis label text color will always be black unless specified in one of the plot.element arguments (i.e., plot.element1 to plot.element9). To change the axis label text color, one of the plot.element arguments should be specified as follows: \code{plot.element1 = ggplot2::theme(axis.text = ggplot2::element_text(color = "green"))}. By default, \code{NULL}.}
 
 \item{plot.element2}{A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. By default, \code{NULL}.}
 
@@ -277,4 +261,7 @@ A bar plot is returned as an object or saved as a file in a local directory.
 }
 \description{
 This function creates a bar graph. Bar graphs visually resemble column graphs; however, there are critical differences. In ggplot2 bar graphs, the height of bars is proportional to the number of responses at each x-axis position (e.g., what is the number of clients that responded 1, 2, 3, 4, or 5). Here, ggplot2 uses stat_count() by default, where it counts the number of responses at each x-axis position. Alternatively, ggplot2 column plots display data that are already summarized (e.g., a table containing the count or prevalence of responses). Thus, the height of the bars is based on the numbers within the summarized data (e.g., 123 responded with 1, 178 responded with 2, 332 responded with 3, 472 responded with 4, or 986 responded with 5). See the example data frame below for reference.
+}
+\note{
+When using a list for the \code{hide.x.items} and/or \code{hide.group.items} arguments, the order of the list determines what is presented in the graph in each transition and file name. The file name would be the original path, with \verb{_Transition-0n} appended. For example, if the path is \code{"plot.png"} and the maximum number of lists between \code{hide.x.items} and \code{hide.group.items} is 3, the following three files would be saved: \verb{plot_Transition-01.png}, \verb{plot_Transition-02.png}, and \verb{plot_Transition-03.png}. When using both \code{hide.x.items} and \code{hide.group.items} as lists, the length of both lists does not have to be equal. For example, if \code{hide.x.items} has three items and \code{hide.group.items} has two items, three plots will be created. In the last plot, no group items are hidden. Also, \code{NULL} could be used in a list to ensure no x or group items are hidden.
 }

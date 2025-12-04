@@ -160,7 +160,7 @@ line_plot(
 
 \item{plot.scale}{A numeric value to indicate the plot's scale. By default, \code{1}.}
 
-\item{hide.group.items}{A quoted string or list to indicate the group variable items to be hidden in the plot. The argument hides the listed grouped item bars in the plot while maintaining the position of the hidden bars. This argument is intended for use when preparing plots for presentation, where the presenter wants to present data in a specified order instead of displaying all the data at once. By default, \code{NULL}.}
+\item{hide.group.items}{A quoted string, a character vector, or a list to indicate the group variable items to be hidden in the plot. The argument hides the grouped item bars in the plot while maintaining the position of the hidden bars. This argument is intended for use when preparing plots for presentation, where the presenter wants to present data in a specified order instead of displaying all the data at once. When a quoted string or a character vector is used, a single plot is saved/returned. When a list is provided, multiple plots are saved/returned based on its length. See notes and codebook for more details and examples. By default, \code{NULL}.}
 
 \item{plot.title}{A quoted string to indicate the title of the plot. By default, \code{NULL}.}
 
@@ -238,7 +238,7 @@ line_plot(
 
 \item{point.shape}{A numeric value to indicate point shape. By default, \code{19}.}
 
-\item{plot.element1}{A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. For example, the axis label text color will always be black unless specified in one of the plot.element arguments (i.e., plot.element1 to plot.element9). To change the axis label text color, one of the plot.element arguments should be specified as follows: \code{plot.element1 = ggplot2::theme(axis.text = ggplot2::element_text(color = "green"))}. By default, \code{NULL}.}
+\item{plot.element1}{A ggplot2 plot function and arguments needed to add graphical element(s) needed to complete a specific task, but are not specified as an argument in the function. For example, the axis label text color will always be black unless specified in one of the plot.element arguments (i.e., plot.element1 to plot.element9). To change the axis label text color, one of the plot.element arguments should be specified as follows: \code{plot.element1 = ggplot2::theme(axis.text = ggplot2::element_text(color = "green"))}. By default, \code{NULL}.}
 
 \item{plot.element2}{A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. By default, \code{NULL}.}
 
@@ -261,4 +261,7 @@ A line plot is returned as an object or saved as a file in a local directory.
 }
 \description{
 This function creates a line plot graph.
+}
+\note{
+When using a list for the \code{hide.group.items} argument, the order of the list determines what is presented in the graph in each transition and file name. The file name would be the original path, with \verb{_Transition-0n} appended. For example, if the path is \code{"plot.png"} and the maximum number of the list is 3, the following three files would be saved: \verb{plot_Transition-01.png}, \verb{plot_Transition-02.png}, and \verb{plot_Transition-03.png}. Also, \code{NULL} could be used in a list to ensure no group items are hidden.
 }
