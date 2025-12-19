@@ -13,7 +13,7 @@
 #' @param x.descend A logical argument to indicate if the items should be arranged in descending order on the x-axis. If `TRUE`, the x-axis is ordered descending. By default, `FALSE`.
 #' @param x.order.manual A list of quoted strings to indicate the order of the x-axis items. By default, `NULL`.
 #' @param col.position A quoted string to indicate the column position adjustment. By default, `"dodge"`.
-#' @param save A logical argument that indicates whether the plot should be saved as a file under a local folder. If `FALSE`, the plot will be returned as an object. By default, `FALSE`.
+#' @param save A logical argument that indicates whether the plot should be saved as a file under a local folder. If `FALSE`, the plot will be returned as an object. Note: Returning plot object is not supported when fixed.legend.size = TRUE or multiple plots are created based on hide.group.items and/or hide.x.items. By default, `FALSE`.
 #' @param path A quoted string to indicate the file's pathway, name, and type if `save = TRUE`. By default, `"plot.png"`.
 #' @param plot.width A numeric value to indicate the plot's width. By default, `12`.
 #' @param plot.height A numeric value to indicate the plot's height. By default, `9`.
@@ -45,6 +45,7 @@
 #' @param legend.title A quoted string to indicate the legend title. By default, `NULL`.
 #' @param legend.title.size A numeric value to indicate the legend title text size. By default, `16`.
 #' @param legend.label.size A numeric value to indicate the legend label text size. By default, `14`.
+#' @param fixed.legend.size A logical argument to indicate whether the legend key size should be fixed. If `TRUE`, the legend key size is fixed. By default, `FALSE`.
 #' @param column.width A numeric value to indicate the column's width. By default, `0.90`.
 #' @param coord.flip A logical argument to indicate if the plot's x and y-axis should be flipped. If `TRUE`, the x and y axis is flipped. By default, `FALSE`.
 #' @param y.grid.major A logical argument to indicate whether the y-axis major grid lines should be added to the plot. If `TRUE`, the y-axis major grid lines are displayed on the plot. By default, `FALSE`.
@@ -61,7 +62,7 @@
 #' @param reference.line A numeric value or list of numeric values to indicate where reference line(s) should be placed on the y-axis. If NULL, no reference line(s) are added. By default, `NULL`.
 #' @param reference.line.color A hex code or list of A hex codes to indicate the color(s) of each reference line. By default, `"#1f2022"` or a dark grey.
 #' @param reference.line.size A numeric value or list of numeric values to indicate the thickness of each reference line. By default, `1`.
-#' @param reference.line.linetype A numeric value or list of numeric values to indicate the line type(s) of each reference line. By default, `1` or a solid line.
+#' @param reference.line.linetype A numeric value or list of numeric values to indicate the line type(s) of each reference line. By default, `2`.
 #' @param plot.element1 A ggplot2 plot function and arguments needed to add graphical element(s) needed to complete a specific task, but are not specified as an argument in the function. For example, the axis label text color will always be black unless specified in one of the plot.element arguments (i.e., plot.element1 to plot.element9). To change the axis label text color, one of the plot.element arguments should be specified as follows: `plot.element1 = ggplot2::theme(axis.text = ggplot2::element_text(color = "green"))`. By default, `NULL`.
 #' @param plot.element2 A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. By default, `NULL`.
 #' @param plot.element3 A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. By default, `NULL`.
@@ -154,8 +155,9 @@ plot_column <- function(data,
                         legend.position = "none",
                         legend.order.manual = NULL,
                         legend.title = NULL,
-                        legend.title.size= 16,
-                        legend.label.size= 14,
+                        legend.title.size = 16,
+                        legend.label.size = 14,
+                        fixed.legend.size = FALSE,
                         column.width = 0.90,
                         coord.flip = FALSE,
                         y.grid.major = FALSE,
@@ -172,7 +174,7 @@ plot_column <- function(data,
                         reference.line = NULL,
                         reference.line.color = "#1f2022",
                         reference.line.size = 1,
-                        reference.line.linetype = 1,
+                        reference.line.linetype = 2,
                         plot.element1 = NULL,
                         plot.element2 = NULL,
                         plot.element3 = NULL,
@@ -182,7 +184,7 @@ plot_column <- function(data,
                         plot.element7 = NULL,
                         plot.element8 = NULL,
                         plot.element9 = NULL){
-  
+
   # Specify data as a data frame
   data <- as.data.frame(data)
 
@@ -364,6 +366,7 @@ plot_column <- function(data,
     hide.x.items.temp <- NULL
     hide.group.items.temp <- NULL
     path.temp <- NULL
+    col.color <- NULL
 
     # Specify to remove legend or x axis information from the plot
     if(!is.null(hide.group.items[[i]]) |
@@ -545,12 +548,57 @@ plot_column <- function(data,
 
     }
 
-    # Specify color
+    # Specify color of text and columns
     if(group.var == ""){
 
-      color <- color[1]
+      col.color <- color[1]
 
     } else{
+
+      if(all(hide.group.items.temp == "")){
+
+        col.color <- rep(color,
+                         length.out = length(unique(data$group77d8214)))
+
+      } else{
+
+        df.color <- data.frame(unique(data$group77d8214), 
+                               rep(color,
+                                   length.out = length(unique(data$group77d8214))))
+        
+        names(df.color) <- c("group77d8214", "color")
+
+        df.data <- data |>
+          dplyr::select(group77d8214, alpha.fill) |>
+          unique()
+
+        df.color <- df.color |>
+          dplyr::inner_join(df.data, by = "group77d8214") |>
+          dplyr::mutate(color = ifelse(alpha.fill == "b", "#FFFFFF", color))
+
+        if(!is.null(legend.order.manual)){
+
+          df.color$group77d8214 <- factor(df.color$group77d8214,
+                                          levels = legend.order.manual)
+
+          df.color <- df.color |>
+            dplyr::arrange(group77d8214)
+
+        } else{
+
+        }
+
+        df.color$group77d8214 <- factor(df.color$group77d8214,
+                                        levels = sort(unique(data$group77d8214)))
+
+        df.color <- df.color |>
+          dplyr::arrange(group77d8214)
+        
+        col.color <- df.color$color
+
+        legend_labels <- df.color$group77d8214
+
+      }
 
     }
 
@@ -561,7 +609,7 @@ plot_column <- function(data,
 
         ggplot2::aes(x = forcats::fct_reorder({{x.var1}}, {{y.var1}}),
                     y = {{y.var1}},
-                    fill = color)
+                    fill = col.color)
 
       } else if(x.ascend  == TRUE &
                 group.var != ""){
@@ -575,7 +623,7 @@ plot_column <- function(data,
 
         ggplot2::aes(x = forcats::fct_rev(forcats::fct_reorder({{x.var1}}, {{y.var1}})),
                     y = {{y.var1}},
-                    fill = color)
+                    fill = col.color)
 
       } else if(x.descend  == TRUE &
                 group.var != ""){
@@ -611,7 +659,7 @@ plot_column <- function(data,
 
         ggplot2::aes(x = {{x.var1}},
                     y = {{y.var1}},
-                    fill = color)
+                    fill = col.color)
 
       }
     }) +
@@ -643,22 +691,29 @@ plot_column <- function(data,
     } +
 
     # Remove legend information based on alpha and specify fill color
-    {if(!is.null(hide.x.items.temp) &
-        group.var != ""){
+    {if(all(hide.group.items.temp != "") &
+        fixed.legend.size == FALSE){
 
-      ggplot2::scale_fill_manual(values = color,
-                                breaks = break1)
+        ggplot2::scale_fill_manual(values = col.color,
+                                   breaks = break1)
 
-    } else{
+      } else if(all(hide.group.items.temp == "") &
+                fixed.legend.size == FALSE){
+      
+        ggplot2::scale_fill_manual(values = col.color)
 
-      ggplot2::scale_fill_manual(values = color)
+       } else if(all(hide.group.items.temp != "") &
+                 fixed.legend.size == TRUE){
+      
+         ggplot2::scale_fill_manual(values = col.color, 
+                                    labels = legend_labels)
 
-      }
+        } else{
+
+          ggplot2::scale_fill_manual(values = col.color)
+
+         }
     } +
-
-    # Specify legend information
-    ggplot2::guides(color = ggplot2::guide_legend(byrow = TRUE,
-                                                  override.aes = ggplot2::aes(label = ""))) +
 
     # Specify title information
     ggplot2::labs(title = plot.title,
@@ -728,8 +783,8 @@ plot_column <- function(data,
     {if(x.remove == TRUE){
 
       ggplot2::theme(axis.title.x = ggplot2::element_blank(),
-                    axis.text.x = ggplot2::element_blank(),
-                    axis.ticks.x = ggplot2::element_blank())
+                     axis.text.x = ggplot2::element_blank(),
+                     axis.ticks.x = ggplot2::element_blank())
 
     } else{
 
@@ -800,6 +855,63 @@ plot_column <- function(data,
 
     }
 
+    # Specify fixed legend based on hide.group.items.temp
+    if(any(data$group77d8214 %in% hide.group.items.temp) == TRUE &
+       group.var != "" &
+       fixed.legend.size == TRUE){
+
+      # Convert plot to grob
+      g <- grid::grid.force(ggplot2::ggplotGrob(col.graph))
+
+      # Draw the plot grob so grid.edit() can target drawn grobs
+      grid::grid.newpage()
+      grid::grid.draw(g)
+
+      # Locate the legend index based on legend position
+      if(legend.position == "right") {
+
+        legend_index <- which(g$layout$name == "guide-box-right" | grepl("guide-box-right", g$layout$name))
+
+      } else if(legend.position == "left") {
+
+        legend_index <- which(g$layout$name == "guide-box-left" | grepl("guide-box-left", g$layout$name))
+
+      } else if(legend.position == "top") {
+
+        legend_index <- which(g$layout$name == "guide-box-top" | grepl("guide-box-top", g$layout$name))
+
+      } else if(legend.position == "bottom") {
+
+        legend_index <- which(g$layout$name == "guide-box-bottom" | grepl("guide-box-bottom", g$layout$name))
+
+      } else {
+
+      }
+
+      # Inspect legend-forced to find the text grob names
+      legend_forced <- grid::grid.force(g$grobs[[legend_index]])
+
+      # Choose target text grob names
+      legend_names <- grid::grid.ls(legend_forced, print = FALSE)$name
+      text_names   <- legend_names[grepl("^GRID.text", legend_names)]
+      label_text_names <- tail(text_names, length(col.color))  
+
+      # Now edit the drawn grobs' colours (acts on the plotted device)
+      for (j in seq_along(label_text_names)) {
+
+        grid::grid.edit(label_text_names[j], 
+                        gp = grid::gpar(col = col.color[j]), 
+                        grep = TRUE)
+          
+      }
+
+      # Grab the modified plot as a grob
+      col.graph <- grid::grid.grab()
+    
+    } else{
+
+    }
+
     # Specify if the graph should be saved as file or returned as an object
     if(save == TRUE){
 
@@ -830,8 +942,28 @@ plot_column <- function(data,
 
       # Render the plot to the active device while the function runs
       if (interactive()) print(col.graph)
-
+     
     }
+
+  }
+
+  # Warning message and return graph
+  if(save == FALSE){
+
+    # Warning message
+    if(max.loops > 1 |
+       fixed.legend.size == TRUE &
+       save == FALSE){
+
+        warning("Returning plot object is not supported when fixed.legend.size = TRUE or multiple plots are created based on hide.group.items and/or hide.x.items. To save the plot(s), set save = TRUE and specify a path.")
+
+      } else{
+
+      }
+
+    if (interactive()) return(col.graph)
+
+  } else{
 
   }
 

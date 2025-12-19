@@ -47,6 +47,7 @@ plot_column(
   legend.title = NULL,
   legend.title.size = 16,
   legend.label.size = 14,
+  fixed.legend.size = FALSE,
   column.width = 0.9,
   coord.flip = FALSE,
   y.grid.major = FALSE,
@@ -63,7 +64,7 @@ plot_column(
   reference.line = NULL,
   reference.line.color = "#1f2022",
   reference.line.size = 1,
-  reference.line.linetype = 1,
+  reference.line.linetype = 2,
   plot.element1 = NULL,
   plot.element2 = NULL,
   plot.element3 = NULL,
@@ -117,6 +118,7 @@ column_plot(
   legend.title = NULL,
   legend.title.size = 16,
   legend.label.size = 14,
+  fixed.legend.size = FALSE,
   column.width = 0.9,
   coord.flip = FALSE,
   y.grid.major = FALSE,
@@ -133,7 +135,7 @@ column_plot(
   reference.line = NULL,
   reference.line.color = "#1f2022",
   reference.line.size = 1,
-  reference.line.linetype = 1,
+  reference.line.linetype = 2,
   plot.element1 = NULL,
   plot.element2 = NULL,
   plot.element3 = NULL,
@@ -164,7 +166,7 @@ column_plot(
 
 \item{col.position}{A quoted string to indicate the column position adjustment. By default, \code{"dodge"}.}
 
-\item{save}{A logical argument that indicates whether the plot should be saved as a file under a local folder. If \code{FALSE}, the plot will be returned as an object. By default, \code{FALSE}.}
+\item{save}{A logical argument that indicates whether the plot should be saved as a file under a local folder. If \code{FALSE}, the plot will be returned as an object. Note: Returning plot object is not supported when fixed.legend.size = TRUE or multiple plots are created based on hide.group.items and/or hide.x.items. By default, \code{FALSE}.}
 
 \item{path}{A quoted string to indicate the file's pathway, name, and type if \code{save = TRUE}. By default, \code{"plot.png"}.}
 
@@ -228,6 +230,8 @@ column_plot(
 
 \item{legend.label.size}{A numeric value to indicate the legend label text size. By default, \code{14}.}
 
+\item{fixed.legend.size}{A logical argument to indicate whether the legend key size should be fixed. If \code{TRUE}, the legend key size is fixed. By default, \code{FALSE}.}
+
 \item{column.width}{A numeric value to indicate the column's width. By default, \code{0.90}.}
 
 \item{coord.flip}{A logical argument to indicate if the plot's x and y-axis should be flipped. If \code{TRUE}, the x and y axis is flipped. By default, \code{FALSE}.}
@@ -260,7 +264,7 @@ column_plot(
 
 \item{reference.line.size}{A numeric value or list of numeric values to indicate the thickness of each reference line. By default, \code{1}.}
 
-\item{reference.line.linetype}{A numeric value or list of numeric values to indicate the line type(s) of each reference line. By default, \code{1} or a solid line.}
+\item{reference.line.linetype}{A numeric value or list of numeric values to indicate the line type(s) of each reference line. By default, \code{2}.}
 
 \item{plot.element1}{A ggplot2 plot function and arguments needed to add graphical element(s) needed to complete a specific task, but are not specified as an argument in the function. For example, the axis label text color will always be black unless specified in one of the plot.element arguments (i.e., plot.element1 to plot.element9). To change the axis label text color, one of the plot.element arguments should be specified as follows: \code{plot.element1 = ggplot2::theme(axis.text = ggplot2::element_text(color = "green"))}. By default, \code{NULL}.}
 
