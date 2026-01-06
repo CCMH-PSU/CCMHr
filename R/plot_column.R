@@ -922,7 +922,7 @@ plot_column <- function(data,
       }
 
     } else{
-      
+
     }
 
     # Specify fixed legend based on hide.group.items.temp
@@ -961,18 +961,21 @@ plot_column <- function(data,
       # Inspect legend-forced to find the text grob names
       legend_forced <- grid::grid.force(g$grobs[[legend_index]])
 
+      # Specify text color
+      text.color.2 <- ifelse(col.color == "#FFFFFF", "#FFFFFF", "#000000")
+
       # Choose target text grob names
       legend_names <- grid::grid.ls(legend_forced, print = FALSE)$name
       text_names   <- legend_names[grepl("^GRID.text", legend_names)]
-      label_text_names <- tail(text_names, length(col.color))  
+      label_text_names <- tail(text_names, length(text.color.2))
 
       # Now edit the drawn grobs' colours (acts on the plotted device)
       for (j in seq_along(label_text_names)) {
-
-        grid::grid.edit(label_text_names[j], 
-                        gp = grid::gpar(col = col.color[j]), 
+        
+        grid::grid.edit(label_text_names[j],
+                        gp = grid::gpar(col = text.color.2[j]),
                         grep = TRUE)
-          
+         
       }
 
       # Grab the modified plot as a grob
