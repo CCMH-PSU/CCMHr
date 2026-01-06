@@ -113,6 +113,14 @@
 #' @importFrom ggplot2 coord_flip
 #' @importFrom ggplot2 ggsave
 #' @importFrom ggplot2 scale_alpha_manual
+#' @importFrom ggplot2 ggplotGrob
+#' @importFrom grid grid.force
+#' @importFrom grid grid.newpage
+#' @importFrom grid grid.draw
+#' @importFrom grid grid.ls
+#' @importFrom grid grid.edit
+#' @importFrom grid grid.grab
+#' @importFrom grid gpar
 #'
 #' @export
 
