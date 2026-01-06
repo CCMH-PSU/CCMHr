@@ -65,6 +65,13 @@ plot_column(
   reference.line.color = "#1f2022",
   reference.line.size = 1,
   reference.line.linetype = 2,
+  column.text = FALSE,
+  column.text.size = 5,
+  column.text.color = "#000000",
+  column.text.position = ggplot2::position_dodge(),
+  column.text.digits = 2,
+  column.text.vjust = 0,
+  column.text.hjust = 0,
   plot.element1 = NULL,
   plot.element2 = NULL,
   plot.element3 = NULL,
@@ -136,6 +143,13 @@ column_plot(
   reference.line.color = "#1f2022",
   reference.line.size = 1,
   reference.line.linetype = 2,
+  column.text = FALSE,
+  column.text.size = 5,
+  column.text.color = "#000000",
+  column.text.position = ggplot2::position_dodge(),
+  column.text.digits = 2,
+  column.text.vjust = 0,
+  column.text.hjust = 0,
   plot.element1 = NULL,
   plot.element2 = NULL,
   plot.element3 = NULL,
@@ -265,6 +279,20 @@ column_plot(
 \item{reference.line.size}{A numeric value or list of numeric values to indicate the thickness of each reference line. By default, \code{1}.}
 
 \item{reference.line.linetype}{A numeric value or list of numeric values to indicate the line type(s) of each reference line. By default, \code{2}.}
+
+\item{column.text}{A logical argument to indicate whether text labels should be added to each column. If \code{TRUE}, text labels are added to each column. By default, \code{FALSE}.}
+
+\item{column.text.size}{A numeric value to indicate the text label size added to each column. By default, \code{5}.}
+
+\item{column.text.color}{A quoted string or hex code to indicate the text label color added to each column. By default, \code{"#000000"} or black.}
+
+\item{column.text.position}{A quoted string to indicate the position of the text labels added to each column. By default, \code{ggplot2::position_dodge()}.}
+
+\item{column.text.digits}{A numeric value to indicate the number of decimal places for the text labels added to each column. By default, \code{2}.}
+
+\item{column.text.vjust}{A numeric value to indicate the vertical adjustment of the text labels added to each column. By default, \code{0}.}
+
+\item{column.text.hjust}{A numeric value to indicate the horizontal adjustment of the text labels added to each column. By default, \code{0}.}
 
 \item{plot.element1}{A ggplot2 plot function and arguments needed to add graphical element(s) needed to complete a specific task, but are not specified as an argument in the function. For example, the axis label text color will always be black unless specified in one of the plot.element arguments (i.e., plot.element1 to plot.element9). To change the axis label text color, one of the plot.element arguments should be specified as follows: \code{plot.element1 = ggplot2::theme(axis.text = ggplot2::element_text(color = "green"))}. By default, \code{NULL}.}
 

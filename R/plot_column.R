@@ -63,6 +63,13 @@
 #' @param reference.line.color A hex code or list of A hex codes to indicate the color(s) of each reference line. By default, `"#1f2022"` or a dark grey.
 #' @param reference.line.size A numeric value or list of numeric values to indicate the thickness of each reference line. By default, `1`.
 #' @param reference.line.linetype A numeric value or list of numeric values to indicate the line type(s) of each reference line. By default, `2`.
+#' @param column.text A logical argument to indicate whether text labels should be added to each column. If `TRUE`, text labels are added to each column. By default, `FALSE`.
+#' @param column.text.size A numeric value to indicate the text label size added to each column. By default, `5`.
+#' @param column.text.color A quoted string or hex code to indicate the text label color added to each column. By default, `"#000000"` or black.
+#' @param column.text.position A quoted string to indicate the position of the text labels added to each column. By default, `ggplot2::position_dodge()`.
+#' @param column.text.digits A numeric value to indicate the number of decimal places for the text labels added to each column. By default, `2`.
+#' @param column.text.vjust A numeric value to indicate the vertical adjustment of the text labels added to each column. By default, `0`.
+#' @param column.text.hjust A numeric value to indicate the horizontal adjustment of the text labels added to each column. By default, `0`.
 #' @param plot.element1 A ggplot2 plot function and arguments needed to add graphical element(s) needed to complete a specific task, but are not specified as an argument in the function. For example, the axis label text color will always be black unless specified in one of the plot.element arguments (i.e., plot.element1 to plot.element9). To change the axis label text color, one of the plot.element arguments should be specified as follows: `plot.element1 = ggplot2::theme(axis.text = ggplot2::element_text(color = "green"))`. By default, `NULL`.
 #' @param plot.element2 A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. By default, `NULL`.
 #' @param plot.element3 A ggplot2 plot function and arguments needed to add graphical element(s) required to complete a specific task, but are not specified as an argument in the function. By default, `NULL`.
@@ -183,6 +190,13 @@ plot_column <- function(data,
                         reference.line.color = "#1f2022",
                         reference.line.size = 1,
                         reference.line.linetype = 2,
+                        column.text = FALSE,
+                        column.text.size = 5,
+                        column.text.color = "#000000",
+                        column.text.position = ggplot2::position_dodge(),
+                        column.text.digits = 2,
+                        column.text.vjust = 0,
+                        column.text.hjust = 0,
                         plot.element1 = NULL,
                         plot.element2 = NULL,
                         plot.element3 = NULL,
@@ -617,7 +631,7 @@ plot_column <- function(data,
         legend_labels <- df.color$group77d8214
 
       }
-      
+
     }
 
     # Specify the primary graph properties and x axis order
@@ -871,6 +885,44 @@ plot_column <- function(data,
 
     } else{
 
+    }
+
+    # Add column text labels
+    if(column.text == TRUE){
+
+      data <- data |>
+        dplyr::mutate(text.color = ifelse(alpha == "b", "#FFFFFF", column.text.color))
+
+      if(y.label.type == "percent"){
+
+        col.graph <- col.graph +
+          ggplot2::geom_text(data = data,
+                             ggplot2::aes(y = {{y.var1}},
+                                          label = paste0(format(round({{y.var1}}, digits = column.text.digits)*100, nsmall = 1), "%")),
+                             position = column.text.position,
+                             size = column.text.size,
+                             color = data$text.color,
+                             vjust = column.text.vjust,
+                             hjust = column.text.hjust,
+                             family = text.font)
+        
+      } else{
+
+        col.graph <- col.graph +
+          ggplot2::geom_text(data = data,
+                             ggplot2::aes(y = {{y.var1}},
+                                          label = paste0(round({{y.var1}}, digits = column.text.digits))),
+                             position = column.text.position,
+                             size = column.text.size,
+                             color = column.text.color,
+                             vjust = column.text.vjust,
+                             hjust = column.text.hjust,
+                             family = text.font)
+        
+      }
+
+    } else{
+      
     }
 
     # Specify fixed legend based on hide.group.items.temp
