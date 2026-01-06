@@ -567,15 +567,25 @@ plot_column <- function(data,
 
         col.color <- rep(color,
                          length.out = length(unique(data$group77d8214)))
-
+        
       } else{
 
-        df.color <- data.frame(unique(data$group77d8214), 
-                               rep(color,
-                                   length.out = length(unique(data$group77d8214))))
-        
-        names(df.color) <- c("group77d8214", "color")
+        if(is.null(names(color))){
 
+          df.color <- data.frame(group77d8214 = sort(unique(data$group77d8214)),
+                                 color = rep(color,
+                                             length.out = length(unique(data$group77d8214))))
+          
+        } else{
+
+          color.names <- names(color)
+          color.values <- as.vector(color)
+          df.color <- data.frame(group77d8214 = color.names,
+                                 color = color.values,
+                                 stringsAsFactors = FALSE)
+          
+        }
+        
         df.data <- data |>
           dplyr::select(group77d8214, alpha.fill) |>
           unique()
@@ -588,7 +598,7 @@ plot_column <- function(data,
 
           df.color$group77d8214 <- factor(df.color$group77d8214,
                                           levels = legend.order.manual)
-
+          
           df.color <- df.color |>
             dplyr::arrange(group77d8214)
 
@@ -598,16 +608,16 @@ plot_column <- function(data,
 
         df.color$group77d8214 <- factor(df.color$group77d8214,
                                         levels = sort(unique(data$group77d8214)))
-
+        
         df.color <- df.color |>
           dplyr::arrange(group77d8214)
-        
+
         col.color <- df.color$color
 
         legend_labels <- df.color$group77d8214
 
       }
-
+      
     }
 
     # Specify the primary graph properties and x axis order
