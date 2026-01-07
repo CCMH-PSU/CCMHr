@@ -13,7 +13,8 @@ apa_table(
   save = FALSE,
   path = "table.png",
   width = 1,
-  note = NULL
+  note = NULL,
+  column.text.align = "center"
 )
 
 APA_table(
@@ -24,7 +25,8 @@ APA_table(
   save = FALSE,
   path = "table.png",
   width = 1,
-  note = NULL
+  note = NULL,
+  column.text.align = "center"
 )
 }
 \arguments{
@@ -43,6 +45,8 @@ APA_table(
 \item{width}{A numeric value to indicate the width of the table. By default, \code{1}.}
 
 \item{note}{A quoted string to specify a note at the bottom of the table. By default, \code{NULL}.}
+
+\item{column.text.align}{A quoted string to specify the alignment of the text in the columns. Options include \code{"left"}, \code{"center"}, and \code{"right"}. By default, \code{"center"}.}
 }
 \value{
 Print and saves APA formatted tables.

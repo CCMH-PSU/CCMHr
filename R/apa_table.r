@@ -12,6 +12,7 @@
 #' @param path A quoted string to indicate the file's pathway, name, and type if `save = TRUE`. By default, `"table.png"`.
 #' @param width A numeric value to indicate the width of the table. By default, `1`.
 #' @param note A quoted string to specify a note at the bottom of the table. By default, `NULL`.
+#' @param column.text.align A quoted string to specify the alignment of the text in the columns. Options include `"left"`, `"center"`, and `"right"`. By default, `"center"`.
 #'
 #' @return Print and saves APA formatted tables.
 #'
@@ -38,7 +39,8 @@ apa_table <- function(data,
                       save = FALSE,
                       path = "table.png",
                       width = 1,
-                      note = NULL) {
+                      note = NULL, 
+                      column.text.align = "center") {
 
   # Extract the number of columns in data and header names listed
   ncol <- ncol(data)
@@ -77,7 +79,7 @@ apa_table <- function(data,
     gt::gt() |>
     gt::tab_header(title = gt::html(paste0("<b>", title_html, "</b>")),
                    subtitle = gt::html(paste0("<i>", subtitle_html, "</i>"))) |>
-    gt::cols_align(align = "center",
+    gt::cols_align(align = column.text.align,
                    columns = gt::everything()) |>
     gt::tab_options(table.font.names = "Times New Roman",
                     table.font.size = 16,
