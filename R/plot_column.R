@@ -1013,10 +1013,17 @@ plot_column <- function(data,
 
     } else{
 
-      # Render the plot to the active device while the function runs
-      if (interactive()) print(col.graph)
-     
-    }
+      if(max.loops > 1){
+
+        if (interactive()) print(col.graph)
+
+      } else{
+
+        return(col.graph)
+
+        }
+
+      }
 
   }
 

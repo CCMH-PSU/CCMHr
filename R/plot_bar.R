@@ -745,13 +745,19 @@ plot_bar <- function(data,
 
     } else{
 
-      # Render the plot to the active device while the function runs
-      if (interactive()) print(bar.graph)
+      if(max.loops > 1){
+
+        if (interactive()) print(bar.graph)
+
+      } else{
+
+        return(bar.graph)
+
+        }
+
+      }
 
     }
-
-  }
-
 }
 
 #' @rdname plot_bar
