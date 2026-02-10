@@ -871,13 +871,13 @@ plot_column <- function(data,
 
       } else{
 
-        for(i in 1:length(reference.line)){
+        for(h in 1:length(reference.line)){
 
         col.graph <- col.graph +
-          ggplot2::geom_hline(yintercept = reference.line[i],
-                              color = reference.line.color[i],
-                              linewidth = reference.line.size[i],
-                              linetype = reference.line.linetype[i])
+          ggplot2::geom_hline(yintercept = reference.line[h],
+                              color = reference.line.color[h],
+                              linewidth = reference.line.size[h],
+                              linetype = reference.line.linetype[h])
 
         }
 
