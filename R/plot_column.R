@@ -914,7 +914,7 @@ plot_column <- function(data,
                                           label = paste0(round({{y.var1}}, digits = column.text.digits))),
                              position = column.text.position,
                              size = column.text.size,
-                             color = column.text.color,
+                             color = data$text.color,
                              vjust = column.text.vjust,
                              hjust = column.text.hjust,
                              family = text.font)
