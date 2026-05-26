@@ -13,6 +13,7 @@ Functions to standardize routine data cleaning/processing procedures and the cre
 
 Authors:
 \itemize{
+  \item Rebecca Janis \email{ruj134@psu.edu}
   \item Tyler White \email{tdw5466@psu.edu}
 }
 

@@ -97,8 +97,8 @@ summarize_clicc <- function(data,
                             values_to = "value") |>
         tidyr::drop_na() |>
         dplyr::mutate(sample.n = dplyr::n_distinct(UniqueClientID)) |>
-        dplyr::summarise(percent = sum(value == 1, na.rm = TRUE)/sample.n,
-                         sample.n = dplyr::first(sample.n),
+        dplyr::summarise(sample.n = dplyr::first(sample.n),
+                         percent = sum(value == 1, na.rm = TRUE)/sample.n,
                          .by = c("Item")) |>
         dplyr::arrange(dplyr::desc(percent)) |>
         dplyr::inner_join(CCMHr::clicc_key)
