@@ -1086,7 +1086,7 @@ sds_to_factor <- function(data){
         forcats::fct_inseq() |>
         dplyr::recode(`1` = "Yes",
                       `0` = "No",
-                      `2` = "I did not use alcohol")
+                      `2` = "I did not use cannabis/THC")
 
     } else{
 
@@ -1220,6 +1220,7 @@ sds_to_factor <- function(data){
     } else{
 
     }
+
 
   # Return data
   return(data)
